@@ -17,17 +17,17 @@ define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
 define ( 'ADMIN_TITLE' ,'管理后台');
 define ( 'COMPANY_NAME' ,'刘潭服装-库存管理系统');
-define ('ADMIN_URL' ,'http://localhost/StockManager/erp');
-define('API_HOST','http://localhost/StockManager/api/Public/v1/');
-define('API_PUBLIC','http://localhost/StockManager/StockManager/api/Public/');
+define ('ADMIN_URL' ,'http://www.jxc.com/erp');
+define('API_HOST','http://www.jxc.com/api/Public/v1/');
+define('API_PUBLIC','http://www.jxc.com/api/Public/');
 
 
 define ('OSA_DB_ID' ,'osadmin');
-$DATABASE_LIST[OSA_DB_ID] = array ( "server"=>'211.149.188.180',
+$DATABASE_LIST[OSA_DB_ID] = array ( "server"=>'localhost',
     "port"=>'3306',
     "username"=> 'root',
-    "password"=>'huangximing',
-    "db_name"=>'jxc1'
+    "password"=>'root',
+    "db_name"=>'jxc'
 
 );
 
