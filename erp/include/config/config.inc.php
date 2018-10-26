@@ -17,28 +17,28 @@ define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
 define ( 'ADMIN_TITLE' ,'管理后台');
 define ( 'COMPANY_NAME' ,'刘潭服装-库存管理系统');
-define ('ADMIN_URL' ,'http://211.149.188.180/StockManager/erp');
-define('API_HOST','http://211.149.188.180/StockManager/api/Public/v1/');
-define('API_PUBLIC','http://211.149.188.180/StockManager/api/Public/');
+define ('ADMIN_URL' ,'http://www.jxc.com/erp');
+define('API_HOST','http://www.jxc.com/api/Public/v1/');
+define('API_PUBLIC','http://www.jxc.com/api/Public/');
 
 
 define ('OSA_DB_ID' ,'osadmin');
 $DATABASE_LIST[OSA_DB_ID] = array ( "server"=>'localhost',
     "port"=>'3306',
     "username"=> 'root',
-    "password"=>'huangximing',
-    "db_name"=>'jxc1'
+    "password"=>'root',
+    "db_name"=>'jxc'
 
 );
 
 //样例数据库设置
 define ( 'SAMPLE_DB_ID' ,'sample');
 $DATABASE_LIST[SAMPLE_DB_ID] = array (
-	"server"=>'localhost',
+	"server"=>'127.0.0.1',
 	"port"=>'3306',
 	"username"=> 'root',
 	"password"=>'huangximing',
-	"db_name"=>'jxc1' );
+	"db_name"=>'osadmin' );
 
 
 //COOKIE加密密钥，建议修改
