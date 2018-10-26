@@ -17,6 +17,7 @@
         <label>选择状态</label>
         <select name="status">
 	  		<option value ="0" <{if $_GET.status eq 0}>selected<{/if}>>全部</option>
+	  		<option value ="0" <{if $_GET.status eq 0}>selected<{/if}>>全部</option>
 	  		<option value ="1" <{if $_GET.status eq 1}>selected<{/if}>>未审核</option>
 	  		<option value ="2" <{if $_GET.status eq 2}>selected<{/if}>>已审核</option>
 		</select>

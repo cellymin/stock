@@ -13,8 +13,15 @@ $client = new PhalApiClient();
 
 
 if (Common::isPost()) {
+
+
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
+//        var_dump($_POST);
+//        die();
         $rs = $client->request('Supplier_Insert.Go', $_POST);
+       /* var_dump($client);
+        echo PhalApiClient::RET_OK;
+        die();*/
 
         if ($client->getRet() == PhalApiClient::RET_OK) {
             Common::closeWithMessage('操作成功');
@@ -23,6 +30,8 @@ if (Common::isPost()) {
                 $rs['supplierId'], json_encode($_POST));
             Template::assign("_POST", array());
         } else {
+//            echo 1;
+//            die();
             Common::resetNonceStr();
             Template::assign("_POST", $_POST);
             Common::tipWithMessage($client->getMsg(), 'error');
