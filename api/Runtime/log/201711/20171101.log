@@ -1,0 +1,41 @@
+2017-11-01 08:52:19|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in /home/u1047/ace/workspace/php/appcode/webroot/htdocs/adminJxc/api/PhalApi/NotORM/NotORM/Result.php:258
+Stack trace:
+#0 /home/u1047/ace/workspace/php/appcode/webroot/htdocs/adminJxc/api/PhalApi/NotORM/NotORM/Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 /home/u1047/ace/workspace/php/appcode/webroot/htdocs/adminJxc/api/PhalApi/NotORM/NotORM/Result.php(857): NotORM_Result->execute()
+#2 /home/u1047/ace/workspace/php/appcode/webroot/htdocs/adminJxc/api/Version1/Model/Message.php(19): NotORM_Result->fetch()
+#3 /home/u1047/ace/workspace/php/appcode/webroot/htdocs/adminJxc/api/Version1/Domain/Message/Msg.php(87): Model_Message->invoiceMsgExists('1')
+#4 /home/u1047/ace/workspace/php/appcode/webroot/htdocs/adminJxc/api/Version1/Api/Warning/Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 /home/u1047/ace/workspace/php/appcode/webroot/htdocs/adminJxc/api/PhalApi/PhalApi.php(55): call_user_func(Array)
+#7 /home/u1047/ace/workspace/php/appcode/webroot/htdocs/adminJxc/api/Public/v1/index.php(14): PhalApi->response()
+#8 {main}
+2017-11-01 09:09:33|DEBUG|invalid timestamp|{"timestamp":1509498573}
+2017-11-01 09:20:20|DEBUG|invalid timestamp|{"timestamp":1509499220}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:04|DEBUG|invalid timestamp|{"timestamp":1509499264}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}
+2017-11-01 09:21:05|DEBUG|invalid timestamp|{"timestamp":1509499265}

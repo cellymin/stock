@@ -1,0 +1,256 @@
+.lead-top {
+    margin-top: 1em;
+}
+
+.brand.brand-active {
+    color: #fff;
+}
+
+.bb-code {
+    font-family: "Courier";
+    font-size: 1.2em;
+}
+
+.bb-code-small {
+    font-size: 0.9em;
+}
+
+.bb-alert {
+    z-index: 2000;
+    width: auto;
+    position: fixed;
+    bottom: 75%;
+    right: 40%;
+    margin-bottom: 0;
+    font-size: 1.2em;
+    padding: 1em 1.3em;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.icon {
+    color: #333333;
+}
+
+/*  自定义  */
+.f14 {
+    font-size: 14px;
+}
+
+#form_data table {
+    width: 100%;
+}
+
+#form_data table tr td:first-child, #form_data th {
+    width: 75px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+#form_data table tr td b {
+    display: block;
+}
+
+#form_data table tr td .label-important {
+    display: inline-block;
+}
+
+.form_div {
+    padding: 20px;
+}
+
+#data_list th {
+    height: 22px;
+    line-height: 22px;
+}
+
+#data_list th label {
+    margin-bottom: 0;
+    line-height: 22px;
+}
+
+#data_list th label input[type=checkbox] {
+    margin-top: 0;
+}
+
+#form_box {
+    padding-bottom: 30px;
+}
+
+/*.layui-layer-title{background:#000!important; color:#fff; border: none;}*/
+
+/*#data_list tr th:first-child {*/
+    /*width: 40px;*/
+/*}*/
+
+.msg_box {
+    width: 50%;
+    float: left;
+}
+
+#warning_msg tr td:first-child {
+    border-right: 1px solid #ccc;
+}
+
+#warning_msg tr:first-child td {
+    border-bottom: 1px solid #ccc;
+}
+
+#warning_msg ul {
+    margin: 15px 0;
+    padding: 0;
+}
+
+#warning_msg ul li {
+    list-style: none;
+    font-size: 16px;
+    line-height: 35px;
+    border-bottom: 1px dotted #ddd;
+}
+
+#warning_msg ul li font {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+#warning_msg ul li a {
+    margin-top: 3px;
+    float: right;
+}
+
+#warning_msg ul li .up {
+    color: red;
+}
+
+#warning_msg ul li .down {
+    color: blue;
+}
+
+#code_print {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#depot_list ul {
+    margin: 0;
+    padding: 0;
+}
+
+#depot_list ul li {
+    list-style: none;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 10px;
+}
+
+#depot_list ul li span {
+    text-align: center;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#depot_list ul li div {
+    height: 150px;
+    width: 150px;
+    overflow-y: scroll;
+}
+
+#depot_list ul li div label {
+    text-align: center;
+    line-height: 30px;
+}
+
+#order_head table tr td:nth-child(2), #order_head table tr td:nth-child(4) {
+    color: #000;
+}
+
+.m-demo table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 表头固定内容滚动的表格  */
+.m-demo {
+    margin: 0 0 20px;
+    line-height: 18px;
+}
+
+.m-demo .scroll {
+    max-height: 300px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    overflow-y: auto;
+}
+
+.m-demo table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.m-demo th, .m-demo td {
+    padding: 8px 5px;
+    text-align: left;
+    color: #888;
+    height: 20px;
+    border-bottom: 1px solid #ddd;
+}
+.m-demo .td40{  width: 40px;  }
+.m-demo .td60{  width: 60px;  }
+.m-demo .td80{  width: 80px;  }
+.m-demo .td90{  width: 90px;  }
+.m-demo .td100{  width: 100px;  }
+.m-demo .td120{  width: 120px;  }
+.m-demo .td150{  width: 150px;  }
+
+.m-demo tr:hover td {
+    color: #000;
+}
+
+.m-demo td a {
+    cursor: pointer;
+}
+.m-demo td input {
+    width: 85% !important;
+}
+
+.m-demo th {
+    background: #4D5B76;
+    color: #fff;
+}
+
+.m-demo thead th:last-child, .m-demo tbody td:last-child {
+    width: auto;
+}
+.m-demo thead th:first-child, .m-demo tbody td:first-child {
+    width: 40px;
+}
+
+.m-demo tbody tr:nth-child(2n) {
+    background: #fafafa;
+}
+
+.m-demo tbody tr:first-child td {
+    border-top: 0;
+}
+
+.m-demo tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.m-demo tbody tr td:first-child {
+    border-left: 0;
+}
+
+.m-demo tbody tr td:last-child {
+    border-right: 0;
+}
