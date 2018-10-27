@@ -25,7 +25,6 @@ if (Common::isPost()) {
 }
 
 $rs = $client->request('Supplier_Get.Go', array('supplierId' => $supplierId));
-
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $supplier = $rs['content'];
 }
