@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>价格</td>
-                <td><input name="goodsPrice" type="text" required></td>
+                <td><input name="goodsPrice" type="text" required value="<{$lastprice}>"></td>
             </tr>
             <tr>
                 <td>备注</td>

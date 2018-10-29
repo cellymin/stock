@@ -49,6 +49,7 @@ class Api_Supplier_Update extends PhalApi_Api
             'supplierName' => $this->supplierName,
             'supplierAddress' => $this->supplierAddress,
             'supplierTel' => $this->supplierTel,
+            'taxrate' => $this->taxrate,
             'supplierUserName' => $this->supplierUserName,
             'supplierUserPhone' => $this->supplierUserPhone,
             'supplierUserEmail' => $this->supplierUserEmail,

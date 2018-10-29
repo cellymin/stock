@@ -286,7 +286,7 @@ class Chart extends Base{
 		$sql = "select count(*) as `count`, IFNULL(round(avg(goodsPrice),2),0) as `avg`
 				from vich_orders_ip_goods as a 
 				left join vich_orders_ip as b on b.orderId = a.orderId
-				where a.goodsId=$goodsId and b.flag=3 and date_format(a.createTime,'%Y-%m')=date_format(now(),'%Y-%m')";
+				where a.goodsId=$goodsId and b.flag=3 and a.flag=1 and date_format(a.createTime,'%Y-%m')=date_format(now(),'%Y-%m')";
 		if(!empty($companyId)){
 			$sql.=" and a.createCompany=$companyId ";
 		}

@@ -42,6 +42,9 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $order = $rs['content'];
 }
 //商品
+$str = explode('_',$goodsId);
+$goodsId = $str[0];
+$lastpri = $str[1];
 $rs = $client->request('Goods_GetForOrder.Go', array(
     'goodsId' => $goodsId
 ));
@@ -70,4 +73,5 @@ Template::assign('orderId', $orderId);
 Template::assign('depots_options', $depots_options);
 Template::assign('depotSubs_options', $depotSubs_options);
 Template::assign('goods', $goods);
+Template::assign('lastprice', $lastpri);
 Template::display('storage/purchase_storage_add.tpl');
