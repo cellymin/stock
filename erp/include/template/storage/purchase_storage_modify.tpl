@@ -24,7 +24,15 @@
             </tr>
             <tr>
                 <td>价格</td>
-                <td><input name="goodsPrice" type="text" value="<{$goods.goodsPrice}>" required></td>
+                <td><input name="goodsPrice" type="text" value="<{$goods.goodsPrice}>" required onchange="ratejisuan(this)" ></td>
+            </tr>
+            <tr>
+                <td>税率</td>
+                <td><input name="goodsPrice" type="text" disabled="disabled"  value="<{$taxrate}>" class="taxrate"></td>
+            </tr>
+            <tr>
+                <td>不含税价</td>
+                <td><input name="goodsPrice" type="text" disabled="disabled"  value="<{$buhpri}>" class="buhpri"></td>
             </tr>
             <tr>
                 <td>备注</td>
@@ -52,4 +60,14 @@
             window.location.href = "purchase_storage_modify.php?orderId=<{$orderId}>&id=<{$id}>&depotId="+depotId
         })
     })
+    function ratejisuan(e) {
+        var hanpri = parseFloat($(e).val());//含税价
+        var rate = parseFloat($('.taxrate').val());//税率
+        var buhpri = hanpri/(1+rate); //不含税价格=含税价/(1+税率)
+        $('.buhpri').val(decimal(buhpri,6));
+    }
+    function decimal(num,v){
+        var vv = Math.pow(10,v);
+        return Math.round(num*vv)/vv;
+    }
 </script>

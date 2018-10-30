@@ -61,8 +61,9 @@ class Api_Supplier_Update extends PhalApi_Api
             'cardUserPhone' => $this->cardUserPhone,
             'cardMoney' => $this->cardMoney,
             'reviewer' => $this->reviewer,
+            'reviewTime'=>date('Y-m-d H:i:s'),
             'remark' => $this->remark,
-            'flag' => 0,
+            'flag' => 1,
         );
         if($this->taxrate>1){
             $rs['msg'] = '税率不能大于1';

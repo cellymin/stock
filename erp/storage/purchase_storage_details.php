@@ -7,7 +7,8 @@ $page_no   = $page_no ? $page_no : 1;
 $page_html = "";
 
 $client = new PhalApiClient();
-
+//echo '<pre/>';
+//var_dump($client);
 $rs = $client->request('Order_Get.Go', array(
     'type'      => 'PURCHASE_IN',
     'orderId'   => $orderId,
@@ -20,6 +21,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $row_count = $rs['content']['goods']['row_count'];
 
     $order      = $rs['content'];
+    //var_dump($order);
 //    $page_html = Pagination::showPager("purchase_storage_details.php?orderId=".$orderId, $page_no, $page_size, $row_count);
 } else {
     Common::tipWithMessage($client->getMsg(), 'error');

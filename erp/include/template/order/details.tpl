@@ -62,6 +62,8 @@
                     <{if in_array($type,array('PLAN','ARRIVAL','RETURN','PURCHASE_IN'))}>
                     <td>供应商</td>
                     <td><{$order.supplierName}></td>
+                    <td>税率</td>
+                    <td><{$order.taxrate}></td>
                     <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT'))}>
                     <td>仓库</td>
                     <td><{$order.depotName}></td>

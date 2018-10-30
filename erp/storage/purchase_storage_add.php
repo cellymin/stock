@@ -38,19 +38,28 @@ $rs = $client->request('Order_Get.Go', array(
     'page_no'   => 1,
     'page_size' => 1
 ));
+if($rs['content']['taxrate']){
+    $rate = $rs['content']['taxrate'];
+    Template::assign('taxrate', $rate);
+}
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $order = $rs['content'];
 }
 //商品
 $str = explode('_',$goodsId);
 $goodsId = $str[0];
-$lastpri = $str[1];
+$lastpri = $str[1];//含税价
+if($rate && $lastpri){//不含税价格=含税价/(1+税率)
+    $buhpri = round((float)$lastpri/(1+(float)$rate),6);
+    Template::assign('buhpri', $buhpri);
+}
 $rs = $client->request('Goods_GetForOrder.Go', array(
     'goodsId' => $goodsId
 ));
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods = $rs['content'];
 }
+
 
 //仓库
 $rs = $client->request('Depot_Options.Go', array());
@@ -66,7 +75,6 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $depotSubs_options = $rs['content'];
 }
 $depotSubs_options[0] = "== 请选择 ==";
-
 
 Template::assign('_GET', $_GET);
 Template::assign('orderId', $orderId);

@@ -20,7 +20,6 @@
                 <td width="40%" >供应商</td>
                 <td>
                     <{if $isgai==1 }>
-                    111
                     <select id="selectInput" name="supplierId">
                         <{foreach from=$suppliers_options item=v key=k}>
                         <option value="<{$v.name}>" dd="<{$v.pinyin}>" es="<{$v.jianxie}>" ss="<{$k}>"><{$v.name}></option>

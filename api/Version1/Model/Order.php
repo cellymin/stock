@@ -37,7 +37,7 @@ class Model_Order extends PhalApi_Model_NotORM
         $columns = '';
         $join = '';
         if(in_array($type, array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN'))){
-            $columns = 's.supplierName';
+            $columns = 's.supplierName,s.taxrate';
             $join = ' left join vich_suppliers s on s.supplierId=o.supplierId ';
         }
         if(in_array($type,  array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT'))){
