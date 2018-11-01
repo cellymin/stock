@@ -101,6 +101,7 @@ function  getExplorer() {
 function method5(tableid) {
     if(getExplorer()=='ie')
     {
+        alert(1);
         var curTbl = document.getElementById(tableid);
         var oXL = new ActiveXObject("Excel.Application");
         var oWB = oXL.Workbooks.Add();
@@ -136,7 +137,7 @@ function Cleanup() {
 }
 var tableToExcel = (function() {
     var uri = 'data:application/vnd.ms-excel;base64,',
-        template = '<html><head><meta charset="UTF-8"></head><body><table border="">{table}</table></body></html>',
+        template = '<html><head><meta charset="UTF-8"></head><body><table border="1">{table}</table></body></html>',
         base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) },
         format = function(s, c) {
             return s.replace(/{(\w+)}/g,

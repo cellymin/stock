@@ -4,7 +4,6 @@ $goodsId = $orderId = $goodsCnt = $goodsPrice = $arrivalTime = $remark = $nonceS
 extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = $depots_options = $depotSubs_options = $order = array();
 $client = new PhalApiClient();
-
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
         $rs = $client->request('Order_InsertGoods.Go', array(
@@ -50,6 +49,10 @@ $str = explode('_',$goodsId);
 $goodsId = $str[0];
 $lastpri = $str[1];//含税价
 if($rate && $lastpri){//不含税价格=含税价/(1+税率)
+    $buhpri = round((float)$lastpri/(1+(float)$rate),6);
+    Template::assign('buhpri', $buhpri);
+}else if($rate && $_GET['lastpri']){
+    $lastpri = $_GET['lastpri'];
     $buhpri = round((float)$lastpri/(1+(float)$rate),6);
     Template::assign('buhpri', $buhpri);
 }

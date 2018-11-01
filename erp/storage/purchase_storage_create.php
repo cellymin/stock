@@ -35,7 +35,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $pinyin = new PinYin();
     $suppliers_options = $rs['content'];
     $suppliers_options[0] = "== 请选择 ==";
-    $new_suppliers_options=[];
+    $new_suppliers_options=array();
     foreach ($suppliers_options as $k=>$v) {
         $new_suppliers_options[$k]['id']=$k;
         $new_suppliers_options[$k]['name']=$v;

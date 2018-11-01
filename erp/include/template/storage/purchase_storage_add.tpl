@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>含税价格</td>
-                <td><input name="goodsPrice" type="text" required value="<{$lastprice}>" onchange="ratejisuan(this)" /></td>
+                <td><input name="goodsPrice" type="text" required value="<{$lastprice}>" onchange="ratejisuan(this)" class="lastpri" /></td>
             </tr>
             <tr>
                 <td>税率</td>
@@ -55,8 +55,9 @@
 <script>
     $(function(){
         $('#depotId').change(function(){
+            var lastpri = $('.lastpri').val();
             var depotId = $('#depotId').val();
-            window.location.href = "purchase_storage_add.php?orderId=<{$orderId}>&goodsId=<{$goods.goodsId}>&depotId="+depotId
+            window.location.href = "purchase_storage_add.php?orderId=<{$orderId}>&goodsId=<{$goods.goodsId}>&depotId="+depotId+'&lastpri='+lastpri;
         })
     })
     function ratejisuan(e) {
