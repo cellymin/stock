@@ -22,57 +22,61 @@
                 <td>
                     <input type="text" name="supplierTel" value="<{$supplier.supplierTel}>"  required="true"  autofocus="true">
                 </td>
+                <td><b>供应商税率</b></td>
+                <td>
+                    <input type="text" name="taxrate" value="<{$supplier.taxrate}>"  required="true"  autofocus="true">
+                </td>
             </tr>
             <tr><td colspan="4">&nbsp;</td></tr>
             <tr>
                 <td><b>负责人</b></td>
                 <td>
-                    <input type="text" name="supplierUserName" value="<{$supplier.supplierUserName}>"  required="true"  autofocus="true">
+                    <input type="text" name="supplierUserName" value="<{$supplier.supplierUserName}>"  >
                 </td>
                 <td><b>负责人电话</b></td>
                 <td>
-                    <input type="text" name="supplierUserPhone" value="<{$supplier.supplierUserPhone}>"  required="true"  autofocus="true">
+                    <input type="text" name="supplierUserPhone" value="<{$supplier.supplierUserPhone}>" >
                 </td>
             </tr>
             <tr>
                 <td><b>负责人邮箱</b></td>
                 <td>
-                    <input type="text" name="supplierUserEmail" value="<{$supplier.supplierUserEmail}>"  required="true"  autofocus="true">
+                    <input type="text" name="supplierUserEmail" value="<{$supplier.supplierUserEmail}>" >
                 </td>
                 <td><b>负责人QQ</b></td>
                 <td>
-                    <input type="text" name="supplierUserQQ" value="<{$supplier.supplierUserQQ}>"  required="true"  autofocus="true">
+                    <input type="text" name="supplierUserQQ" value="<{$supplier.supplierUserQQ}>"  >
                 </td>
             </tr>
             <tr><td colspan="4">&nbsp;</td></tr>
             <tr>
                 <td><b>银行名称</b></td>
                 <td>
-                    <input type="text" name="bankName" value="<{$supplier.bankName}>"  required="true"  autofocus="true">
+                    <input type="text" name="bankName" value="<{$supplier.bankName}>"  >
                 </td>
                 <td><b>开户银行</b></td>
                 <td>
-                    <input type="text" name="bankOpenName" value="<{$supplier.bankOpenName}>"  required="true"  autofocus="true">
+                    <input type="text" name="bankOpenName" value="<{$supplier.bankOpenName}>" autofocus="true">
                 </td>
             </tr>
             <tr>
                 <td><b>开卡人姓名</b></td>
                 <td>
-                    <input type="text" name="cardUserName" value="<{$supplier.cardUserName}>"  required="true"  autofocus="true">
+                    <input type="text" name="cardUserName" value="<{$supplier.cardUserName}>"   autofocus="true">
                 </td>
                 <td><b>开卡人电话</b></td>
                 <td>
-                    <input type="text" name="cardUserPhone" value="<{$supplier.cardUserPhone}>"  required="true"  autofocus="true">
+                    <input type="text" name="cardUserPhone" value="<{$supplier.cardUserPhone}>"   autofocus="true">
                 </td>
             </tr>
             <tr>
                 <td><b>账户</b></td>
                 <td>
-                    <input type="text" name="bankAccount" value="<{$supplier.bankAccount}>"  required="true"  autofocus="true">
+                    <input type="text" name="bankAccount" value="<{$supplier.bankAccount}>"   autofocus="true">
                 </td>
                 <td><b>金额</b></td>
                 <td>
-                    <input type="text" name="cardMoney" value="<{$supplier.cardMoney}>"  required="true"  autofocus="true">
+                    <input type="text" name="cardMoney" value="<{$supplier.cardMoney}>"   autofocus="true">
                 </td>
             </tr>
             <tr><td colspan="4">&nbsp;</td></tr>

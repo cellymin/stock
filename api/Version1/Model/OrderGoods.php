@@ -40,7 +40,7 @@ class Model_OrderGoods extends PhalApi_Model_NotORM
         if($type=='SALE_OUT'){
 
         }else{
-            $columns .= 's.supplierName,';
+            $columns .= 's.supplierName,s.taxrate,';
             $left_join .= 'left join vich_suppliers s on s.supplierId=og.supplierId ';
         }
 

@@ -14,7 +14,7 @@ class Model_Supplier extends PhalApi_Model_NotORM
 
     public function getFields()
     {
-        return 'supplierId,supplierName,supplierAddress,supplierTel,supplierUserName,supplierUserPhone,supplierUserEmail,supplierUserQQ,bankName,bankAccount,bankOpenName,cardUserName,cardUserPhone,cardMoney,remark,reviewer,reviewTime,flag';
+        return 'supplierId,supplierName,supplierAddress,supplierTel,supplierUserName,supplierUserPhone,supplierUserEmail,supplierUserQQ,bankName,bankAccount,bankOpenName,cardUserName,cardUserPhone,cardMoney,remark,reviewer,reviewTime,flag,taxrate';
     }
 
     public function fetch($id, $fields = "*")
