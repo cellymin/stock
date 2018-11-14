@@ -11,6 +11,7 @@ class Api_DepotGoods_GetList extends PhalApi_Api
                 'keyword'    => array('name' => 'keyword', 'type' => 'string', 'default' => '', 'require' => false),
                 'depotId'    => array('name' => 'depotId', 'type' => 'int', 'min' => 0, 'require' => true),
                 'depotSubId' => array('name' => 'depotSubId', 'type' => 'int', 'min' => 0, 'require' => true),
+                'type' => array('name' => 'type', 'type' => 'string', 'min' => 0, 'require' => false),
             )
         );
     }
@@ -26,6 +27,7 @@ class Api_DepotGoods_GetList extends PhalApi_Api
         $domain->keyword    = $this->keyword;
         $domain->depotId    = $this->depotId;
         $domain->depotSubId = $this->depotSubId;
+        $domain->type = $this->type;
 
         $list = $domain->getList();
         if ($list) {

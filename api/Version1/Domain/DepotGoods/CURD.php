@@ -29,7 +29,7 @@ class Domain_DepotGoods_CURD
         $page_no    = $this->page_no > ($total_page) ? ($total_page) : $this->page_no;
         $start      = ($page_no - 1) * $this->page_size;
 
-        $list = $model->getList($start, $this->page_size, $this->keyword, $this->depotId, $this->depotSubId);
+        $list = $model->getList($start, $this->page_size, $this->keyword, $this->depotId, $this->depotSubId,$this->type);
 
         $rs = array(
             'row_count'  => $row_count,

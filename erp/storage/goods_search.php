@@ -27,6 +27,7 @@ if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
         'depotId'    => $order['depotId'],
         'depotSubId' => $depotSubId,
         'page_no'    => $page_no,
+        'type'    => $type,
         'page_size'  => 7,
     ));
 
