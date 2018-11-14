@@ -14,7 +14,7 @@ define ( 'TEMPLATE_SYSPLUGINS', ADMIN_BASE_LIB . 'Smarty/sysplugins/' );
 define ( 'TEMPLATE_CONFIGS', ADMIN_BASE . '/config/' );
 define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
-
+define ( 'VERSION' ,'1.0');
 define ( 'ADMIN_TITLE' ,'管理后台');
 define ( 'COMPANY_NAME' ,'刘潭服装-库存管理系统');
 define ('ADMIN_URL' ,'http://www.jxc.com/erp');

@@ -24,7 +24,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 	$row_count = $res['content']['row_count'];
 	$list = $res['content']['list'];
 	$status= $res['content']['status'];
-   $page_html=Pagination::showPager("supplier.php?keyword=$keyword",$page_no,$page_size,$row_count); 
+   $page_html=Pagination::showPager("suppliers.php?keyword=$keyword",$page_no,$page_size,$row_count);
 }
 
 Template::assign ( 'status', $status);
