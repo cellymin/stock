@@ -14,8 +14,8 @@ $client = new PhalApiClient();
 
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
+        $_POST['flag']=intval(REVIEW);
         $rs = $client->request('Supplier_Insert.Go', $_POST);
-
         if ($client->getRet() == PhalApiClient::RET_OK) {
             Common::closeWithMessage('操作成功');
             Common::unsetNonceStr();

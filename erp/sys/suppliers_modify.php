@@ -8,6 +8,7 @@ $client = new PhalApiClient();
 
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
+        $_POST['flag']=intval(REVIEW);
         $rs = $client->request('Supplier_Update.Go', $_POST);
         if ($client->getRet() == PhalApiClient::RET_OK) {
             SysLog::addLog(UserSession::getUserName(), 'MODIFY', 'Suppliers',
