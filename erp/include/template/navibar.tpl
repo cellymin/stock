@@ -56,6 +56,6 @@
                     </li>
                     
                 </ul>
-                <a class="brand" href="<{$smarty.const.ADMIN_URL}>/panel/index.php"><span class="first"></span> <span class="second"><{$smarty.const.COMPANY_NAME}></span></a>
+                <a class="brand" href="<{$smarty.const.ADMIN_URL}>/panel/index.php"><span class="first"></span> <span class="second"><{$smarty.const.COMPANY_NAME}>&nbsp;&nbsp;&nbsp;Version : <{$smarty.const.VERSION}></span></a>
         </div>
 </div>
