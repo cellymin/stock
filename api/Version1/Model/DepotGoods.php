@@ -51,7 +51,7 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
         return $this->getORM()->queryAll($sql, $param);
     }
 
-    public function getList($start, $page_size, $keyword, $depotId, $depotSubId)
+    public function getList($start, $page_size, $keyword, $depotId, $depotSubId, $type)
     {
         $limit = "";
         if ($page_size) {
@@ -62,7 +62,7 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
             . 'left join vich_goods g on g.goodsId=dg.goodsId '
             . 'left join vich_depots d on d.depotId=dg.depotId '
             . 'left join vich_depot_subs ds on ds.depotSubId=dg.depotSubId '
-            . 'where (g.goodsName like :keyword or dg.batchNo like :keyword) and dg.flag=1 ';
+            . 'where (g.goodsName like :keyword or dg.batchNo like :keyword) and dg.flag=1  ';
 
         $param = array();
         $param[':keyword'] = "%$keyword%";
@@ -75,6 +75,9 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
         if ($depotSubId) {
             $sql .= ' and dg.depotSubId=:depotSubId';
             $param[':depotSubId'] = $depotSubId;
+        }
+        if ($type!='INVENTORY') {
+            $sql .= ' and dg.goodsCnt>0';
         }
 
         if (DI()->userInfo['userGroup'] != 1 && DI()->userInfo['selectAll'] != 1) {
