@@ -26,7 +26,10 @@
             <{/foreach}>
         </select>
     </div>
-
+    <div style="float:left;margin-right:5px">
+        <label>关键词</label>
+        <input type="text" name="keyword" id="keyword" placeholder="产品条码/关键词" value="<{$_GET.keyword}>">
+    </div>
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
         <a type="button" class="btn btn-primary" onclick="method5('data_list')">导出</a>
@@ -117,6 +120,7 @@
             </tbody>
 
         </table>
+        <{$page_html}>
     </div>
 </div>
 

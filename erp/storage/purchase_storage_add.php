@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$goodsId = $orderId = $goodsCnt = $goodsPrice = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = "";
+$goodsId = $orderId = $goodsCnt = $goodsPrice = $ratepri = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = $depots_options = $depotSubs_options = $order = array();
 $client = new PhalApiClient();
@@ -13,6 +13,7 @@ if (Common::isPost()) {
             'depotId'    => $depotId,
             'depotSubId' => $depotSubId,
             'goodsPrice' => $goodsPrice,
+            'ratepri' => $ratepri,
             'remark'     => $remark,
             'type'       => 'PURCHASE_IN'
         ));
@@ -45,24 +46,28 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $order = $rs['content'];
 }
 //商品
-$str = explode('_',$goodsId);
-$goodsId = $str[0];
-$lastpri = $str[1];//含税价
-if($rate && $lastpri){//不含税价格=含税价/(1+税率)
-    $buhpri = round((float)$lastpri/(1+(float)$rate),6);
-    Template::assign('buhpri', $buhpri);
-}else if($rate && $_GET['lastpri']){
-    $lastpri = $_GET['lastpri'];
-    $buhpri = round((float)$lastpri/(1+(float)$rate),6);
-    Template::assign('buhpri', $buhpri);
-}
+
 $rs = $client->request('Goods_GetForOrder.Go', array(
     'goodsId' => $goodsId
 ));
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods = $rs['content'];
 }
-
+//价格
+$str = explode('_',$goodsId);
+$goodsId = $str[0];
+$lastpri = $str[1];//不含税价
+if(empty($lastpri)){
+    $lastpri = $goods['lastPrice'];
+}
+if($rate && $lastpri){//不含税价格=含税价/(1+税率)
+    $hanpri = round((float)$lastpri*(1+(float)$rate),6);
+    Template::assign('hanpri', $hanpri);
+}else if($rate && $_GET['lastpri']){
+    $lastpri = $_GET['lastpri'];
+    $hanpri = round((float)$lastpri*(1+(float)$rate),6);
+    Template::assign('hanpri', $hanpri);
+}
 
 //仓库
 $rs = $client->request('Depot_Options.Go', array());

@@ -277,6 +277,9 @@ class Domain_Order_Goods
             //入库单商品批次号
             $prefix = $this->type == 'PURCHASE_IN' ? 'PN' : 'AN';
             $input['orderSubNo'] = $prefix . date('ymdHis') . rand(1000, 9999);
+            if(!empty($this->ratepri)){
+                $input['ratepri'] = $this->ratepri;
+            }
         }
 
         return $model->insert($input);

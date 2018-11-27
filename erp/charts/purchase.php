@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$companyId = $startTime = $endTime = "";
+$companyId = $startTime = $endTime =$departmentId= "" ;
 extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
@@ -10,13 +10,16 @@ if($user_group!=1 && $selectAll!=1){
     $companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
 }
 
-$result = Report::usingReport($companyId,$startTime,$endTime);
-
+$result = Report::usingReport($companyId,$startTime,$endTime,$departmentId);
+//echo '<pre/>';
+//var_dump($result);die();
 $departments = $company_options = array();
 $total = 0;
 if($result){
     $departments = $result['departments'];
     $total = $result['total'];
+    $subinfo = $result['deps'];
+    unset($result['deps']);
     unset($result['departments']);
     unset($result['total']);
 }
@@ -29,8 +32,9 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
         unset($company_options[0]);
     }
 }
-
-
+$subinfo[0]='全部';
+ksort($subinfo);
+Template::assign('subinfo',$subinfo);
 Template::assign('company_options',$company_options);
 Template::assign('departments',$departments);
 Template::assign('total',$total);

@@ -69,23 +69,24 @@ $(function(){
 		var table = $('#table').val();
 		var startTime = $('#startTime').val();
 		var endTime = $('#endTime').val();
-		
+		var keyword = $('#keyword').val();
 		$('.block-heading').html('<font color="red">报表生成中,请勿刷新页面...</font>')
 		$('#list').html('');
-		_search(depotId, table, startTime, endTime);
+		_search(keyword,depotId, table, startTime, endTime);
 		
 		return false;
 	})
 })
 
-function _search(depotId, table, startTime, endTime){
+function _search(keyword,depotId, table, startTime, endTime){
 	$.ajax({
 		type:"post",
 		url:"chart4.php",
 		data:{depotId:depotId, table:table, startTime:startTime, endTime:endTime, page_no:page},
 		async:false,
 		dataType:"json",
-		success:function(e){			
+		success:function(e){
+		    console.log(e[0]['count']);
 			var html = '';
 			html += '<tr>';
 			html += '<td>'+ e[0]['goodsSn'] +'</td>';

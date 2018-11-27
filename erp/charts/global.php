@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$companyId = $cateId = "";
+$companyId = $cateId =$keyword= "";
 extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
@@ -27,9 +27,19 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 //$list = Report::busTotalReport($companyId);
 
 
-$list = Chart::report1($companyId, $cateId);
+$rs = Chart::report1($companyId, $cateId,$keyword);
+$list = $rs['list'];
+$page_no   = $rs['page_no'];
+$page_size = $rs['page_size'];
+$row_count = $rs['row_count'];
+$status    = $rs['status'];
+//var_dump($rs['page_no']);
+//var_dump($rs['page_size']);
+//die();
+$page_html = Pagination::showPager("global.php?keyword=$keyword&status=$status", $page_no, $page_size,
+    $row_count);
 
-
+Template::assign('page_html', $page_html);
 Template::assign('company_options',$company_options);
 Template::assign('list',$list);
 Template::assign('cates',$cates);

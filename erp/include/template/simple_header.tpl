@@ -17,7 +17,6 @@
 	<script src="<{$smarty.const.ADMIN_URL}>/assets/js/other.js" ></script>
 
     <!-- Demo page code -->
-
     <style type="text/css">
         #line-chart {
             height:300px;

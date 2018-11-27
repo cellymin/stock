@@ -32,7 +32,7 @@ class Chart extends Base{
 		if(!empty($startTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')>='$startTime' ";
 		if(!empty($endTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')<='$endTime' ";
 		$sql.= " order by orderId desc".$limit;
-		
+
 		$row = $db->query($sql)->fetch();
 		$orderId = 0;
 		if($row){
@@ -42,7 +42,7 @@ class Chart extends Base{
 					from vich_orders_ip_goods as a
 					left join vich_goods as b on b.goodsId = a.goodsId 
 					left join vich_orders_ip as c on c.orderId = a.orderId
-					where a.orderId='$orderId'";
+					where a.orderId='$orderId' and (b.goodsSn like '%$keyword%' or b.goodsName like '%$keyword%')";
 			$list = $db->query($sql)->fetchAll();
 			if($list){
 				return $list;
@@ -237,16 +237,43 @@ class Chart extends Base{
 //	}
 
 	//材料入库、出库、盘存汇总表
-	public static function report1($companyId, $cateId){
+	public static function report1($companyId, $cateId,$keyword,$page_no=1){
 		$db = self::__instance();
+		$sqlcount = "select count(a.goodsId) as ccnum
+				from vich_goods as a
+				left join vich_goods_units as b on b.unitId = a.goodsUnitId
+				left join vich_depot_goods as c on a.goodsId = c.goodsId
+				where 1=1
+				";
 		$sql = "select a.goodsId, a.goodsName, b.unitName 
 				from vich_goods as a
 				left join vich_goods_units as b on b.unitId = a.goodsUnitId
+				left join vich_depot_goods as c on a.goodsId = c.goodsId
 				where 1=1
 				";
+		if($companyId){
+            $sql.= "and c.createCompany = '$companyId' ";
+            $sqlcount.= "and c.createCompany = '$companyId' ";
+        }
 		if(!empty($cateId)){
 			$sql.=" and a.goodsCateId1=$cateId ";
+            $sqlcount.=" and a.goodsCateId1=$cateId ";
 		}
+		if(!empty($keyword)){
+            $sql.=" and (a.goodsSn like '%$keyword%' or a.goodsName like '%$keyword%') ";
+            $sqlcount.=" and (a.goodsSn like '%$keyword%' or a.goodsName like '%$keyword%') ";
+        }
+		$count = $db->query($sqlcount)->fetch();
+        $row_count = intval($count['ccnum']);//总条数
+        $page_size = 20;
+        $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
+        $total_page = $total_page < 1 ? 1 : $total_page;//页数
+        $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;//当前页
+        $start = ($page_no - 1) * $page_size;
+        $limit = "";
+        if ($page_size) {
+            $sql .= " limit $start,$page_size";
+        }
 		$i=0; $list = array();
 		foreach($db->query($sql) as $row){
 			$goodsId = $row['goodsId'];
@@ -258,8 +285,14 @@ class Chart extends Base{
 			$list[$i]['oyCount'] = self::oy($goodsId, $companyId);
 			$list[$i]['pdCount1'] = self::pd($goodsId, $companyId, 0);
 			$i++;
-		}		
-		return $list;
+		}
+		$rs['list'] = $list;
+        $rs['row_count'] = $row_count;
+        $rs['total_page'] = $total_page;
+        $rs['page_no'] = $page_no;
+        $rs['page_size'] = $page_size;
+
+		return $rs;
 	}
 	
 	//查看上月盘点

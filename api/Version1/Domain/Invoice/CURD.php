@@ -43,6 +43,7 @@ class Domain_Invoice_CURD
                       'totalMoney'   => 0,
                       'supplierId'   => 0,
                       'supplierName' => '',
+                      'taxrate' => '',
                       'companyId'    => 0,
             'targetId'=>0,
         );
@@ -84,6 +85,7 @@ class Domain_Invoice_CURD
                     $list['supplierId'] = $supplier['supplierId'];
                     $list['supplierName'] = $supplier['supplierName'];
                     $list['targetId'] = $supplier['supplierId'];
+                    $list['taxrate'] = $supplier['taxrate'];
                 } else {
                     $customer = $customer_model->get($invoice['supplierId']);
                     if (!$customer) {
@@ -123,4 +125,11 @@ class Domain_Invoice_CURD
         }
         throw new PhalApi_Exception_BadRequest('操作失败');
     }
-}
+    public function getIndoById($invoiceId)
+    {
+        $model = new Model_Invoice();
+        $rr = $model->getIndoById($invoiceId);
+        return $rr;
+    }
+
+    }

@@ -40,6 +40,7 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             'PURCHASE_IN' => array(
                 'depotId' => array('name' => 'depotId', 'type' => 'int', 'min' => 0, 'require' => true),
                 'depotSubId' => array('name' => 'depotSubId', 'type' => 'int', 'min' => 0, 'require' => true),
+                'ratepri' => array('name' => 'ratepri', 'type' => 'float', 'min' => 0, 'require' => true),
             ),
             'ALLOT_IN'    => array(
                 'supplierId' => array('name' => 'supplierId', 'type' => 'int', 'min' => 0, 'require' => true),

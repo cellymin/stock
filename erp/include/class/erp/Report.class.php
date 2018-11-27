@@ -10,7 +10,7 @@ if (!defined('ACCESS')) {
 class Report extends Base
 {
     //各部门领用明细表
-    public static function usingReport($companyId, $startTime, $endTime)
+    public static function usingReport($companyId, $startTime, $endTime,$departmentId)
     {
         $db = self::__instance();
 
@@ -34,21 +34,42 @@ class Report extends Base
             $sql .= ' and oy.createTime<=:endTime';
             $bindParam['endTime'] = $endTime;
         }
+        if($departmentId){
+            $sql .= ' and oy.departmentId=:departmentId';
+            $bindParam['departmentId'] = $departmentId;
+        }
 
         $stmt = $db->prepare($sql);
         $stmt->execute($bindParam);
         $goods = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!$goods) {
-            return array();
-        }
 
         //查询所有部门
-        $deps = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
-        if (!$deps) {
-            return array();
+        if($departmentId>0){
+            $deps = $db->select('vich_departments', 'departmentId,departmentName', array('departmentId'=>$departmentId));
+            $depsall = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
+        }else{
+            $deps = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
         }
 
         $list = array();
+        if($depsall){
+            foreach ($depsall as $d){
+                $list['deps'][ $d['departmentId']]=$d['departmentName'];
+            }
+        }else if($deps){
+            foreach ($deps as $d){
+                $list['deps'][ $d['departmentId']]=$d['departmentName'];
+            }
+        }
+        if (!$deps) {
+            return array();
+        }
+        if (!$goods && !$depsall) {
+            return array();
+        }else if(!$goods && $depsall){
+            return $list;
+        }
+
         $list['total'] = 0;
         $departments = array();
         foreach ($goods as $g) {
@@ -101,9 +122,9 @@ class Report extends Base
         }
 
         $list['departments'] = $departments;
+
         return $list;
     }
-
     //领用汇总表
     public static function usingReportTotal($companyId, $startTime, $endTime)
     {

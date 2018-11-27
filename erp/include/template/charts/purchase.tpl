@@ -17,6 +17,10 @@
         <{html_options name=companyId id="companyId" class="input-xlarge" options=$company_options selected=$_GET.companyId}>
     </div>
     <div style="float:left;margin-right:5px">
+        <label>选择部门</label>
+        <{html_options name=departmentId id="departmentId" class="input-xlarge" options=$subinfo selected=$_GET.departmentId}>
+    </div>
+    <div style="float:left;margin-right:5px">
         <label>日期段</label>
         <input type="text" name="startTime" class="time_input" readonly value="<{$_GET.startTime}>">
     </div>
@@ -71,3 +75,9 @@
 
 <!-- TPLEND 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
 <{include file="footer.tpl" }>
+
+<script>
+
+
+
+</script>

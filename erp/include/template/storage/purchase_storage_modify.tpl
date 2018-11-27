@@ -23,16 +23,16 @@
                 <td><input name="goodsCnt" type="text" value="<{$goods.goodsCnt}>" required></td>
             </tr>
             <tr>
-                <td>价格</td>
+                <td>不含税价格</td>
                 <td><input name="goodsPrice" type="text" value="<{$goods.goodsPrice}>" required onchange="ratejisuan(this)" ></td>
             </tr>
             <tr>
                 <td>税率</td>
-                <td><input name="goodsPrice" type="text" disabled="disabled"  value="<{$taxrate}>" class="taxrate"></td>
+                <td><input name="" type="text" disabled="disabled"  value="<{$taxrate}>" class="taxrate"></td>
             </tr>
             <tr>
-                <td>不含税价</td>
-                <td><input name="goodsPrice" type="text" disabled="disabled"  value="<{$buhpri}>" class="buhpri"></td>
+                <td>含税价</td>
+                <td><input name="ratepri" type="text" readonly  value="<{$hanpri}>" class="hanpri"></td>
             </tr>
             <tr>
                 <td>备注</td>
@@ -61,10 +61,10 @@
         })
     })
     function ratejisuan(e) {
-        var hanpri = parseFloat($(e).val());//含税价
+        var buhanpri = parseFloat($(e).val());//不含税价
         var rate = parseFloat($('.taxrate').val());//税率
-        var buhpri = hanpri/(1+rate); //不含税价格=含税价/(1+税率)
-        $('.buhpri').val(decimal(buhpri,6));
+        var hanpri = buhanpri*(1+rate); //不含税价格=含税价/(1+税率)
+        $('.hanpri').val(decimal(hanpri,6));
     }
     function decimal(num,v){
         var vv = Math.pow(10,v);

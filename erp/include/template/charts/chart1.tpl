@@ -59,7 +59,7 @@ $(function(){
 		var companyId = $('#companyId').val();
 		var startTime = $('#startTime').val();
 		var endTime = $('#endTime').val();
-		
+
 		$('.block-heading').html('<font color="red">报表生成中,请勿刷新页面...</font>')
 		$('#list').html('');
 		_search(keyword, companyId, startTime, endTime);

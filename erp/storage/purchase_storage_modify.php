@@ -1,10 +1,9 @@
 <?php
 include '../include/init.inc.php';
-$id = $orderId = $goodsCnt = $goodsPrice = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = "";
+$id = $orderId = $goodsCnt = $goodsPrice = $ratepri = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = $depots_options = $depotSubs_options = $order = array();
 $client = new PhalApiClient();
-
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
         $rs = $client->request('Order_UpdateGoods.Go', array(
@@ -14,6 +13,7 @@ if (Common::isPost()) {
             'goodsPrice' => $goodsPrice,
             'depotId'    => $depotId,
             'depotSubId' => $depotSubId,
+            'ratepri' => $ratepri,
             'remark'     => $remark,
             'type'       => 'PURCHASE_IN'
         ));
@@ -71,14 +71,15 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 }
 $depotSubs_options[0] = "== 请选择 ==";
 if($rate && $goods['goodsPrice']){//不含税价格=含税价/(1+税率)
-    $buhpri = round((float)$goods['goodsPrice']/(1+(float)$rate),6);
-    Template::assign('buhpri', $buhpri);
+    $hanpri = round((float)$goods['goodsPrice']*(1+(float)$rate),6);
+    Template::assign('hanpri', $hanpri);
 }
+
 Template::assign('goods', $goods);
 Template::assign('depots_options', $depots_options);
 Template::assign('depotSubs_options', $depotSubs_options);
 Template::assign('orderId', $orderId);
-Template::assign('depotId', $depotId ? $depotId : 0);
+Template::assign('depotId', $depotId ? $depotId : $goods['depotId']);
 Template::assign('depotSubId', $depotId ? 0 : $goods['depotSubId']);
 Template::assign('id', $id);
 Template::display('storage/purchase_storage_modify.tpl');

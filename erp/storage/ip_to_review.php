@@ -12,11 +12,10 @@ if (Common::isPost()) {
             || in_array($type,
                 array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY'))
         ) {
-
             $rs = $client->request('Order_Save.Go', array(
                 'type'     => $type,
                 'orderId'  => $orderId,
-                'reviewer' => $reviewer
+                'reviewer' => $reviewer,
             ));
 
             if ($client->getRet() == PhalApiClient::RET_OK) {

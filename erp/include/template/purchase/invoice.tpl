@@ -77,9 +77,17 @@
                     <td><{$value.endTime}></td>
                 </tr>
                 <{/foreach}>
+            <tr><td>
+                   <!-- <a class="btn btn-primary layerModel invoicebysup" action="2" title="发票对账单" layerUrl="invoice_details" layerW="1000px"
+                       layerH="650px" layerT="2">发票对账单</a>-->
+                    <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="发票对账单" layerUrl="pay_invoice" layerW="1000px"
+                        layerH="650px" layerT="2">发票对账单</a>
+
+                </td></tr>
             </tbody>
         </table>
         <{$page_html}>
+
     </div>
 </div>
 
@@ -88,3 +96,97 @@
 
 <!-- TPLEND 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
 <{include file="footer.tpl" }>
+
+<script>
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+    $('.invoicebysup').click(function () {
+
+    });
+
+    // $('input[date-name='invoiceId'] :checkbox').each(function(){
+    //         alert($(this).val());
+    // });
+    $(document).on('click', '.layerModel1', function () {
+
+        var action = parseInt($(this).attr('action'));
+        var checkboxs = $('#data_list input[type=checkbox]:checked');
+        var value = '';
+        var name = "";
+        if (action == 2) {
+            if (checkboxs.length == 0) {
+                layer.msg('请选择操作项', {time: 1200, icon: 5});
+                return false;
+            }
+            value = checkboxs.val();
+            name = checkboxs.attr('data-name');
+        }
+
+            var url = $(this).attr('layerUrl');
+            var title = $(this).attr('title');
+            var width = $(this).attr('layerW');
+            var height = $(this).attr('layerH');
+            var type = parseInt($(this).attr('layerT'));
+            var param = $(this).attr('layerD');
+            if (param == undefined)
+                param = '';
+        $(this).attr('disabled',"true");//禁用点击
+        var supplierId= getUrlParam('supplierId');//供应商id
+        var payStatus= getUrlParam('payStatus');//付款状态
+        var _id_arr=[];
+        var invoiceStatus= getUrlParam('invoiceStatus');//收票状态
+        if(supplierId==0){
+            alert('请选择供应商');
+            $(this).removeAttr("disabled");//解禁按钮
+            return false;
+        }
+        if(payStatus!=2){ //不是付款状态
+            alert('请选择已付款的');
+            $(this).removeAttr("disabled");//解禁按钮
+            return false;
+        }
+
+        $(this).removeAttr("disabled");//解禁按钮
+        $.each($('input:checkbox:checked'),function(){
+            _id_arr.push($(this).val());
+        });
+        value = _id_arr;
+            top.layer.open({
+                type: type,
+                title: title,
+                maxmin: false,
+                shadeClose: false, //点击遮罩关闭层
+                area: [width, height],
+                resize: false,
+                scrollbar:false,
+                id: url,
+                content: url + '.php?' + name + '=' + value + '&' + param,
+                success: function (layero, index) {
+                    if ($.inArray(index, parent.myFrame) == -1) {
+                        window.parent.myFrame.push(index);
+                    }
+                },
+                end: function () {
+                    var index = window.parent.myFrame[window.parent.myFrame.length - 1];
+                    window.parent.myFrame.splice($.inArray(index, window.parent.myFrame), 1);
+                }
+            });
+
+
+    });
+
+    $(document).on('click', '#data_list #chkAll', function () {
+        var f = $(this).prop('checked');
+        $(this).parents('#data_list').find('input[type=checkbox]').not('#chkAll').prop('checked', f);
+    });
+
+
+    var myFrame = [];
+
+
+
+
+</script>

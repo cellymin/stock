@@ -7,6 +7,7 @@ $client = new PhalApiClient();
 
 
 if (Common::isPost()) {
+
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
         if (!empty($orderId)
             || in_array($type,
@@ -16,7 +17,7 @@ if (Common::isPost()) {
             $rs = $client->request('Order_Save.Go', array(
                 'type'     => $type,
                 'orderId'  => $orderId,
-                'reviewer' => $reviewer
+                'reviewer' => $reviewer,
             ));
 
             if ($client->getRet() == PhalApiClient::RET_OK) {

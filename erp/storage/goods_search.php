@@ -48,7 +48,7 @@ if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
 
 
     $rs = $client->request('DepotSub_Options.Go', array(
-        'depotId' => $order['depotId']
+        'depotId' => $order['depotId']?$order['depotId']:$_GET['depotId']
     ));
     if ($client->getRet() == PhalApiClient::RET_OK) {
         $depotSubs = $rs['content'];
@@ -73,7 +73,7 @@ if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
         $status = $rs['content']['status'];
 
         $list = $rs['content']['list'];
-        $page_html = Pagination::showPager("goods_search.php?keyword=$keyword&goodsCateId=$goodsCateId&type=$type",
+        $page_html = Pagination::showPager("goods_search.php?keyword=$keyword&goodsCateId=$goodsCateId&type=$type&orderId=$orderId",
             $page_no,
             $page_size,
             $row_count);
