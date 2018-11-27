@@ -91,7 +91,7 @@ class Domain_Order_Save
                 //入库
                 $this->addToDepot($orderId,$type=$this->type);
                 //生成采购发票
-                $this->createInvoice($orderId);
+                $this->createInvoice($order);
             }else if(in_array($this->type, array('USE_OUT', 'ALLOT_OUT'))){
                 //出库
                 $this->outDepot($orderId);
@@ -295,11 +295,8 @@ class Domain_Order_Save
         return $input;
     }
 
-    protected function createInvoice($orderId)
+    protected function createInvoice($order)
     {
-
-        $order_model = new Model_Order();
-        $order = $order_model->get($orderId);
         $this->order = $order;
         $input = array(
             'invoiceNo'     => 'IN' . date('ymdHis') . rand(1000, 9999),
@@ -313,8 +310,7 @@ class Domain_Order_Save
             'createCompany' => DI()->userInfo['companyId']
         );
 
-        $model = new Model_Invoice();
-        $invoiceId = $model->insert($input);
+        $invoiceId = DI()->notorm->invoices->insert($input);
         if (!$invoiceId) {
             throw new PDOException('采购发票生成失败', 1);
         }
