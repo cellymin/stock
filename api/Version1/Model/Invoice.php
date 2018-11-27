@@ -139,9 +139,9 @@ class Model_Invoice extends PhalApi_Model_NotORM
         $sql = 'select ' . rtrim($columns, ',')
             . ' from vich_orders_ip_goods  og ' . $left_join . ' where v.invoiceId in('.$invoiceId.') and og.flag=1';
         $rr = $this->getORM()->queryAll($sql);
-        $orderNo =  $this->getORM()->queryAll("SELECT a.orderNo,b.invoiceId from vich_orders_ip as a left join vich_invoices as b 
+        $orderNo =  $this->getORM()->queryAll("SELECT a.orderNo,b.invoiceId from vich_orders_ip as a left join vich_invoices as b
                   on a.orderId=b.orderId where b.invoiceId in (".$invoiceId.")");
-        $data=[];
+        $data= array();
         $data['goods'] = $rr;
         $data['order'] =$orderNo;
         return $data;

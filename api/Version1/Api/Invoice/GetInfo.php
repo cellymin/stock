@@ -24,7 +24,7 @@ class Api_Invoice_GetInfo extends PhalApi_Api
     public function go()
     {
         $rs = array('code' => 0, 'content' => '', 'msg' => '');
-        $goodinfo = [];
+        $goodinfo = array();
         $domain = new Domain_Invoice_CURD();
         $list = $domain->getIndoById($this->invoiceId);
         $goods = $list['goods'];
@@ -37,7 +37,7 @@ class Api_Invoice_GetInfo extends PhalApi_Api
                }
            }
         }
-        $orderNo = [];
+        $orderNo = array();
         foreach ($order as $k=>$v){
             $orderNo[$v['invoiceId']] = $v['orderNo'];
         }
