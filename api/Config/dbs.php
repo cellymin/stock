@@ -12,7 +12,7 @@ return array(
     'servers' => array(
         'db_demo' => array(                         //服务器标记
             'host'     => 'localhost',             //数据库域名
-            'name'     => 'jxc',               //数据库名字
+            'name'     => 'jxc1',               //数据库名字
             'user'     => 'root',                  //数据库用户名
             'password' => 'root',                        //数据库密码
             'port'     => '3306',                  //数据库端口
