@@ -2,15 +2,11 @@
 include '../include/init.inc.php';
 $keyword = $depotId = $table = $startTime = $endTime = "";
 extract($_REQUEST,EXTR_IF_EXISTS);
-
 if(Common::isPost()){
 	//查询返回数据
-	$page_size = 10;
+	$page_size = 1000;
 	$page_no=$page_no<1?1:$page_no;
 	$row_count = Chart::chart4Count($keyword, $depotId, $table, $startTime, $endTime);
-//	echo $keyword;
-
-
 	$total_page=$row_count%$page_size==0?$row_count/$page_size:ceil($row_count/$page_size);
 	$total_page=$total_page<1?1:$total_page;
 	$start = ($page_no - 1) * $page_size;

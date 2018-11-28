@@ -5,7 +5,7 @@ extract($_REQUEST,EXTR_IF_EXISTS);
 
 if(Common::isPost()){
 	//查询返回数据
-	$page_size = 10;
+	$page_size = 1000;
 	$page_no=$page_no<1?1:$page_no;
 	
 	$row_count = Chart::chart4Count($keyword,$depotId, $table, $startTime, $endTime);

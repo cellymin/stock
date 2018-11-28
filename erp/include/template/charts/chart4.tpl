@@ -82,37 +82,35 @@ function _search(keyword,depotId, table, startTime, endTime){
 	$.ajax({
 		type:"post",
 		url:"chart4.php",
-		data:{depotId:depotId, table:table, startTime:startTime, endTime:endTime, page_no:page},
+		data:{keyword:keyword,depotId:depotId, table:table, startTime:startTime, endTime:endTime, page_no:page},
 		async:false,
 		dataType:"json",
-		success:function(e){
-		    console.log(e[0]['count']);
-			var html = '';
-			html += '<tr>';
-			html += '<td>'+ e[0]['goodsSn'] +'</td>';
-			html += '<td>'+ e[0]['goodsName'] +'元</td>';
-			html += '<td>'+ e[0]['goodsCnt'] +'</td>';
-			html += '<td>'+ e[0]['goodsSpec'] +'</td>';
-			html += '<td>'+ e[0]['reviewerTime'] +'</td>';
-			html += '<td>'+ e[0]['orderNo'] +'</td>';
-			html += '</tr>';
-			$('#list').append(html);
-			if(e[0].count==0){
-				$('.block-heading').html('报表');
-				$('#list').html('');
-				alert('暂无数据');
-				return false;
-			}
-			page ++;
-			if(page<=e[0]['count']){
-				setTimeout(function(){
-					_search(depotId, table, startTime, endTime);
-				},200)
-			}else{
-				$('.block-heading').html('报表');
-				alert('报表生成成功')
-			}
-		}
+        success:function(e){
+            var html = '';
+            var i;
+            for (i in e)
+            {
+                html += '<tr>';
+                html += '<td>'+ e[i]['goodsSn'] +'</td>';
+                html += '<td>'+ e[i]['goodsName'] +'</td>';
+                html += '<td>'+ e[i]['goodsCnt'] +'</td>';
+                html += '<td>'+ e[i]['goodsSpec'] +'</td>';
+                html += '<td>'+ e[i]['reviewerTime'] +'</td>';
+                html += '<td>'+ e[i]['orderNo'] +'</td>';
+                html += '</tr>';
+            }
+            //  $('#list').append('');
+            $('#list').append(html);
+            if(e[0].count==0){
+                $('.block-heading').html('报表');
+                $('#list').html('');
+                alert('暂无数据');
+                return false;
+            }
+            $('.block-heading').html('报表');
+            alert('报表生成成功')
+
+        }
 	});
 	return false;
 }

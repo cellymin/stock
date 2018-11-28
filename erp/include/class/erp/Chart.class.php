@@ -153,11 +153,10 @@ class Chart extends Base{
 				from {$subTable} as a
 				left join {$table} as b on b.orderId = a.orderId
 				left join vich_goods as c on c.goodsId = a.goodsId
-				where a.depotId='$depotId' and b.flag=3 and b.depotId='$depotId' and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') 
+				where a.depotId='$depotId' and b.flag=3 and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') 
 				";
-		if(!empty($startTime)) $sql.=" and FROM_UNIXTIME(b.reviewerTime,'%Y%m%d')>='$startTime' ";
-		if(!empty($endTime)) $sql.=" and FROM_UNIXTIME(b.reviewerTime,'%Y%m%d')<='$endTime' ";
-		
+		if(!empty($startTime)) $sql.=" and b.reviewerTime>='$startTime' ";
+		if(!empty($endTime)) $sql.=" and b.reviewerTime<='$endTime' ";
 		$row = $db->query($sql)->fetch();
 		return $row['count'];
 	}
@@ -172,10 +171,10 @@ class Chart extends Base{
 				from {$subTable} as a
 				left join {$table} as b on b.orderId = a.orderId
 				left join vich_goods as c on c.goodsId = a.goodsId
-				where a.depotId='$depotId' and b.flag=3 and b.depotId='$depotId' and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') 
+				where a.depotId='$depotId' and b.flag=3 and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') 
 				";
-		if(!empty($startTime)) $sql.=" and FROM_UNIXTIME(b.reviewerTime,'%Y%m%d')>='$startTime' ";
-		if(!empty($endTime)) $sql.=" and FROM_UNIXTIME(b.reviewerTime,'%Y%m%d')<='$endTime' ";
+        if(!empty($startTime)) $sql.=" and b.reviewerTime>='$startTime' ";
+        if(!empty($endTime)) $sql.=" and b.reviewerTime<='$endTime' ";
 		$sql.= " order by a.orderId desc".$limit;
 		$list = $db->query($sql)->fetchAll();
 			

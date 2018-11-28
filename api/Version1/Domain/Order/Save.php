@@ -93,32 +93,24 @@ class Domain_Order_Save
                 //生成采购发票
                 $this->createInvoice($order);
             }else if(in_array($this->type, array('USE_OUT', 'ALLOT_OUT'))){
-                //出库
-                $this->outDepot($orderId);
+                //商品出库
+                $input['depot_goods'] =  $this->outDepot($orderId);
+                //库存日志
+                $log_model = new Model_LogDepot();
+                $num = $log_model->insert(array(
+                    'logUser'    => DI()->userInfo['userId'],
+                    'logType'    => $this->type,
+                    'logContent' => json_encode( $input['depot_goods']),
+                    'depotId'    => ($this->type == 'SALE_OUT') ? 0 : $order['depotId'],
+                    'orderId'    => $orderId,
+                    'orderType'  => $this->type,
+                    'createTime' => date('Y-m-d H:i:s')
+                ));
+                if (!$num) {
+                    throw new PDOException('库存日志错误', 1);
+                }
                 //库存预警
                 Domain_Message_Msg::depotWarning($order['createCompany'], $reviewer);
-                if ($this->type == 'SALE_OUT') {
-                    //生成销售发票
-                    $input = array(
-                        'invoiceNo'     => 'IN' . date('ymdHis') . rand(1000, 9999),
-                        'orderId'       => $order['orderId'],
-                        'supplierId'    => $order['customerId'],
-                        'totalMoney'    => $order['totalMoney'],
-                        'companyId'     => $order['createCompany'],
-                        'flag'          => 1,
-                        'createTime'    => date('Y-m-d H:i:s'),
-                        'createUser'    => DI()->userInfo['userId'],
-                        'createCompany' => DI()->userInfo['companyId'],
-                        'invoiceStatus' => 1,
-                        'type'          => 2
-                    );
-
-                    $model = new Model_Invoice();
-                    $invoiceId = $model->insert($input);
-                    if (!$invoiceId) {
-                        throw new PDOException('采购发票生成失败', 1);
-                    }
-                }
             }
             return true;
         } catch (PDOException $e) {
@@ -128,6 +120,32 @@ class Domain_Order_Save
             }
             throw new PhalApi_Exception_InternalServerError('服务器错误', 0);
         }
+    }
+    /**
+     * 库存日志
+     * @param $type
+     * @param $logContent
+     * @return long|string
+     */
+    protected function depotLog($type, $logContent)
+    {
+
+        $log_model = new Model_LogDepot();
+        $num = $log_model->insert(array(
+            'logUser'    => DI()->userInfo['userId'],
+            'logType'    => $type,
+            'logContent' => json_encode($logContent),
+            'depotId'    => ($this->type == 'SALE_OUT') ? 0 : $this->order['depotId'],
+            'orderId'    => $this->orderId,
+            'orderType'  => $this->type,
+            'createTime' => date('Y-m-d H:i:s')
+        ));
+        if (!$num) {
+            throw new PDOException('库存日志错误', 1);
+        }
+
+        $this->depotLog_model = $log_model;
+        return $num;
     }
     /**
      * 商品入库
