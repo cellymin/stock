@@ -16,9 +16,9 @@ $result = Report::usingReport($companyId,$startTime,$endTime,$departmentId);
 $departments = $company_options = array();
 $total = 0;
 if($result){
-    $departments = $result['departments'];
+    $goods = $result['goods'];
     $total = $result['total'];
-    $subinfo = $result['deps'];
+    $subinfo = $result['deps'];//部门
     unset($result['deps']);
     unset($result['departments']);
     unset($result['total']);
@@ -32,12 +32,12 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
         unset($company_options[0]);
     }
 }
+
 $subinfo[0]='全部';
 ksort($subinfo);
 Template::assign('subinfo',$subinfo);
 Template::assign('company_options',$company_options);
-Template::assign('departments',$departments);
+Template::assign('goods',$goods);
 Template::assign('total',$total);
-Template::assign('list',$result);
 Template::assign('_GET',$_GET);
 Template::display('charts/purchase.tpl');

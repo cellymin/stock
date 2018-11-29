@@ -41,29 +41,36 @@
         <table class="table table-striped" border="1" id="data_list">
             <thead>
             <tr>
-                <td>分类\部门</td>
-                <{foreach from=$departments item=dep}>
-                <td><{$dep.departmentName}></td>
-                <{/foreach}>
-                <td>小计</td>
+                <th>公司</th>
+                <th>部门</th>
+                <th>产品编码</th>
+                <th>产品名称</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>单位</th>
+               <!-- <th>领用时间</th>-->
             </tr>
             </thead>
             <tbody>
-            <{foreach from=$list item=g}>
-            <tr>
-                <td><{$g.cateName}></td>
-                <{foreach from=$g.moneys item=d}>
-                <td><{$d.money}></td>
+            <{foreach from=$goods item=ee}>
+                <tr>
+                    <td><{$ee.companyName}></td>
+                    <td><{$ee.departmentName}></td>
+                    <td><{$ee.goodsBarCode}></td>
+                    <td><{$ee.goodsName}></td>
+                    <td class="goodspri"><{$ee.goodsPrice}></td>
+                    <td class="goodscnt"><{$ee.goodsCnt}></td>
+                    <td><{$ee.unitName}></td>
+                   <!-- <td><{$ee.cateName}></td>-->
+                </tr>
                 <{/foreach}>
-                <td><{$g.subTotal}></td>
-            </tr>
-            <{/foreach}>
-            <tr>
-                <td>合计</td>
-                <{foreach from=$departments item=dep}>
-                <td><{$dep.subTotal}></td>
-                <{/foreach}>
-                <td><{$total}></td>
+            <tr><td>合计</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="totalpri">20</td>
+                <td class="totalcnt">20</td>
+                <td></td>
             </tr>
             </tbody>
         </table>
@@ -77,7 +84,15 @@
 <{include file="footer.tpl" }>
 
 <script>
+    jQuery(function($) {
+        var goodspri,goodscnt=0;
+        $('.goodspri').each(function () {
+            tt = parseFloat($(this).text());
+            goodspri = goodspri + tt;
+        });
+        console.log(goodspri);
 
+    });
 
 
 </script>

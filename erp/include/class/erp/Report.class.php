@@ -15,6 +15,92 @@ class Report extends Base
         $db = self::__instance();
 
         //查询领用商品
+        $sql = "select DISTINCT(oy.goodsId),g.goodsName,g.goodsCateId,g.goodsBarCode,c.cateName,oy.departmentId,d.departmentName
+                 ,e.companyId,e.companyName,f.unitId,f.unitName,oy.goodsCnt,oy.goodsPrice
+                from vich_orders_oy_goods oy
+                left join vich_goods g on g.goodsId=oy.goodsId
+                left join vich_goods_cates c on c.cateId=g.goodsCateId
+                left join vich_departments d on oy.departmentId = d.departmentId
+                left join vich_companys e on e.companyId = oy.createCompany
+                left join vich_goods_units f on f.unitId = goodsUnitId
+                where oy.flag=1 and e.flag=1 and d.flag=1 and f.flag=1 ";
+        $bindParam = array();
+        if ($companyId) {
+            $sql .= ' and oy.createCompany='.$companyId;
+            $bindParam['companyId'] = $companyId;
+        }
+        if ($startTime) {
+            $sql .= ' and oy.createTime>='.$startTime;
+            $bindParam['startTime'] = $startTime;
+        }
+        if ($endTime) {
+            $sql .= ' and oy.createTime<='.$endTime;
+            $bindParam['endTime'] = $endTime;
+        }
+        if($departmentId){
+            $sql .= ' and oy.departmentId='.$departmentId;
+            $bindParam['departmentId'] = $departmentId;
+        }
+        //return $sql;
+        $stmt = $db->prepare($sql);
+        $stmt->execute($bindParam);
+        $goods = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        //查询所有公司
+        if($companyId>0){
+            $com = $db->select('vich_companys', 'companyId,companyName', array('companyId'=>$companyId));
+            $comall = $db->select('vich_companys', 'companyId,companyName', array('flag' => 1));
+        }else{
+            $com = $db->select('vich_companys', 'companyId,companyName', array('flag' => 1));
+        }
+
+        //查询所有部门
+        if($departmentId>0){
+            $deps = $db->select('vich_departments', 'departmentId,departmentName', array('departmentId'=>$departmentId));
+            $depsall = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
+        }else{
+            $deps = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
+        }
+        $list = array();
+        if($comall){
+            foreach ($comall as $d){
+                $list['com'][ $d['companyId']]=$d['companyName'];
+            }
+        }else if($com){
+            foreach ($com as $d){
+                $list['com'][ $d['companyId']]=$d['companyName'];
+            }
+        }
+
+        if($depsall){
+            foreach ($depsall as $d){
+                $list['deps'][ $d['departmentId']]=$d['departmentName'];
+            }
+        }else if($deps){
+            foreach ($deps as $d){
+                $list['deps'][ $d['departmentId']]=$d['departmentName'];
+            }
+        }
+        if (!$deps) {
+            return array();
+        }
+        if (!$goods && !$depsall) {
+            return array();
+        }else if(!$goods && $depsall){
+            return $list;
+        }
+
+        $list['total'] = 0;
+        $departments = array();
+        $list['goods'] = $goods;
+        return $list;
+    }
+    //各部门领用明细表
+    public static function usingReportold($companyId, $startTime, $endTime,$departmentId)
+    {
+        $db = self::__instance();
+
+        //查询领用商品
         $sql = "select DISTINCT(oy.goodsId),g.goodsName,g.goodsCateId,c.cateName
                 from vich_orders_oy_goods oy
                 left join vich_goods g on g.goodsId=oy.goodsId
