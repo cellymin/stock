@@ -9,21 +9,21 @@ $selectAll = $_SESSION[UserSession::SESSION_NAME]['selectAll'];
 if($user_group!=1 && $selectAll!=1){
     $companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
 }
-
-$result = Report::usingReport($companyId,$startTime,$endTime,$departmentId);
-//echo '<pre/>';
-//var_dump($result);die();
+$page_no   = $_GET['page_no']?$_GET['page_no']:1;
+$result = Report::usingReport($companyId,$startTime,$endTime,$departmentId,$page_no);
 $departments = $company_options = array();
 $total = 0;
 if($result){
     $goods = $result['goods'];
     $total = $result['total'];
     $subinfo = $result['deps'];//部门
+
+    $page_size = $result['page_size'];
+    $row_count = $result['row_count'];
     unset($result['deps']);
     unset($result['departments']);
     unset($result['total']);
 }
-
 $client = new PhalApiClient();
 $rs = $client->request('Company_Options.Go',array());
 if ($client->getRet() == PhalApiClient::RET_OK) {
@@ -32,9 +32,13 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
         unset($company_options[0]);
     }
 }
-
 $subinfo[0]='全部';
 ksort($subinfo);
+if($row_count>0){
+    $page_html = Pagination::showPager("purchase.php?purchase.php?companyId=$companyId&departmentId=$departmentId&startTime=$startTime&endTime=$endTime", $page_no, $page_size,
+        $row_count);
+    Template::assign('page_html', $page_html);
+}
 Template::assign('subinfo',$subinfo);
 Template::assign('company_options',$company_options);
 Template::assign('goods',$goods);

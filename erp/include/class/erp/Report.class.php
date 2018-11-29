@@ -10,19 +10,20 @@ if (!defined('ACCESS')) {
 class Report extends Base
 {
     //各部门领用明细表
-    public static function usingReport($companyId, $startTime, $endTime,$departmentId)
+    public static function usingReport($companyId, $startTime, $endTime,$departmentId,$page_no)
     {
         $db = self::__instance();
 
         //查询领用商品
         $sql = "select DISTINCT(oy.goodsId),g.goodsName,g.goodsCateId,g.goodsBarCode,c.cateName,oy.departmentId,d.departmentName
-                 ,e.companyId,e.companyName,f.unitId,f.unitName,oy.goodsCnt,oy.goodsPrice
+                 ,e.companyId,e.companyName,f.unitId,f.unitName,oy.goodsCnt,oy.goodsPrice,oy.createTime
                 from vich_orders_oy_goods oy
                 left join vich_goods g on g.goodsId=oy.goodsId
                 left join vich_goods_cates c on c.cateId=g.goodsCateId
                 left join vich_departments d on oy.departmentId = d.departmentId
                 left join vich_companys e on e.companyId = oy.createCompany
                 left join vich_goods_units f on f.unitId = goodsUnitId
+                left join vich_orders_oy h on oy.orderId= h.orderId
                 where oy.flag=1 and e.flag=1 and d.flag=1 and f.flag=1 ";
         $bindParam = array();
         if ($companyId) {
@@ -30,18 +31,30 @@ class Report extends Base
             $bindParam['companyId'] = $companyId;
         }
         if ($startTime) {
-            $sql .= ' and oy.createTime>='.$startTime;
+            $sql .= " and oy.createTime>='$startTime' ";
             $bindParam['startTime'] = $startTime;
         }
         if ($endTime) {
-            $sql .= ' and oy.createTime<='.$endTime;
+            $sql .= " and oy.createTime<='$endTime' ";
             $bindParam['endTime'] = $endTime;
         }
         if($departmentId){
             $sql .= ' and oy.departmentId='.$departmentId;
             $bindParam['departmentId'] = $departmentId;
         }
-        //return $sql;
+        $count = count($db->query($sql)->fetchAll());
+        if($count>0){
+            $row_count = $count;//总条数
+            $page_size = 20;
+            $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
+            $total_page = $total_page < 1 ? 1 : $total_page;//页数
+            $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;//当前页
+            $start = ($page_no - 1) * $page_size;
+        }
+        $limit = "";
+        if ($page_size) {
+            $sql .= " limit $start,$page_size";
+        }
         $stmt = $db->prepare($sql);
         $stmt->execute($bindParam);
         $goods = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -61,6 +74,7 @@ class Report extends Base
         }else{
             $deps = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
         }
+
         $list = array();
         if($comall){
             foreach ($comall as $d){
@@ -84,7 +98,7 @@ class Report extends Base
         if (!$deps) {
             return array();
         }
-        if (!$goods && !$depsall) {
+        if (!$goods && !$depsall && !$deps) {
             return array();
         }else if(!$goods && $depsall){
             return $list;
@@ -93,6 +107,10 @@ class Report extends Base
         $list['total'] = 0;
         $departments = array();
         $list['goods'] = $goods;
+        $list['row_count'] = $row_count;
+        $list['total_page'] = $total_page;
+        $list['page_no'] = $page_no;
+        $list['page_size'] = $page_size;
         return $list;
     }
     //各部门领用明细表

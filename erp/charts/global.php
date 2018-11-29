@@ -25,11 +25,9 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 }
 //
 //$list = Report::busTotalReport($companyId);
-
-
-$rs = Chart::report1($companyId, $cateId,$keyword);
+$page_no   =  $_GET['page_no']?$_GET['page_no']:1;
+$rs = Chart::report1($companyId, $cateId,$keyword,$page_no);
 $list = $rs['list'];
-$page_no   = $rs['page_no'];
 $page_size = $rs['page_size'];
 $row_count = $rs['row_count'];
 $status    = $rs['status'];

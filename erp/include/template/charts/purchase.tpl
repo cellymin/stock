@@ -48,7 +48,7 @@
                 <th>单价</th>
                 <th>数量</th>
                 <th>单位</th>
-               <!-- <th>领用时间</th>-->
+                <th>领用时间</th>
             </tr>
             </thead>
             <tbody>
@@ -61,19 +61,20 @@
                     <td class="goodspri"><{$ee.goodsPrice}></td>
                     <td class="goodscnt"><{$ee.goodsCnt}></td>
                     <td><{$ee.unitName}></td>
-                   <!-- <td><{$ee.cateName}></td>-->
+                    <td><{$ee.createTime}></td>
                 </tr>
                 <{/foreach}>
             <tr><td>合计</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="totalpri">20</td>
-                <td class="totalcnt">20</td>
+                <td class="totalpri">0</td>
+                <td class="totalcnt">0</td>
                 <td></td>
             </tr>
             </tbody>
         </table>
+        <{$page_html}>
     </div>
 </div>
 
@@ -85,13 +86,17 @@
 
 <script>
     jQuery(function($) {
-        var goodspri,goodscnt=0;
+        var goodspri=0,goodscnt=0;
         $('.goodspri').each(function () {
             tt = parseFloat($(this).text());
             goodspri = goodspri + tt;
         });
-        console.log(goodspri);
-
+        $('.totalpri').text(goodspri.toFixed(4));
+        $('.goodscnt').each(function () {
+            tt = parseFloat($(this).text());
+            goodscnt = goodscnt + tt;
+        });
+        $('.totalcnt').text(goodscnt.toFixed(4));
     });
 
 

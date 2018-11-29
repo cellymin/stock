@@ -236,7 +236,7 @@ class Chart extends Base{
 //	}
 
 	//材料入库、出库、盘存汇总表
-	public static function report1($companyId, $cateId,$keyword,$page_no=1){
+	public static function report1($companyId, $cateId,$keyword,$page_no){
 		$db = self::__instance();
 		$sqlcount = "select count(a.goodsId) as ccnum
 				from vich_goods as a
