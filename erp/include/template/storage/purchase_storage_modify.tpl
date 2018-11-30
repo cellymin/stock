@@ -63,6 +63,7 @@
     })
     function ratejisuan(e) {
         var hanpri = parseFloat($(e).val());//含税价
+        $(e).val(hanpri.toFixed(2));
         var rate = parseFloat($('.taxrate').val());//税率
         var lastpri = hanpri/(1+rate); //不含税价格=含税价/(1+税率)
         $('.lastpri').val(decimal(lastpri,6));

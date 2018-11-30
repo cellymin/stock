@@ -71,7 +71,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 }
 $depotSubs_options[0] = "== 请选择 ==";
 if($rate && $goods['goodsPrice']){//不含税价格=含税价/(1+税率)
-    $hanpri = round((float)$goods['goodsPrice']*(1+(float)$rate),6);
+    $hanpri = round((float)$goods['goodsPrice']*(1+(float)$rate),2);
     Template::assign('hanpri', $hanpri);
 }
 
