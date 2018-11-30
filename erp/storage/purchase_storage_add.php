@@ -61,11 +61,11 @@ if(empty($lastpri)){
     $lastpri = $goods['lastPrice'];
 }
 if($rate && $lastpri){//不含税价格=含税价/(1+税率)
-    $hanpri = round((float)$lastpri*(1+(float)$rate),6);
+    $hanpri = round((float)$lastpri*(1+(float)$rate),2);
     Template::assign('hanpri', $hanpri);
 }else if($rate && $_GET['lastpri']){
     $lastpri = $_GET['lastpri'];
-    $hanpri = round((float)$lastpri*(1+(float)$rate),6);
+    $hanpri = round((float)$lastpri*(1+(float)$rate),2);
     Template::assign('hanpri', $hanpri);
 }
 
