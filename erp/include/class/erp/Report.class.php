@@ -10,12 +10,12 @@ if (!defined('ACCESS')) {
 class Report extends Base
 {
     //各部门领用明细表
-    public static function usingReport($companyId, $startTime, $endTime,$departmentId,$page_no)
+    public static function usingReport($companyId,$keyword, $startTime, $endTime,$departmentId,$page_no)
     {
         $db = self::__instance();
 
         //查询领用商品
-        $sql = "select DISTINCT(oy.goodsId),g.goodsName,g.goodsCateId,g.goodsBarCode,c.cateName,oy.departmentId,d.departmentName
+        $sql = "select DISTINCT(oy.goodsId),g.goodsName,g.goodsCateId,g.goodsSn,c.cateName,oy.departmentId,d.departmentName
                  ,e.companyId,e.companyName,f.unitId,f.unitName,oy.goodsCnt,oy.goodsPrice,oy.createTime
                 from vich_orders_oy_goods oy
                 left join vich_goods g on g.goodsId=oy.goodsId
@@ -24,7 +24,7 @@ class Report extends Base
                 left join vich_companys e on e.companyId = oy.createCompany
                 left join vich_goods_units f on f.unitId = goodsUnitId
                 left join vich_orders_oy h on oy.orderId= h.orderId
-                where oy.flag=1 and e.flag=1 and d.flag=1 and f.flag=1 ";
+                where oy.flag=1 and e.flag=1 and d.flag=1 and f.flag=1 and (g.goodsSn like '%$keyword%' or g.goodsName like '%$keyword%') ";
         $bindParam = array();
         if ($companyId) {
             $sql .= ' and oy.createCompany='.$companyId;

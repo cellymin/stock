@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$companyId = $startTime = $endTime =$departmentId= "" ;
+$companyId = $startTime = $endTime =$departmentId= $keyword = "" ;
 extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
@@ -10,7 +10,7 @@ if($user_group!=1 && $selectAll!=1){
     $companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
 }
 $page_no   = $_GET['page_no']?$_GET['page_no']:1;
-$result = Report::usingReport($companyId,$startTime,$endTime,$departmentId,$page_no);
+$result = Report::usingReport($companyId,$keyword,$startTime,$endTime,$departmentId,$page_no);
 $departments = $company_options = array();
 $total = 0;
 if($result){

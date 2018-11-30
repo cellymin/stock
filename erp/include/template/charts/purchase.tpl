@@ -21,6 +21,10 @@
         <{html_options name=departmentId id="departmentId" class="input-xlarge" options=$subinfo selected=$_GET.departmentId}>
     </div>
     <div style="float:left;margin-right:5px">
+        <label>关键词</label>
+        <input type="text" name="keyword" id="keyword" placeholder="产品条码/关键词"  value="<{$_GET.keyword}>">
+    </div>
+    <div style="float:left;margin-right:5px">
         <label>日期段</label>
         <input type="text" name="startTime" class="time_input" readonly value="<{$_GET.startTime}>">
     </div>
@@ -49,6 +53,7 @@
                 <th>数量</th>
                 <th>单位</th>
                 <th>领用时间</th>
+                <th>总价</th>
             </tr>
             </thead>
             <tbody>
@@ -56,12 +61,13 @@
                 <tr>
                     <td><{$ee.companyName}></td>
                     <td><{$ee.departmentName}></td>
-                    <td><{$ee.goodsBarCode}></td>
+                    <td><{$ee.goodsSn}></td>
                     <td><{$ee.goodsName}></td>
                     <td class="goodspri"><{$ee.goodsPrice}></td>
                     <td class="goodscnt"><{$ee.goodsCnt}></td>
                     <td><{$ee.unitName}></td>
                     <td><{$ee.createTime}></td>
+                    <td class="total"><{$ee.goodsPrice * $ee.goodsCnt}></td>
                 </tr>
                 <{/foreach}>
             <tr><td>合计</td>
@@ -71,6 +77,8 @@
                 <td class="totalpri">0</td>
                 <td class="totalcnt">0</td>
                 <td></td>
+                <td></td>
+                <td class="totalall"></td>
             </tr>
             </tbody>
         </table>
@@ -86,7 +94,7 @@
 
 <script>
     jQuery(function($) {
-        var goodspri=0,goodscnt=0;
+        var goodspri=0,goodscnt=0,goodstotal=0;
         $('.goodspri').each(function () {
             tt = parseFloat($(this).text());
             goodspri = goodspri + tt;
@@ -97,6 +105,12 @@
             goodscnt = goodscnt + tt;
         });
         $('.totalcnt').text(goodscnt.toFixed(4));
+        $('.total').each(function () {
+            tt = parseFloat($(this).text());
+            $(this).text(tt.toFixed(4));
+            goodstotal = goodstotal + tt;
+        });
+        $('.totalall').text(goodstotal.toFixed(4));
     });
 
 

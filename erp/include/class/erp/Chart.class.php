@@ -290,7 +290,6 @@ class Chart extends Base{
         $rs['total_page'] = $total_page;
         $rs['page_no'] = $page_no;
         $rs['page_size'] = $page_size;
-
 		return $rs;
 	}
 	
