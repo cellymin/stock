@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td>数量</td>
-                <td><input name="goodsCnt" type="text" value="<{$goods.goodsCnt}>" required></td>
+                <td><input name="goodsCnt" type="text" value="<{$goods.goodsCnt|string_format:"%.2f"}>" required></td>
             </tr>
             <tr>
                 <td>含税价</td>

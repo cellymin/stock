@@ -56,7 +56,7 @@
                     <td>总金额</td>
                     <td><{$order.totalMoney|string_format:"%.2f"}></td>
                     <td>总数量</td>
-                    <td><{$order.totalCnt}></td>
+                    <td><{$order.totalCnt|string_format:"%.2f"}></td>
                 </tr>
                 <tr>
                     <{if in_array($type,array('PLAN','ARRIVAL','RETURN','PURCHASE_IN'))}>

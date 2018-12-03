@@ -3,11 +3,17 @@
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 <{$js_confirm}>
 <style>
+    table{
+        width: 900px;
+    }
     table tr td{
         padding: 3px;
     }
-    .gys2{
-        padding-right: 100px;
+    .gys2,.gys4{
+        text-align: left;
+    }
+    .gys1,.gys3{
+        text-align: right;
     }
 </style>
 <div class="form_div">
@@ -41,7 +47,7 @@
             <tr>
 
                 <td rowspan="<{$spanno[$v.invoiceId]+1}>"><{$orderNo[$v.invoiceId]}></td>
-                <td rowspan="<{$spanno[$v.invoiceId]+1}>" colspan="2"><{$v.createTime|date_format:"%Y-%m-%d"}></td>
+                <td rowspan="<{$spanno[$v.invoiceId]+1}>" colspan="2"><{$v.createTime|date_format:"%Y/%m/%d"}></td>
 
                 <{if $index==0}>
 
@@ -57,7 +63,7 @@
             <tr class="invoice_<{$v.invoiceId}>">
 
                 <td><{$vv.goodsSn}></td>
-                <td><{$vv.goodsName}></td>
+                <td width="220px"><{$vv.goodsName}></td>
                 <td><{$vv.goodsPrice}></td>
                 <td class="goodscount"><{$vv.goodsCnt|string_format:"%.2f"}></td>
                 <td class="goodsmon" attrid="<{$vv.goodsPrice*$vv.goodsCnt}>"><{($vv.goodsPrice*$vv.goodsCnt)|string_format:"%0.2f"}></td>
