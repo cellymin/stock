@@ -41,7 +41,7 @@
             <th>库位</th>
             <th>数量</th>
             <th>价格</th>
-            <th>部门</th>
+          <!--  <th>部门</th> -->
             <th>备注</th>
         </tr>
         </thead>

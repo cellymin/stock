@@ -4,7 +4,7 @@
 <{$js_confirm}>
 <style>
     table tr td{
-        padding: 2px 5px;
+        padding: 3px;
     }
     .gys2{
         padding-right: 100px;
@@ -58,7 +58,7 @@
 
                 <td><{$vv.goodsSn}></td>
                 <td><{$vv.goodsName}></td>
-                <td><{$vv.goodsPrice|string_format:"%.2f"}></td>
+                <td><{$vv.goodsPrice}></td>
                 <td class="goodscount"><{$vv.goodsCnt|string_format:"%.2f"}></td>
                 <td class="goodsmon" attrid="<{$vv.goodsPrice*$vv.goodsCnt}>"><{($vv.goodsPrice*$vv.goodsCnt)|string_format:"%0.2f"}></td>
                 <td class="hanghao">0</td>
@@ -157,7 +157,7 @@
 
         $('.totalcount').text(goodscnt);
         $('.totalmon').text(goodspri.toFixed(2));
-        $('.noratetotal').text(goodspri.toFixed(6));
+        $('.noratetotal').text(goodspri.toFixed(2));
         $('.ratetotal').text(ratepri.toFixed(2));
         $('.ratemon').text(ratemon.toFixed(2));
 

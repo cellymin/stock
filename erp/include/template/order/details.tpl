@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                     <td>总金额</td>
-                    <td><{$order.totalMoney}></td>
+                    <td><{$order.totalMoney|string_format:"%.2f"}></td>
                     <td>总数量</td>
                     <td><{$order.totalCnt}></td>
                 </tr>

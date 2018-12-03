@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>含税价</td>
-                <td><input name="ratepri" type="text"   value="<{$hanpri}>" class="hanpri" onchange="ratejisuan(this)"></td>
+                <td><input name="ratepri" type="text"   value="<{$hanpri}>" class="hanpri" onkeyup="ratejisuan(this)"></td>
             </tr>
             <tr>
                 <td>税率</td>
@@ -62,11 +62,24 @@
         })
     })
     function ratejisuan(e) {
+        var hanlen = $(e).val().split('.')[1];
         var hanpri = parseFloat($(e).val());//含税价
-        $(e).val(hanpri.toFixed(2));
-        var rate = parseFloat($('.taxrate').val());//税率
-        var lastpri = hanpri/(1+rate); //不含税价格=含税价/(1+税率)
-        $('.lastpri').val(decimal(lastpri,6));
+        if(hanlen != '' && hanlen != undefined ){
+            var hanslen = hanlen.length;
+            if(hanslen>=2){
+                $(e).val(hanpri.toFixed(2));
+                hanpri = hanpri.toFixed(2);
+            }
+        }
+        if(hanpri!='NaN'){
+            var rate = parseFloat($('.taxrate').val());//税率
+            var lastpri = hanpri/(1+rate); //不含税价格=含税价/(1+税率)
+            if(isNaN(lastpri)){
+                $('.lastpri').val(0);
+            }else{
+                $('.lastpri').val(decimal(lastpri,6));
+            }
+        }
     }
     function decimal(num,v){
         var vv = Math.pow(10,v);
