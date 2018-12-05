@@ -267,7 +267,9 @@ class Domain_Order_Goods
             if($this->type=='SALE_OUT'){
                 $input['depotId'] = $this->depotId;
             }
-            unset($input['supplierId']);
+            if($this->type != 'USE_OUT'){
+                unset($input['supplierId']);
+            }
             unset($input['id']);
         }
 

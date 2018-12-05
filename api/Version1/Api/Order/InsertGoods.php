@@ -37,6 +37,7 @@ class Api_Order_InsertGoods extends PhalApi_Api
             'goodsPrice' => array('name' => 'goodsPrice', 'type' => 'float', 'min' => 0, 'require' => true),
             'goodsCnt'   => array('name' => 'goodsCnt', 'type' => 'int', 'min' => 0, 'require' => true),
             'remark'     => array('name' => 'remark', 'type' => 'string', 'require' => false),
+            'supplierId'     => array('name' => 'supplierId', 'type' => 'int', 'require' => false),
         );
 
         $type_rules = array(
@@ -61,6 +62,7 @@ class Api_Order_InsertGoods extends PhalApi_Api
                 'id'           => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
                 'departmentId' => array('name' => 'departmentId', 'type' => 'int', 'min' => 0, 'require' => true),
                 'employeeId'   => array('name' => 'employeeId', 'type' => 'int', 'min' => 0, 'require' => true),
+                'supplierId'   => array('name' => 'supplierId', 'type' => 'int', 'min' => 0, 'require' => true),
             ),
             'INVENTORY'   => array(
                 'id' => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
@@ -101,8 +103,8 @@ class Api_Order_InsertGoods extends PhalApi_Api
         }
 
         $domain->type = $this->type;
-
         $id = $domain->insert($input);
+
         if ($id === false) {
             $rs['msg'] = '保存失败';
             return $rs;

@@ -39,6 +39,7 @@
                     <input type="hidden" name="orderId" value="<{$orderId}>">
                     <input type="hidden" name="id" value="<{$goods.id}>">
                     <input type="hidden" name="nonceStr" value="<{$nonceStr}>">
+                    <input type="hidden" name="supplierId" value="<{$goods.supplierId}>">
                 </td>
                 <td>
                     <button class="btn btn-primary">登记</button>

@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$id = $orderId = $goodsCnt = $remark = $nonceStr = $departmentId = $employeeId = "";
+$id = $orderId = $goodsCnt = $remark = $nonceStr = $departmentId = $supplierId = $employeeId = "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = $employee_options = $department_options = array();
 
@@ -15,7 +15,8 @@ if (Common::isPost()) {
             'departmentId' => $departmentId,
             'employeeId'   => $employeeId,
             'remark'       => $remark,
-            'type'         => 'USE_OUT'
+            'type'         => 'USE_OUT',
+            'supplierId' => $supplierId
         ));
 
         if ($client->getRet() == PhalApiClient::RET_OK) {
@@ -38,7 +39,6 @@ $rs = $client->request('DepotGoods_Get.Go', array(
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods = $rs['content'];
 }
-
 //部门
 $rs = $client->request('Department_Options.Go', array());
 if ($client->getRet() == PhalApiClient::RET_OK) {
