@@ -132,10 +132,11 @@ class Model_Invoice extends PhalApi_Model_NotORM
     }
     public function getIndoById($invoiceId){
         $invoiceId = implode(',',$invoiceId);
-        $columns = 'v.invoiceId,og.*,g.goodsName,g.goodsSpec,g.goodsSn,';
+        $columns = 'v.invoiceId,og.*,g.goodsName,g.goodsSpec,g.goodsSn,u.unitName, ';
         $left_join = 'left join vich_goods g on g.goodsId=og.goodsId ';
         $columns .= 'd.depotSubName,';
-        $left_join .= 'left join vich_depot_subs d on d.depotSubId=og.depotSubId  left join vich_invoices as v on og.orderId=v.orderId';
+        $left_join .= 'left join vich_depot_subs d on d.depotSubId=og.depotSubId  left join vich_invoices as v on og.orderId=v.orderId 
+                       left join vich_goods_units u on u.unitId=g.goodsUnitId ';
         $sql = 'select ' . rtrim($columns, ',')
             . ' from vich_orders_ip_goods  og ' . $left_join . ' where v.invoiceId in('.$invoiceId.') and og.flag=1';
         $rr = $this->getORM()->queryAll($sql);

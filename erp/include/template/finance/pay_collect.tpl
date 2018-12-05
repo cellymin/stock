@@ -21,6 +21,10 @@
                 <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b><{sprintf('%.2f',$list.totalMoney)}></b></a></td>
             </tr>
             <tr>
+                <td colspan="1">调整金额</td>
+                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" value="+<{sprintf('%.2f',$list.adjustamount)}>" /></b></td>
+            </tr>
+            <tr>
                 <td>财务类型</td>
                 <td style="color: red;font-size: 14px;">
                     采购支出

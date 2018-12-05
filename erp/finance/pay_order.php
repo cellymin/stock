@@ -25,7 +25,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $status = $rs['content']['status'];
 
     $list = $rs['content']['list'];
-    $page_html = Pagination::showPager("plan_order.php?keyword=$keyword&status=$status", $page_no, $page_size,
+    $page_html = Pagination::showPager("pay_order.php?keyword=$keyword&status=$status", $page_no, $page_size,
         $row_count);
 }
 

@@ -46,6 +46,7 @@ class Domain_Invoice_CURD
                       'taxrate' => '',
                       'companyId'    => 0,
             'targetId'=>0,
+            'adjustamount'=>'',
         );
 
 
@@ -86,6 +87,7 @@ class Domain_Invoice_CURD
                     $list['supplierName'] = $supplier['supplierName'];
                     $list['targetId'] = $supplier['supplierId'];
                     $list['taxrate'] = $supplier['taxrate'];
+                    $list['adjustamount'] = $invoice['adjustamount'];
                 } else {
                     $customer = $customer_model->get($invoice['supplierId']);
                     if (!$customer) {

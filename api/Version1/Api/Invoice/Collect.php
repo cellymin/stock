@@ -28,6 +28,7 @@ class Api_Invoice_Collect extends PhalApi_Api
                 'endTime'       => array('name' => 'endTime', 'type' => 'date', 'require' => false),
                 'noticeTime'    => array('name' => 'noticeTime', 'type' => 'date', 'require' => false),
                 'remark'        => array('name' => 'remark', 'type' => 'string', 'require' => false),
+                'adjustamount'        => array('name' => 'adjustamount', 'type' => 'string', 'require' => false),
             )
         );
     }
@@ -44,6 +45,7 @@ class Api_Invoice_Collect extends PhalApi_Api
             'endTime'       => $this->endTime,
             'noticeTime'    => $this->noticeTime,
             'remark'        => $this->remark,
+            'adjustamount' => $this->adjustamount,
         );
         $domain->collect($data);
         $rs['code'] = 1;

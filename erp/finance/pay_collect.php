@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr = "";
+$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr =$adjustamount= "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $list = array();
 
@@ -8,6 +8,8 @@ if (!empty($invoiceId)) {
     $client = new PhalApiClient();
 
     if (Common::isPost()) {
+//        var_dump($_POST);
+//        die();
         if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
             $rs = $client->request('Invoice_Collect.Go', array(
                 'invoiceId'     => $invoiceId,
@@ -16,6 +18,7 @@ if (!empty($invoiceId)) {
                 'endTime'       => $endTime,
                 'noticeTime'    => $noticeTime,
                 'remark'        => $remark,
+                'adjustamount' => $adjustamount,
             ));
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
