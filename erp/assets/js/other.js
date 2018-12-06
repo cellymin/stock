@@ -78,7 +78,7 @@ var idTmr;
 function  getExplorer() {
     var explorer = window.navigator.userAgent ;
     //ie
-    if (explorer.indexOf("MSIE") >= 0) {
+    if (explorer.indexOf("MSIE") >= 0|| (explorer.indexOf("Windows NT 6.1;") >= 0 && explorer.indexOf("Trident/7.0;") >= 0)) {
         return 'ie';
     }
     //firefox
@@ -101,30 +101,29 @@ function  getExplorer() {
 function method5(tableid) {
     if(getExplorer()=='ie')
     {
-        alert(1);
         var curTbl = document.getElementById(tableid);
-        var oXL = new ActiveXObject("Excel.Application");
-        var oWB = oXL.Workbooks.Add();
-        var xlsheet = oWB.Worksheets(1);
-        var sel = document.body.createTextRange();
-        sel.moveToElementText(curTbl);
-        sel.select();
-        sel.execCommand("Copy");
-        xlsheet.Paste();
-        oXL.Visible = true;
+        curTbl.style.border="1px";
+        curTbl.style.backgroundClip="padding-box";
+        curTbl.style.position="relative";
 
-        try {
-            var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
-        } catch (e) {
-            print("Nested catch caught " + e);
-        } finally {
-            oWB.SaveAs(fname);
-            oWB.Close(savechanges = false);
-            oXL.Quit();
-            oXL = null;
-            idTmr = window.setInterval("Cleanup();", 1);
+        var oXL;
+        try{
+            oXL = new ActiveXObject("Excel.Application"); //创建AX对象excel
+        }catch(e){
+            alert("无法启动Excel!\n\n如果您确信您的电脑中已经安装了Excel，"+"那么请调整IE的安全级别。\n\n具体操作：\n\n"+"工具 → Internet选项 → 安全 → 自定义级别 → 对没有标记为安全的ActiveX进行初始化和脚本运行 → 启用");
+            return false;
         }
+        var oWB = oXL.Workbooks.Add();
+        var oSheet = oWB.ActiveSheet;
+        var Lenr = curTbl.rows.length;
+        for (i = 0; i < Lenr; i++){
+            var Lenc = curTbl.rows(i).cells.length;
+            for (j = 0; j < Lenc; j++){
+                oSheet.Cells(i + 1, j + 1).value = curTbl.rows(i).cells(j).innerText;
 
+            }
+        }
+        oXL.Visible = true;
     }
     else
     {
