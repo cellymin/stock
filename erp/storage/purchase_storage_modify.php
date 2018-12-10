@@ -80,6 +80,13 @@ if($rate && $goods['goodsPrice']){//不含税价格=含税价/(1+税率)
     $hanpri = round((float)$goods['goodsPrice']*(1+(float)$rate),2);
     Template::assign('hanpri', $hanpri);
 }
+if($goods['ratepri']){
+    if($goods['usecostpri'] == $goods['ratepri']){
+        Template::assign('usecostpri', 2);
+    }else{
+        Template::assign('usecostpri', 1);
+    }
+}
 Template::assign('goods', $goods);
 Template::assign('depots_options', $depots_options);
 Template::assign('depotSubs_options', $depotSubs_options);

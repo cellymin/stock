@@ -14,7 +14,6 @@ class Domain_Order_Save
         if($this->type=='PURCHASE_IN' || $this->type=='USE_OUT' || $this->type=='ALLOT_OUT' || $this->type=='ALLOT_IN'){
           $flag=3;
         }
-
         $model = new Model_Order();
         $order = $model->get($orderId);
         if (!$order || !in_array($order['flag'], array(0, -3))) {
@@ -178,6 +177,7 @@ class Domain_Order_Save
                 'supplierId'    => $g['supplierId'],
                 'goodsId'       => $g['goodsId'],
                 'goodsPrice'    => $g['goodsPrice'],
+                'usecostpri'    => $g['usecostpri'],
                 'goodsCnt'      => $g['goodsCnt'],
                 'flag'          => 1,
                 'createCompany' => DI()->userInfo['companyId'],
@@ -201,6 +201,7 @@ class Domain_Order_Save
 
                     $price[$g['goodsId']]['minPrice'] = $goods['minPrice'];
                     $price[$g['goodsId']]['maxPrice'] = $goods['maxPrice'];
+                    $price[$g['goodsId']]['usecostpri'] = $g['usecostpri'];
 
                     if (!$goods) {
                         throw new PDOException('批次号：' . $g['batchNo'] . '商品不存在', 1);
@@ -257,6 +258,7 @@ class Domain_Order_Save
                     'lastPrice' => $g['lastPrice'],
                     'minPrice'  => $g['minPrice'],
                     'maxPrice'  => $g['maxPrice'],
+                    'usecostpri'  => $g['usecostpri'],
                     'avgPrice'  => sprintf('%.2f', $g['totalMoney'] / $g['count']),
                 ));
                 if ($id === false) {

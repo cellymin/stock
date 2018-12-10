@@ -35,8 +35,9 @@
                 <td><input name="goodsPrice" type="text" readonly value="<{$goods.goodsPrice}>" required  class="lastpri"></td>
             </tr>
             <tr>
+
                 <td>成本价</td>
-                <td><select name="costprice"><option value="1" <{if $goods.usecostpri == $goods.goodsPrice}> selected="selected"<{/if}>  >不含税价</option><option value="2" <{if $goods.usecostpri == $goods.taxrate}> selected="selected"<{/if}>>含税价</option> </select></td>
+                <td><select name="costprice"><option value="1" <{if $usecostpri == 1}> selected="selected"<{/if}>  >不含税价</option><option value="2" <{if $usecostpri == 2}> selected="selected"<{/if}>>含税价</option> </select></td>
             </tr>
             <tr>
                 <td>备注</td>
