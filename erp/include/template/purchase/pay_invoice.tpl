@@ -41,10 +41,14 @@
                     <td><{$vv.goodsSn}></td>
                     <td><{$vv.goodsName}></td>
                     <td><{$vv.unitName}></td>
-                    <td><{$vv.goodsPrice}></td>
+                    <td>     <{if $vv.usecostpri >0 }><{$vv.usecostpri}> <{else}> <{$vv.goodsPrice}> <{/if}> </td>
                     <td class="goodscount"><{$vv.goodsCnt|string_format:"%.2f"}></td>
-                    <td class="goodsmon" attrid="<{$vv.goodsPrice*$vv.goodsCnt}>">
-                        <{($vv.goodsPrice*$vv.goodsCnt)|string_format:"%0.2f"}></td>
+                    <td class="goodsmon" attrid=" <{if $vv.usecostpri >0 }><{$vv.usecostpri*$vv.goodsCnt}> <{else}>  <{$vv.goodsPrice*$vv.goodsCnt}> <{/if}>">
+                        <{if $vv.usecostpri >0 }>
+                        <{($vv.usecostpri*$vv.goodsCnt)|string_format:"%0.2f"}>
+                        <{else}>
+                        <{($vv.goodsPrice*$vv.goodsCnt)|string_format:"%0.2f"}> <{/if}>
+                        </td>
                 </tr>
                 <{/foreach}>
                 <{/foreach}>
