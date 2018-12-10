@@ -1,20 +1,29 @@
 <?php
 include '../include/init.inc.php';
-$goodsId = $orderId = $goodsCnt = $goodsPrice = $ratepri = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = "";
+$goodsId = $orderId = $goodsCnt = $goodsPrice = $ratepri = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = $costprice= "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = $depots_options = $depotSubs_options = $order = array();
 $client = new PhalApiClient();
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
+        // noratepri 为空 goodsprice 为不含税价格 有值，noratepri为不含税价格
+        //noratepri 为空 成本价和不含税价一致为goodpricce
+        //noratepri 不为空 成本价和含税价一致标记为 ratepei
+        if($_POST['costprice']==1){ //不含税价是成本价
+            $costprice = $goodsPrice;//领用成本价
+        }else if($_POST['costprice']==2){
+            $costprice = $ratepri;//领用成本价
+        }
         $rs = $client->request('Order_InsertGoods.Go', array(
             'goodsId'    => $goodsId,
             'orderId'    => $orderId,
             'goodsCnt'   => $goodsCnt,
             'depotId'    => $depotId,
             'depotSubId' => $depotSubId,
-            'goodsPrice' => $goodsPrice,
+            'goodsPrice' => $goodsPrice,//不含税价
             'ratepri' => $ratepri,
             'remark'     => $remark,
+            'usecostpri'       => $costprice,//领用成本价
             'type'       => 'PURCHASE_IN'
         ));
 
