@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td>不含税价格</td>
-                <td><input name="goodsPrice" type="text" readonly value="<{$goods.goodsPrice}>" required  class="lastpri"></td>
+                <td><input name="goodsPrice" type="text" readonly value="<{$buhanpri}>" required  class="lastpri"></td>
             </tr>
             <tr>
 

@@ -63,7 +63,7 @@
             <tbody>
             <{foreach name=module from=$list key=index item=value}>
                 <tr>
-                    <td><input data-name="goodsId" value="<{$value.goodsId}>_<{$value.lastPrice}>" type="checkbox"></td>
+                    <td><input data-name="goodsId" value="<{$value.goodsId}>_<{$value.lastPrice}>_<{$value.usecostpri}>" type="checkbox"></td>
                     <td><{$value.goodsName}></td>
                     <td><{$value.goodsSpec}></td>
                     <td><{$value.unitName}></td>
