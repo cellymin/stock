@@ -1,20 +1,30 @@
 <?php
 include '../include/init.inc.php';
-$goodsId = $orderId = $goodsCnt = $goodsPrice = $ratepri = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = "";
+$goodsId = $orderId = $goodsCnt = $goodsPrice = $ratepri = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = $costprice= "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = $depots_options = $depotSubs_options = $order = array();
 $client = new PhalApiClient();
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
+        // noratepri 为空 goodsprice 为不含税价格 有值，noratepri为不含税价格
+        //noratepri 为空 成本价和不含税价一致为goodpricce
+        //noratepri 不为空 成本价和含税价一致标记为 ratepei
+        if($_POST['costprice']==1){ //不含税价是成本价
+            $costprice = $goodsPrice;
+        }else if($_POST['costprice']==2){
+            $costprice = $goodsPrice;//不含税价
+            $goodsPrice = $ratepri;//成本价格
+        }
         $rs = $client->request('Order_InsertGoods.Go', array(
             'goodsId'    => $goodsId,
             'orderId'    => $orderId,
             'goodsCnt'   => $goodsCnt,
             'depotId'    => $depotId,
             'depotSubId' => $depotSubId,
-            'goodsPrice' => $goodsPrice,
+            'goodsPrice' => $goodsPrice,//成本价
             'ratepri' => $ratepri,
             'remark'     => $remark,
+            'usecostpri'       => $costprice,//不含税价
             'type'       => 'PURCHASE_IN'
         ));
 
@@ -46,7 +56,13 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $order = $rs['content'];
 }
 //商品
-
+$str = explode('_',$goodsId);
+$goodsId = $str[0];
+$lastpri = $str[1];
+$nohan = $str[2];//不含税价
+if($nohan>0){
+    $lastpri = $nohan;
+}
 $rs = $client->request('Goods_GetForOrder.Go', array(
     'goodsId' => $goodsId
 ));
@@ -54,11 +70,12 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods = $rs['content'];
 }
 //价格
-$str = explode('_',$goodsId);
-$goodsId = $str[0];
-$lastpri = $str[1];//不含税价
 if(empty($lastpri)){
-    $lastpri = $goods['lastPrice'];
+    if($goods['usecostpri']){
+        $lastpri = $goods['usecostpri'];
+    }else{
+        $lastpri = $goods['lastPrice'];
+    }
 }
 if($rate && $lastpri){//不含税价格=含税价/(1+税率)
     $hanpri = round((float)$lastpri*(1+(float)$rate),2);

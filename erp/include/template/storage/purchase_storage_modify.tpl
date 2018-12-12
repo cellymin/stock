@@ -32,9 +32,13 @@
             </tr>
             <tr>
                 <td>不含税价格</td>
-                <td><input name="goodsPrice" type="text" readonly value="<{$goods.goodsPrice}>" required  class="lastpri"></td>
+                <td><input name="goodsPrice" type="text" readonly value="<{$buhanpri}>" required  class="lastpri"></td>
             </tr>
+            <tr>
 
+                <td>成本价</td>
+                <td><select name="costprice"><option value="1" <{if $usecostpri == 1}> selected="selected"<{/if}>  >不含税价</option><option value="2" <{if $usecostpri == 2}> selected="selected"<{/if}>>含税价</option> </select></td>
+            </tr>
             <tr>
                 <td>备注</td>
                 <td><textarea name="remark" id="" cols="30" rows="5" style="resize: none"><{$goods.remark}></textarea></td>

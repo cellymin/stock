@@ -1,20 +1,27 @@
 <?php
 include '../include/init.inc.php';
-$id = $orderId = $goodsCnt = $goodsPrice = $ratepri = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = "";
+$id = $orderId = $goodsCnt = $goodsPrice = $ratepri = $arrivalTime = $remark = $nonceStr = $depotId = $depotSubId = $costpricec = "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = $depots_options = $depotSubs_options = $order = array();
 $client = new PhalApiClient();
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
+        if($_POST['costprice']==1){ //不含税价是成本价
+            $costprice = $goodsPrice;
+        }else if($_POST['costprice']==2){
+            $costprice = $goodsPrice;//不含税价
+            $goodsPrice = $ratepri;//成本价格
+        }
         $rs = $client->request('Order_UpdateGoods.Go', array(
             'id'         => $id,
             'orderId'    => $orderId,
             'goodsCnt'   => $goodsCnt,
-            'goodsPrice' => $goodsPrice,
+            'goodsPrice' => $goodsPrice,//成本价
             'depotId'    => $depotId,
             'depotSubId' => $depotSubId,
             'ratepri' => $ratepri,
             'remark'     => $remark,
+            'usecostpri'       => $costprice,//不含税价
             'type'       => 'PURCHASE_IN'
         ));
 
@@ -70,11 +77,25 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $depotSubs_options = $rs['content'];
 }
 $depotSubs_options[0] = "== 请选择 ==";
+
 if($rate && $goods['goodsPrice']){//不含税价格=含税价/(1+税率)
-    $hanpri = round((float)$goods['goodsPrice']*(1+(float)$rate),2);
+    if($goods['usecostpri']){
+        $hanpri = round((float)$goods['usecostpri']*(1+(float)$rate),2);
+        Template::assign('buhanpri', $goods['usecostpri']);
+    }else{
+        $hanpri = round((float)$goods['goodsPrice']*(1+(float)$rate),2);
+        Template::assign('buhanpri', $goods['goodsPrice']);
+    }
+
     Template::assign('hanpri', $hanpri);
 }
-
+if($goods['ratepri']){
+    if($goods['goodsPrice'] == $goods['ratepri']){//含税价
+        Template::assign('usecostpri', 2);
+    }else{//不含税价
+        Template::assign('usecostpri', 1);
+    }
+}
 Template::assign('goods', $goods);
 Template::assign('depots_options', $depots_options);
 Template::assign('depotSubs_options', $depotSubs_options);

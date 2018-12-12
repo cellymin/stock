@@ -36,6 +36,10 @@
                 <td><input name="goodsPrice" type="text" readonly required value="<{$lastprice}>"  class="lastpri" /></td>
             </tr>
             <tr>
+                <td>成本价</td>
+                <td><select name="costprice"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td>
+            </tr>
+            <tr>
                 <td>备注</td>
                 <td><textarea name="remark" id="" cols="30" rows="5" style="resize: none"></textarea></td>
             </tr>

@@ -38,7 +38,7 @@ if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
         $status = $rs['content']['status'];
 
         $list = $rs['content']['list'];
-        $page_html = Pagination::showPager("goods_search.php?keyword=$keyword&depotId=$depotId&depotSubId=$depotSubId&type=$type",
+        $page_html = Pagination::showPager("goods_search.php?keyword=$keyword&depotId=$depotId&depotSubId=$depotSubId&type=$type&orderId=$orderId",
             $page_no,
             $page_size,
             $row_count);

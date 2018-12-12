@@ -31,7 +31,7 @@ class Domain_Goods_CURD
     public function getForOrder($goodsId){
         $model = new Model_Goods();
 
-        return $model->getForOrder($goodsId, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark');
+        return $model->getForOrder($goodsId, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,usecostpri,productionDate,invalidDate,searchKey,remark');
     }
 
     public function getForUD($goodsId){
