@@ -90,9 +90,9 @@ if($rate && $goods['goodsPrice']){//不含税价格=含税价/(1+税率)
     Template::assign('hanpri', $hanpri);
 }
 if($goods['ratepri']){
-    if($goods['usecostpri'] == $goods['ratepri']){
+    if($goods['goodsPrice'] == $goods['ratepri']){//含税价
         Template::assign('usecostpri', 2);
-    }else{
+    }else{//不含税价
         Template::assign('usecostpri', 1);
     }
 }
