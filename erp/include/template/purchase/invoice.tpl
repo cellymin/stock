@@ -143,11 +143,11 @@
             $(this).removeAttr("disabled");//解禁按钮
             return false;
         }
-        if(payStatus!=2){ //不是付款状态
-            alert('请选择已付款的');
-            $(this).removeAttr("disabled");//解禁按钮
-            return false;
-        }
+        //if(payStatus!=2){ //不是付款状态
+         //   alert('请选择已付款的');
+           // $(this).removeAttr("disabled");//解禁按钮
+          //  return false;
+       // }
 
         $(this).removeAttr("disabled");//解禁按钮
         $.each($('input:checkbox:checked'),function(){
