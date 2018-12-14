@@ -45,6 +45,7 @@
             <thead>
             <tr>
                 <th>#</th>
+                <th>单号</th>
                 <th>发票号</th>
                 <th>供应商</th>
                 <th>公司</th>
@@ -61,6 +62,7 @@
                 <tr>
                     <td><input type="checkbox" data-name="invoiceId" value="<{$value.invoiceId}>"></td>
                     <td><{$value.invoiceNo}></td>
+                    <td><{$value.trueInvoiceNo}></td>
                     <td><{$value.supplierName}></td>
                     <td><{$value.companyName}></td>
                     <td><{$value.orderNo}></td>
