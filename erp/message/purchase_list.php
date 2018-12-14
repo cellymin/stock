@@ -2,7 +2,6 @@
 include '../include/init.inc.php';
 $messageId = "";
 extract($_GET,EXTR_IF_EXISTS);
-
 $list = Message::purchase_list_info($messageId);
 echo '<pre/>';var_dump($list);
 die();

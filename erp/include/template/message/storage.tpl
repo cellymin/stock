@@ -29,6 +29,7 @@
                     <th>消息内容</th>
                     <th>所属公司</th>
                     <th>消息时间</th>
+                    <th>状态</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,15 +40,16 @@
                     <td><{$v.content}></td>
                     <td><{$v.companyName}></td>
                     <td><{$v.createTime}></td>
+                    <td><{if $v.flag==0}>未处理<{elseif $v.flag==1}>已处理<{/if}></td>
                 </tr>
                 <{/foreach}>
                 <tr><td>
                         <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="采购清单" layerUrl="purchase_list" layerW="1000px"
                            layerH="650px" layerT="2">采购清单</a>
-                        <!--a class="btn btn-primary layerModel1 invoicebysup" action="2" title="采购清单" layerUrl="pay_invoice" layerW="1000px"
-                           layerH="650px" layerT="2">已处理</a>
-                        <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="采购清单" layerUrl="pay_invoice" layerW="1000px"
-                           layerH="650px" layerT="2">未处理</a-->
+                        <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="处理" layerUrl="purcharse_done" layerW="1000px"
+                           layerH="650px" layerT="2">处理</a>
+                        <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="驳回" layerUrl="purcharse_refuse" layerW="1000px"
+                           layerH="650px" layerT="2">驳回</a>
 
                     </td></tr>
                 </tbody>
