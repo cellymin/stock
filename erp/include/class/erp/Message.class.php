@@ -53,4 +53,38 @@ class Message extends Base
         }
         return array();
     }
+
+    /***
+     * 根据库存预警生成采购清单
+     * @param messageid 数组
+     */
+    public static function purchase_list_info($messageaId){
+        $db = self::__instance();
+        $kc = array();
+        $kcinfo = array();
+        $kinfo = array();
+        if(strlen($messageaId)>0){
+            $sql = "select * from vich_messages where flag=0 and messageId in (".$messageaId.")";
+            $stmt = $db->prepare($sql);
+            $info = $stmt->execute();
+            $infolist = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($infolist as $k=>$v){
+            $kc = explode(',',$v['content']);
+            //return $kc;
+            foreach ($kc as $kk=>$vv){
+                $kcinfo = explode(':',$vv);
+                if($kk==0){
+                    $kinfo[$v['messageId']]['depotName']= $kcinfo[1];
+                }else if($kk==1){
+                    $kinfo[$v['messageId']]['goodsName']= $kcinfo[1];
+                }else if($kk==2){
+                    $kinfo[$v['messageId']]['goodsCnt']= $kcinfo[1];
+                }
+             }
+            }
+            return $kinfo;
+        }else{
+            return false;
+        }
+    }
 }

@@ -198,9 +198,10 @@ class Model_Goods extends PhalApi_Model_NotORM
 
     public function options($goodsCateId)
     {
-        return $this->getORM()
+        return  DI()->notorm->goods
             ->select('goodsId,goodsName')
-            ->where('flag=1 and goodsCateId=?', $goodsCateId)
+            ->where('flag=1 and goodsCateId1=?', $goodsCateId)
+            ->or('flag=1 and goodsCateId2=?', $goodsCateId)
             ->fetchAll();
     }
 
