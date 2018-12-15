@@ -96,8 +96,9 @@ function _search(keyword, depotId, table, startTime, endTime){
 				html += '<tr>';
                 html += '<td>'+ e[i]['goodsSn'] +'</td>';
                 html += '<td>'+ e[i]['goodsName'] +'</td>';
-                html += '<td>'+ e[i]['goodsCnt'] +'</td>';
                 html += '<td>'+ e[i]['goodsSpec'] +'</td>';
+                html += '<td>'+ e[i]['goodsCnt'] +'</td>';
+
                 html += '<td>'+ e[i]['reviewerTime'] +'</td>';
                 html += '<td>'+ e[i]['orderNo'] +'</td>';
                 html += '</tr>';

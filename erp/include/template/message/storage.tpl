@@ -34,24 +34,27 @@
                 </thead>
                 <tbody>
                 <{foreach from=$list item=v}>
+                    <tr>
+                        <td><input type="checkbox" data-name="messageId" value="<{$v.messageId}>"></td>
+                        <td><{if $v.fromUser==0}>系统<{else}><{$v.realName}><{/if}></td>
+                        <td><{$v.content}></td>
+                        <td><{$v.companyName}></td>
+                        <td><{$v.createTime}></td>
+                        <td><{if $v.flag==0}>未处理<{elseif $v.flag==1}>已处理<{/if}></td>
+                    </tr>
+                    <{/foreach}>
                 <tr>
-                    <td><input type="checkbox" data-name="messageId" value="<{$v.messageId}>"></td>
-                    <td><{if $v.fromUser==0}>系统<{else}><{$v.realName}><{/if}></td>
-                    <td><{$v.content}></td>
-                    <td><{$v.companyName}></td>
-                    <td><{$v.createTime}></td>
-                    <td><{if $v.flag==0}>未处理<{elseif $v.flag==1}>已处理<{/if}></td>
-                </tr>
-                <{/foreach}>
-                <tr><td>
-                        <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="采购清单" layerUrl="purchase_list" layerW="1000px"
+                    <td>
+                        <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="采购清单"
+                           layerUrl="purchase_list" layerW="1000px"
                            layerH="650px" layerT="2">采购清单</a>
-                        <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="处理" layerUrl="purcharse_done" layerW="1000px"
+                        <a class="btn btn-primary purchaseDone" title="处理" layerUrl="purchase_done" layerW="1000px"
                            layerH="650px" layerT="2">处理</a>
-                        <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="驳回" layerUrl="purcharse_refuse" layerW="1000px"
+                        <a class="btn btn-primary purchaseRefuse" title="驳回" layerUrl="purcharse_refuse" layerW="1000px"
                            layerH="650px" layerT="2">驳回</a>
 
-                    </td></tr>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </form>
@@ -69,8 +72,10 @@
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
         var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-        if (r != null) return unescape(r[2]); return null; //返回参数值
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
     }
+
     $('.invoicebysup').click(function () {
 
     });
@@ -101,14 +106,14 @@
         var param = $(this).attr('layerD');
         if (param == undefined)
             param = '';
-        $(this).attr('disabled',"true");//禁用点击
-        var supplierId= getUrlParam('supplierId');//供应商id
-        var payStatus= getUrlParam('payStatus');//付款状态
-        var _id_arr=[];
-        var invoiceStatus= getUrlParam('invoiceStatus');//收票状态
+        $(this).attr('disabled', "true");//禁用点击
+        var supplierId = getUrlParam('supplierId');//供应商id
+        var payStatus = getUrlParam('payStatus');//付款状态
+        var _id_arr = [];
+        var invoiceStatus = getUrlParam('invoiceStatus');//收票状态
 
         $(this).removeAttr("disabled");//解禁按钮
-        $.each($('input:checkbox:checked'),function(){
+        $.each($('input:checkbox:checked'), function () {
             _id_arr.push($(this).val());
         });
 
@@ -120,7 +125,7 @@
             shadeClose: false, //点击遮罩关闭层
             area: [width, height],
             resize: false,
-            scrollbar:false,
+            scrollbar: false,
             id: url,
             content: url + '.php?' + name + '=' + value + '&' + param,
             success: function (layero, index) {
@@ -138,10 +143,35 @@
     });
 
     $(document).on('click', '#data_list #chkAll', function () {
+
         var f = $(this).prop('checked');
         $(this).parents('#data_list').find('input[type=checkbox]').not('#chkAll').prop('checked', f);
     });
     var myFrame = [];
+    $('.purchaseDone').click(function () {
+        $(this).attr('disabled', "true");//禁用点击
+        var _id_arr = [];
+        $.each($('input:checkbox:checked'), function () {
+            _id_arr.push($(this).val());
+        });
+        var value = _id_arr;
+        $.ajax({
+            type: "post",
+            url: "purchase_list.php",
+            data:{messageId:value,action:'done'},
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                $(this).removeAttr("disabled");//解禁按钮
+            },
+            error: function (e) {
+                alert("错误！！");
+                $(this).removeAttr("disabled");//解禁按钮
+            }
+        });
+    });
+
 </script>
 
 

@@ -87,4 +87,16 @@ class Message extends Base
             return false;
         }
     }
+    /***
+     * 处理库存预警，改变消息状态
+     * @param messageid 数组 action done
+     */
+    public static function purchase_done($messageaId){
+        $db = self::__instance();
+        $sql = "update vich_messages set flag=1 where flag=0 and messageId in (".$messageaId.")";
+        $stmt = $db->prepare($sql);
+        $res = $stmt->execute();
+        return $res;
+
+    }
 }
