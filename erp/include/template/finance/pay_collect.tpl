@@ -17,6 +17,10 @@
                 </td>
             </tr>
             <tr>
+                <td colspan="1">发票号</td>
+                <td colspan="3"> <b><input type="text" name="trueInvoiceNo" style="font-size: 14px;" value="<{$list.trueInvoiceNo}>" /></b></td>
+            </tr>
+            <tr>
                 <td colspan="1">合计金额</td>
                 <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b><{sprintf('%.2f',$list.totalMoney)}></b></a></td>
             </tr>
