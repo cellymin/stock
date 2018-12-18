@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 header("Content-type:text/html;charset=utf-8");
 
 try {
-    $pdo = new PDO('mysql:host=192.168.0.74;dbname=jxc', 'root', '',
+    $pdo = new PDO('mysql:host=rm-bp1753c836661zeah.mysql.rds.aliyuncs.com;dbname=rz7866164b', 'rz7866164b', 'Vichweb88',
         array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
 } catch (PDOException $e) {
     die('数据库连接失败');
@@ -13,7 +13,7 @@ $sql = 'SELECT  a.TABLE_NAME "表",
     a.COLUMN_TYPE "类型",       
     a.COLUMN_DEFAULT "默认值",   
     a.IS_NULLABLE "是否为空",   
-    a.CHARACTER_SET_NAME "表字符集",
+    a.CHARACTER_SET_NAME "表字符集",  
     a.COLLATION_NAME  "校验字符集",  
     CONCAT(a.COLUMN_COMMENT," ",a.COLUMN_KEY," ", a.EXTRA) "列备注",  
     b.TABLE_COMMENT "表备注" ,  

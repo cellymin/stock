@@ -1,6 +1,6 @@
 ﻿<?php
 define ('ACCESS',1); 
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(0);
 //autoload 使用常量
 define ( 'ADMIN_BASE', dirname ( __FILE__ ) . '/../../include' );
 define ( 'ADMIN_BASE_LIB', ADMIN_BASE . '/lib/' );
@@ -16,6 +16,8 @@ define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
 define ( 'VERSION' ,'1.2.2');
 define ( 'REVIEW' ,'1');
+
+
 define ( 'ADMIN_TITLE' ,'管理后台');
 define ( 'COMPANY_NAME' ,'刘潭服装-库存管理系统');
 define ('ADMIN_URL' ,'http://www.jxc.com/erp');
@@ -38,7 +40,7 @@ $DATABASE_LIST[SAMPLE_DB_ID] = array (
 	"server"=>'127.0.0.1',
 	"port"=>'3306',
 	"username"=> 'root',
-	"password"=>'huangximing',
+	"password"=>'',
 	"db_name"=>'osadmin' );
 
 
@@ -53,7 +55,7 @@ define('API_SECRECT','API%v1_ERP');
 define ( 'OSA_TABLE_PREFIX' ,'vich_');
 
 //页面设置
-define ( 'DEBUG' ,true);
+define ( 'DEBUG' ,false);
 define ( 'PAGE_SIZE', 15 );
 
 $OSA_TEMPLATES=array(

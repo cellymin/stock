@@ -12,7 +12,7 @@ class Domain_Order_Save
     public function save($orderId, $reviewer,$flag='')
     {
         if($this->type=='PURCHASE_IN' || $this->type=='USE_OUT' || $this->type=='ALLOT_OUT' || $this->type=='ALLOT_IN'){
-          $flag=3;
+            $flag=3;
         }
         $model = new Model_Order();
         $order = $model->get($orderId);

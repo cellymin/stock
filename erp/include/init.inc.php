@@ -4,7 +4,6 @@ require 'config/config.inc.php';
 session_start();
 
 include ADMIN_BASE_LIB . 'phpqrcode.class.php';
-include ADMIN_BASE_LIB . 'PHPExcel.php';
 function OSAdminAutoLoad($classname)
 {
     $filename = str_replace('_', '/', $classname) . '.class.php';
@@ -65,7 +64,12 @@ date_default_timezone_set($_SESSION['osa_timezone']);
 如"/nologin/","/nologin/aaa/"
 */
 
-$no_need_login_page = array("/block.php", "/panel/login.php", "/panel/logout.php",);
+$no_need_login_page = array(
+"/code/print1.php", 
+"/block.php", 
+"/panel/login.php", 
+"/panel/logout.php",
+);
 
 //如果不需要登录就可以访问的话
 $action_url = Common::getActionUrl();
