@@ -292,11 +292,12 @@ class Domain_Order_Save
                 throw new PDOException('库存商品不存在', 1);
                 break;
             }
+            $goodsInfo_model = new Model_Goods();
+            $goodsinfo = $goodsInfo_model->fetch($depot_goods['goodsId']);
             if ($depot_goods['goodsCnt'] < $g['goodsCnt']) {
-                throw new PDOException('库存商品不足,库存：' . $depot_goods['goodsCnt'], 1);
+                throw new PDOException($depot_goods['batchNo'].'批次的'.$goodsinfo['goodsName'].'库存不足,库存：' . $depot_goods['goodsCnt'], 1);
                 break;
             }
-
             $num = $depotGoods_model->update($g['depotGoodsId'], array(
                 'goodsCnt' => new NotORM_Literal('goodsCnt-' . $g['goodsCnt'])
             ));
