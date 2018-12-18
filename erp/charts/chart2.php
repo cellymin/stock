@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$companyId = $keyword = $depotId = $depotSubId = "";
+$companyId = $keyword = $depotId = $depotSubId = $page_no = "";
 extract($_REQUEST,EXTR_IF_EXISTS);
 
 if(empty($depotId)) $depotId=0;
@@ -51,7 +51,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 //查询库位列表
 if(Common::isGet()){
 	if(!empty($depotId)){
-		$rs = $client->request('DepotSub_Options.Go', array('depotId'=>10));
+		$rs = $client->request('DepotSub_Options.Go', array('depotId'=>$depotId));
 		if ($client->getRet() == PhalApiClient::RET_OK) {
 		    $depotsSub_options = $rs['content'];
 		    $depotsSub_options[0] = "== 请选择 ==";

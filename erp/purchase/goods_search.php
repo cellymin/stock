@@ -22,7 +22,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $status    = $rs['content']['status'];
 
     $list      = $rs['content']['list'];
-    $page_html = Pagination::showPager("goods_search.php?keyword=$keyword&goodsCateId=$goodsCateId&type=$type", $page_no, $page_size,
+    $page_html = Pagination::showPager("goods_search.php?keyword=$keyword&goodsCateId=$goodsCateId&type=$type&orderId={$_GET['orderId']}", $page_no, $page_size,
         $row_count);
 } else {
     Common::tipWithMessage($client->getMsg(), 'error');

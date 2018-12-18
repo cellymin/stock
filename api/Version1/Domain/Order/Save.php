@@ -12,7 +12,7 @@ class Domain_Order_Save
     public function save($orderId, $reviewer,$flag='')
     {
         if($this->type=='PURCHASE_IN' || $this->type=='USE_OUT' || $this->type=='ALLOT_OUT' || $this->type=='ALLOT_IN'){
-          $flag=3;
+            $flag=3;
         }
         $model = new Model_Order();
         $order = $model->get($orderId);
@@ -84,8 +84,6 @@ class Domain_Order_Save
             if (!Domain_Message_Msg::send($order['createUser'], $reviewer, $content, 3, $order['createCompany'])) {
                 throw new PDOException('通知失败', 1);
             }
-
-            DI()->notorm->commit('db_demo');
             if (in_array($this->type, array('PURCHASE_IN', 'ALLOT_IN'))) {
                 //入库
                 $this->addToDepot($orderId,$type=$this->type);
@@ -111,6 +109,9 @@ class Domain_Order_Save
                 //库存预警
                 Domain_Message_Msg::depotWarning($order['createCompany'], $reviewer);
             }
+
+            DI()->notorm->commit('db_demo');
+
             return true;
         } catch (PDOException $e) {
             DI()->notorm->rollback('db_demo');

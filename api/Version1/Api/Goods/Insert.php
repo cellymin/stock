@@ -9,10 +9,10 @@ class Api_Goods_Insert extends PhalApi_Api
                 'goodsSn'        => array('name' => 'goodsSn', 'type' => 'string', 'require' => true),
                 'goodsBarCode'   => array('name' => 'goodsBarCode', 'type' => 'string', 'require' => true),
                 'goodsName'      => array('name' => 'goodsName', 'type' => 'string', 'require' => true),
-                'goodsSpec'      => array('name' => 'goodsSpec', 'type' => 'string', 'require' => false),
+                'goodsSpec'      => array('name' => 'goodsSpec', 'type' => 'string', 'require' => true),
                 'goodsCateId1'   => array('name' => 'goodsCateId1', 'type' => 'int', 'min' => 1, 'require' => true),
-                'goodsCateId2'   => array('name' => 'goodsCateId2', 'type' => 'int', 'min' => 0, 'require' => false),
-                'goodsCateId'    => array('name' => 'goodsCateId', 'type' => 'int', 'min' => 0, 'require' => false),
+                'goodsCateId2'   => array('name' => 'goodsCateId2', 'type' => 'int', 'min' => 1, 'require' => true),
+                'goodsCateId'    => array('name' => 'goodsCateId', 'type' => 'int', 'min' =>0 , 'default'=>0, 'require' => true),
                 'goodsUnitId'    => array('name' => 'goodsUnitId', 'type' => 'int', 'min' => 1, 'require' => true),
                 'productionDate' => array('name' => 'productionDate', 'type' => 'date', 'require' => true),
                 'invalidDate'    => array('name' => 'invalidDate', 'type' => 'date', 'require' => true),
@@ -46,7 +46,7 @@ class Api_Goods_Insert extends PhalApi_Api
         $domain = new Domain_GoodsCate_CURD();
         $cate = $domain->get($this->goodsCateId1);
         if (!$cate) {
-            $rs['msg'] = '一级分类不存在';
+            $rs['msg'] = '分类不存在';
             return $rs;
         }
 

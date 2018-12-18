@@ -31,7 +31,6 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             'goodsPrice' => array('name' => 'goodsPrice', 'type' => 'float', 'min' => 0, 'require' => true),
             'goodsCnt'   => array('name' => 'goodsCnt', 'type' => 'int', 'min' => 0, 'require' => true),
             'remark'     => array('name' => 'remark', 'type' => 'string', 'require' => false),
-            'usecostpri'     => array('name' => 'usecostpri', 'type' => 'float', 'require' => false),
         );
 
         $type_rules = array(

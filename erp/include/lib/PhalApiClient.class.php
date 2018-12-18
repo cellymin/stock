@@ -40,7 +40,7 @@ class PhalApiClient
             $this->msg = '后台接口请求超时';
             return $this->getData();
         }
-        error_log(print_r($rs,1));
+//        error_log(print_r($rs,1));
 
         $rs = json_decode($rs, true);
 

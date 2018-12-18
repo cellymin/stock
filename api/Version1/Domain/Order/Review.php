@@ -6,6 +6,7 @@ class Domain_Order_Review
     protected $result;                  //审核结果
     protected $order;                   //订单信息
     protected $memo;                    //审核备注
+    protected $isCopy;
     protected $orderId;                 //订单ID
     protected $flag;                    //审核状态
     protected $order_model;             //订单Model
@@ -19,6 +20,7 @@ class Domain_Order_Review
         $this->result = $data['result'];
         $this->orderId = $data['orderId'];
         $this->memo = $data['memo'];
+        $this->isCopy = $data['isCopy'];
         $this->getResult($data['result']);
     }
 
@@ -87,6 +89,13 @@ class Domain_Order_Review
                 $this->workE();
             }
 
+            if($this->type=='PLAN' && $this->isCopy==1){
+                $this->copyPlan();
+            }
+            if($this->type=='ARRIVAL' && $this->isCopy==1){
+                $this->copyArrival();
+            }
+
             DI()->notorm->commit('db_demo');
             return true;
         } catch (PDOException $e) {
@@ -96,6 +105,45 @@ class Domain_Order_Review
                 throw new PhalApi_Exception_BadRequest($e->getMessage(), 0);
             }
             throw new PhalApi_Exception_InternalServerError('异常', 0);
+        }
+    }
+
+    protected function copyPlan(){
+        $copy_order_model = new Model_OrderCopy('orders_dh','orderId');
+        $copy_order_goods_model = new Model_OrderCopy('orders_dh_goods','id');
+        $order_goods_model = new Model_OrderGoods();
+        $order_goods = $order_goods_model->getAll($this->order['orderId']);
+
+        $this->order['orderNo'] = 'DH'. date('ymdHis') . rand(1000, 9999);
+        $this->order['linkOrder'] = $this->order['orderId'];
+        $this->order['flag'] = 0;
+        unset($this->order['orderId']);
+
+        $id = $copy_order_model->insert($this->order);
+        foreach ($order_goods as $row){
+            $row['orderId'] = $id;
+            unset($row['id']);
+            $copy_order_goods_model->insert($row);
+        }
+    }
+
+    protected function copyArrival(){
+        $copy_order_model = new Model_OrderCopy('orders_ip','orderId');
+        $copy_order_goods_model = new Model_OrderCopy('orders_ip_goods','id');
+        $order_goods_model = new Model_OrderGoods();
+        $order_goods = $order_goods_model->getAll($this->order['orderId']);
+
+        $this->order['orderNo'] = 'IP'. date('ymdHis') . rand(1000, 9999);
+        $this->order['linkOrder'] = $this->order['orderId'];
+        $this->order['flag'] = 0;
+        unset($this->order['orderId']);
+
+        $id = $copy_order_model->insert($this->order);
+        foreach ($order_goods as $row){
+            $row['orderId'] = $id;
+            $row['orderSubNo'] = 'PN'. date('ymdHis') . rand(1000, 9999);
+            unset($row['id']);
+            $copy_order_goods_model->insert($row);
         }
     }
 

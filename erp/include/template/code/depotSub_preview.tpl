@@ -4,7 +4,7 @@
     <table id="barcode_preview" border="0" cellspacing="0" cellpadding="0" width="100%">
         <tr>
             <td style="text-align: center" id="print_area">
-                <span style="font-size: 12px;display: block;margin: 0;">{$depotSub.depotSubName}</span>
+                <span style="font-size: 12px;display: block;margin: 0;"><{$depotSub.depotSubName}></span>
                 <img src="depotSub_preview.php?code=1&depotSubId=<{$depotSub.depotSubId}>" alt="" >
             </td>
         </tr>

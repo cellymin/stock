@@ -7,9 +7,9 @@
 <{$osadmin_quick_note}>
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
     <div class="btn-toolbar" style="float:right;padding-top:15px;">
-        <a class="btn btn-primary layerModel" action="1" title="设置模板" layerUrl="design" layerW="800px" layerH="600px" layerT="2"><i class="icon-plus"></i> 设置模板</a>
-        <a class="btn btn-primary layerModel" action="2" title="预览" layerUrl="preview" layerW="800px" layerH="600px" layerT="2"><i class="icon-plus"></i> 预览</a>
-        <!--<a class="btn btn-primary"><i class="icon-plus"></i> 打印</a>-->
+        <!--<a class="btn btn-primary layerModel" action="1" title="设置模板" layerUrl="design" layerW="800px" layerH="600px" layerT="2"><i class="icon-plus"></i> 设置模板</a>
+        <a class="btn btn-primary layerModel" action="2" title="预览" layerUrl="preview" layerW="800px" layerH="600px" layerT="2"><i class="icon-plus"></i> 预览</a>-->
+        <a class="btn btn-primary" id="print">打印</a>
     </div>
 
     <div style="float:left;margin-right:5px">
@@ -32,6 +32,7 @@
     <div style="clear:both;"></div>
 </form>
 
+<!--<iframe src="" id="p" width="0" height="0" frameborder="0"></iframe>-->
 <div class="block">
     <a href="#page-stats" class="block-heading" data-toggle="collapse">产品列表</a>
     <div id="page-stats" class="block-body collapse in">
@@ -52,7 +53,7 @@
                 <tbody>
                 <{foreach name=module from=$list key=index item=value}>
                     <tr>
-                        <td width="100"><input type="checkbox" name="goodsId[]" data-name="goodsId" value="<{$value.goodsId}>"></td>
+                        <td width="100"><input type="checkbox" name="goodsId[]" id="goodsId" data-name="goodsId" value="<{$value.goodsId}>"></td>
                         <td><{$value.goodsSn}></td>
                         <td><{$value.goodsBarCode}></td>
                         <td><{$value.goodsName}></td>
@@ -82,6 +83,16 @@
                 $(this).html(str + " " + cateName);
             }
         });
+        
+        $('#print').click(function(){
+        	var goodsId=0;
+        	$('body #goodsId').each(function(){
+				if($(this).is(":checked")==true){
+					goodsId = goodsId+','+$(this).val();
+				}
+        	})
+        	window.open ("print1.php?goodsId="+goodsId, "newwindow", "height=800, width=600, top=0, left=0, toolbar=no, menubar=no, scrollbars=yes, resizable=no,location=no, status=no");
+        })
     });
 </script>
 <!---操作的确认层，相当于javascript:confirm函数--->

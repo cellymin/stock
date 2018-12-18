@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 include '../include/init.inc.php';
-$keyword = $depotId = $table = $startTime = $endTime = "";
+$keyword = $depotId = $table = $startTime = $endTime = $page_no = "";
 extract($_REQUEST,EXTR_IF_EXISTS);
 
 if(Common::isPost()){

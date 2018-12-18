@@ -54,8 +54,13 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     }
 
 }
+$department_options[0] = "== 请选择 ==";
 $employee_options[0] = "== 请选择 ==";
+ksort($employee_options);
 
+//echo '<pre/>';
+//var_dump($department_options);
+//die();
 
 Template::assign('_GET', $_GET);
 Template::assign('orderId', $orderId);
