@@ -33,6 +33,7 @@ class Api_Order_Review extends PhalApi_Api
                 'require' => true
             ),
             'memo'    => array('name' => 'memo', 'type' => 'string', 'require' => false),
+            'isCopy'  => array('name' => 'isCopy','type' => 'int','require' => false)
         );
 
         return array(
@@ -49,6 +50,7 @@ class Api_Order_Review extends PhalApi_Api
             'orderId'       => $this->orderId,
             'result'        => $this->result,
             'memo'          => $this->memo,
+            'isCopy'          => 1,
         );
 
         $domain = new Domain_Order_Review($data);
