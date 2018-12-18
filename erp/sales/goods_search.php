@@ -35,7 +35,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $status = $rs['content']['status'];
 
     $list = $rs['content']['list'];
-    $page_html = Pagination::showPager("goods_search.php?keyword=$keyword&depotId=$depotId&depotSubId=$depotSubId&type=$type",
+    $page_html = Pagination::showPager("goods_search.php?keyword=$keyword&depotId=$depotId&depotSubId=$depotSubId&type=$type&orderId={$_GET['orderId']}",
         $page_no,
         $page_size,
         $row_count);

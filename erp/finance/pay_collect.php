@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr =$adjustamount= "";
+$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr =$adjustamount= $trueInvoiceNo="";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $list = array();
 
@@ -19,6 +19,7 @@ if (!empty($invoiceId)) {
                 'noticeTime'    => $noticeTime,
                 'remark'        => $remark,
                 'adjustamount' => $adjustamount,
+                'trueInvoiceNo' => $trueInvoiceNo,
             ));
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
