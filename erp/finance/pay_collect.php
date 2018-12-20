@@ -3,13 +3,13 @@ include '../include/init.inc.php';
 $invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr =$adjustamount= $trueInvoiceNo="";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $list = array();
-
+var_dump($_POST);
+die();
 if (!empty($invoiceId)) {
     $client = new PhalApiClient();
 
     if (Common::isPost()) {
-//        var_dump($_POST);
-//        die();
+
         if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
             $rs = $client->request('Invoice_Collect.Go', array(
                 'invoiceId'     => $invoiceId,
