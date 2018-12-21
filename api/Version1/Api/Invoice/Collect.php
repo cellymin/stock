@@ -14,8 +14,8 @@ class Api_Invoice_Collect extends PhalApi_Api
             'go' => array(
                 'invoiceId'     => array(
                     'name'    => 'invoiceId',
-                    'type'    => 'int',
-                    'min'     => '0',
+                    'type'    => 'array',
+                    'format'  => 'explode',
                     'require' => true
                 ),
                 'invoiceStatus' => array(
@@ -37,7 +37,6 @@ class Api_Invoice_Collect extends PhalApi_Api
     public function go()
     {
         $rs = array('code' => 0, 'content' => '', 'msg' => '');
-
         $domain = new Domain_Invoice_CURD();
         $data = array(
             'invoiceId'     => $this->invoiceId,
@@ -49,7 +48,8 @@ class Api_Invoice_Collect extends PhalApi_Api
             'adjustamount' => $this->adjustamount,
             'trueInvoiceNo' => $this->trueInvoiceNo,
         );
-        $domain->collect($data);
+
+        return $domain->collectList($data);
         $rs['code'] = 1;
 
         return $rs;

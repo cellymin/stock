@@ -30,7 +30,7 @@ $DATABASE_LIST[OSA_DB_ID] = array ( "server"=>'localhost',
     "port"=>'3306',
     "username"=> 'root',
     "password"=>'root',
-    "db_name"=>'jxc1'
+    "db_name"=>'jxc15'
 
 );
 
@@ -55,7 +55,7 @@ define('API_SECRECT','API%v1_ERP');
 define ( 'OSA_TABLE_PREFIX' ,'vich_');
 
 //页面设置
-define ( 'DEBUG' ,false);
+define ( 'DEBUG' ,true);
 define ( 'PAGE_SIZE', 15 );
 
 $OSA_TEMPLATES=array(

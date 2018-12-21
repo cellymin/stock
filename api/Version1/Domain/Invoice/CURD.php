@@ -24,11 +24,11 @@ class Domain_Invoice_CURD
         $list = $model->getList($start, $page_size, $keyword, $supplierId, $payStatus, $invoiceStatus, $type);
 
         $rs = array(
-            'row_count'  => $row_count,
+            'row_count' => $row_count,
             'total_page' => $total_page,
-            'page_no'    => $page_no,
-            'page_size'  => $page_size,
-            'list'       => $list
+            'page_no' => $page_no,
+            'page_size' => $page_size,
+            'list' => $list
         );
         return $rs;
     }
@@ -39,15 +39,15 @@ class Domain_Invoice_CURD
         $supplier_model = new Model_Supplier();
         $customer_model = new Model_Customer();
 
-        $list = array('invoices'     => array(),
-                      'totalMoney'   => 0,
-                      'supplierId'   => 0,
-                      'supplierName' => '',
-                      'taxrate' => '',
-                      'companyId'    => 0,
-            'targetId'=>0,
-            'adjustamount'=>'',
-            'trueInvoiceNo'=>'',
+        $list = array('invoices' => array(),
+            'totalMoney' => 0,
+            'supplierId' => 0,
+            'supplierName' => '',
+            'taxrate' => '',
+            'companyId' => 0,
+            'targetId' => 0,
+            'adjustamount' => '',
+            'trueInvoiceNo' => '',
         );
 
 
@@ -111,24 +111,85 @@ class Domain_Invoice_CURD
         return $list;
     }
 
-    public function collect($data){
+    public function collect($data)
+    {
         $model = new Model_Invoice();
 
         $invoince = $model->get($data['invoiceId']);
-        if(!$invoince){
+        if (!$invoince) {
             throw new PhalApi_Exception_BadRequest('发票不存在');
         }
-        if ($invoince['invoiceStatus']==1) {
+        if ($invoince['invoiceStatus'] == 1) {
             throw new PhalApi_Exception_BadRequest('不能操作,发票已收');
         }
         $invoiceId = $data['invoiceId'];
         unset($data['invoiceId']);
-        $rs =  $model->update($invoiceId,$data);
-        if($rs!==false){
+        $rs = $model->update($invoiceId, $data);
+        if ($rs !== false) {
             return true;
         }
         throw new PhalApi_Exception_BadRequest('操作失败');
     }
+
+    /**
+     * @param $data
+     * @return bool
+     * @throws PhalApi_Exception_BadRequest
+     * 多张发票合并修改
+     */
+    public function collectList($data)
+    {
+        //调整金额
+        $doadj = substr(trim($data['adjustamount']),0,1);
+        $adj = floatval(substr(trim($data['adjustamount']),1)); //操作的金额
+        $data['adjustamount'] = '';
+        $temp_adj ='';
+        try {
+            DI()->notorm->beginTransaction('db_demo');
+            $model = new Model_Invoice();
+            if (!empty($data['invoiceId'])) {
+                foreach ($data['invoiceId'] as $k => $v) {
+                    $invoince = $model->get($v);
+                    $aa[] = $invoince;
+                    if (!$invoince) {
+                        throw new PhalApi_Exception_BadRequest('发票不存在');
+                    }
+                    if ($invoince['invoiceStatus'] == 1) {
+                        throw new PhalApi_Exception_BadRequest($invoince['invoiceNo'] . '不能操作,发票已收');
+                    }
+                    //提整发票中没有大于调整金额的发票默认第一个大于0的发票单上做记录
+
+                    // 其中中金额大于调整金额的记录下调整金额，以及调整的发票号id
+                    if($invoince['totalMoney']>$adj){
+                        $data['adjustamount'] = $adj;
+                        $temp_adj = $data['adjustamount'];
+                        $adj = '+0.00';
+                    }else{
+                        $data['adjustamount'] = '+0.00';
+                    }
+                    $aa[] = $data;
+                }
+            }
+            return $temp_adj;
+            if($temp_adj=='+0.00'){
+                return 1;
+            }
+            $invoiceId = $data['invoiceId'];
+            unset($data['invoiceId']);
+             return $aa;
+            $rs = $model->update($invoiceId, $data);
+            DI()->notorm->commit('db_demo');
+            return $aa;
+            return true;
+        } catch (PDOException $e) {
+            DI()->notorm->rollback('db_demo');
+            if ($e->getCode() == 1) {
+                throw new PhalApi_Exception_BadRequest($e->getMessage(), 0);
+            }
+            throw new PhalApi_Exception_InternalServerError('服务器错误', 0);
+        }
+    }
+
     public function getIndoById($invoiceId)
     {
         $model = new Model_Invoice();
@@ -136,4 +197,4 @@ class Domain_Invoice_CURD
         return $rr;
     }
 
-    }
+}

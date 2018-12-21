@@ -30,6 +30,7 @@ class Api_Invoice_Get extends PhalApi_Api
         }
 
         $domain = new Domain_Invoice_CURD();
+
         $list = $domain->get($this->invoiceId);
         if ($list) {
             $rs['code'] = 1;
