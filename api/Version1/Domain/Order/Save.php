@@ -96,7 +96,7 @@ class Domain_Order_Save
                 $log_model = new Model_LogDepot();
                 $num = $log_model->insert(array(
                     'logUser'    => DI()->userInfo['userId'],
-                    'logType'    => $this->type,
+                    'logType'    => 2,
                     'logContent' => json_encode( $input['depot_goods']),
                     'depotId'    => ($this->type == 'SALE_OUT') ? 0 : $order['depotId'],
                     'orderId'    => $orderId,
