@@ -56,7 +56,6 @@ class Domain_Order_Save
                 'flag'     => $flag,
             );
         }
-
         try {
             DI()->notorm->beginTransaction('db_demo');
 
@@ -86,9 +85,13 @@ class Domain_Order_Save
             }
             if (in_array($this->type, array('PURCHASE_IN', 'ALLOT_IN'))) {
                 //入库
-                $this->addToDepot($orderId,$type=$this->type);
+                $input['depot_goods'] = $this->addToDepot($orderId,$type=$this->type);
+                //库存日志
+                $this->depotLog(1, $input['depot_goods']);
                 //生成采购发票
-                $this->createInvoice($order);
+                if ($this->type == 'PURCHASE_IN') {
+                    $this->createInvoice($order);
+                }
             }else if(in_array($this->type, array('USE_OUT', 'ALLOT_OUT'))){
                 //商品出库
                 $input['depot_goods'] =  $this->outDepot($orderId);
@@ -169,22 +172,37 @@ class Domain_Order_Save
         $this->type = $type;
         $model = new Model_Goods();
         $depotSub_model = new Model_DepotSub();
-
         foreach ($goods as $g) {
-            $depot_input[] = array(
-                'batchNo'       => $g['orderSubNo'],
-                'depotId'       => ($this->type == 'PURCHASE_IN') ? $g['depotId'] : $this->order['depotId'],
-                'depotSubId'    => $g['depotSubId'],
-                'supplierId'    => $g['supplierId'],
-                'goodsId'       => $g['goodsId'],
-                'goodsPrice'    => $g['goodsPrice'],
-                'usecostpri'    => $g['usecostpri'],
-                'goodsCnt'      => $g['goodsCnt'],
-                'flag'          => 1,
-                'createCompany' => DI()->userInfo['companyId'],
-                'createUser'    => DI()->userInfo['userId'],
-                'createTime'    => date('Y-m-d H:i:s'),
-            );
+            if($this->type == 'PURCHASE_IN'){
+                $depot_input[] = array(
+                    'batchNo'       => $g['orderSubNo'],
+                    'depotId'       => ($this->type == 'PURCHASE_IN') ? $g['depotId'] : $this->order['depotId'],
+                    'depotSubId'    => $g['depotSubId'],
+                    'supplierId'    => $g['supplierId'],
+                    'goodsId'       => $g['goodsId'],
+                    'goodsPrice'    => $g['goodsPrice'],
+                    'usecostpri'    => $g['usecostpri'],
+                    'goodsCnt'      => $g['goodsCnt'],
+                    'flag'          => 1,
+                    'createCompany' => DI()->userInfo['companyId'],
+                    'createUser'    => DI()->userInfo['userId'],
+                    'createTime'    => date('Y-m-d H:i:s'),
+                );
+            }else{
+                $depot_input[] = array(
+                    'batchNo'       => $g['orderSubNo'],
+                    'depotId'       => ($this->type == 'PURCHASE_IN') ? $g['depotId'] : $this->order['depotId'],
+                    'depotSubId'    => $g['depotSubId'],
+                    'supplierId'    => $g['supplierId'],
+                    'goodsId'       => $g['goodsId'],
+                    'goodsPrice'    => $g['goodsPrice'],
+                    'goodsCnt'      => $g['goodsCnt'],
+                    'flag'          => 1,
+                    'createCompany' => DI()->userInfo['companyId'],
+                    'createUser'    => DI()->userInfo['userId'],
+                    'createTime'    => date('Y-m-d H:i:s'),
+                );
+            }
 
             // 验证仓库是否存在
             $depotSub = $depotSub_model->fetch($g['depotSubId']);
@@ -194,7 +212,6 @@ class Domain_Order_Save
             if ($depotSub['companyId'] != $this->order['createCompany']) {
                 throw new PDOException('库位:' . $depotSub['depotSubName'] . '不属于该订单公司', 1);
             }
-
             if ($this->type == 'PURCHASE_IN') {
                 //历史价格
                 if (!isset($price[$g['goodsId']])) {
