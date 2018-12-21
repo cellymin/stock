@@ -142,44 +142,32 @@ class Domain_Invoice_CURD
         //调整金额
         $doadj = substr(trim($data['adjustamount']),0,1);
         $adj = floatval(substr(trim($data['adjustamount']),1)); //操作的金额
+        $trueadj = $data['adjustamount'];
         $data['adjustamount'] = '';
-        $temp_adj ='';
         try {
             DI()->notorm->beginTransaction('db_demo');
             $model = new Model_Invoice();
             if (!empty($data['invoiceId'])) {
                 foreach ($data['invoiceId'] as $k => $v) {
                     $invoince = $model->get($v);
-                    $aa[] = $invoince;
                     if (!$invoince) {
                         throw new PhalApi_Exception_BadRequest('发票不存在');
                     }
                     if ($invoince['invoiceStatus'] == 1) {
                         throw new PhalApi_Exception_BadRequest($invoince['invoiceNo'] . '不能操作,发票已收');
                     }
-                    //提整发票中没有大于调整金额的发票默认第一个大于0的发票单上做记录
-
                     // 其中中金额大于调整金额的记录下调整金额，以及调整的发票号id
                     if($invoince['totalMoney']>$adj){
-                        $data['adjustamount'] = $adj;
-                        $temp_adj = $data['adjustamount'];
-                        $adj = '+0.00';
+                        $data['adjustamount'] = $trueadj;
+                        $trueadj = '+0.00';
                     }else{
                         $data['adjustamount'] = '+0.00';
                     }
-                    $aa[] = $data;
+                    $data['invoiceId'] = $v;
+                    $model->update($v, $data);
                 }
             }
-            return $temp_adj;
-            if($temp_adj=='+0.00'){
-                return 1;
-            }
-            $invoiceId = $data['invoiceId'];
-            unset($data['invoiceId']);
-             return $aa;
-            $rs = $model->update($invoiceId, $data);
             DI()->notorm->commit('db_demo');
-            return $aa;
             return true;
         } catch (PDOException $e) {
             DI()->notorm->rollback('db_demo');
