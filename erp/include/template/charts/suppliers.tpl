@@ -118,12 +118,12 @@
                 <td></td>
                 <td><{number_format($list.total.using.money,2)}></td>
                 <{if $_GET.depotId>0}>
+                <td><{$list.total.transin.count}></td>
                 <td></td>
+                <td><{number_format($list.total.transin.money,2)}></td>
+                <td><{$list.total.transout.count}></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><{number_format($list.total.transout.money,2)}></td>
                 <{/if}>
                 <td><{$list.total.depot.count}></td>
                 <td></td>
