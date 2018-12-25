@@ -87,7 +87,7 @@ class Domain_Order_Save
                 //入库
                 $input['depot_goods'] = $this->addToDepot($orderId,$type=$this->type);
                 //库存日志
-                $this->depotLog(1, $input['depot_goods']);
+                $this->depotLog(1, $input['depot_goods'],$orderId);
                 //生成采购发票
                 if ($this->type == 'PURCHASE_IN') {
                     $this->createInvoice($order);
@@ -130,16 +130,15 @@ class Domain_Order_Save
      * @param $logContent
      * @return long|string
      */
-    protected function depotLog($type, $logContent)
+    protected function depotLog($type, $logContent,$orderId)
     {
-
         $log_model = new Model_LogDepot();
         $num = $log_model->insert(array(
             'logUser'    => DI()->userInfo['userId'],
             'logType'    => $type,
             'logContent' => json_encode($logContent),
             'depotId'    => ($this->type == 'SALE_OUT') ? 0 : $this->order['depotId'],
-            'orderId'    => $this->orderId,
+            'orderId'    => $orderId,
             'orderType'  => $this->type,
             'createTime' => date('Y-m-d H:i:s')
         ));
