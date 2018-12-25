@@ -26,9 +26,11 @@ class Api_Depot_InputDepot extends PhalApi_Api
         $depots=$D_domain->getList();
         $rs['data']['depots']=$depots;
 //        获取库位列表
-        $depotId=$_POST['depotId'];
+        if(isset($_POST['depotId'])){
+            $depotId=$_POST['depotId'];
+        }
 //        当选择仓库时，获取库位信息；否则提示请选择仓库
-        if($depotId){
+        if(isset($depotId)){
             $DS_domain=new Domain_DepotSub_Options();
             $depotSubs=$DS_domain->appGet($depotId);
             $rs['data']['depotSubs']=$depotSubs;
