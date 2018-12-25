@@ -7,7 +7,7 @@ class Domain_DepotGoods_CURD
     private $keyword;
     private $depotId;
     private $depotSubId;
-
+    private $type;
 
     public function __set($name, $value)
     {
@@ -21,7 +21,7 @@ class Domain_DepotGoods_CURD
         $model = new Model_DepotGoods();
 
         //总条数
-        $row_count = $model->count($this->keyword,$this->depotId, $this->depotSubId);
+        $row_count = $model->count($this->keyword,$this->depotId, $this->depotSubId,$this->type);
         $row_count = $row_count ? $row_count[0]['count'] : 0;
 
         $total_page = $row_count % $this->page_size == 0 ? $row_count / $this->page_size : ceil($row_count / $this->page_size);

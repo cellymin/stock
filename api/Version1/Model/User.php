@@ -47,4 +47,10 @@ class Model_User extends PhalApi_Model_NotORM
         return DI()->notorm->user
             ->queryAll($sql, array(':userId' => $userId));
     }
+//    app接口路由
+    public function checkPassword($user_name,$password){
+        $password=md5($password);
+        $sql='select * from vich_user where user_name=:user_name and password=:password';
+        return DI()->notorm->user->queryAll($sql,array(':user_name'=>$user_name,':password'=>$password));
+    }
 }
