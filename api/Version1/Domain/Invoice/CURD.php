@@ -144,8 +144,18 @@ class Domain_Invoice_CURD
         $adj = floatval(substr(trim($data['adjustamount']),1)); //操作的金额
         $trueadj = $data['adjustamount'];
         $data['adjustamount'] = '';
+        //发票关联表，插入数组
+        $invoiceAdj = array(
+            'ids' => $data['invoiceId'],
+            'adjustpri' => trim($data['adjustamount']),
+            'flag' => 1,
+            'createtime' => date('Y-m-d',time())
+        );
+         //return $invoiceAdj;
+
         try {
             DI()->notorm->beginTransaction('db_demo');
+
             $model = new Model_Invoice();
             if (!empty($data['invoiceId'])) {
                 foreach ($data['invoiceId'] as $k => $v) {

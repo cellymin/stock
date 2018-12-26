@@ -21,9 +21,9 @@ if (!empty($invoiceId)) {
                 'adjustamount' => $adjustamount,
                 'trueInvoiceNo' => $trueInvoiceNo,
             ));
-//            echo '<pre/>';
-//            var_dump($rs);
-//            die();
+            echo '<pre/>';
+            var_dump($rs);
+            die();
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');

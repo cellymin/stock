@@ -48,7 +48,8 @@ class Api_Invoice_Collect extends PhalApi_Api
             'adjustamount' => $this->adjustamount,
             'trueInvoiceNo' => $this->trueInvoiceNo,
         );
-        $domain->collectList($data);
+        return $domain->collectList($data);
+
         $rs['code'] = 1;
 
         return $rs;
