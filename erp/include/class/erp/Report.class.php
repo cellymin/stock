@@ -383,6 +383,7 @@ class Report extends Base
             }
         }
 
+
         //查询本月出库//
         if(!empty($depotId)){
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
@@ -519,10 +520,10 @@ class Report extends Base
                     );
                     $total['last']['count'] += $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['count'];
                     $total['last']['money'] += $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['money'];
-                    $total['buy']['count'] += $buy[$g['goodsId']]['count'];
-                    $total['buy']['money'] += $buy[$g['goodsId']]['money'];
-                    $total['using']['count'] += $using[$g['goodsId']]['count'];
-                    $total['using']['money'] += $using[$g['goodsId']]['money'];
+                    $total['buy']['count'] += $in[$g['goodsId']]['count'];
+                    $total['buy']['money'] += $in[$g['goodsId']]['money'];
+                    $total['using']['count'] += $out[$g['goodsId']]['count'];
+                    $total['using']['money'] += $out[$g['goodsId']]['money'];
                     $total['transin']['count'] += $idin[$g['goodsId']]['count'];
                     $total['transin']['money'] += $idin[$g['goodsId']]['money'];
                     $total['transout']['count'] += $odout[$g['goodsId']]['count'];
@@ -564,16 +565,15 @@ class Report extends Base
                     );
                     $total['last']['count'] += $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'];
                     $total['last']['money'] += $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'];
-                    $total['buy']['count'] += $buy[$g['goodsId']]['count'];
-                    $total['buy']['money'] += $buy[$g['goodsId']]['money'];
-                    $total['using']['count'] += $using[$g['goodsId']]['count'];
-                    $total['using']['money'] += $using[$g['goodsId']]['money'];
+                    $total['buy']['count'] += $in[$g['goodsId']]['count'];
+                    $total['buy']['money'] += $in[$g['goodsId']]['money'];
+                    $total['using']['count'] += $out[$g['goodsId']]['count'];
+                    $total['using']['money'] += $out[$g['goodsId']]['money'];
                     $total['depot']['count'] += $deport[$g['goodsId']]['count'];
                     $total['depot']['money'] += $deport[$g['goodsId']]['money'];
                 }
             }
         }
-
         return array('list'=>$list,'total'=>$total);
     }
 
