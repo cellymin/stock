@@ -27,7 +27,10 @@ class Domain_Goods_CURD
 
         return $model->get($goodsId, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark');
     }
-
+    public function getInfo($goodsBarCode){
+        $model = new Model_Goods();
+        return $model->getInfo($goodsBarCode, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark');
+    }
     public function getForOrder($goodsId){
         $model = new Model_Goods();
 

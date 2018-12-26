@@ -140,7 +140,7 @@ class Model_Supplier extends PhalApi_Model_NotORM
     public function appGetlist(){
 
         return DI()->notorm->suppliers
-            ->select('supplierId,supplierName')
+            ->select('supplierId,supplierName,taxrate')
             ->fetchAll();
     }
 }

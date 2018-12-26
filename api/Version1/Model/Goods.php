@@ -66,7 +66,16 @@ class Model_Goods extends PhalApi_Model_NotORM
             ->where($where, $param)
             ->fetch();
     }
+    public function getInfo($goodsBarCode, $fields = '*')
+    {
+        $where = 'flag=1 and goodsBarCode=?';
+        $param[] = $goodsBarCode;
 
+        return DI()->notorm->goods
+            ->select($fields)
+            ->where($where, $param)
+            ->fetch();
+    }
     public function getForOrder($id, $fields = '*')
     {
         $where = 'flag=1 and goodsId=?';
