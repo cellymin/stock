@@ -146,17 +146,17 @@ class Domain_Invoice_CURD
         $data['adjustamount'] = '';
         //发票关联表，插入数组
         $invoiceAdj = array(
-            'ids' => $data['invoiceId'],
+            'ids' => implode(',',$data['invoiceId']),
             'adjustpri' => trim($data['adjustamount']),
             'flag' => 1,
             'createtime' => date('Y-m-d',time())
         );
-         //return $invoiceAdj;
-
         try {
             DI()->notorm->beginTransaction('db_demo');
 
             $model = new Model_Invoice();
+            //调整发票关联表
+            $res = DI()->notorm->invoices_adjust->insert($invoiceAdj);
             if (!empty($data['invoiceId'])) {
                 foreach ($data['invoiceId'] as $k => $v) {
                     $invoince = $model->get($v);
