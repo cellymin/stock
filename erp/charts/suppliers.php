@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$cateId = $companyId = "";
+$cateId = $companyId = $depotId = "";
 extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
@@ -19,11 +19,18 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
         unset($company_options[0]);
     }
 }
-
-$list = Report::busReport($cateId,$companyId);
+//仓库列表
+$rs = $client->request('Depot_Options.Go', array());
+if ($client->getRet() == PhalApiClient::RET_OK) {
+    $depots_options = $rs['content'];
+    $depots_options[0] = "== 请选择 ==";
+}
+ksort($depots_options);
+$list = Report::busReport($cateId,$companyId,$depotId);
 
 Template::assign('company_options',$company_options);
 Template::assign('cates',$cates);
 Template::assign('list',$list);
 Template::assign('_GET',$_GET);
+Template::assign('depots_options', $depots_options);
 Template::display('charts/suppliers.tpl');
