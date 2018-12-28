@@ -50,7 +50,6 @@ class Domain_Invoice_CURD
             'trueInvoiceNo' => '',
         );
 
-
         foreach ($invoiceIds as $invoiceId) {
             $invoice = $model->get($invoiceId);
             $user = DI()->userInfo;
@@ -88,7 +87,7 @@ class Domain_Invoice_CURD
                     $list['supplierName'] = $supplier['supplierName'];
                     $list['targetId'] = $supplier['supplierId'];
                     $list['taxrate'] = $supplier['taxrate'];
-                    $list['adjustamount'] = $invoice['adjustamount'];
+                 //   $list['adjustamount'] = $invoice['adjustamount'];
                     $list['trueInvoiceNo'] = $invoice['trueInvoiceNo'];
                 } else {
                     $customer = $customer_model->get($invoice['supplierId']);
@@ -109,6 +108,42 @@ class Domain_Invoice_CURD
         }
 
         return $list;
+    }
+
+    /*
+     * 获取含有invoiceId 的所有关联发票id
+     */
+    public function getListInfo($invoiceId)
+    {
+        $model = new Model_Invoice();
+        $invoice = array();
+        $invoiceids = array();
+        foreach ($invoiceId as $k => $v) {
+            $res = DI()->notorm->invoices_adjust->select('id,ids,adjustpri,trueInvoiceNo')->where("FIND_IN_SET($v,ids)")->fetchRows();
+            if (!empty($res)) {
+                $invoice[] = $res[0]['id'];
+                $invoiceids[] = $res[0]['ids'];
+                $invoicepri[] = $res[0]['adjustpri'];
+                $trueInvoiceNo[] = $res[0]['trueInvoiceNo'];
+            }
+        }
+        $invoice = array_unique($invoice);
+        $invoiceids = array_unique($invoiceids);
+        $invoicepri = array_unique($invoicepri);
+        $trueInvoiceNo = array_unique($trueInvoiceNo);
+        if (count($invoice) > 1 || count($invoiceids)>1 || count($invoicepri)>1) { //两张合并发票单
+            throw new PhalApi_Exception_BadRequest('不能操作两张已合并发票');
+        }
+        if (!empty($invoiceids)) {
+            $invoice[1] = $invoiceids[0];//关联发票id
+        }
+        if(!empty($invoicepri)){
+            $invoice[2] = $invoicepri[0]; //调整金额
+        }
+        if(!empty($trueInvoiceNo)){
+            $invoice[3] = $trueInvoiceNo[0]; //合并票号
+        }
+        return $invoice;
     }
 
     public function collect($data)
@@ -137,26 +172,37 @@ class Domain_Invoice_CURD
      * @throws PhalApi_Exception_BadRequest
      * 多张发票合并修改
      */
-    public function collectList($data)
+    public function collectList($data, $lionid = '')
     {
         //调整金额
-        $doadj = substr(trim($data['adjustamount']),0,1);
-        $adj = floatval(substr(trim($data['adjustamount']),1)); //操作的金额
+        $doadj = substr(trim($data['adjustamount']), 0, 1);
+        $adj = floatval(substr(trim($data['adjustamount']), 1)); //操作的金额
         $trueadj = $data['adjustamount'];
+        $trueInvoiceNo = $data['trueInvoiceNo'];
         $data['adjustamount'] = '';
+        $data['trueInvoiceNo'] = '';
         //发票关联表，插入数组
         $invoiceAdj = array(
-            'ids' => implode(',',$data['invoiceId']),
-            'adjustpri' => trim($data['adjustamount']),
+            'ids' => implode(',', $data['invoiceId']),
+            'adjustpri' => trim($trueadj),
+            'trueInvoiceNo' => trim($trueInvoiceNo),
             'flag' => 1,
-            'createtime' => date('Y-m-d',time())
+            'createtime' => date('Y-m-d', time())
         );
+
+        // $res = DI()->notorm->invoices_adjust->insert($invoiceAdj);
+        // return $res;
         try {
             DI()->notorm->beginTransaction('db_demo');
 
             $model = new Model_Invoice();
             //调整发票关联表
-            $res = DI()->notorm->invoices_adjust->insert($invoiceAdj);
+            if (empty($lionid)) {
+                $res = DI()->notorm->invoices_adjust->insert($invoiceAdj);
+            } else {
+                $res = DI()->notorm->invoices_adjust->where('id', $lionid)->update($invoiceAdj);
+            }
+
             if (!empty($data['invoiceId'])) {
                 foreach ($data['invoiceId'] as $k => $v) {
                     $invoince = $model->get($v);
@@ -166,13 +212,13 @@ class Domain_Invoice_CURD
                     if ($invoince['invoiceStatus'] == 1) {
                         throw new PhalApi_Exception_BadRequest($invoince['invoiceNo'] . '不能操作,发票已收');
                     }
-                    // 其中中金额大于调整金额的记录下调整金额，以及调整的发票号id
-                    if($invoince['totalMoney']>$adj){
-                        $data['adjustamount'] = $trueadj;
-                        $trueadj = '+0.00';
-                    }else{
-                        $data['adjustamount'] = '+0.00';
-                    }
+                    //其中中金额大于调整金额的记录下调整金额，以及调整的发票号id
+//                    if ($invoince['totalMoney'] > $adj) {
+//                        $data['adjustamount'] = $trueadj;
+//                        $trueadj = '+0.00';
+//                    } else {
+//                        $data['adjustamount'] = '+0.00';
+//                    }
                     $data['invoiceId'] = $v;
                     $model->update($v, $data);
                 }

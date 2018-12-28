@@ -12,10 +12,14 @@ class Api_Invoice_Get extends PhalApi_Api
     {
         return array(
             'go' => array(
-                'invoiceId' => array('name'    => 'invoiceId',
-                                     'type'    => 'array',
-                                     'format'  => 'explode',
-                                     'require' => true
+                'invoiceId' => array('name' => 'invoiceId',
+                    'type' => 'array',
+                    'format' => 'explode',
+                    'require' => true
+                ),
+                'action' => array('name' => 'action',
+                    'type' => 'int',
+                    'require' => false
                 ),
             )
         );
@@ -28,15 +32,33 @@ class Api_Invoice_Get extends PhalApi_Api
         if (!is_array($this->invoiceId)) {
             throw new PhalApi_Exception_BadRequest('参数错误', 0);
         }
-
-        $domain = new Domain_Invoice_CURD();
-
-        $list = $domain->get($this->invoiceId);
-        if ($list) {
-            $rs['code'] = 1;
-            $rs['content'] = $list;
+        if ($this->action == 2) {
+            $domain = new Domain_Invoice_CURD();
+            $listIds = $domain->getListInfo($this->invoiceId);
+            if (!empty($listIds[1])) {
+                $resid = explode(',', $listIds[1]);
+                $this->invoiceId = array_unique(array_merge($this->invoiceId, $resid));
+            }
+            $list = $domain->get($this->invoiceId);
+            if ($list) {
+                $rs['code'] = 1;
+                $rs['content'] = $list;
+                $rs['lionid'] = $listIds;
+                return $rs;
+            }
+            $rs['msg'] = '没有数据';
             return $rs;
+        } else {
+            $domain = new Domain_Invoice_CURD();
+            $list = $domain->get($this->invoiceId);
+            //    return $list;
+            if ($list) {
+                $rs['code'] = 1;
+                $rs['content'] = $list;
+                return $rs;
+            }
         }
+
         $rs['msg'] = '没有数据';
 
         return $rs;

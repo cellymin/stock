@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr =$adjustamount= $trueInvoiceNo="";
+$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr =$adjustamount= $trueInvoiceNo = $lionid ="";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $list = array();
 //var_dump($invoiceId);trim($invoiceId, ',')
@@ -9,7 +9,6 @@ if (!empty($invoiceId)) {
     $client = new PhalApiClient();
 
     if (Common::isPost()) {
-
         if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
             $rs = $client->request('Invoice_Collect.Go', array(
                 'invoiceId'     => trim($invoiceId, ','),
@@ -20,10 +19,11 @@ if (!empty($invoiceId)) {
                 'remark'        => $remark,
                 'adjustamount' => $adjustamount,
                 'trueInvoiceNo' => $trueInvoiceNo,
-            ));
-            echo '<pre/>';
-            var_dump($rs);
-            die();
+                'lionid' => $lionid?$lionid:0,
+             ));
+//            echo '<pre/>';
+//            var_dump($rs);
+//            die();
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');
@@ -38,11 +38,13 @@ if (!empty($invoiceId)) {
     }
 
     $rs = $client->request('Invoice_Get.Go', array(
-        'invoiceId' => trim($invoiceId, ',')
+        'invoiceId' => trim($invoiceId, ','),
+        'action' => 2,
     ));
-//    echo '<pre/>';
-//var_dump($rs);
-//die();
+     if($rs['lionid']){
+         $lionid = $rs['lionid'][0];
+         Template::assign('lionid', $lionid);
+     }
     if ($client->getRet() == PhalApiClient::RET_OK) {
         $list = $rs['content'];
     } else {

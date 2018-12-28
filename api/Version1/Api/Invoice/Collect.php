@@ -30,6 +30,7 @@ class Api_Invoice_Collect extends PhalApi_Api
                 'remark'        => array('name' => 'remark', 'type' => 'string', 'require' => false),
                 'adjustamount'        => array('name' => 'adjustamount', 'type' => 'string', 'require' => false),
                 'trueInvoiceNo'        => array('name' => 'trueInvoiceNo', 'type' => 'string', 'require' => false),
+                'lionid'        => array('name' => 'lionid', 'type' => 'string', 'require' => false),
             )
         );
     }
@@ -48,7 +49,8 @@ class Api_Invoice_Collect extends PhalApi_Api
             'adjustamount' => $this->adjustamount,
             'trueInvoiceNo' => $this->trueInvoiceNo,
         );
-        return $domain->collectList($data);
+
+        $domain->collectList($data,$this->lionid);
 
         $rs['code'] = 1;
 

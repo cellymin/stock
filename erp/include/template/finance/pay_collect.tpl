@@ -79,6 +79,7 @@
                 <td><input type="hidden" value="<{$invoiceId}>" name="invoiceId">
                 </td>
                 <td>
+                    <input type="hidden" name="lionid" value="<{$lionid}>">
                     <input type="hidden" name="nonceStr" value="<{$nonceStr}>">
                     <button class="btn btn-primary" type="submit">提交</button>
                 </td>
