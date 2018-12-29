@@ -470,7 +470,7 @@ class Report extends Base
 
 
         //当前库存量
-        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,gn.unitName
+        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,gn.unitName,g.goodsSn
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
@@ -479,6 +479,7 @@ class Report extends Base
             if (!isset($deport[$d['goodsId']])) {
                 $deport[$d['goodsId']]['goodsId'] = $d['goodsId'];
                 $deport[$d['goodsId']]['goodsName'] = $d['goodsName'];
+                $deport[$d['goodsId']]['goodsSn'] = $d['goodsSn'];
                 $deport[$d['goodsId']]['unitName'] = $d['unitName'];
                 $deport[$d['goodsId']]['count'] = 0;
                 $deport[$d['goodsId']]['money'] = 0;
@@ -500,6 +501,7 @@ class Report extends Base
                 foreach ($deport as $g) {
                     $list[$g['goodsId']] = array(
                         'goodsName' => $g['goodsName'],
+                        'goodsSn' => $g['goodsSn'],
                         'unitName'  => $g['unitName'],     //计量单位
                         'last'      => array(                  //上月结存
                             'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['count'],
@@ -544,6 +546,7 @@ class Report extends Base
             if ($deport) {
                 foreach ($deport as $g) {
                     $list[$g['goodsId']] = array(
+                        'goodsSn' => $g['goodsSn'],
                         'goodsName' => $g['goodsName'],
                         'unitName'  => $g['unitName'],     //计量单位
                         'last'      => array(                  //上月结存

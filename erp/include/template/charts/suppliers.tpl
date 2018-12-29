@@ -44,6 +44,7 @@
         <table class="table table-striped" id="data_list">
             <thead>
             <tr>
+                <td rowspan="2">产品编码</td>
                 <td rowspan="2" >产品名称</td>
                 <td rowspan="2">计量单位</td>
                 <td colspan="3">上月结存量</td>
@@ -81,6 +82,7 @@
             <tbody>
             <{foreach from=$list.list item=v}>
             <tr>
+                <td><{$v.goodsSn}></td>
                 <td><{$v.goodsName}></td>
                 <td><{$v.unitName}></td>
                 <td><{$v.last.count}></td>
