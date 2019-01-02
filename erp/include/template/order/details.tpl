@@ -87,9 +87,18 @@
                 <thead>
                 <tr>
                     <th class="td40 avoid-this">#</th>
+                    <{if in_array($type,array('PURCHASE_IN'))}>
+                    <th class="td90">名称</th>
+                    <{else}>
                     <th class="td120">名称</th>
+                    <{/if}>
                     <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT'))}>
+                    <{if $type=='PURCHASE_IN'}>
+                    <th class="td50">规格</th>
+                    <{else}>
                     <th class="td80">规格</th>
+                    <{/if}>
+
                     <th class="td80">单位</th>
                     <{else}>
                     <th class="td150">批次号</th>
@@ -139,9 +148,17 @@
                                     <tbody>
                                     <tr data-id="<{$v.id}>" datatype="1">
                                         <td class="td40 avoid-this"><input type="checkbox" name="id[]" data-name="id" value="<{$v.id}>"></td>
+                                        <{if $type=='PURCHASE_IN'}>
+                                        <td class="td90"><{$v.goodsName}></td>
+                                        <{else}>
                                         <td class="td120"><{$v.goodsName}></td>
+                                        <{/if}>
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT'))}>
+                                        <{if $type=='PURCHASE_IN'}>
+                                        <td class="td50"><{$v.goodsSpec}></td>
+                                        <{else}>
                                         <td class="td80"><{$v.goodsSpec}></td>
+                                        <{/if}>
                                         <td class="td80"><{$v.unitName}></td>
                                         <{else}>
                                         <td class="td150"><{$v.orderSubNo}></td>
@@ -187,9 +204,18 @@
                                     <thead>
                                     <tr>
                                         <th class="td40 avoid-this">#</th>
+                                        <{if $type=='PURCHASE_IN'}>
+                                        <th class="td90">名称</th>
+                                        <{else}>
                                         <th class="td120">名称</th>
+                                        <{/if}>
+
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT'))}>
+                                        <{if $type=='PURCHASE_IN'}>
+                                        <th class="td50">规格</th>
+                                        <{else}>
                                         <th class="td80">规格</th>
+                                        <{/if}>
                                         <th class="td80">单位</th>
                                         <{else}>
                                         <th class="td150">批次号</th>
