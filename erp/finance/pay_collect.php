@@ -41,10 +41,14 @@ if (!empty($invoiceId)) {
         'invoiceId' => trim($invoiceId, ','),
         'action' => 2,
     ));
+    echo '<pre/>';var_dump($rs);die();
      if($rs['lionid']){
          $lionid = $rs['lionid'][0];
          Template::assign('lionid', $lionid);
+         Template::assign('lionidinfo', $rs['lionid']);
      }
+//     echo  '<pre/>';
+//     var_dump($rs['lionid']);die();
     if ($client->getRet() == PhalApiClient::RET_OK) {
         $list = $rs['content'];
     } else {
