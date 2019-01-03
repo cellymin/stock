@@ -27,7 +27,6 @@ class Api_Invoice_Get extends PhalApi_Api
 
     public function go()
     {
-        return 1;
         $rs = array('code' => 0, 'content' => '', 'msg' => '');
 
         if (!is_array($this->invoiceId)) {
@@ -36,7 +35,6 @@ class Api_Invoice_Get extends PhalApi_Api
         if ($this->action == 2) {
             $domain = new Domain_Invoice_CURD();
             $listIds = $domain->getListInfo($this->invoiceId);
-            return $listIds;
             if (!empty($listIds[1])) {
                 $resid = explode(',', $listIds[1]);
                 $this->invoiceId = array_unique(array_merge($this->invoiceId, $resid));
@@ -53,7 +51,6 @@ class Api_Invoice_Get extends PhalApi_Api
         } else {
             $domain = new Domain_Invoice_CURD();
             $list = $domain->get($this->invoiceId);
-            //    return $list;
             if ($list) {
                 $rs['code'] = 1;
                 $rs['content'] = $list;

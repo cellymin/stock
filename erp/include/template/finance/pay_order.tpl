@@ -11,8 +11,8 @@
            layerH="665px" layerT="2"><i class="icon-plus"></i> 财务</a>
     </div>
     <div class="btn-toolbar" style="float:right;padding-top:15px;margin-right: 10px;">
-        <a class="btn btn-primary layerModel" action="4" title="收票" layerUrl="pay_collect" layerW="850px"
-           layerH="665px" layerT="2"><i class="icon-plus"></i> 收票</a>
+        <a class="btn btn-primary clooect" action="4" title="收票" layerUrl="pay_collect" layerW="850px"
+           layerH="665px" layerT="2" onclick="collectclick(this)" ><i class="icon-plus"></i> 收票</a>
     </div>
     <div style="float:left;margin-right:5px">
         <label>选择付款状态</label>
@@ -92,6 +92,29 @@
 <!-- TPLEND 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
 <{include file="footer.tpl" }>
 <script>
+    function collectclick(e) {
+        $(e).attr('disabled', "true");//禁用点击
+        var _id_arr = [];
+        $.each($('input:checkbox:checked'), function () {
+            _id_arr.push($(e).val());
+        });
+        //多个选项
+        if (_id_arr.length > 1) {
+            var supplierId = getUrlParam('supplierId');//供应商id
+            if (supplierId == 0 || supplierId == '' || supplierId == null) {
+                $(e).removeClass("layerModel");
+                alert('请选择供应商');
+                $(e).removeAttr("disabled");//解禁按钮
+                return false;
+            }
+        } else {
+            $(e).removeAttr("disabled");//解禁按钮
+            var classN = $(e).addClass("layerModel");
+            $(e).click();
+        }
+        $(e).removeAttr("disabled");//解禁按钮
+    }
+
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
         var r = window.location.search.substr(1).match(reg);  //匹配目标参数
