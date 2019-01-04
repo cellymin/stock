@@ -69,6 +69,7 @@ class Api_Depot_InputDepot extends PhalApi_Api
         $totalcnt = 0;
         $totalmoney = 0;
         $_POST['postModel'] = json_decode($_POST['postModel'],true);
+
         if (!empty($_POST['postModel']['supplier']) && !empty($_POST['postModel']['goodsList']) && !empty($_POST['postModel']['operator'])) {
             $taxrate = $_POST['postModel']['supplier']['taxrate'] ? floatval($_POST['postModel']['supplier']['taxrate']) : 0;  //税率
             $supplierId = $_POST['postModel']['supplier']['supplierId'] ? intval($_POST['postModel']['supplier']['supplierId']) : 0; //供应商
@@ -108,11 +109,13 @@ class Api_Depot_InputDepot extends PhalApi_Api
                     'totalMoney' => 0,
                     'totalCnt' => 0,
                     'flag' => 0,
-                    //   'createCompany' => $_POST['postModel']['operator']['companyId'],
+                    'createCompany' => $_POST['postModel']['companyId'],
                     'createUser' => intval($_POST['postModel']['operator']),
-                    'createTime' => date('Y-m-d H:i:s')
+                    'createTime' => date('Y-m-d H:i:s'),
+                    'from' => 2
                 );
                 $goodsmodel = new Model_OrderGoods();
+                $log_model = new Model_LogOrder();
                 $res = DI()->notorm->orders_ip->insert($orderInfo);
                 if($res['id']){
                     $orderId = $res['id'];
@@ -149,12 +152,22 @@ class Api_Depot_InputDepot extends PhalApi_Api
                             'goodsPrice' => $goodsPrice,//成本价
                             'ratepri' => $ratepri,//含税价
                             'usecostpri' => $usecostpri ,//不含税价
+                            'orderSubNo' => 'PN'.date('ymdHis') . rand(1000, 9999),
                             'flag' => 1,
                             'createUser' => intval($_POST['postModel']['operator']),
                             'createTime' => date('Y-m-d H:i:s')
 
                         );
-                        $orderId = DI()->notorm->orders_ip_goods->insert($input);
+                        DI()->notorm->orders_ip_goods->insert($input);
+
+                        $logId[] = $log_model->insert(array(
+                            'logUser'    => intval($_POST['postModel']['operator']),
+                            'logType'    => 'INSERT',
+                            'logContent' => json_encode($input),
+                            'orderId'    => $orderId,
+                            'orderType'  => 'PURCHASE_IN',
+                            'createTime' => date('Y-m-d H:i:s')
+                        ));
                     }
                 }
                 $orderUpdate = array(
@@ -166,7 +179,7 @@ class Api_Depot_InputDepot extends PhalApi_Api
                 $num = DI()->notorm->orders_ip->where('orderId',$orderId )->update($orderUpdate);
                 DI()->notorm->commit('db_demo');
                 $rs['code'] = 1;
-                $rs['msg'] = '获取成功';
+                $rs['msg'] = '提交成功';
                 return $rs;
 
             } catch (PDOException $e) {
@@ -186,6 +199,7 @@ class Api_Depot_InputDepot extends PhalApi_Api
 
 
     }
+
 
 
 }
