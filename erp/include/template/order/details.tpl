@@ -128,7 +128,7 @@
                     <{if $type=='PLAN'}>
                     <th class="td100">计划到货日期</th>
                     <{/if}>
-                    <{if in_array($type,array('PURCHASE_IN'))}>
+                    <{if in_array($type,array('PURCHASE_IN','USE_OUT'))}>
                     <th class="td80">总额</th>
                     <{/if}>
                     <th class="avoid-this">备注</th>
@@ -184,7 +184,7 @@
                                         <{if $type=='PLAN'}>
                                         <td class="td100"><{date('Y-m-d',strtotime($v.arrivalTime))}></td>
                                         <{/if}>
-                                        <{if $type=='PURCHASE_IN'}>
+                                        <{if $type=='PURCHASE_IN' || $type=='USE_OUT'}>
                                         <td class="td80"><{($v.goodsPrice * $v.goodsCnt )|string_format:"%.2f"}></td>
                                         <{/if}>
                                         <td class="avoid-this">
@@ -245,7 +245,7 @@
                                         <{if $type=='PLAN'}>
                                         <th class="td100">计划到货日期</th>
                                         <{/if}>
-                                        <{if $type=='PURCHASE_IN'}>
+                                        <{if $type=='PURCHASE_IN' || $type=='USE_OUT'}>
                                         <th class="td80">总额</th>
                                         <{/if}>
                                         <th class="avoid-this">备注</th>
