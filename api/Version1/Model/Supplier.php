@@ -141,6 +141,7 @@ class Model_Supplier extends PhalApi_Model_NotORM
 
         return DI()->notorm->suppliers
             ->select('supplierId,supplierName,taxrate')
+            ->where('flag',1)
             ->fetchAll();
     }
 }

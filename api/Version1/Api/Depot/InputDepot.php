@@ -68,14 +68,16 @@ class Api_Depot_InputDepot extends PhalApi_Api
         $rs = array('code' => 0, 'data' => '', 'msg' => '');
         $totalcnt = 0;
         $totalmoney = 0;
-        return $_POST;
-        $_POST['postModel'] = json_decode($_POST['postModel'],true);
-
-        if (!empty($_POST['postModel']['supplier']) && !empty($_POST['postModel']['goodsList']) && !empty($_POST['postModel']['operator'])) {
-            $taxrate = $_POST['postModel']['supplier']['taxrate'] ? floatval($_POST['postModel']['supplier']['taxrate']) : 0;  //税率
-            $supplierId = $_POST['postModel']['supplier']['supplierId'] ? intval($_POST['postModel']['supplier']['supplierId']) : 0; //供应商
-            $depotId = $_POST['postModel']['depotId'] ? intval($_POST['postModel']['depotId']) : 0; //仓库
-            $depotSubId = $_POST['postModel']['depotSubId'] ? intval($_POST['postModel']['depotSubId']) : 0; //库位
+        $operator = $_REQUEST['operator'] ? intval($_REQUEST['operator']) : 0;//操作人
+        $depotId = $_REQUEST['depotId'] ? intval($_REQUEST['depotId']) : 0; //仓库
+        $depotSubId = $_REQUEST['depotSubId'] ? intval($_REQUEST['depotSubId']) : 0;//库位
+        $companyId = $_REQUEST['companyId'] ? intval($_REQUEST['companyId']) : 0;//公司
+        $postModel = file_get_contents('php://input');
+        $postModel = json_decode($postModel, true);
+        if (!empty($postModel['supplier']) && !empty($postModel['goodsList']) && !empty($operator)) {
+            $taxrate = $postModel['supplier']['taxrate'] ? floatval($postModel['supplier']['taxrate']) : 0;  //税率
+            $supplierId = $postModel['supplier']['supplierId'] ? intval($postModel['supplier']['supplierId']) : 0; //供应商
+            // return $supplierId;
             if (empty($supplierId)) {
                 $rs['msg'] = '没有供应商';
                 return $rs;
@@ -110,35 +112,30 @@ class Api_Depot_InputDepot extends PhalApi_Api
                     'totalMoney' => 0,
                     'totalCnt' => 0,
                     'flag' => 0,
-                    'createCompany' => $_POST['postModel']['companyId'],
-                    'createUser' => intval($_POST['postModel']['operator']),
+                    'createCompany' => $companyId,
+                    'createUser' => intval($operator),
                     'createTime' => date('Y-m-d H:i:s'),
                     'from' => 2
                 );
                 $goodsmodel = new Model_OrderGoods();
                 $log_model = new Model_LogOrder();
                 $res = DI()->notorm->orders_ip->insert($orderInfo);
-                if($res['id']){
+                if ($res['id']) {
                     $orderId = $res['id'];
-                    foreach ($_POST['postModel']['goodsList'] as $k => $v) {
-//                   $ifgoods = $goodsmodel->getById($orderId,$v['goodsId']);
-//                    if (!$ifgoods) {
-//                        $rs['msg'] = '商品不存在';
-//                        return $rs;
-//                    }
-                        if (empty($v['remark'])) {
-                            $rs['msg'] = '没有标识成本价';
+                    foreach ($postModel['goodsList'] as $k => $v) {
+                        if (empty($v['goodsId'])) {
+                            $rs['msg'] = '没有商品ID';
                             return $rs;
-                        } else {
-                            if (intval($v['remark']) == 1) { //含税价作为成本
-                                $ratepri = floatval($v['lastPrice']); //含税价
-                                $usecostpri = round($ratepri / (1 + $taxrate), 6); //不含税价格
-                                $goodsPrice = $ratepri; //成本价
-                            } else if (intval($v['remark']) == 2) { //不含税价作为成本
-                                $ratepri = floatval($v['lastPrice']); //含税价
-                                $usecostpri = round($ratepri / (1 + $taxrate), 6); //不含税价格
-                                $goodsPrice = $usecostpri; //成本价
-                            }
+                        }
+                        $v['remark'] = $v['remark'] ? intval($v['remark']) : 2;
+                        if (intval($v['remark']) == 1) { //含税价作为成本
+                            $ratepri = floatval($v['lastPrice']); //含税价
+                            $usecostpri = round($ratepri / (1 + $taxrate), 6); //不含税价格
+                            $goodsPrice = $ratepri; //成本价
+                        } else if (intval($v['remark']) == 2) { //不含税价作为成本
+                            $ratepri = floatval($v['lastPrice']); //含税价
+                            $usecostpri = round($ratepri / (1 + $taxrate), 6); //不含税价格
+                            $goodsPrice = $usecostpri; //成本价
                         }
 
                         $totalcnt = floatval($v['num']) + $totalcnt;
@@ -152,21 +149,21 @@ class Api_Depot_InputDepot extends PhalApi_Api
                             'depotSubId' => $depotSubId,
                             'goodsPrice' => $goodsPrice,//成本价
                             'ratepri' => $ratepri,//含税价
-                            'usecostpri' => $usecostpri ,//不含税价
-                            'orderSubNo' => 'PN'.date('ymdHis') . rand(1000, 9999),
+                            'usecostpri' => $usecostpri,//不含税价
+                            'orderSubNo' => 'PN' . date('ymdHis') . rand(1000, 9999),
                             'flag' => 1,
-                            'createUser' => intval($_POST['postModel']['operator']),
+                            'createUser' => intval($operator),
                             'createTime' => date('Y-m-d H:i:s')
 
                         );
                         DI()->notorm->orders_ip_goods->insert($input);
 
                         $logId[] = $log_model->insert(array(
-                            'logUser'    => intval($_POST['postModel']['operator']),
-                            'logType'    => 'INSERT',
+                            'logUser' => intval($operator),
+                            'logType' => 'INSERT',
                             'logContent' => json_encode($input),
-                            'orderId'    => $orderId,
-                            'orderType'  => 'PURCHASE_IN',
+                            'orderId' => $orderId,
+                            'orderType' => 'PURCHASE_IN',
                             'createTime' => date('Y-m-d H:i:s')
                         ));
                     }
@@ -175,9 +172,9 @@ class Api_Depot_InputDepot extends PhalApi_Api
                     'totalMoney' => $totalmoney,
                     'totalCnt' => $totalcnt,
                     'updateTime' => date('Y-m-d H:i:s'),
-                    'updateUser' => $_POST['postModel']['operator']['uid']
+                    'updateUser' => $operator['uid']
                 );
-                $num = DI()->notorm->orders_ip->where('orderId',$orderId )->update($orderUpdate);
+                $num = DI()->notorm->orders_ip->where('orderId', $orderId)->update($orderUpdate);
                 DI()->notorm->commit('db_demo');
                 $rs['code'] = 1;
                 $rs['msg'] = '提交成功';
@@ -187,20 +184,19 @@ class Api_Depot_InputDepot extends PhalApi_Api
                 DI()->notorm->rollback('db_demo');
                 throw new PhalApi_Exception_InternalServerError('服务器错误', 0);
             }
-        } else if (empty($_POST['postModel']['supplier'])) {
+        } else if (empty($postModel['supplier'])) {
             $rs['msg'] = '供应商信息不完整';
             return $rs;
-        } else if (empty($_POST['postModel']['goodsList'])) {
+        } else if (empty($postModel['goodsList'])) {
             $rs['msg'] = '没有要提交的商品';
             return $rs;
-        } else if (empty($_POST['postModel']['operator'])) {
+        } else if (empty($operator)) {
             $rs['msg'] = '没有操作人';
             return $rs;
         }
 
 
     }
-
 
 
 }
