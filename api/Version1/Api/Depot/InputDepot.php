@@ -68,6 +68,7 @@ class Api_Depot_InputDepot extends PhalApi_Api
         $rs = array('code' => 0, 'data' => '', 'msg' => '');
         $totalcnt = 0;
         $totalmoney = 0;
+        return $_POST;
         $_POST['postModel'] = json_decode($_POST['postModel'],true);
 
         if (!empty($_POST['postModel']['supplier']) && !empty($_POST['postModel']['goodsList']) && !empty($_POST['postModel']['operator'])) {
