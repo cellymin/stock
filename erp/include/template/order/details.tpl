@@ -172,7 +172,7 @@
                                         <{if !in_array($type,array('PLAN','ARRIVAL','RETURN'))}>
                                         <td class="td100"><{$v.depotSubName}></td>
                                         <{/if}>
-                                        <td class="td80"><{$v.goodsCnt}></td>
+                                        <td class="td80"><{$v.goodsCnt|string_format:"%.2f"}></td>
                                         <{if $type=='INVENTORY'}>
                                         <td class="td80"><{$v.depotGoodsCnt}></td>
                                         <{/if}>
