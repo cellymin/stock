@@ -17,6 +17,10 @@
         <{html_options name=companyId id="companyId" class="input-xlarge" options=$company_options selected=$_GET.companyId}>
     </div>
     <div style="float:left;margin-right:5px">
+        <label>仓库</label>
+        <{html_options name=depotId id="depotId" class="input-xlarge" options=$depots_options selected=$_GET.depotId}>
+    </div>
+    <div style="float:left;margin-right:5px">
         <label>选择分类</label>
         <select name="cateId" id="" class="input-xlarge">
             <option value="0">= 请选择 =</option>
@@ -25,6 +29,7 @@
             <{/foreach}>
         </select>
     </div>
+
 
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
@@ -39,11 +44,16 @@
         <table class="table table-striped" id="data_list">
             <thead>
             <tr>
+                <td rowspan="2">产品编码</td>
                 <td rowspan="2" >产品名称</td>
                 <td rowspan="2">计量单位</td>
                 <td colspan="3">上月结存量</td>
                 <td colspan="3">本月入库量</td>
                 <td colspan="3">本月出库量</td>
+                <{if $_GET.depotId>0}>
+                <td colspan="3">本月调拨入库量</td>
+                <td colspan="3">本月调拨出库量</td>
+                <{/if}>
                 <td colspan="3">本月结存量</td>
             </tr>
             <tr>
@@ -56,6 +66,14 @@
                 <td>数量</td>
                 <td>单价</td>
                 <td>金额</td>
+                <{if $_GET.depotId>0}>
+                <td>数量</td>
+                <td>单价</td>
+                <td>金额</td>
+                <td>数量</td>
+                <td>单价</td>
+                <td>金额</td>
+                <{/if}>
                 <td>数量</td>
                 <td>单价</td>
                 <td>金额</td>
@@ -64,6 +82,7 @@
             <tbody>
             <{foreach from=$list.list item=v}>
             <tr>
+                <td><{$v.goodsSn}></td>
                 <td><{$v.goodsName}></td>
                 <td><{$v.unitName}></td>
                 <td><{$v.last.count}></td>
@@ -75,6 +94,14 @@
                 <td><{$v.using.count}></td>
                 <td></td>
                 <td><{number_format($v.using.money,2)}></td>
+                <{if $_GET.depotId>0}>
+                <td><{$v.transin.count}></td>
+                <td></td>
+                <td><{number_format($v.transin.money,2)}></td>
+                <td><{$v.transout.count}></td>
+                <td></td>
+                <td><{number_format($v.transout.money,2)}></td>
+                <{/if}>
                 <td><{$v.depot.count}></td>
                 <td></td>
                 <td><{number_format($v.depot.money,2)}></td>
@@ -92,6 +119,14 @@
                 <td><{$list.total.using.count}></td>
                 <td></td>
                 <td><{number_format($list.total.using.money,2)}></td>
+                <{if $_GET.depotId>0}>
+                <td><{$list.total.transin.count}></td>
+                <td></td>
+                <td><{number_format($list.total.transin.money,2)}></td>
+                <td><{$list.total.transout.count}></td>
+                <td></td>
+                <td><{number_format($list.total.transout.money,2)}></td>
+                <{/if}>
                 <td><{$list.total.depot.count}></td>
                 <td></td>
                 <td><{number_format($list.total.depot.money,2)}></td>

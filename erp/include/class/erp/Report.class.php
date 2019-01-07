@@ -298,40 +298,63 @@ class Report extends Base
         return array();
     }
 
-    public static function busReport($cateId, $companyId)
+    public static function busReport($cateId, $companyId,$depotId)
     {
         $db = self::__instance();
 
-        $thisMonth = date('Y-m-d');
+        $thisMonth = date('Y-m-01');
         $cate_where = '';
         $com_where = '';
+        $ids_where = '';
         $buy = array();
         $out = array();
         $in = array();
         $using = array();
+        $idin = array();
+        $odout = array();
         $deport = array();
+        $ids = array();
         if ($cateId) {
             $cate_where = ' AND g.goodsCateId1=' . $cateId;
         }
         if ($companyId) {
             $com_where = ' AND og.createCompany=' . $companyId;
         }
+        if ($depotId) {
+            $depot_where = ' AND og.depotId=' . $depotId;
+        }
         //查询本月入库
-        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+        if(!empty($depotId)){
+            $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_ip_goods og 
+                LEFT JOIN vich_orders_ip ip ON og.orderId = ip.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where}
-                UNION ALL
-                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
-                FROM vich_orders_id_goods og 
-                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where}
+                WHERE og.flag=1 AND ip.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}
                 UNION ALL
                 SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_iq_goods og 
+                LEFT JOIN vich_orders_iq iq ON og.orderId = iq.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where}";
-
+                WHERE og.flag=1 AND iq.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}";
+        }else{
+            $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_ip_goods og 
+                LEFT JOIN vich_orders_ip ip ON og.orderId = ip.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND ip.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_id_goods og 
+                LEFT JOIN vich_orders_id id ON og.orderId = id.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND id.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_iq_goods og 
+                LEFT JOIN vich_orders_iq iq ON og.orderId = iq.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND iq.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}";
+        }
         foreach ($db->query($sql) as $i) {
             if (!isset($in[$i['goodsId']])) {
                 $in[$i['goodsId']]['count'] = 0;
@@ -339,28 +362,73 @@ class Report extends Base
             }
             $in[$i['goodsId']]['money'] += $i['goodsPrice'] * $i['goodsCnt'];
             $in[$i['goodsId']]['count'] += $i['goodsCnt'];
+            $ids[] = $i['goodsId'];
         }
 
-        //查询本月出库
-        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
-                FROM vich_orders_od_goods og 
+        //调拨入库
+        if(!empty($depotId)){
+            $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_id_goods og 
+                LEFT JOIN vich_orders_id id ON og.orderId = id.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where}
-                UNION ALL
-                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                WHERE og.flag=1 AND id.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}";
+            foreach ($db->query($sql) as $i) {
+                if (!isset($in[$i['goodsId']])) {
+                    $idin[$i['goodsId']]['count'] = 0;
+                    $idin[$i['goodsId']]['money'] = 0;
+                }
+                $idin[$i['goodsId']]['money'] += $i['goodsPrice'] * $i['goodsCnt'];
+                $idin[$i['goodsId']]['count'] += $i['goodsCnt'];
+                $ids[] = $i['goodsId'];
+            }
+        }
+
+
+        //查询本月出库//
+        if(!empty($depotId)){
+            $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_oq_goods og 
+                LEFT JOIN vich_orders_oq oq ON og.orderId = oq.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where}
+                WHERE og.flag=1 AND oq.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}
                 UNION ALL
                 SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_oy_goods og 
+                LEFT JOIN vich_orders_oy oy ON og.orderId = oy.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where}
+                WHERE og.flag=1 AND oy.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}
                 UNION ALL
                 SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_so_goods og 
+                LEFT JOIN vich_orders_so so ON og.orderId = so.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where}";
+                WHERE og.flag=1 AND so.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}";
+        }else{
+            $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_od_goods og 
+                LEFT JOIN vich_orders_od od ON og.orderId = od.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND od.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}  
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_oq_goods og 
+                LEFT JOIN vich_orders_oq oq ON og.orderId = oq.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND oq.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_oy_goods og 
+                LEFT JOIN vich_orders_oy oy ON og.orderId = oy.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND oy.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_so_goods og 
+                LEFT JOIN vich_orders_so so ON og.orderId = so.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND so.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}";
+        }
+
         foreach ($db->query($sql) as $ot) {
             if (!isset($out[$ot['goodsId']])) {
                 $out[$ot['goodsId']]['count'] = 0;
@@ -368,18 +436,50 @@ class Report extends Base
             }
             $out[$ot['goodsId']]['money'] += $ot['goodsPrice'] * $ot['goodsCnt'];
             $out[$ot['goodsId']]['count'] += $ot['goodsCnt'];
+            $ids[] = $ot['goodsId'];
         }
 
+        //调拨出库
+        if(!empty($depotId)){
+            $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_od_goods og 
+                LEFT JOIN vich_orders_od od ON og.orderId = od.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND od.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}  ";
+            foreach ($db->query($sql) as $ot) {
+                if (!isset($odout[$ot['goodsId']])) {
+                    $odout[$ot['goodsId']]['count'] = 0;
+                    $odout[$ot['goodsId']]['money'] = 0;
+                }
+                $odout[$ot['goodsId']]['money'] += $ot['goodsPrice'] * $ot['goodsCnt'];
+                $odout[$ot['goodsId']]['count'] += $ot['goodsCnt'];
+                $ids[] = $ot['goodsId'];
+            }
+        }
+        $sql1 = "SELECT goodsId FROM `vich_depot_goods` og
+                WHERE og.flag=1  {$cate_where} {$com_where} {$depot_where} 
+                GROUP BY goodsId HAVING SUM(goodsCnt)>0";
+        foreach ($db->query($sql1) as $ii) {
+            $ids[] = $ii['goodsId'];
+        }
+        $ids = array_unique($ids);
+        if(!empty($ids)){
+            $ids = implode(',',$ids);
+            $ids_where = ' AND og.goodsId in(' . $ids.')';
+        }
+
+
         //当前库存量
-        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,gn.unitName
+        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,gn.unitName,g.goodsSn
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
-                WHERE og.flag=1 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where}";
+                WHERE og.flag=1 {$ids_where} {$cate_where} {$com_where} {$depot_where} ORDER BY og.id DESC ";
         foreach ($db->query($sql) as $d) {
             if (!isset($deport[$d['goodsId']])) {
                 $deport[$d['goodsId']]['goodsId'] = $d['goodsId'];
                 $deport[$d['goodsId']]['goodsName'] = $d['goodsName'];
+                $deport[$d['goodsId']]['goodsSn'] = $d['goodsSn'];
                 $deport[$d['goodsId']]['unitName'] = $d['unitName'];
                 $deport[$d['goodsId']]['count'] = 0;
                 $deport[$d['goodsId']]['money'] = 0;
@@ -392,41 +492,99 @@ class Report extends Base
             'last'  => array('count' => 0, 'money' => 0),
             'buy'   => array('count' => 0, 'money' => 0),
             'using' => array('count' => 0, 'money' => 0),
+            'transin' => array('count' => 0, 'money' => 0),
+            'transout' => array('count' => 0, 'money' => 0),
             'depot' => array('count' => 0, 'money' => 0),
         );
-        if ($deport) {
-            foreach ($deport as $g) {
-                $list[$g['goodsId']] = array(
-                    'goodsName' => $g['goodsName'],
-                    'unitName'  => $g['unitName'],     //计量单位
-                    'last'      => array(                  //上月结存
-                        'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'],
-                        'money' => $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'],
-                    ),
-                    'buy'       => array(                  //本月入库
-                        'count' => $in[$g['goodsId']]['count'],
-                        'money' => $in[$g['goodsId']]['money'],
-                    ),
-                    'using'     => array(                  //本月出库
-                        'count' => $out[$g['goodsId']]['count'],
-                        'money' => $out[$g['goodsId']]['money'],
-                    ),
-                    'depot'     => array(                  //本月结存
-                        'count' => $deport[$g['goodsId']]['count'],
-                        'money' => $deport[$g['goodsId']]['money'],
-                    ),
-                );
-                $total['last']['count'] += $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'];
-                $total['last']['money'] += $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'];
-                $total['buy']['count'] += $buy[$g['goodsId']]['count'];
-                $total['buy']['money'] += $buy[$g['goodsId']]['money'];
-                $total['using']['count'] += $using[$g['goodsId']]['count'];
-                $total['using']['money'] += $using[$g['goodsId']]['money'];
-                $total['depot']['count'] += $deport[$g['goodsId']]['count'];
-                $total['depot']['money'] += $deport[$g['goodsId']]['money'];
+        if(!empty($depotId)){
+            if ($deport) {
+                foreach ($deport as $g) {
+                    $list[$g['goodsId']] = array(
+                        'goodsName' => $g['goodsName'],
+                        'goodsSn' => $g['goodsSn'],
+                        'unitName'  => $g['unitName'],     //计量单位
+                        'last'      => array(                  //上月结存
+                            'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['count'],
+                            'money' => $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['money'],
+                        ),
+                        'buy'       => array(                  //本月入库
+                            'count' => $in[$g['goodsId']]['count'],
+                            'money' => $in[$g['goodsId']]['money'],
+                        ),
+                        'using'     => array(                  //本月出库
+                            'count' => $out[$g['goodsId']]['count'],
+                            'money' => $out[$g['goodsId']]['money'],
+                        ),
+                        'transin' => array(                  //本月调拨入库
+                            'count' => $idin[$g['goodsId']]['count'],
+                            'money' => $idin[$g['goodsId']]['money'],
+                        ),
+                        'transout' => array(                  //本月调拨出库
+                            'count' => $odout[$g['goodsId']]['count'],
+                            'money' => $odout[$g['goodsId']]['money'],
+                        ),
+                        'depot'     => array(                  //本月结存
+                            'count' => $deport[$g['goodsId']]['count'],
+                            'money' => $deport[$g['goodsId']]['money'],
+                        ),
+                    );
+                    $total['last']['count'] += $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['count'];
+                    $total['last']['money'] += $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['money'];
+                    $total['buy']['count'] += $in[$g['goodsId']]['count'];
+                    $total['buy']['money'] += $in[$g['goodsId']]['money'];
+                    $total['using']['count'] += $out[$g['goodsId']]['count'];
+                    $total['using']['money'] += $out[$g['goodsId']]['money'];
+                    $total['transin']['count'] += $idin[$g['goodsId']]['count'];
+                    $total['transin']['money'] += $idin[$g['goodsId']]['money'];
+                    $total['transout']['count'] += $odout[$g['goodsId']]['count'];
+                    $total['transout']['money'] += $odout[$g['goodsId']]['money'];
+                    $total['depot']['count'] += $deport[$g['goodsId']]['count'];
+                    $total['depot']['money'] += $deport[$g['goodsId']]['money'];
+                }
+            }
+        }else{
+            if ($deport) {
+                foreach ($deport as $g) {
+                    $list[$g['goodsId']] = array(
+                        'goodsSn' => $g['goodsSn'],
+                        'goodsName' => $g['goodsName'],
+                        'unitName'  => $g['unitName'],     //计量单位
+                        'last'      => array(                  //上月结存
+                            'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'],
+                            'money' => $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'],
+                        ),
+                        'buy'       => array(                  //本月入库
+                            'count' => $in[$g['goodsId']]['count'],
+                            'money' => $in[$g['goodsId']]['money'],
+                        ),
+                        'using'     => array(                  //本月出库
+                            'count' => $out[$g['goodsId']]['count'],
+                            'money' => $out[$g['goodsId']]['money'],
+                        ),
+                        'transin' => array(                  //本月调拨入库
+                            'count' => $idin[$g['goodsId']]['count'],
+                            'money' => $idin[$g['goodsId']]['money'],
+                        ),
+                        'transout' => array(                  //本月调拨出库
+                            'count' => $odout[$g['goodsId']]['count'],
+                            'money' => $odout[$g['goodsId']]['money'],
+                        ),
+                        'depot'     => array(                  //本月结存
+                            'count' => $deport[$g['goodsId']]['count'],
+                            'money' => $deport[$g['goodsId']]['money'],
+                        ),
+                    );
+                    $total['last']['count'] += $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'];
+                    $total['last']['money'] += $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'];
+                    $total['buy']['count'] += $in[$g['goodsId']]['count'];
+                    $total['buy']['money'] += $in[$g['goodsId']]['money'];
+                    $total['using']['count'] += $out[$g['goodsId']]['count'];
+                    $total['using']['money'] += $out[$g['goodsId']]['money'];
+                    $total['depot']['count'] += $deport[$g['goodsId']]['count'];
+                    $total['depot']['money'] += $deport[$g['goodsId']]['money'];
+                }
             }
         }
-
         return array('list'=>$list,'total'=>$total);
     }
 
