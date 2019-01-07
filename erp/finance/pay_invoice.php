@@ -9,20 +9,41 @@ $client = new PhalApiClient();
 //$invoiceId = explode(',',$invoiceId);
 //获取供应商名称 id 发票id 订单id
 $rs = $client->request('Invoice_Get.Go', array(
-    'invoiceId' => $invoiceId
+    'invoiceId' => $invoiceId,
+    'action' => 2
 ));
+if($rs['lionid'][1]){
+    $lionid = $rs['lionid'][1];
+
+    if(strlen($lionid)>0){
+        $invoiceId = $invoiceId.','.$lionid;
+    }
+    $invoiceId = array_unique(explode(',',$invoiceId));
+    asort($invoiceId);
+    $invoiceId = implode(',',$invoiceId);
+
+}
+if ($client->getRet() == PhalApiClient::RET_OK) {
+    $invoiceInfo = $rs['content'];
+}else {
+    Common::closeWithMessage($client->getMsg(), 'error');
+}
 
 $rsd = $client->request('Invoice_GetInfo.Go', array(
-    'invoiceId' => $invoiceId
+    'invoiceId' => $invoiceId,
+    'lionid' => $rs['lionid']
 ));
-
-
+echo '<pre/>';var_dump($rsd);die();
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goodsList = $rsd['content'];
     $orderNo = $rsd['order'];
     $invoiceInfo = $rs['content'];
     $spanno = $rsd['kk'];
+}else {
+    Common::closeWithMessage($client->getMsg(), 'error');
 }
+
+
 $date = date('Y/m/d',time());
 $supno =  count($orderNo) + intval($rsd['count']);
 unset($rs);

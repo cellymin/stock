@@ -17,12 +17,14 @@ class Api_Invoice_GetInfo extends PhalApi_Api
                     'format'  => 'explode',
                     'require' => true
                 ),
+                'lionid' => array('name' => 'lionid','type' =>array(),'require' => true)
             )
         );
     }
 
     public function go()
     {
+        return $this->lionid;
         $rs = array('code' => 0, 'content' => '', 'msg' => '');
         $goodinfo = array();
         $domain = new Domain_Invoice_CURD();

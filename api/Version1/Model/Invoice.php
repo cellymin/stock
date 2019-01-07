@@ -81,7 +81,7 @@ class Model_Invoice extends PhalApi_Model_NotORM
                 . 'left join vich_orders_so o on o.orderId=i.orderId ';
         }
         $sql .= 'left join vich_companys co on co.companyId=i.companyId '
-            . 'where (i.invoiceNo like :keyword or o.orderNo like :keyword) and i.type=:type';
+            . 'where (i.invoiceNo like :keyword or o.orderNo like :keyword) and i.type=:type and i.flag=1 ';
 
         $param[':keyword'] = "%" . $keyword . "%";
         $param[':type'] = $type;
