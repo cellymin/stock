@@ -33,10 +33,10 @@ $rsd = $client->request('Invoice_GetInfo.Go', array(
     'lionIds' => $rs['lionid'][1],
     'lionNo' => $rs['lionNo'][0]
 ));
-//echo '<pre/>';var_dump($rsd);die();
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goodsList = $rsd['content'];
     $orderNo = $rsd['order'];
+    $ifhe = $rsd['ifhe'];
     $invoiceInfo = $rs['content'];
     $spanno = $rsd['kk'];
 }else {
@@ -57,4 +57,4 @@ Template::assign('orderNo', $orderNo);
 Template::assign('_GET', $_GET);
 Template::assign('goodsList', $goodsList);
 Template::assign('supplierId', $supplierId ? $supplierId : 0);
-Template::display('purchase/pay_invoice.tpl');
+Template::display('finance/pay_invoice.tpl');

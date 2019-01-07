@@ -8,88 +8,92 @@
         <a type="button" class="btn btn-primary" onclick="method5('oorder')" style="margin-left: 10px;">导出</a>
     </div>
     <div style="clear:both;"></div>
-        <div style="margin: 0 auto;">
-            <table id="oorder" border="1" cellpadding="0" cellspacing="0" style="text-align: center; margin: 0 auto;width: 970px">
-                <tr>
-                    <th style="border: none; text-align: right;">供应商ID:</th>
-                    <td style="border: none; text-align: left"><{$invoiceInfo.supplierId}></td>
-                    <th style="border: none; text-align: right" colspan="2">供应商名称:</th>
-                    <td style="border: none; text-align: left" colspan="3"><{$invoiceInfo.supplierName}></td>
-                    <th style="border: none; text-align: right">日期:</th>
-                    <td style="border: none; text-align: left"><{$date}></td>
-                </tr>
-                <tr>
-                    <td width="180px">入库单号</td>
-                    <td width="80px">入库时间</td>
-                    <td width="50px">行号</td>
-                    <td width="80px">商品条码</td>
-                    <td width="200px">商品名称</td>
-                    <td width="50px">单位</td>
-                    <td width="100px">单价(不含税)</td>
-                    <td width="50px">数量</td>
-                    <td width="50px">金额</td>
-                </tr>
-                <{foreach from=$invoiceInfo.invoices key=index item=v}>
-                <tr>
-                    <td rowspan="<{$spanno[$v.invoiceId]}>"><{$orderNo[$v.invoiceId]}></td>
-                    <td rowspan="<{$spanno[$v.invoiceId]}>"><{$v.createTime|date_format:"%Y/%m/%d"}></td>
-                    <{foreach from=$goodsList[$v.invoiceId] key=iindex item=vv}>
-                    <{if $iindex!=0}>
-                     <tr>
-                   <{/if}>
-                    <td class="hanghao">1</td>
-                    <td><{$vv.goodsSn}></td>
-                    <td><{$vv.goodsName}></td>
-                    <td><{$vv.unitName}></td>
-                    <td>     <{if $vv.usecostpri >0 }><{$vv.usecostpri}> <{else}> <{$vv.goodsPrice}> <{/if}> </td>
-                    <td class="goodscount"><{$vv.goodsCnt|string_format:"%.2f"}></td>
-                    <td class="goodsmon" attrid=" <{if $vv.usecostpri >0 }><{$vv.usecostpri*$vv.goodsCnt}> <{else}>  <{$vv.goodsPrice*$vv.goodsCnt}> <{/if}>">
-                        <{if $vv.usecostpri >0 }>
-                        <{($vv.usecostpri*$vv.goodsCnt)|string_format:"%0.2f"}>
-                        <{else}>
-                        <{($vv.goodsPrice*$vv.goodsCnt)|string_format:"%0.2f"}> <{/if}>
-                        </td>
-                </tr>
-                <{/foreach}>
-                <{/foreach}>
-                <tr>
-                    <td>小计</td>
-                    <td colspan="6"></td>
-                    <td class="totalcount">0</td>
-                    <td class="totalmon">0</td>
-                </tr>
+    <div style="margin: 0 auto;">
+        <table id="oorder" border="1" cellpadding="0" cellspacing="0"
+               style="text-align: center; margin: 0 auto;width: 970px">
+            <tr>
+                <th style="border: none; text-align: right;">供应商ID:</th>
+                <td style="border: none; text-align: left"><{$invoiceInfo.supplierId}></td>
+                <th style="border: none; text-align: right" colspan="2">供应商名称:</th>
+                <td style="border: none; text-align: left" colspan="3"><{$invoiceInfo.supplierName}></td>
+                <th style="border: none; text-align: right">日期:</th>
+                <td style="border: none; text-align: left"  colspan="2"><{$date}></td>
+            </tr>
+            <tr>
+                <td width="180px">入库单号</td>
+                <td width="80px">入库时间</td>
+                <td width="40px">已合并</td>
+                <td width="50px">行号</td>
+                <td width="80px">商品条码</td>
+                <td width="200px">商品名称</td>
+                <td width="50px">单位</td>
+                <td width="100px">单价(不含税)</td>
+                <td width="50px">数量</td>
+                <td width="50px">金额</td>
+            </tr>
+            <{foreach from=$invoiceInfo.invoices key=index item=v}>
+            <tr>
+            <td rowspan="<{$spanno[$v.invoiceId]}>"><{$orderNo[$v.invoiceId].orderNo}></td>
+            <td rowspan="<{$spanno[$v.invoiceId]}>"><{$v.createTime|date_format:"%Y/%m/%d"}></td>
+            <td rowspan="<{$spanno[$v.invoiceId]}>"><{if $orderNo[$v.invoiceId].ifhe==0}>否<{else}>是<{/if}></td>
+            <{foreach from=$goodsList[$v.invoiceId] key=iindex item=vv}>
+            <{if $iindex!=0}>
+            <tr>
+            <{/if}>
+            <td class="hanghao">1</td>
+            <td><{$vv.goodsSn}></td>
+            <td><{$vv.goodsName}></td>
+            <td><{$vv.unitName}></td>
+            <td> <{if $vv.usecostpri >0 }><{$vv.usecostpri}> <{else}> <{$vv.goodsPrice}> <{/if}></td>
+            <td class="goodscount"><{$vv.goodsCnt|string_format:"%.2f"}></td>
+            <td class="goodsmon"
+                attrid=" <{if $vv.usecostpri >0 }><{$vv.usecostpri*$vv.goodsCnt}> <{else}>  <{$vv.goodsPrice*$vv.goodsCnt}> <{/if}>">
+                <{if $vv.usecostpri >0 }>
+                <{($vv.usecostpri*$vv.goodsCnt)|string_format:"%0.2f"}>
+                <{else}>
+                <{($vv.goodsPrice*$vv.goodsCnt)|string_format:"%0.2f"}> <{/if}>
+            </td>
+            </tr>
+            <{/foreach}>
+            <{/foreach}>
+            <tr>
+                <td>小计</td>
+                <td colspan="7"></td>
+                <td class="totalcount">0</td>
+                <td class="totalmon">0</td>
+            </tr>
 
-                <tr>
-                    <td>合计（不含税）</td>
-                    <td colspan="7"></td>
-                    <td class="noratetotal">0</td>
-                </tr>
-                <tr>
-                    <td>开票调整</td>
-                    <td colspan="8"></td>
-                </tr>
-                <tr>
-                    <td>税金（税率)<span class="rate"><{$invoiceInfo.taxrate}></span>)</td>
-                    <td colspan="7"></td>
-                    <td class="ratemon">0</td>
-                </tr>
-                <tr>
-                    <td>合计（含税）</td>
-                    <td colspan="7"></td>
-                    <td class="ratetotal">0</td>
-                </tr>
-                <tr class="kong">
-                    <td colspan="9" height="20px"></td>
-                </tr>
-                <tr class="kong">
-                    <td>审核人：</td>
-                    <td colspan="2"></td>
-                    <td>采购员：</td>
-                    <td  colspan="2"></td>
-                    <td>仓管员：</td>
-                    <td  colspan="2"></td>
-                </tr>
-            </table>
+            <tr>
+                <td>合计（不含税）</td>
+                <td colspan="8"></td>
+                <td class="noratetotal">0</td>
+            </tr>
+            <tr>
+                <td>开票调整</td>
+                <td colspan="9"></td>
+            </tr>
+            <tr>
+                <td>税金（税率)<span class="rate"><{$invoiceInfo.taxrate}></span>)</td>
+                <td colspan="8"></td>
+                <td class="ratemon">0</td>
+            </tr>
+            <tr>
+                <td>合计（含税）</td>
+                <td colspan="8"></td>
+                <td class="ratetotal">0</td>
+            </tr>
+            <tr class="kong">
+                <td colspan="10" height="20px"></td>
+            </tr>
+            <tr class="kong">
+                <td>审核人：</td>
+                <td colspan="2"></td>
+                <td colspan="2">采购员：</td>
+                <td colspan="1"></td>
+                <td colspan="2">仓管员：</td>
+                <td colspan="2"></td>
+            </tr>
+        </table>
     </div>
 
 </div>
