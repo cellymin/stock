@@ -14,7 +14,6 @@ $rs = $client->request('Invoice_Get.Go', array(
 ));
 if($rs['lionid'][1]){
     $lionid = $rs['lionid'][1];
-
     if(strlen($lionid)>0){
         $invoiceId = $invoiceId.','.$lionid;
     }
@@ -28,12 +27,13 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 }else {
     Common::closeWithMessage($client->getMsg(), 'error');
 }
-
+//var_dump($invoiceId);die();
 $rsd = $client->request('Invoice_GetInfo.Go', array(
     'invoiceId' => $invoiceId,
-    'lionid' => $rs['lionid']
+    'lionIds' => $rs['lionid'][1],
+    'lionNo' => $rs['lionNo'][0]
 ));
-echo '<pre/>';var_dump($rsd);die();
+//echo '<pre/>';var_dump($rsd);die();
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goodsList = $rsd['content'];
     $orderNo = $rsd['order'];
