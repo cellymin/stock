@@ -75,11 +75,15 @@ class Api_Depot_InputDepot extends PhalApi_Api
         $postModel = file_get_contents('php://input');
         $postModel = json_decode($postModel, true);
         if (!empty($postModel['supplier']) && !empty($postModel['goodsList']) && !empty($operator)) {
-            $taxrate = $postModel['supplier']['taxrate'] ? floatval($postModel['supplier']['taxrate']) : 0;  //税率
+            $taxrate = isset($postModel['supplier']['taxrate']) ? floatval($postModel['supplier']['taxrate']) : 0;  //税率
             $supplierId = $postModel['supplier']['supplierId'] ? intval($postModel['supplier']['supplierId']) : 0; //供应商
             // return $supplierId;
             if (empty($supplierId)) {
                 $rs['msg'] = '没有供应商';
+                return $rs;
+            }
+            if(empty($taxrate)){
+                $rs['msg'] = '供应商没有税率，请去后台维护';
                 return $rs;
             }
             if (empty($depotId)) {
