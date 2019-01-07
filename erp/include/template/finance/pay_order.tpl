@@ -11,7 +11,7 @@
            layerH="665px" layerT="2"><i class="icon-plus"></i> 财务</a>
     </div>
     <div class="btn-toolbar" style="float:right;padding-top:15px;margin-right: 10px;">
-        <a class="btn btn-primary clooect" action="4" title="收票" layerUrl="pay_collect" layerW="850px"
+        <a class="btn btn-primary collect" action="4" title="收票" layerUrl="pay_collect" layerW="850px"
            layerH="665px" layerT="2" onclick="collectclick(this)" ><i class="icon-plus"></i> 收票</a>
     </div>
     <div style="float:left;margin-right:5px">
@@ -96,7 +96,7 @@
         $(e).attr('disabled', "true");//禁用点击
         var _id_arr = [];
         $.each($('input:checkbox:checked'), function () {
-            _id_arr.push($(e).val());
+            _id_arr.push($(this).val());
         });
         //多个选项
         if (_id_arr.length > 1) {
@@ -106,6 +106,10 @@
                 alert('请选择供应商');
                 $(e).removeAttr("disabled");//解禁按钮
                 return false;
+            }else{
+                $(e).removeAttr("disabled");//解禁按钮
+                var classN = $(e).addClass("layerModel");
+                $(e).click();
             }
         } else {
             $(e).removeAttr("disabled");//解禁按钮
