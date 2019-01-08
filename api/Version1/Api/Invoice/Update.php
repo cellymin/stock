@@ -14,7 +14,7 @@ class Api_Invoice_Update extends PhalApi_Api
             'go' => array(
                 'invoiceId' => array(
                     'name' => 'invoiceId',
-                    'type' => 'string',
+                    'type' => 'array',
                     'format' => 'explode',
                     'require' => true
                 )
@@ -27,19 +27,17 @@ class Api_Invoice_Update extends PhalApi_Api
     {
         $rs = array('code' => 0, 'content' => '', 'msg' => '');
         $domain = new Domain_Invoice_CURD();
-        $data = array(
-            'invoiceId' => $this->invoiceId
-        );
-        $res = $domain->updateVerify($data);
-        if (res) {
+        $invoiceId = $this->invoiceId;
+        $res = $domain->updateVerify($invoiceId);
+        if ($res) {
             $rs['code'] = 1;
             $rs['content'] = $res;
             return $rs;
         } else {
-
+            $rs['msg'] = "对账操作失败";
+            return $rs;
         }
-        $rs['msg'] = "对账操作失败";
-        return $rs;
+
     }
 
 }

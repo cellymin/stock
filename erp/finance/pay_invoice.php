@@ -8,35 +8,33 @@ $page_html = '';
 $client = new PhalApiClient();
 //$invoiceId = explode(',',$invoiceId);
 //获取供应商名称 id 发票id 订单id
-if($action=='changeSta'){
-  $invoiceids = $_POST['invoiceIds'];
- // echo json_encode($invoiceids);
-  $res = $client->request('Invoice_Update.Go', array(
-      'invoiceId' => $invoiceids
-  ));
-//    if ($client->getRet() == PhalApiClient::RET_OK) {
-//        Common::unsetNonceStr();
-//        Common::closeWithMessage('操作成功', 'success');
-//    } else {
-//        Common::resetNonceStr();
-//        Common::tipWithMessage($client->getMsg(), 'error');
-//    }
-  echo json_encode($res);
-  exit();
+if ($action == 'changeSta') {
+    $invoiceids = $_POST['invoiceIds'];
+    // echo json_encode($invoiceids);
+    $res = $client->request('Invoice_Update.Go', array(
+        'invoiceId' => $invoiceids
+    ));
+    if ($res['code'] == 1) {
+        echo $res['code'];
+        exit();
+    } else {
+        echo $res['code'];
+        exit();
+    }
 }
 $rs = $client->request('Invoice_Get.Go', array(
     'invoiceId' => $invoiceId,
     'action' => 2
 ));
-if($rs['lionid'][1]){
+if ($rs['lionid'][1]) {
     $lionid = $rs['lionid'][1];
-    if(strlen($lionid)>0){
-        $invoiceId = $invoiceId.','.$lionid;
+    if (strlen($lionid) > 0) {
+        $invoiceId = $invoiceId . ',' . $lionid;
     }
-    $invoiceId = array_unique(explode(',',$invoiceId));
+    $invoiceId = array_unique(explode(',', $invoiceId));
     asort($invoiceId);
-    $invoiceId = implode(',',$invoiceId);
-    if(!empty($rs['lionid'][2])){
+    $invoiceId = implode(',', $invoiceId);
+    if (!empty($rs['lionid'][2])) {
         $adjustpri = $rs['lionid'][2];
         Template::assign('adjustpri', $adjustpri);
     }
@@ -46,7 +44,7 @@ if($rs['lionid'][1]){
 
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $invoiceInfo = $rs['content'];
-}else {
+} else {
     Common::closeWithMessage($client->getMsg(), 'error');
 }
 //var_dump($invoiceId);die();
@@ -61,13 +59,13 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $ifhe = $rsd['ifhe'];
     $invoiceInfo = $rs['content'];
     $spanno = $rsd['kk'];
-}else {
+} else {
     Common::closeWithMessage($client->getMsg(), 'error');
 }
 
 
-$date = date('Y/m/d',time());
-$supno =  count($orderNo) + intval($rsd['count']);
+$date = date('Y/m/d', time());
+$supno = count($orderNo) + intval($rsd['count']);
 unset($rs);
 unset($rsd);
 

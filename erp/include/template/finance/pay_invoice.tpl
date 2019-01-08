@@ -122,8 +122,11 @@
                     async:false,
                     dataType:"json",
                     success:function(e){
-                        console.log(222);
-                     console.log(e);
+                    if(e==1){
+                      alert('对账成功');
+                    }else{
+                        alert('对账失败');
+                    }
                     }
                 });
             }
