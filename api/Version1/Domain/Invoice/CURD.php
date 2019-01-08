@@ -184,7 +184,7 @@ class Domain_Invoice_CURD
         $trueadj = $data['adjustamount'];
         $trueInvoiceNo = $data['trueInvoiceNo'];
         $data['adjustamount'] = '';
-        $data['trueInvoiceNo'] = '';
+       // $data['trueInvoiceNo'] = '';
 
         if (empty($data['invoiceId'])) {
             throw new PhalApi_Exception_BadRequest('没有数据');
