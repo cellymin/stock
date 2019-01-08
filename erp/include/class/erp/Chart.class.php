@@ -153,7 +153,7 @@ class Chart extends Base{
 				from {$subTable} as a
 				left join {$table} as b on b.orderId = a.orderId
 				left join vich_goods as c on c.goodsId = a.goodsId
-				where a.depotId='$depotId' and b.flag=3 and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') and a.flag=1
+				where a.depotId='$depotId' and b.flag=3 and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') 
 				";
         if(!empty($startTime)) $sql.=" and b.reviewerTime>='$startTime' ";
         if(!empty($endTime)) $sql.=" and b.reviewerTime<='$endTime' ";
@@ -171,7 +171,7 @@ class Chart extends Base{
 				from {$subTable} as a
 				left join {$table} as b on b.orderId = a.orderId
 				left join vich_goods as c on c.goodsId = a.goodsId
-				where a.depotId='$depotId' and b.flag=3 and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%')  and a.flag=1
+				where a.depotId='$depotId' and b.flag=3 and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') 
 				";
         if(!empty($startTime)) $sql.=" and b.reviewerTime>='$startTime' ";
         if(!empty($endTime)) $sql.=" and b.reviewerTime<='$endTime' ";
