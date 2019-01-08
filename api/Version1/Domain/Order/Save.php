@@ -112,7 +112,9 @@ class Domain_Order_Save
                 //库存预警
                 Domain_Message_Msg::depotWarning($order['createCompany'], $reviewer);
             }
+
             DI()->notorm->commit('db_demo');
+
             return true;
         } catch (PDOException $e) {
             DI()->notorm->rollback('db_demo');
