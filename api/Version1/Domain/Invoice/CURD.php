@@ -249,5 +249,23 @@ class Domain_Invoice_CURD
         $rr = $model->getIndoById($invoiceId);
         return $rr;
     }
+    public function  updateVerify($invoiceId){
+        $model = new Model_Invoice();
+        $data['ifverify'] = 1;
+        try{
+            DI()->notorm->beginTransaction("db_demo");
+            foreach ($invoiceId as $k=>$v){
+                $model->update($v, $data);
+            }
+            DI()->notorm->commit('db_demo');
+            return true;
+        }catch (PDOException $e) {
+            DI()->notorm->rollback('db_demo');
+            if ($e->getCode() == 1) {
+                throw new PhalApi_Exception_BadRequest($e->getMessage(), 0);
+            }
+            throw new PhalApi_Exception_InternalServerError('服务器错误', 0);
+        }
+    }
 
 }

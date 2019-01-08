@@ -72,6 +72,7 @@
                 <td>开票调整</td>
                 <td colspan="9"></td>
             </tr>
+
             <tr>
                 <td>税金（税率)<span class="rate"><{$invoiceInfo.taxrate}></span>)</td>
                 <td colspan="8"></td>
@@ -81,6 +82,16 @@
                 <td>合计（含税）</td>
                 <td colspan="8"></td>
                 <td class="ratetotal">0</td>
+            </tr>
+            <tr>
+                <td>合并调整金额</td>
+                <td colspan="8"></td>
+                <td class="adj"><{$adjustpri}></td>
+            </tr>
+            <tr>
+                <td>实际开票金额</td>
+                <td colspan="8"></td>
+                <td class="tickpri"></td>
             </tr>
             <tr class="kong">
                 <td colspan="10" height="20px"></td>
@@ -93,6 +104,7 @@
                 <td colspan="2">仓管员：</td>
                 <td colspan="2"></td>
             </tr>
+            <input type="hidden" class="invoiceIds" value="<{$invoiceId}>" />
         </table>
     </div>
 
@@ -101,6 +113,20 @@
     jQuery(function ($) {
         'use strict';
         $("#orderPrint").on('click', function () {
+            var invoiceIds = $('.invoiceIds').val();
+            if(invoiceIds!='' && invoiceIds!='undefined'){
+                $.ajax({
+                    type:"post",
+                    url:"pay_invoice.php?action=changeSta",
+                    data:{invoiceIds:invoiceIds},
+                    async:false,
+                    dataType:"json",
+                    success:function(e){
+                        console.log(222);
+                     console.log(e);
+                    }
+                });
+            }
             $('.pageHead').show();
             $(".form_div").print({
                 //是否包含父文档的样式，默认为true
@@ -157,6 +183,16 @@
         var arr = [];
         for (var i = 0; i < dh.length; i++) {
             arr.push(dh[i].innerText);
+        }
+        var adj = $('.adj').text();
+        var tickpri = 0;
+        var adjpri = parseFloat(adj.substr(1));//调整金额
+        if(adj.indexOf('+') != -1){
+            tickpri = parseFloat($('.ratetotal').text())+adjpri;
+            $('.tickpri').text(tickpri.toFixed(2))
+        }else if(adj.indexOf('-') != -1){
+            tickpri = parseFloat($('.ratetotal').text())-adjpri;
+            $('.tickpri').text(tickpri.toFixed(2))
         }
     });
 

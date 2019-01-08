@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$invoiceId = $page_no = "";
+$invoiceId = $page_no = $action = "";
 extract($_GET, EXTR_IF_EXISTS);
 
 $invoice = $order = array();
@@ -8,6 +8,22 @@ $page_html = '';
 $client = new PhalApiClient();
 //$invoiceId = explode(',',$invoiceId);
 //获取供应商名称 id 发票id 订单id
+if($action=='changeSta'){
+  $invoiceids = $_POST['invoiceIds'];
+ // echo json_encode($invoiceids);
+  $res = $client->request('Invoice_Update.Go', array(
+      'invoiceId' => $invoiceids
+  ));
+//    if ($client->getRet() == PhalApiClient::RET_OK) {
+//        Common::unsetNonceStr();
+//        Common::closeWithMessage('操作成功', 'success');
+//    } else {
+//        Common::resetNonceStr();
+//        Common::tipWithMessage($client->getMsg(), 'error');
+//    }
+  echo json_encode($res);
+  exit();
+}
 $rs = $client->request('Invoice_Get.Go', array(
     'invoiceId' => $invoiceId,
     'action' => 2
@@ -20,8 +36,14 @@ if($rs['lionid'][1]){
     $invoiceId = array_unique(explode(',',$invoiceId));
     asort($invoiceId);
     $invoiceId = implode(',',$invoiceId);
-
+    if(!empty($rs['lionid'][2])){
+        $adjustpri = $rs['lionid'][2];
+        Template::assign('adjustpri', $adjustpri);
+    }
 }
+//echo $adjustpri;
+//die();
+
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $invoiceInfo = $rs['content'];
 }else {
@@ -49,6 +71,7 @@ $supno =  count($orderNo) + intval($rsd['count']);
 unset($rs);
 unset($rsd);
 
+Template::assign('invoiceId', $invoiceId);
 Template::assign('date', $date);
 Template::assign('supno', $supno);
 Template::assign('spanno', $spanno);
