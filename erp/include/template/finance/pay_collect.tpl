@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td colspan="1">调整金额</td>
-                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" value="<{if $lionidinfo[2]!=''}><{$lionidinfo[2]}><{else}>+<{sprintf('%.2f',$list.adjustamount)}><{/if}>" /></b></td>
+                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" value="<{$list.adjustamount}><{if $lionidinfo[2]!=''}><{$lionidinfo[2]}><{else}>+<{sprintf('%.2f',$list.adjustamount)}><{/if}>" /></b></td>
             </tr>
             <tr>
                 <td>财务类型</td>

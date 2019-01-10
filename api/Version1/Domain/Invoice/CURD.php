@@ -87,7 +87,7 @@ class Domain_Invoice_CURD
                     $list['supplierName'] = $supplier['supplierName'];
                     $list['targetId'] = $supplier['supplierId'];
                     $list['taxrate'] = $supplier['taxrate'];
-                    //   $list['adjustamount'] = $invoice['adjustamount'];
+                    $list['adjustamount'] = $invoice['adjustamount'];
                     $list['trueInvoiceNo'] = $invoice['trueInvoiceNo'];
                 } else {
                     $customer = $customer_model->get($invoice['supplierId']);
@@ -128,7 +128,7 @@ class Domain_Invoice_CURD
             }
         }
         if (empty($invoice)) {
-            return true;
+            return $invoice;
         }
         $invoice = array_unique($invoice);
         $invoiceids = array_unique($invoiceids);

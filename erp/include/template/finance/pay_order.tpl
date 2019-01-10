@@ -54,6 +54,7 @@
                 <th>付款状态</th>
                 <th>付款状态</th>
                 <th>对账状态</th>
+                <th>调整金额</th>
                 <th>创建时间</th>
                 <th>预计收票时间</th>
             </tr>
@@ -71,6 +72,7 @@
                     <td><{$value.payFlag}></td>
                     <td><{$value.invoiceFlag}></td>
                     <td><{$value.verifyFlag}></td>
+                    <td><{$value.adjustamount}></td>
                     <td><{$value.createTime}></td>
                     <td><{$value.endTime}></td>
                 </tr>
