@@ -183,7 +183,7 @@ class Domain_Invoice_CURD
         $adj = floatval(substr(trim($data['adjustamount']), 1)); //操作的金额
         $trueadj = $data['adjustamount'];
         $trueInvoiceNo = $data['trueInvoiceNo'];
-        $data['adjustamount'] = '';
+       // $data['adjustamount'] = '';
        // $data['trueInvoiceNo'] = '';
 
         if (empty($data['invoiceId'])) {
