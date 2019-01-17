@@ -590,21 +590,25 @@ class Report extends Base
         $kpri = array();
         $lionids = array();
         $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE i.orderId IN (SELECT orderId FROM vich_orders_ip og WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where} ) 
-                AND i.flag=1 AND i.type='1' GROUP BY i.orderId   ORDER BY i.invoiceId ";
+                AND i.flag=1 AND i.type='1' AND i.adjustamount!='' GROUP BY i.orderId   ORDER BY i.invoiceId ";
         foreach ($db->query($sql) as $v) {
             $kk[] = intval($v['invoiceId']);
             $kpri[$v['invoiceId']] = $v['adjustamount'];
         }
         $resids = '';
+        $temp = array();
         $kk = array_unique($kk);// 发票单号 数组
         foreach ($kk as $k => $v) {
             $sql = "SELECT ids FROM vich_invoices_adjust WHERE FIND_IN_SET($v,ids) ";
             $res = $db->query($sql)->fetch();
             if (!empty($res)) {
                 $tt = explode(',', $res['ids']);
-                if (in_array($v, $tt)) {
-                    $lionids[] = $v;
+                if (!in_array($tt, $temp)) {
+                    if (in_array($v, $tt)) {
+                        $lionids[] = $v;
+                    }
                 }
+                $temp[] = $tt;
                 if (!empty($resids)) {
                     $resids .= ',' . $res['ids'];
                 } else {
@@ -616,17 +620,12 @@ class Report extends Base
         $resids = array_unique(array_diff($kk, $resids));
         $finalyids = array_merge($lionids, $resids);
         $adjpri = 0;
-        if(!empty($finalyids)){
+        if (!empty($finalyids)) {
             foreach ($finalyids as $k => $v) {
-                if (strstr($kpri[$v], '+')) {
                     $adjpri = $adjpri + floatval($kpri[$v]);
-                } else if (strstr($kpri[$v], '-')) {
-                    $adjpri = $adjpri - floatval($kpri[$v]);
-                }
             }
         }
-
-        return array('list' => $list, 'total' => $total,'adjpri'=>$adjpri);
+        return array('list' => $list, 'total' => $total, 'adjpri' => $adjpri);
     }
 
     public static function busTotalReport($companyId)
