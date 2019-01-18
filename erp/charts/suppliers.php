@@ -27,6 +27,9 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 }
 ksort($depots_options);
 $list = Report::busReport($cateId,$companyId,$depotId);
+//echo '<pre/>';
+//var_dump($list);
+//die();
 
 Template::assign('company_options',$company_options);
 Template::assign('cates',$cates);

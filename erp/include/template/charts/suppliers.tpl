@@ -54,6 +54,7 @@
                 <td colspan="3">本月调拨出库量</td>
                 <{/if}>
                 <td colspan="3">本月结存量</td>
+                <td rowspan="2">本月调整金额</td>
             </tr>
             <tr>
                 <td>数量</td>
@@ -103,10 +104,12 @@
                 <td><{$v.depot.count}></td>
                 <td></td>
                 <td><{number_format($v.depot.money,2)}></td>
+                <td></td>
             </tr>
             <{/foreach}>
             <tr>
                 <td>合计</td>
+                <td></td>
                 <td></td>
                 <td><{$list.total.last.count}></td>
                 <td></td>
@@ -128,9 +131,9 @@
                 <td><{$list.total.depot.count}></td>
                 <td></td>
                 <td><{number_format($list.total.depot.money,2)}></td>
+                <td><{$list.adjpri}></td>
             </tr>
             </tbody>
-
         </table>
     </div>
 </div>

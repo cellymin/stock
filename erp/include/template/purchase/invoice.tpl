@@ -82,8 +82,8 @@
             <tr><td>
                    <!-- <a class="btn btn-primary layerModel invoicebysup" action="2" title="发票对账单" layerUrl="invoice_details" layerW="1000px"
                        layerH="650px" layerT="2">发票对账单</a>-->
-                    <a class="btn btn-primary layerModel1 invoicebysup" action="2" title="发票对账单" layerUrl="pay_invoice" layerW="1000px"
-                        layerH="650px" layerT="2">发票对账单</a>
+                    <!--<a class="btn btn-primary layerModel1 invoicebysup" action="2" title="发票对账单" layerUrl="pay_invoice" layerW="1000px"
+                        layerH="650px" layerT="2">发票对账单</a>-->
 
                 </td></tr>
             </tbody>

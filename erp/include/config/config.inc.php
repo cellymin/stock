@@ -55,7 +55,7 @@ define('API_SECRECT','API%v1_ERP');
 define ( 'OSA_TABLE_PREFIX' ,'vich_');
 
 //页面设置
-define ( 'DEBUG' ,false);
+define ( 'DEBUG' ,true);
 define ( 'PAGE_SIZE', 15 );
 
 $OSA_TEMPLATES=array(
