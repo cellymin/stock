@@ -12,6 +12,7 @@ class Api_Order_Save extends PhalApi_Api
                     'range' => array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT'),
                     'require' => true
                 ),
+                'flag' => array('name' => 'flag', 'type' => 'int', 'min' => 0, 'require' => false),
             )
         );
     }
@@ -20,7 +21,7 @@ class Api_Order_Save extends PhalApi_Api
     {
         $rs = array('code' => 0, 'content' => '', 'msg' => '');
         $domian = new Domain_Order_Save($this->type);
-        $num = $domian->save($this->orderId,$this->reviewer);
+        $num = $domian->save($this->orderId,$this->reviewer,$this->flag);
         if ($num) {
             $rs['code'] = 1;
             $rs['content'] = $num;
