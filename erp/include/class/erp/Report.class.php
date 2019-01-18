@@ -539,8 +539,9 @@ class Report extends Base
                 foreach ($deport as $g) {
                     $list[$g['goodsId']] = array(
                         'goodsName' => $g['goodsName'],
-                        'unitName' => $g['unitName'],     //计量单位
-                        'last' => array(                  //上月结存
+                        'goodsSn' => $g['goodsSn'],
+                        'unitName'  => $g['unitName'],     //计量单位
+                        'last'      => array(                  //上月结存
                             'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'],
                             'money' => $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'],
                         ),
