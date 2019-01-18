@@ -29,7 +29,7 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             'id'         => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
             'orderId'    => array('name' => 'orderId', 'type' => 'int', 'min' => 0, 'require' => true),
             'goodsPrice' => array('name' => 'goodsPrice', 'type' => 'float', 'min' => 0, 'require' => true),
-            'goodsCnt'   => array('name' => 'goodsCnt', 'type' => 'float', 'min' => 0, 'require' => true),
+            'goodsCnt'   => array('name' => 'goodsCnt', 'type' => 'int', 'min' => 0, 'require' => true),
             'remark'     => array('name' => 'remark', 'type' => 'string', 'require' => false),
         );
 

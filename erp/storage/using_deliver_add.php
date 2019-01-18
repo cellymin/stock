@@ -31,7 +31,6 @@ if (Common::isPost()) {
         Common::closeWithMessage('表单已失效', 'error', '1200');
     }
 }
-
 //商品
 $rs = $client->request('DepotGoods_Get.Go', array(
     'id' => $id
@@ -49,13 +48,14 @@ $rs = $client->request('Employee_Options.Go', array(
     'companyId'    => $_SESSION[UserSession::SESSION_NAME]['companyId'],
     'departmentId' => $departmentId
 ));
+print_r($rs);
 if ($client->getRet() == PhalApiClient::RET_OK) {
     foreach ($rs['content'] as $row) {
         $employee_options[$row['employeeId']] = $row['employeeName'];
     }
 
 }
-$employee_options[0] = "== 请选择 ==";
+//$employee_options[0] = "== 请选择 ==";
 
 
 Template::assign('_GET', $_GET);

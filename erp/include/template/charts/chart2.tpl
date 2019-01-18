@@ -66,7 +66,7 @@ $(function(){
 		var depotId = $('#depotId').val();
 		var depotSubId = $('#depotSubId').val();
 		
-		$('.block-heading').html('<font color="red">报表生成中,请勿刷新页面...</font>')
+		// $('.block-heading').html('<font color="red">报表生成中,请勿刷新页面...</font>')
 		$('#list').html('');
 		_search(companyId, keyword, depotId, depotSubId);
 		
@@ -82,31 +82,36 @@ function _search(companyId, keyword, depotId, depotSubId){
 		async:false,
 		dataType:"json",
 		success:function(e){
-			var html = '';
-			html += '<tr>';
-			html += '<td>'+ e[0]['goodsSn'] +'</td>';
-			html += '<td>'+ e[0]['goodsName'] +'</td>';
-			html += '<td>'+ e[0]['goodsSpec'] +'</td>';
-			html += '<td>'+ e[0]['goodsCnt'] +'</td>';
-			html += '<td>'+ e[0]['companyName'] +'</td>';
-			html += '<td>'+ e[0]['depotName'] +'</td>';
-			html += '<td>'+ e[0]['depotSubName'] +'</td>';
-			html += '</tr>';
-			$('#list').append(html);
+		    var i;
+		    for (i=0;i<e.length;i++) {
+                var html = '';
+                html += '<tr>';
+                html += '<td>'+ e[i]['goodsSn'] +'</td>';
+                html += '<td>'+ e[i]['goodsName'] +'</td>';
+                html += '<td>'+ e[i]['goodsSpec'] +'</td>';
+                html += '<td>'+ e[i]['total'] +'</td>';
+                html += '<td>'+ e[i]['companyName'] +'</td>';
+                html += '<td>'+ e[i]['depotName'] +'</td>';
+                html += '<td>'+ e[i]['depotSubName'] +'</td>';
+                html += '</tr>';
+                $('#list').append(html);
+            }
 			if(e[0].count==0){
 				$('.block-heading').html('报表');
 				$('#list').html('');
 				alert('暂无数据');
 				return false;
 			}
-			page ++;
-			if(page<=e[0]['count']){
-				setTimeout(function(){
-					_search(companyId, keyword, depotId, depotSubId);
-				},200)
-			}else{
+			// page ++;
+			// if(page<=e[0]['count']){
+			// 	setTimeout(function(){
+			// 		_search(companyId, keyword, depotId, depotSubId);
+			// 	},200)
+			// }
+			else{
 				$('.block-heading').html('报表');
-				alert('报表生成成功')
+				alert('报表生成成功');
+				return true;
 			}
 		}
 	});

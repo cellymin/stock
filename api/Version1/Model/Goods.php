@@ -66,7 +66,16 @@ class Model_Goods extends PhalApi_Model_NotORM
             ->where($where, $param)
             ->fetch();
     }
+    public function getInfo($goodsBarCode, $fields = '*')
+    {
+        $where = 'flag=1 and goodsBarCode=?';
+        $param[] = $goodsBarCode;
 
+        return DI()->notorm->goods
+            ->select($fields)
+            ->where($where, $param)
+            ->fetch();
+    }
     public function getForOrder($id, $fields = '*')
     {
         $where = 'flag=1 and goodsId=?';
@@ -198,10 +207,20 @@ class Model_Goods extends PhalApi_Model_NotORM
 
     public function options($goodsCateId)
     {
-        return $this->getORM()
-            ->select('goodsId,goodsName')
-            ->where('flag=1 and goodsCateId=?', $goodsCateId)
-            ->fetchAll();
+//        判断是否是顶级分类
+        $param[':goodsCateId'] = $goodsCateId;
+        $sql='select * from vich_goods_cates where cateId=:goodsCateId and parentId=0';
+        $istop=DI()->notorm->goods_cates->queryAll($sql,$param);
+//        如果是，则通过goodsCateId1来查询商品
+        if ($istop){
+            $sql = 'select goodsId,goodsName from vich_goods where flag=1 and goodsCateId1=:goodsCateId';
+            $result=DI()->notorm->goods->queryAll($sql,$param);
+        }else{
+//            不是则通过goodsCateId2来查询商品
+            $sql = 'select goodsId,goodsName from vich_goods where flag=1 and goodsCateId2=:goodsCateId';
+            $result=DI()->notorm->goods->queryAll($sql,$param);
+        }
+        return $result;
     }
 
 }

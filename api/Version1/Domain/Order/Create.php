@@ -70,6 +70,47 @@ class Domain_Order_Create
         return $orderId;
     }
 
+    public function appCreate($data){
+        $input = array();
+
+        if (in_array($this->type, array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
+            $model = new Model_Depot();
+            $depot = $model->getById($data['depotId']);
+            if (!$depot) {
+                throw new PhalApi_Exception_BadRequest('仓库不存在', 0);
+            }
+            $input['depotId'] = $data['depotId'];
+        }
+
+        $input['orderNo'] = $this->getOrderPrefix() . date('ymdHis') . rand(1000, 9999);
+        $input['totalMoney'] = 0;
+        $input['totalCnt'] = 0;
+        $input['flag'] = 0;
+//        $input['createCompany'] = DI()->userInfo['companyId'];
+        $input['createCompany'] = 32;
+        $input['createUser'] = $data['createUser'];
+//        $input['createUser'] = DI()->userInfo['userId'];
+//        $input['createUser'] = DI()->userInfo['userId'];
+        $input['createTime'] = date('Y-m-d H:i:s');
+        $input['from']=2;
+        $model = new Model_Order();
+//        error_log(print_r($input,1));
+        $orderId = $model->create($input);
+//        if ($orderId) {
+//            $log_model = new Model_LogOrder();
+//            $log_model->insert(array(
+//                'logUser'    => DI()->userInfo['userId'],
+//                'logType'    => 'CREATE',
+//                'logContent' => json_encode($input),
+//                'orderId'    => $orderId,
+//                'orderType'  => $this->type,
+//                'createTime' => date('Y-m-d H:i:s')
+//            ));
+//        }
+
+        return $orderId;
+    }
+
     private function getOrderPrefix()
     {
         $prefix = array(

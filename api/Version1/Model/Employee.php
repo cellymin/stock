@@ -116,10 +116,12 @@ class Model_Employee extends PhalApi_Model_NotORM
         if ($departmentId) {
             $where .= ' and departmentId=?';
             $param[] = $departmentId;
+        }else{
+            $where .= ' and departmentId=0';
         }
 
         $user = DI()->get('userInfo');
-        if ($user['userGroup'] != 1 && $user['selectAll'] != 1) {
+        if ($user&&$user['userGroup'] != 1 && $user['selectAll'] != 1) {
             $where .= ' and companyId=?';
             $param[] = $user['companyId'];
         }else{

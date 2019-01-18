@@ -60,7 +60,7 @@ $(function(){
 		var startTime = $('#startTime').val();
 		var endTime = $('#endTime').val();
 
-		$('.block-heading').html('<font color="red">报表生成中,请勿刷新页面...</font>')
+		// $('.block-heading').html('<font color="red">报表生成中,请勿刷新页面...</font>')
 		$('#list').html('');
 		_search(keyword, companyId, startTime, endTime);
 		
@@ -76,29 +76,34 @@ function _search(keyword, companyId, startTime, endTime){
 		async:false,
 		dataType:"json",
 		success:function(e){
-			var html = '';
-			html += '<tr>';
-			html += '<td>'+ e[0]['goodsSn'] +'</td>';
-			html += '<td>'+ e[0]['goodsName'] +'</td>';
-			html += '<td>'+ e[0]['goodsPrice'] +'元</td>';
-			html += '<td>'+ e[0]['goodsCnt'] +'</td>';
-			html += '<td>'+ e[0]['goodsSpec'] +'</td>';
-			html += '<td>'+ e[0]['reviewerTime'] +'</td>';
-			html += '<td>'+ e[0]['orderNo'] +'</td>';
-			html += '</tr>';
-			$('#list').append(html);
+		    var i;
+		    for (i=0;i<e.length;i++){
+                var html = '';
+                html += '<tr>';
+                html += '<td>'+ e[i]['goodsSn'] +'</td>';
+                html += '<td>'+ e[i]['goodsName'] +'</td>';
+                html += '<td>'+ e[i]['goodsPrice'] +'元</td>';
+                html += '<td>'+ e[i]['goodsCnt'] +'</td>';
+                html += '<td>'+ e[i]['goodsSpec'] +'</td>';
+                html += '<td>'+ e[i]['reviewerTime'] +'</td>';
+                html += '<td>'+ e[i]['orderNo'] +'</td>';
+                html += '</tr>';
+                $('#list').append(html);
+            }
+
 			if(e[0].count==0){
 				$('.block-heading').html('报表');
 				$('#list').html('');
 				alert('暂无数据');
 				return false;
 			}
-			page ++;
-			if(page<=e[0]['count']){
-				setTimeout(function(){
-					_search(keyword, companyId, startTime, endTime);
-				},200)
-			}else{
+			// page ++;
+			// if(page<=e[0]['count']){
+			// 	setTimeout(function(){
+			// 		_search(keyword, companyId, startTime, endTime);
+			// 	},200)
+			// }
+			else{
 				$('.block-heading').html('报表');
 				alert('报表生成成功')
 			}

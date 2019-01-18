@@ -44,6 +44,7 @@
     var myChart = echarts.init(document.getElementById('data_charts'));
     var colors = ['#5793f3', '#d14a61', '#675bba'];
     var myChartData = <{$myChart}>;
+    var goodsData = <{$goods}>;
     option = {
         color: colors,
 
@@ -54,7 +55,7 @@
             }
         },
         title:{
-            text:'测试商品',
+            text:goodsData.goodsName,
             padding:[5,60]
         },
         legend: {

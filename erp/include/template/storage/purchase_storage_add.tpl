@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td>库位</td>
-                <td><{html_options name=depotSubId id="depotSubId" required="true" options=$depotSubs_options selected=0}></td>
+                <td><{html_options name=depotSubId id="depotSubId" required="true" options=$depotSubs_options selected=$_GET.depotSubId}></td>
             </tr>
             <tr>
                 <td>数量</td>
@@ -64,16 +64,6 @@
             var depotId = $('#depotId').val();
             window.location.href = "purchase_storage_add.php?orderId=<{$orderId}>&goodsId=<{$goods.goodsId}>&depotId="+depotId+'&lastpri='+lastpri;
         })
-        var hanpri = parseFloat($('.hanpri').val());//含税价
-        if(hanpri!=''){
-            var rate = parseFloat($('.taxrate').val());//税率
-            var lastpri = hanpri/(1+rate); //不含税价格=含税价/(1+税率)
-            if(isNaN(lastpri)){
-                $('.lastpri').val(0);
-            }else{
-                $('.lastpri').val(decimal(lastpri,6));
-            }
-        }
     })
     function ratejisuan(e) {
         var hanlen = $(e).val().split('.')[1];
