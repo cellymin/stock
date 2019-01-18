@@ -19,14 +19,14 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
         return $this->getORM()->insert_multi($data);
     }
 
-    public function count($keyword, $depotId, $depotSubId)
+    public function count($keyword, $depotId, $depotSubId,$type)
     {
         $sql = 'select count(*) as `count` '
             . 'from vich_depot_goods dg '
             . 'left join vich_goods g on g.goodsId=dg.goodsId '
             . 'left join vich_depots d on d.depotId=dg.depotId '
             . 'left join vich_depot_subs ds on ds.depotSubId=dg.depotSubId '
-            . 'where (g.goodsName like :keyword or dg.batchNo like :keyword or g.goodsSn like :keyword) and dg.flag=1  ';
+            . 'where (g.goodsName like :keyword or dg.batchNo like :keyword) and dg.flag=1 ';
 
         $param = array();
         $param[':keyword'] = "%$keyword%";
@@ -42,10 +42,16 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
             $param[':depotSubId'] = $depotSubId;
         }
 
+        if ($type!='INVENTORY') {
+            $sql .= ' and dg.goodsCnt>0';
+        }
+
         if (DI()->userInfo['userGroup'] != 1 && DI()->userInfo['selectAll'] != 1) {
             $sql .= ' and ds.companyId=:companyId';
             $param[':companyId'] = DI()->userInfo['companyId'];
         }
+
+
         return $this->getORM()->queryAll($sql, $param);
     }
 

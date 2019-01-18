@@ -11,43 +11,51 @@ class Chart extends Base{
 		$sql = "select count(*) as count from vich_orders_ip as a 
 				left join vich_orders_ip_goods as b on b.orderId = a.orderId
 				left join vich_goods as c on c.goodsId = b.goodsId
-				where a.flag=3 and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') ";
+				where a.flag=3";
+        if(!empty($keyword)) $sql.=" and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') ";
 		if(!empty($companyId)) $sql.=" and a.createCompany='$companyId' ";
 		if(!empty($startTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')>='$startTime' ";
 		if(!empty($endTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')<='$endTime' ";
 		$row = $db->query($sql)->fetch();
 		return $row['count'];
 	}	
-	public static function chart1($start, $page_size, $keyword, $companyId, $startTime, $endTime){
+	public static function chart1($start, $total_page, $keyword, $companyId, $startTime, $endTime){
 		$db=self::__instance();
 		$limit ="";
-		if($page_size){
-			$limit =" limit $start, $page_size ";
+		if($total_page){
+			$limit =" limit $start, $total_page ";
 		}
-		$sql = "select a.orderId from vich_orders_ip as a 
-				left join vich_orders_ip_goods as b on b.orderId = a.orderId
-				left join vich_goods as c on c.goodsId = b.goodsId
-				where a.flag=3 and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') ";
-		if(!empty($companyId)) $sql.=" and a.createCompany='$companyId' ";
-		if(!empty($startTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')>='$startTime' ";
-		if(!empty($endTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')<='$endTime' ";
-		$sql.= " order by orderId desc".$limit;
-
-		$row = $db->query($sql)->fetch();
-		$orderId = 0;
-		if($row){
-			$orderId = $row['orderId'];
+//		$sql = "select a.orderId from vich_orders_ip as a
+//				left join vich_orders_ip_goods as b on b.orderId = a.orderId
+//				left join vich_goods as c on c.goodsId = b.goodsId
+//				where a.flag=3";
+//        if(!empty($keyword)) $sql.=" and (c.goodsSn like '%$keyword%' or c.goodsName like '%$keyword%') ";
+//		if(!empty($companyId)) $sql.=" and a.createCompany='$companyId' ";
+//		if(!empty($startTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')>='$startTime' ";
+//		if(!empty($endTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')<='$endTime' ";
+//		$sql.= " order by a.orderId desc".$limit;
+//
+//		$row = $db->query($sql)->fetchAll();
+//		$orderId = 0;
+//		if($row){
+//			$orderId = $row['orderId'];
 			$sql = "select
 					c.orderNo, b.goodsSn, a.goodsId, a.goodsPrice, a.goodsCnt, b.goodsSpec, b.goodsName, c.reviewerTime
 					from vich_orders_ip_goods as a
 					left join vich_goods as b on b.goodsId = a.goodsId 
 					left join vich_orders_ip as c on c.orderId = a.orderId
-					where a.orderId='$orderId' and (b.goodsSn like '%$keyword%' or b.goodsName like '%$keyword%')";
+                    where 1=1";
+//					where a.orderId='$orderId' and (b.goodsSn like '%$keyword%' or b.goodsName like '%$keyword%')";
+            if(!empty($keyword)) $sql.=" and (b.goodsSn like '%$keyword%' or b.goodsName like '%$keyword%') ";
+            if(!empty($companyId)) $sql.=" and a.createCompany='$companyId' ";
+            if(!empty($startTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')>='$startTime' ";
+            if(!empty($endTime)) $sql.=" and FROM_UNIXTIME(a.reviewerTime,'%Y%m%d')<='$endTime' ";
+            $sql.=" order by a.goodsId desc ".$limit;
 			$list = $db->query($sql)->fetchAll();
 			if($list){
 				return $list;
 			}
-		}		
+
 		return array();
 	}
 	
@@ -68,14 +76,14 @@ class Chart extends Base{
 		return $row['count'];
 	}
 	
-	public static function chart2($start, $page_size, $keyword, $depotId, $depotSubId, $companyId){
+	public static function chart2($start, $total_page, $keyword, $depotId, $depotSubId, $companyId){
 		$db=self::__instance();
 		$limit ="";
-		if($page_size){
-			$limit =" limit $start, $page_size ";
+		if($total_page){
+			$limit =" limit $start, $total_page ";
 		}
 		
-		$sql = "select a.goodsId, b.goodsSn, a.goodsCnt, b.goodsName, b.goodsSpec, c.depotName, d.depotSubName, e.companyName
+		$sql = "select a.goodsId, b.goodsSn, sum(a.goodsCnt) as total, b.goodsName, b.goodsSpec, c.depotName, d.depotSubName, e.companyName
 				from vich_depot_goods as a
 				left join vich_goods as b on b.goodsId = a.goodsId
 				left join vich_depots as c on c.depotId = a.depotId
@@ -83,13 +91,15 @@ class Chart extends Base{
 				left join vich_companys as e on e.companyId = a.createCompany
 				where 1=1
 				";
-		if(!empty($keyword)) $sql.=" and (b.goodsSn like '%$keyword%' or goodsName like '%$keyword%') ";
+		if(!empty($keyword)) $sql.=" and (b.goodsSn like '%$keyword%' or b.goodsName like '%$keyword%') ";
 		if(!empty($depotId)) $sql.=" and a.depotId='$depotId' ";
 		if(!empty($depotSubId)) $sql.=" and a.depotSubId='$depotSubId' ";
 		if(!empty($companyId)) $sql.=" and a.createCompany = '$companyId' ";
+		$sql.="group by b.goodsSn, c.depotName ,d.depotSubName";
 		$sql.=" order by a.goodsId desc ".$limit;
 
 		$list = $db->query($sql)->fetchAll();
+//		print_r($list);die;
 		if($list){
 			return $list;
 		}

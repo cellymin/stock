@@ -37,12 +37,14 @@ $rs = $client->request('GoodsCate_GetList.Go', array());
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods_cates = $rs['content'];
 }
+//print_r($goodsCateId);
 
 if (!$goodsCateId && !empty($goods_cates)) {
     $goodsCateId = $goods_cates[0]['cateId'];
 }
 
 $rs = $client->request('Goods_Options.Go', array('goodsCateId' => $goodsCateId));
+//print_r($rs);
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods_options = $rs['content'];
 

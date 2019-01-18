@@ -18,6 +18,8 @@ if(!in_array($year,$years)){
 }
 
 $list = Goods::suppliersGoodsTop($goodsId, $year);
+$goods=Goods::getGoodsInfo($goodsId);
+$goods=json_encode($goods);
 $myChart = array();
 $myChart2 = array();
 $priceTop = array();
@@ -91,8 +93,7 @@ if ($list) {
         );
     }
 }
-
-
+Template::assign('goods',$goods);
 Template::assign('myChart2', json_encode($myChart2));
 Template::assign('myChart', json_encode($myChart));
 Template::assign('years', $years);

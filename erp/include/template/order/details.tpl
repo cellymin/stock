@@ -7,32 +7,32 @@
         <button id="orderPrint" class="btn btn-primary" style="float: left;margin-bottom: 20px;" > 打印</button>
         <a type="button" class="btn btn-primary" onclick="method5('oorder')" style="margin-left: 10px;">导出</a>
         <{if ($order.flag==0 || $order.flag==-3)}>
-        <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="提交审核"
-                layerUrl="<{$toReview}>" layerW="360px" layerH="200px" layerT="2"
-                layerD="type=<{$type}>&orderId=<{$order.orderId}>"> 提交审核
-        </button>
+            <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="提交审核"
+                    layerUrl="<{$toReview}>" layerW="360px" layerH="200px" layerT="2"
+                    layerD="type=<{$type}>&orderId=<{$order.orderId}>"> 提交审核
+            </button>
         <{/if}>
         <{if ($order.flag==1 && $userId==$order.reviewer)}>
-    <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="审核"
-            layerUrl="<{$review}>" <{if $type=='PURCHASE_IN'}>layerW="400px" layerH="460px"<{else}>layerW="350px" layerH="300px"<{/if}> layerT="2"
-        layerD="type=<{$type}>&orderId=<{$order.orderId}>"> 审核
-        </button>
+            <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="审核"
+                    layerUrl="<{$review}>" <{if $type=='PURCHASE_IN'}>layerW="400px" layerH="460px"<{else}>layerW="350px" layerH="300px"<{/if}> layerT="2"
+                    layerD="type=<{$type}>&orderId=<{$order.orderId}>"> 审核
+            </button>
         <{/if}>
         <{if in_array($order.flag,array(0,1,-3)) && !in_array($type,array('OTHER_IN','OTHER_OUT'))}>
-        <button type="submit" class="btn btn-primary layerModel"
-                style="float: right;margin-bottom: 20px;margin-right: 15px;" action="1" title="商品"
-                layerUrl="goods_search" layerW="850px" layerH="500px" layerT="2"
-                layerD="type=<{$type}>&orderId=<{$order.orderId}><{if ($type=='ALLOT_OUT' || $type=='USE_OUT')}>&depotId=<{$order.depotId}><{/if}>"><i class="icon-search"></i> 产品
-        </button>
-        <button type="submit" class="btn btn-primary layerModel"
-                style="float: right;margin-bottom: 20px;margin-right: 15px;" action="2" title="订单产品"
-                layerUrl="<{$modify_url}>" layerW="450px" layerH="550px" layerT="2"
-                layerD="type=<{$type}>&orderId=<{$order.orderId}>"><i class="icon-pencil"></i> 修改
-        </button>
-        <button type="submit" class="btn btn-primary layerModel" action="3" title="删除商品"
-                style="float: right;margin-bottom: 20px;margin-right: 15px;">
-            <i class="icon-trash"></i> 删除
-        </button>
+            <button type="submit" class="btn btn-primary layerModel"
+                    style="float: right;margin-bottom: 20px;margin-right: 15px;" action="1" title="商品"
+                    layerUrl="goods_search" layerW="850px" layerH="500px" layerT="2"
+                    layerD="type=<{$type}>&orderId=<{$order.orderId}><{if ($type=='ALLOT_OUT' || $type=='USE_OUT')}>&depotId=<{$order.depotId}><{/if}>"><i class="icon-search"></i> 产品
+            </button>
+            <button type="submit" class="btn btn-primary layerModel"
+                    style="float: right;margin-bottom: 20px;margin-right: 15px;" action="2" title="订单产品"
+                    layerUrl="<{$modify_url}>" layerW="450px" layerH="550px" layerT="2"
+                    layerD="type=<{$type}>&orderId=<{$order.orderId}>"><i class="icon-pencil"></i> 修改
+            </button>
+            <button type="submit" class="btn btn-primary layerModel" action="3" title="删除商品"
+                    style="float: right;margin-bottom: 20px;margin-right: 15px;">
+                <i class="icon-trash"></i> 删除
+            </button>
         <{/if}>
     </div>
     <div id="oorder">
@@ -87,18 +87,9 @@
                 <thead>
                 <tr>
                     <th class="td40 avoid-this">#</th>
-                    <{if in_array($type,array('PURCHASE_IN'))}>
-                    <th class="td90">名称</th>
-                    <{else}>
                     <th class="td120">名称</th>
-                    <{/if}>
                     <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT'))}>
-                    <{if $type=='PURCHASE_IN'}>
-                    <th class="td50">规格</th>
-                    <{else}>
                     <th class="td80">规格</th>
-                    <{/if}>
-
                     <th class="td80">单位</th>
                     <{else}>
                     <th class="td150">批次号</th>
@@ -128,9 +119,6 @@
                     <{if $type=='PLAN'}>
                     <th class="td100">计划到货日期</th>
                     <{/if}>
-                    <{if in_array($type,array('PURCHASE_IN','USE_OUT'))}>
-                    <th class="td80">总额</th>
-                    <{/if}>
                     <th class="avoid-this">备注</th>
                 </tr>
                 </thead>
@@ -148,17 +136,9 @@
                                     <tbody>
                                     <tr data-id="<{$v.id}>" datatype="1">
                                         <td class="td40 avoid-this"><input type="checkbox" name="id[]" data-name="id" value="<{$v.id}>"></td>
-                                        <{if $type=='PURCHASE_IN'}>
-                                        <td class="td90"><{$v.goodsName}></td>
-                                        <{else}>
                                         <td class="td120"><{$v.goodsName}></td>
-                                        <{/if}>
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT'))}>
-                                        <{if $type=='PURCHASE_IN'}>
-                                        <td class="td50"><{$v.goodsSpec}></td>
-                                        <{else}>
                                         <td class="td80"><{$v.goodsSpec}></td>
-                                        <{/if}>
                                         <td class="td80"><{$v.unitName}></td>
                                         <{else}>
                                         <td class="td150"><{$v.orderSubNo}></td>
@@ -172,7 +152,7 @@
                                         <{if !in_array($type,array('PLAN','ARRIVAL','RETURN'))}>
                                         <td class="td100"><{$v.depotSubName}></td>
                                         <{/if}>
-                                        <td class="td80"><{$v.goodsCnt|string_format:"%.2f"}></td>
+                                        <td class="td80"><{$v.goodsCnt}></td>
                                         <{if $type=='INVENTORY'}>
                                         <td class="td80"><{$v.depotGoodsCnt}></td>
                                         <{/if}>
@@ -183,9 +163,6 @@
                                         <{/if}>
                                         <{if $type=='PLAN'}>
                                         <td class="td100"><{date('Y-m-d',strtotime($v.arrivalTime))}></td>
-                                        <{/if}>
-                                        <{if $type=='PURCHASE_IN' || $type=='USE_OUT'}>
-                                        <td class="td80"><{($v.goodsPrice * $v.goodsCnt )|string_format:"%.2f"}></td>
                                         <{/if}>
                                         <td class="avoid-this">
                                             <{if $v.remark}>
@@ -204,18 +181,9 @@
                                     <thead>
                                     <tr>
                                         <th class="td40 avoid-this">#</th>
-                                        <{if $type=='PURCHASE_IN'}>
-                                        <th class="td90">名称</th>
-                                        <{else}>
                                         <th class="td120">名称</th>
-                                        <{/if}>
-
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT'))}>
-                                        <{if $type=='PURCHASE_IN'}>
-                                        <th class="td50">规格</th>
-                                        <{else}>
                                         <th class="td80">规格</th>
-                                        <{/if}>
                                         <th class="td80">单位</th>
                                         <{else}>
                                         <th class="td150">批次号</th>
@@ -244,9 +212,6 @@
                                         <{/if}>
                                         <{if $type=='PLAN'}>
                                         <th class="td100">计划到货日期</th>
-                                        <{/if}>
-                                        <{if $type=='PURCHASE_IN' || $type=='USE_OUT'}>
-                                        <th class="td80">总额</th>
                                         <{/if}>
                                         <th class="avoid-this">备注</th>
                                     </tr>

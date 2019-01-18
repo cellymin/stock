@@ -31,7 +31,6 @@ if (Common::isPost()) {
         Common::closeWithMessage('表单已失效', 'error', '1200');
     }
 }
-
 //商品
 $rs = $client->request('DepotGoods_Get.Go', array(
     'id' => $id

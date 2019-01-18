@@ -74,4 +74,10 @@ class Domain_Supplier_CURD
 
         return $rs;
     }
+
+
+    public function appGetlist(){
+        $model=new Model_Supplier();
+        return $model->appGetlist();
+    }
 }

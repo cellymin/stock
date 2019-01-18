@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td>库位</td>
-                <td><{html_options name=depotSubId id="depotSubId" required="true" options=$depotSubs_options selected=0}></td>
+                <td><{html_options name=depotSubId id="depotSubId" required="true" options=$depotSubs_options selected=$_GET.depotSubId}></td>
             </tr>
             <tr>
                 <td>数量</td>

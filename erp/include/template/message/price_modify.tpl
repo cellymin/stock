@@ -59,10 +59,12 @@
         });
 
         $("#goodsCateId").change(function () {
+            console.log(12);
             var goodsCateId = $(this).val();
             var id = $("input[name=id]").val();
-
-            location.href = 'price_modify.php?id='+id+'&goodsCateId='+goodsCateId+'&warnPercent='+warnPercent
+            var upPercent = $('#upPercent').val();
+            var downPercent = $('#downPercent').val();
+            location.href = 'price_modify.php?id='+id+'&goodsCateId='+goodsCateId+'&upPercent='+upPercent+'&downPercent='+downPercent
         })
     })
 </script>
