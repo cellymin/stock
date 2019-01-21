@@ -460,14 +460,14 @@ class Report extends Base
         $ids = array_unique($ids);
         if (!empty($ids)) {
             $ids = implode(',', $ids);
-            $ids_where = ' AND og.goodsId in(' . $ids . ')';
+            $ids_where = 'OR og.goodsId in(' . $ids . ')';
         }
         //当前库存量
         $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,gn.unitName
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
-                WHERE og.flag=1 {$ids_where} {$cate_where} {$com_where} {$depot_where} ";
+                WHERE og.flag=1 {$ids_where} {$cate_where} {$com_where} {$depot_where} and og.goodsCnt>0 ";
         foreach ($db->query($sql) as $d) {
             if (!isset($deport[$d['goodsId']])) {
                 $deport[$d['goodsId']]['goodsId'] = $d['goodsId'];
@@ -493,7 +493,7 @@ class Report extends Base
                 foreach ($deport as $g) {
                     $list[$g['goodsId']] = array(
                         'goodsName' => $g['goodsName'],
-                  'goodsSn' => $g['goodsSn'],
+                        'goodsSn' => $g['goodsSn'],
                         'unitName' => $g['unitName'],     //计量单位
                         'last' => array(                  //上月结存
                             'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['count'],
@@ -522,10 +522,10 @@ class Report extends Base
                     );
                     $total['last']['count'] += $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['count'];
                     $total['last']['money'] += $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['money'];
-                    $total['buy']['count'] += $buy[$g['goodsId']]['count'];
-                    $total['buy']['money'] += $buy[$g['goodsId']]['money'];
-                    $total['using']['count'] += $using[$g['goodsId']]['count'];
-                    $total['using']['money'] += $using[$g['goodsId']]['money'];
+                    $total['buy']['count'] += $in[$g['goodsId']]['count'];
+                    $total['buy']['money'] += $in[$g['goodsId']]['money'];
+                    $total['using']['count'] += $out[$g['goodsId']]['count'];
+                    $total['using']['money'] += $out[$g['goodsId']]['money'];
                     $total['transin']['count'] += $idin[$g['goodsId']]['count'];
                     $total['transin']['money'] += $idin[$g['goodsId']]['money'];
                     $total['transout']['count'] += $odout[$g['goodsId']]['count'];
@@ -540,8 +540,8 @@ class Report extends Base
                     $list[$g['goodsId']] = array(
                         'goodsName' => $g['goodsName'],
                         'goodsSn' => $g['goodsSn'],
-                        'unitName'  => $g['unitName'],     //计量单位
-                        'last'      => array(                  //上月结存
+                        'unitName' => $g['unitName'],     //计量单位
+                        'last' => array(                  //上月结存
                             'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'],
                             'money' => $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'],
                         ),
@@ -568,10 +568,10 @@ class Report extends Base
                     );
                     $total['last']['count'] += $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'];
                     $total['last']['money'] += $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'];
-                    $total['buy']['count'] += $buy[$g['goodsId']]['count'];
-                    $total['buy']['money'] += $buy[$g['goodsId']]['money'];
-                    $total['using']['count'] += $using[$g['goodsId']]['count'];
-                    $total['using']['money'] += $using[$g['goodsId']]['money'];
+                    $total['buy']['count'] += $in[$g['goodsId']]['count'];
+                    $total['buy']['money'] += $in[$g['goodsId']]['money'];
+                    $total['using']['count'] += $out[$g['goodsId']]['count'];
+                    $total['using']['money'] += $out[$g['goodsId']]['money'];
                     $total['depot']['count'] += $deport[$g['goodsId']]['count'];
                     $total['depot']['money'] += $deport[$g['goodsId']]['money'];
                 }
@@ -579,42 +579,66 @@ class Report extends Base
         }
         $kpri = array();
         $lionids = array();
-        $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE i.orderId IN (SELECT orderId FROM vich_orders_ip og WHERE og.flag=3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where} ) 
+        $orderids = '';
+        $sql = "SELECT  ip.orderId
+                FROM vich_orders_ip_goods og 
+                LEFT JOIN vich_orders_ip ip ON og.orderId = ip.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND ip.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where} ORDER BY ip.orderId ";
+        foreach ($db->query($sql) as $v) {
+            if ($orderids == '') {
+                $orderids = $v['orderId'];
+            } else {
+                $orderids .= ',' . $v['orderId'];
+            }
+        }
+        if (empty($orderids)) {
+            return array('list' => '', 'total' => 0);
+        }
+        $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE i.orderId IN ($orderids) 
                 AND i.flag=1 AND i.type='1' AND i.adjustamount!='' GROUP BY i.orderId   ORDER BY i.invoiceId ";
+        $reeee = $db->query($sql)->fetchAll();
         foreach ($db->query($sql) as $v) {
             $kk[] = intval($v['invoiceId']);
             $kpri[$v['invoiceId']] = $v['adjustamount'];
         }
         $resids = '';
         $temp = array();
-        $kk = array_unique($kk);// 发票单号 数组
-        foreach ($kk as $k => $v) {
-            $sql = "SELECT ids FROM vich_invoices_adjust WHERE FIND_IN_SET($v,ids) ";
-            $res = $db->query($sql)->fetch();
-            if (!empty($res)) {
-                $tt = explode(',', $res['ids']);
-                if (!in_array($tt, $temp)) {
-                    if (in_array($v, $tt)) {
-                        $lionids[] = $v;
+        if (!empty($kk)) {
+            $kk = array_unique($kk);// 发票单号 数组
+            foreach ($kk as $k => $v) {
+                $sql = "SELECT ids FROM vich_invoices_adjust WHERE FIND_IN_SET($v,ids) ";
+                $res = $db->query($sql)->fetch();
+                if (!empty($res)) {
+                    $tt = explode(',', $res['ids']);
+                    if (!in_array($tt, $temp)) {
+                        if (in_array($v, $tt)) {
+                            $lionids[] = $v;
+                        }
+                    }
+                    $temp[] = $tt;
+                    if (!empty($resids)) {
+                        $resids .= ',' . $res['ids'];
+                    } else {
+                        $resids .= $res['ids'];
                     }
                 }
-                $temp[] = $tt;
-                if (!empty($resids)) {
-                    $resids .= ',' . $res['ids'];
-                } else {
-                    $resids .= $res['ids'];
-                }
             }
+            $resids = explode(',', $resids);
+            $resids = array_unique(array_diff($kk, $resids));
         }
-        $resids = explode(',', $resids);
-        $resids = array_unique(array_diff($kk, $resids));
-        $finalyids = array_merge($lionids, $resids);
+        if (is_array($resids)) {
+            $finalyids = array_merge($lionids, $resids);
+        } else {
+            $finalyids = $lionids;
+        }
         $adjpri = 0;
         if (!empty($finalyids)) {
             foreach ($finalyids as $k => $v) {
-                    $adjpri = $adjpri + floatval($kpri[$v]);
+                $adjpri = $adjpri + floatval($kpri[$v]);
             }
         }
+
         return array('list' => $list, 'total' => $total, 'adjpri' => $adjpri);
     }
 

@@ -97,7 +97,7 @@
 <{include file="footer.tpl" }>
 <script>
     function collectclick(e) {
-        $(e).attr('disabled', "true");//禁用点击
+       // $(e).attr('disabled', "true");//禁用点击
         var _id_arr = [];
         $.each($('input:checkbox:checked'), function () {
             _id_arr.push($(this).val());
@@ -111,16 +111,16 @@
                 $(e).removeAttr("disabled");//解禁按钮
                 return false;
             }else{
-                $(e).removeAttr("disabled");//解禁按钮
+               // $(e).removeAttr("disabled");//解禁按钮
                 var classN = $(e).addClass("layerModel");
                 $(e).click();
             }
         } else {
-            $(e).removeAttr("disabled");//解禁按钮
+          //  $(e).removeAttr("disabled");//解禁按钮
             var classN = $(e).addClass("layerModel");
             $(e).click();
         }
-        $(e).removeAttr("disabled");//解禁按钮
+        //$(e).removeAttr("disabled");//解禁按钮
     }
 
     function getUrlParam(name) {

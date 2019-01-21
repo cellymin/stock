@@ -33,7 +33,6 @@ $rs = $client->request('Supplier_Options.Go', array());
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $suppliers_options = $rs['content'];
 }
-
 $suppliers_options[0] = '全部';
 
 Template::assign('page_html', $page_html);
