@@ -126,4 +126,14 @@ class Model_DepotSub extends PhalApi_Model_NotORM
             ->where('flag=1 and depotSubId=?',$depotSubId)
             ->fetch('depotSubName');
     }
+
+
+    public function appGetForOptions($depotId)
+    {
+        $where = 'flag=1 and depotId=?';
+        return DI()->notorm->depot_subs
+            ->select($this->getFields())
+            ->where($where, $depotId)
+            ->fetchAll();
+    }
 }

@@ -122,4 +122,17 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
             ->where('flag=1 and createCompany=? and depotSubId=? and goodsId=?',array($companyId,$depotSubId,$goodsId
             ))->sum('goodsCnt');
     }
+
+    public function getInfo($goodsid,$depotid){
+//        return 132;
+//        $sql='select goodsPrice,sum(goodsCnt) as sumCnt from vich_depot_goods where goodsId=:goodsId and depotId=:depotId';
+//        $param[':goodsId']=$goodsid;
+//        $param[':depotId']=$depotid;
+//        return $depotid;
+        return DI()->notorm->depot_goods
+            ->select('goodsPrice,sum(goodsCnt) as sumCnt')
+            ->where('goodsId',$goodsid)->where('depotId',$depotid)->fetchAll();
+//        return $this->getORM()->queryAll($sql, $param);
+
+    }
 }

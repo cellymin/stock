@@ -62,8 +62,20 @@ class Api_App_OutDepot extends PhalApi_Api
 
             return $rs;
         }
+
         $domain = new Domain_DepotGoods_CURD();
+        if (is_null($_POST['depotId'])||is_null($goods['goodsId'])){
+            $rs['msg']='请选择仓库';
+            return $rs;
+        }
+
         $depotGoods = $domain->appget($goods['goodsId'], $_POST['depotId']);
+//        $rs['content']=$depotGoods;
+//        return $rs;
+        if (is_null($depotGoods)){
+            $rs['msg']='库存异常';
+            return $rs;
+        }
         if (!is_null($depotGoods[0]['sumCnt'])) {
             if ($depotGoods[0]['sumCnt'] == 0) {
                 $rs['msg'] = '商品库存不足';
