@@ -109,7 +109,7 @@ class Domain_Invoice_CURD
             }
         }
         $invoiceNo = array_unique($invoiceNo);
-        if (count($invoiceNo) > 1) {
+        if (count($invoiceNo) > 1 && $type) {
             throw new PhalApi_Exception_BadRequest('不能操作发票号不一样的发票');
         }
         return $list;

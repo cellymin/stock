@@ -24,7 +24,7 @@ if ($action == 'changeSta') {
 }
 $rs = $client->request('Invoice_Get.Go', array(
     'invoiceId' => $invoiceId,
-    'action' => 2
+    'action' => 3
 ));
 if ($rs['lionid'][1]) {
     $lionid = $rs['lionid'][1];

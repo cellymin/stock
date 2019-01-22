@@ -32,7 +32,7 @@ class Api_Invoice_Get extends PhalApi_Api
         if (!is_array($this->invoiceId)) {
             throw new PhalApi_Exception_BadRequest('参数错误', 0);
         }
-        if ($this->action == 2) {
+        if ($this->action) {
             $domain = new Domain_Invoice_CURD();
             $listIds = $domain->getListInfo($this->invoiceId);
            // return $listIds;
@@ -40,7 +40,11 @@ class Api_Invoice_Get extends PhalApi_Api
                 $resid = explode(',', $listIds[1]);
                 $this->invoiceId = array_unique(array_merge($this->invoiceId, $resid));
             }
-            $list = $domain->get($this->invoiceId);
+            if($this->action==2){
+                $list = $domain->get($this->invoiceId,1);
+            }else{
+                $list = $domain->get($this->invoiceId);
+            }
             if ($list) {
                 $rs['code'] = 1;
                 $rs['content'] = $list;
