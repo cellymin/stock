@@ -27,8 +27,9 @@
                 <td width="80px">商品条码</td>
                 <td width="200px">商品名称</td>
                 <td width="50px">单位</td>
-                <td width="100px">单价(不含税)</td>
+
                 <td width="50px">数量</td>
+                <td width="100px">单价(不含税)</td>
                 <td width="50px">金额</td>
             </tr>
             <{foreach from=$invoiceInfo.invoices key=index item=v}>
@@ -44,8 +45,9 @@
             <td><{$vv.goodsSn}></td>
             <td><{$vv.goodsName}></td>
             <td><{$vv.unitName}></td>
-            <td> <{if $vv.usecostpri >0 }><{$vv.usecostpri}> <{else}> <{$vv.goodsPrice}> <{/if}></td>
             <td class="goodscount"><{$vv.goodsCnt|string_format:"%.2f"}></td>
+            <td> <{if $vv.usecostpri >0 }><{$vv.usecostpri}> <{else}> <{$vv.goodsPrice}> <{/if}></td>
+
             <td class="goodsmon"
                 attrid=" <{if $vv.usecostpri >0 }><{$vv.usecostpri*$vv.goodsCnt}> <{else}>  <{$vv.goodsPrice*$vv.goodsCnt}> <{/if}>">
                 <{if $vv.usecostpri >0 }>
@@ -58,8 +60,9 @@
             <{/foreach}>
             <tr>
                 <td>小计</td>
-                <td colspan="7"></td>
+                <td colspan="6"></td>
                 <td class="totalcount">0</td>
+                <td></td>
                 <td class="totalmon">0</td>
             </tr>
 
