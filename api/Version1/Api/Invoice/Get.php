@@ -34,7 +34,12 @@ class Api_Invoice_Get extends PhalApi_Api
         }
         if ($this->action) {
             $domain = new Domain_Invoice_CURD();
-            $listIds = $domain->getListInfo($this->invoiceId);
+            if($this->action==2){
+                $listIds = $domain->getListInfo($this->invoiceId,1);
+            }else{
+                $listIds = $domain->getListInfo($this->invoiceId);
+            }
+
            // return $listIds;
             if (!empty($listIds[1])) {
                 $resid = explode(',', $listIds[1]);

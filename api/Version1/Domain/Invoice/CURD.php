@@ -118,7 +118,7 @@ class Domain_Invoice_CURD
     /*
      * 获取含有invoiceId 的所有关联发票id
      */
-    public function getListInfo($invoiceId)
+    public function getListInfo($invoiceId,$type=0)
     {
         $model = new Model_Invoice();
         $invoice = array();
@@ -139,7 +139,7 @@ class Domain_Invoice_CURD
         $invoiceids = array_unique($invoiceids);
         $invoicepri = array_unique($invoicepri);
         $trueInvoiceNo = array_unique($trueInvoiceNo);
-        if (count($invoice) > 1 || count($invoiceids) > 1 || count($invoicepri) > 1) { //两张合并发票单
+        if ((count($invoice) > 1 || count($invoiceids) > 1 || count($invoicepri) > 1 )&& $type) { //两张合并发票单
             // return 1;
             throw new PhalApi_Exception_BadRequest('不能操作两张已合并发票');
         }
