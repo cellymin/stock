@@ -28,7 +28,7 @@
     </div>
     <div style="float:left;margin-right:5px">
         <label>查询所有请留空</label>
-        <input type="text" name="keyword" value="<{$_GET.keyword}>" placeholder="输入发票单号,采购入库单号">
+        <input type="text" name="keyword" value="<{$_GET.keyword}>" placeholder="输入,单号,发票号,采购入库单号">
         <input type="hidden" name="search" value="1">
     </div>
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
@@ -64,7 +64,7 @@
                 <tr>
                     <td><input type="checkbox" data-name="invoiceId" value="<{$value.invoiceId}>"></td>
                     <td><{$value.invoiceNo}></td>
-                    <td><{$value.trueInvoiceNo}></td>
+                    <td class="trueinvoiceno"><{$value.trueInvoiceNo}></td>
                     <td><{$value.supplierName}></td>
                     <td><{$value.companyName}></td>
                     <td><{$value.orderNo}></td>
@@ -97,11 +97,18 @@
 <{include file="footer.tpl" }>
 <script>
     function collectclick(e) {
-       // $(e).attr('disabled', "true");//禁用点击
-        var _id_arr = [];
+        var _id_arr = [],invoiceno = [],inno = '';
         $.each($('input:checkbox:checked'), function () {
             _id_arr.push($(this).val());
+            if($(this).parent().parent().find('.trueinvoiceno').text()!=''){
+                invoiceno.push($(this).parent().parent().find('.trueinvoiceno').text());
+            }
         });
+        $.unique(invoiceno);
+        if(invoiceno.length>1){
+            alert("不能操作发票号不同的发票！")
+            return false;
+        }
         //多个选项
         if (_id_arr.length > 1) {
             var supplierId = getUrlParam('supplierId');//供应商id
@@ -111,16 +118,13 @@
                 $(e).removeAttr("disabled");//解禁按钮
                 return false;
             }else{
-               // $(e).removeAttr("disabled");//解禁按钮
                 var classN = $(e).addClass("layerModel");
                 $(e).click();
             }
         } else {
-          //  $(e).removeAttr("disabled");//解禁按钮
             var classN = $(e).addClass("layerModel");
             $(e).click();
         }
-        //$(e).removeAttr("disabled");//解禁按钮
     }
 
     function getUrlParam(name) {

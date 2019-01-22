@@ -19,6 +19,8 @@ if (!empty($invoiceId)) {
                 'trueInvoiceNo' => $trueInvoiceNo,
                 'lionid' => $lionid ? $lionid : 0,
             ));
+//            var_dump($rs);
+//            die();
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');
@@ -36,6 +38,8 @@ if (!empty($invoiceId)) {
         'invoiceId' => trim($invoiceId, ','),
         'action' => 2,
     ));
+//    var_dump($rs);
+//    die();
     if ($rs['lionid']) {
         $lionid = $rs['lionid'][0];
         Template::assign('lionid', $lionid);

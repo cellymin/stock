@@ -49,11 +49,13 @@ class Domain_Invoice_CURD
             'adjustamount' => '',
             'trueInvoiceNo' => '',
         );
-
+        $invoiceNo = array();
         foreach ($invoiceIds as $invoiceId) {
             $invoice = $model->get($invoiceId);
             $user = DI()->userInfo;
-
+            if (!empty($invoice['trueInvoiceNo'])) {
+                $invoiceNo[] = $invoice['trueInvoiceNo'];
+            }
             if ($type && $user['userGroup'] != 1 && $invoice['companyId'] != $user['companyId']) {
                 throw new PhalApi_Exception_BadRequest('没有权限，不能操作其他公司发票');
                 break;
@@ -106,7 +108,10 @@ class Domain_Invoice_CURD
                 break;
             }
         }
-
+        $invoiceNo = array_unique($invoiceNo);
+        if (count($invoiceNo) > 1) {
+            throw new PhalApi_Exception_BadRequest('不能操作发票号不一样的发票');
+        }
         return $list;
     }
 
@@ -135,7 +140,7 @@ class Domain_Invoice_CURD
         $invoicepri = array_unique($invoicepri);
         $trueInvoiceNo = array_unique($trueInvoiceNo);
         if (count($invoice) > 1 || count($invoiceids) > 1 || count($invoicepri) > 1) { //两张合并发票单
-           // return 1;
+            // return 1;
             throw new PhalApi_Exception_BadRequest('不能操作两张已合并发票');
         }
         if (!empty($invoiceids)) {
@@ -183,8 +188,8 @@ class Domain_Invoice_CURD
         $adj = floatval(substr(trim($data['adjustamount']), 1)); //操作的金额
         $trueadj = $data['adjustamount'];
         $trueInvoiceNo = $data['trueInvoiceNo'];
-       // $data['adjustamount'] = '';
-       // $data['trueInvoiceNo'] = '';
+        // $data['adjustamount'] = '';
+        // $data['trueInvoiceNo'] = '';
 
         if (empty($data['invoiceId'])) {
             throw new PhalApi_Exception_BadRequest('没有数据');
@@ -226,6 +231,10 @@ class Domain_Invoice_CURD
             }
             //调整发票关联表
             if (empty($lionid)) {
+                $ifcuntrueno = DI()->notorm->invoices_adjust->select('id')->where('trueInvoiceNo', $trueInvoiceNo)->fetchRow();
+                if (!empty($ifcuntrueno)) {
+                    throw new PhalApi_Exception_BadRequest('发票号已存在');
+                }
                 $invoiceAdj['createtime'] = date('Y-m-d', time());
                 $res = DI()->notorm->invoices_adjust->insert($invoiceAdj);
             } else {
@@ -249,17 +258,19 @@ class Domain_Invoice_CURD
         $rr = $model->getIndoById($invoiceId);
         return $rr;
     }
-    public function  updateVerify($invoiceId){
+
+    public function updateVerify($invoiceId)
+    {
         $model = new Model_Invoice();
         $data['ifverify'] = 1;
-        try{
+        try {
             DI()->notorm->beginTransaction("db_demo");
-            foreach ($invoiceId as $k=>$v){
+            foreach ($invoiceId as $k => $v) {
                 $model->update($v, $data);
             }
             DI()->notorm->commit('db_demo');
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             DI()->notorm->rollback('db_demo');
             if ($e->getCode() == 1) {
                 throw new PhalApi_Exception_BadRequest($e->getMessage(), 0);
