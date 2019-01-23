@@ -467,7 +467,7 @@ class Report extends Base
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
-                WHERE og.flag=1 {$ids_where} {$cate_where} {$com_where} {$depot_where} and og.goodsCnt>0 ";
+                WHERE (og.flag=1 {$cate_where} {$com_where} {$depot_where} and og.goodsCnt>0) {$ids_where}";
         foreach ($db->query($sql) as $d) {
             if (!isset($deport[$d['goodsId']])) {
                 $deport[$d['goodsId']]['goodsId'] = $d['goodsId'];
@@ -579,67 +579,45 @@ class Report extends Base
         }
         $kpri = array();
         $lionids = array();
-        $orderids = '';
-        $sql = "SELECT  ip.orderId
-                FROM vich_orders_ip_goods og 
-                LEFT JOIN vich_orders_ip ip ON og.orderId = ip.orderId
-                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=1 AND ip.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where} ORDER BY ip.orderId ";
+        $lionpri = 0;
+        $inlionids = '';
+//        $sql = "SELECT  ip.orderId
+//                FROM vich_orders_ip_goods og
+//                LEFT JOIN vich_orders_ip ip ON og.orderId = ip.orderId
+//                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+//                WHERE og.flag=1 AND ip.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where} ORDER BY ip.orderId ";
+//        foreach ($db->query($sql) as $v) {
+//            if ($orderids == '') {
+//                $orderids = $v['orderId'];
+//            } else {
+//                $orderids .= ',' . $v['orderId'];
+//            }
+//        }
+//        if (empty($orderids)) {
+//            return array('list' => '', 'total' => 0);
+//        }
+        $sql = "SELECT ids,adjustpri FROM vich_invoices_adjust WHERE createtime >'{$thisMonth}' ";
         foreach ($db->query($sql) as $v) {
-            if ($orderids == '') {
-                $orderids = $v['orderId'];
-            } else {
-                $orderids .= ',' . $v['orderId'];
-            }
-        }
-        if (empty($orderids)) {
-            return array('list' => '', 'total' => 0);
-        }
-        $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE i.orderId IN ($orderids) 
-                AND i.flag=1 AND i.type='1' AND i.adjustamount!='' GROUP BY i.orderId   ORDER BY i.invoiceId ";
-        $reeee = $db->query($sql)->fetchAll();
-        foreach ($db->query($sql) as $v) {
-            $kk[] = intval($v['invoiceId']);
-            $kpri[$v['invoiceId']] = $v['adjustamount'];
-        }
-        $resids = '';
-        $temp = array();
-        if (!empty($kk)) {
-            $kk = array_unique($kk);// 发票单号 数组
-            foreach ($kk as $k => $v) {
-                $sql = "SELECT ids FROM vich_invoices_adjust WHERE FIND_IN_SET($v,ids) ";
-                $res = $db->query($sql)->fetch();
-                if (!empty($res)) {
-                    $tt = explode(',', $res['ids']);
-                    if (!in_array($tt, $temp)) {
-                        if (in_array($v, $tt)) {
-                            $lionids[] = $v;
-                        }
-                    }
-                    $temp[] = $tt;
-                    if (!empty($resids)) {
-                        $resids .= ',' . $res['ids'];
-                    } else {
-                        $resids .= $res['ids'];
-                    }
-                }
-            }
-            $resids = explode(',', $resids);
-            $resids = array_unique(array_diff($kk, $resids));
-        }
-        if (is_array($resids)) {
-            $finalyids = array_merge($lionids, $resids);
-        } else {
-            $finalyids = $lionids;
-        }
-        $adjpri = 0;
-        if (!empty($finalyids)) {
-            foreach ($finalyids as $k => $v) {
-                $adjpri = $adjpri + floatval($kpri[$v]);
-            }
+            $lionpri = $lionpri + floatval($v['adjustpri']);
+            $aa[] = $v['adjustpri'];
+          if($v['ids']){
+              if($inlionids==''){
+                  $inlionids = $v['ids'];
+              }else{
+                  $inlionids .= ','.$v['ids'];
+              }
+          }
         }
 
-        return array('list' => $list, 'total' => $total, 'adjpri' => $adjpri);
+        $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE i.invoiceId NOT IN ($inlionids) 
+                AND i.flag=1 AND i.type='1' AND i.adjustamount!='' AND createtime >'{$thisMonth}' GROUP BY i.orderId   ORDER BY i.invoiceId ";
+        foreach ($db->query($sql) as $v){
+            $aa[] = $v['adjustamount'];
+            if($v['adjustamount']){
+                $lionpri = $lionpri + floatval($v['adjustamount']);
+            }
+        }
+        return array('list' => $list, 'total' => $total, 'adjpri' => $lionpri);
     }
 
     public static function busTotalReport($companyId)
