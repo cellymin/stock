@@ -120,17 +120,26 @@ class Domain_Invoice_CURD
      */
     public function getListInfo($invoiceId,$type=0)
     {
+        $heprinum = 0;
         $model = new Model_Invoice();
         $invoice = array();
         $invoiceids = array();
         foreach ($invoiceId as $k => $v) {
             $res = DI()->notorm->invoices_adjust->select('id,ids,adjustpri,trueInvoiceNo')->where("FIND_IN_SET($v,ids)")->fetchRows();
             if (!empty($res)) {
-                $invoice[] = $res[0]['id'];
+                if( !empty($invoice[0])){
+                    if(!in_array($res[0]['id'],$invoice[0]) ){
+                        $heprinum = floatval($res[0]['adjustpri']) + $heprinum;
+                    }
+                }else{
+                    $heprinum = floatval($res[0]['adjustpri']) + $heprinum;
+                }
+                $invoice[0][] = $res[0]['id'];
                 $invoiceids[] = $res[0]['ids'];
                 $invoicepri[] = $res[0]['adjustpri'];
                 $trueInvoiceNo[] = $res[0]['trueInvoiceNo'];
             }
+            unset($res);
         }
         if (empty($invoice)) {
             return $invoice;
@@ -143,14 +152,20 @@ class Domain_Invoice_CURD
             // return 1;
             throw new PhalApi_Exception_BadRequest('不能操作两张已合并发票');
         }
-        if (!empty($invoiceids)) {
+        if (!empty($invoiceids) && $type) {
             $invoice[1] = $invoiceids[0];//关联发票id
+        }else if(!empty($invoiceids) && !$type){
+            $invoice['invoiceids'] = $invoiceids;
         }
-        if (!empty($invoicepri)) {
+        if (!empty($invoicepri) && $type) {
             $invoice[2] = $invoicepri[0]; //调整金额
+        }else if(!empty($invoicepri) && !$type){
+            $invoice['adjprilist'] = $heprinum;
         }
-        if (!empty($trueInvoiceNo)) {
-            $invoice[3] = $trueInvoiceNo[0]; //合并票号
+        if (!empty($trueInvoiceNo) && $type) {
+            $invoice[3] = $trueInvoiceNo[0]; //调整金额
+        }else if(!empty($trueInvoiceNo) && !$type){
+            $invoice['trueInvoiceNo'] = $trueInvoiceNo;
         }
         return $invoice;
     }
