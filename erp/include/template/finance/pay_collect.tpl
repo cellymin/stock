@@ -9,7 +9,7 @@
                 <td colspan="3"><{$list.supplierName}></td>
             </tr>
             <tr>
-                <td colspan="1">采购发票</td>
+                <td colspan="1">订单号</td>
                 <td colspan="3">
                     <{foreach from=$list.invoices item=i}>
                     <{$i.invoiceNo}> <a>#</a>
@@ -44,7 +44,7 @@
                 </td>
             </tr>
             <tr class="status">
-                <td>预计收票时间</td>
+                <td>收票时间</td>
                 <td>
                     <input type="text" name="endTime" class="time_input" value="<{$list['invoices']['0']['endTime']}>" readonly>
                 </td>
