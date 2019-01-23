@@ -51,9 +51,9 @@ if ($rs['lionid'][1]) {
         }
         Template::assign('adjustpri', $adjustpri);
     }
-}else if($rs['lionid']['departprinum']){
+}else if(is_numeric($rs['lionid']['departprinum'])){
     $adjustpri = $rs['lionid']['departprinum'];
-    if($adjustpri>0){
+    if($adjustpri>=0){
         $adjustpri = '+'.$adjustpri;
     }
     Template::assign('adjustpri', $adjustpri);
