@@ -36,7 +36,7 @@ if ($rs['lionid'][1]) {
     $invoiceId = implode(',', $invoiceId);
     if (!empty($rs['lionid'][2])) {
         $adjustpri = $rs['lionid'][2];
-        if($adjustpri>0){
+        if($adjustpri>=0){
             $adjustpri = '+'.$adjustpri;
         }
         Template::assign('adjustpri', $adjustpri);
@@ -46,7 +46,7 @@ if ($rs['lionid'][1]) {
     $invoiceId = implode(',', $rs['lionid']['inids']);
     if($rs['lionid']['adjprilist']){
         $adjustpri = floatval($rs['lionid']['adjprilist']) + $rs['lionid']['departprinum'];
-        if($adjustpri>0){
+        if($adjustpri>=0){
             $adjustpri = '+'.$adjustpri;
         }
         Template::assign('adjustpri', $adjustpri);
@@ -58,7 +58,6 @@ if ($rs['lionid'][1]) {
     }
     Template::assign('adjustpri', $adjustpri);
 }
-
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $invoiceInfo = $rs['content'];
 } else {
