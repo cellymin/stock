@@ -608,9 +608,11 @@ class Report extends Base
               }
           }
         }
-
-        $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE i.invoiceId NOT IN ($inlionids) 
-                AND i.flag=1 AND i.type='1' AND i.adjustamount!='' AND createtime >'{$thisMonth}' GROUP BY i.orderId   ORDER BY i.invoiceId ";
+		if($inlionids){
+            $idin_where = ' AND i.invoiceId NOT IN ($inlionids) ';
+        }
+        $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE
+                 i.flag=1 AND i.type='1' AND i.adjustamount!='' AND createtime >'{$thisMonth}' {$idin_where} GROUP BY i.orderId   ORDER BY i.invoiceId ";
         foreach ($db->query($sql) as $v){
             $aa[] = $v['adjustamount'];
             if($v['adjustamount']){
