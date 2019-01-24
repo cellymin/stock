@@ -9,7 +9,7 @@
                 <td colspan="3"><{$list.supplierName}></td>
             </tr>
             <tr>
-                <td colspan="1">采购发票</td>
+                <td colspan="1">订单号</td>
                 <td colspan="3">
                     <{foreach from=$list.invoices item=i}>
                     <{$i.invoiceNo}> <a>#</a>
@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td colspan="1">发票号</td>
-                <td colspan="3"> <b><input type="text" name="trueInvoiceNo" style="font-size: 14px;" value="<{$list.trueInvoiceNo}>" /></b></td>
+                <td colspan="3"> <b><input type="text" name="trueInvoiceNo" style="font-size: 14px;" value="<{if $lionidinfo[3]!=''}><{$lionidinfo[3]}><{else}><{$list.trueInvoiceNo}><{/if}>" /></b></td>
             </tr>
             <tr>
                 <td colspan="1">合计金额</td>
@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td colspan="1">调整金额</td>
-                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" value="+<{sprintf('%.2f',$list.adjustamount)}>" /></b></td>
+                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" value="<{if $lionidinfo[2]!=''}><{$lionidinfo[2]}><{else}>+<{sprintf('%.2f',$list.adjustamount)}><{/if}>" /></b></td>
             </tr>
             <tr>
                 <td>财务类型</td>
@@ -44,7 +44,7 @@
                 </td>
             </tr>
             <tr class="status">
-                <td>预计收票时间</td>
+                <td>收票时间</td>
                 <td>
                     <input type="text" name="endTime" class="time_input" value="<{$list['invoices']['0']['endTime']}>" readonly>
                 </td>
@@ -79,6 +79,7 @@
                 <td><input type="hidden" value="<{$invoiceId}>" name="invoiceId">
                 </td>
                 <td>
+                    <input type="hidden" name="lionid" value="<{$lionid}>">
                     <input type="hidden" name="nonceStr" value="<{$nonceStr}>">
                     <button class="btn btn-primary" type="submit">提交</button>
                 </td>

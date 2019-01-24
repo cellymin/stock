@@ -1,26 +1,26 @@
 <?php
 include '../include/init.inc.php';
-$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr =$adjustamount= $trueInvoiceNo="";
+$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr = $adjustamount = $trueInvoiceNo = $lionid = "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $list = array();
-
 if (!empty($invoiceId)) {
     $client = new PhalApiClient();
 
     if (Common::isPost()) {
-//        var_dump($_POST);
-//        die();
         if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
             $rs = $client->request('Invoice_Collect.Go', array(
-                'invoiceId'     => $invoiceId,
-                'invoiceImg'   => $invoiceImgs,
+                'invoiceId' => trim($invoiceId, ','),
+                'invoiceImg' => $invoiceImgs,
                 'invoiceStatus' => $invoiceStatus,
-                'endTime'       => $endTime,
-                'noticeTime'    => $noticeTime,
-                'remark'        => $remark,
+                'endTime' => $endTime,
+                'noticeTime' => $noticeTime,
+                'remark' => $remark,
                 'adjustamount' => $adjustamount,
                 'trueInvoiceNo' => $trueInvoiceNo,
+                'lionid' => $lionid ? $lionid : 0,
             ));
+//            var_dump($rs);
+//            die();
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');
@@ -35,9 +35,16 @@ if (!empty($invoiceId)) {
     }
 
     $rs = $client->request('Invoice_Get.Go', array(
-        'invoiceId' => $invoiceId
+        'invoiceId' => trim($invoiceId, ','),
+        'action' => 2,
     ));
-
+//    var_dump($rs);
+//    die();
+    if ($rs['lionid']) {
+        $lionid = $rs['lionid'][0];
+        Template::assign('lionid', $lionid);
+        Template::assign('lionidinfo', $rs['lionid']);
+    }
     if ($client->getRet() == PhalApiClient::RET_OK) {
         $list = $rs['content'];
     } else {
@@ -46,7 +53,6 @@ if (!empty($invoiceId)) {
 } else {
     Common::closeWithMessage('参数错误', 'error');
 }
-
 
 Template::assign('list', $list);
 Template::assign('invoiceId', $invoiceId);

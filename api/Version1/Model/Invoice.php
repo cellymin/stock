@@ -25,7 +25,7 @@ class Model_Invoice extends PhalApi_Model_NotORM
                 . 'left join vich_orders_so o on o.orderId=i.orderId ';
         }
 
-        $sql .= 'where (i.invoiceNo like :keyword or o.orderNo like :keyword) and i.type=:type ';
+        $sql .= 'where (i.invoiceNo like :keyword or o.orderNo like :keyword or i.trueInvoiceNo like :keyword) and i.type=:type ';
 
         $param[':keyword'] = '%' . $keyword . '%';
         $param[':type'] = $type;
@@ -71,8 +71,10 @@ class Model_Invoice extends PhalApi_Model_NotORM
 
         $sql = 'select i.*,'.$column.',o.orderNo,co.companyName,'
             . '(case i.payStatus when 0 then "未付款" when 1 then "已付款" end) as payFlag, '
-            . '(case i.invoiceStatus when 0 then "未收票" when 1 then "已收票" end) as invoiceFlag '
+            . '(case i.invoiceStatus when 0 then "未收票" when 1 then "已收票" end) as invoiceFlag, '
+            . '(case i.ifverify when 0 then "未对账" when 1 then "已对账" end) as verifyFlag '
             . 'from vich_invoices i ';
+
         if ($type == 1) {
             $sql .= 'left join vich_suppliers s on s.supplierId=i.supplierId '
                 . 'left join vich_orders_ip o on o.orderId=i.orderId ';
@@ -81,7 +83,7 @@ class Model_Invoice extends PhalApi_Model_NotORM
                 . 'left join vich_orders_so o on o.orderId=i.orderId ';
         }
         $sql .= 'left join vich_companys co on co.companyId=i.companyId '
-            . 'where (i.invoiceNo like :keyword or o.orderNo like :keyword) and i.type=:type';
+            . 'where (i.invoiceNo like :keyword or o.orderNo like :keyword or i.trueInvoiceNo like :keyword) and i.type=:type and i.flag=1 ';
 
         $param[':keyword'] = "%" . $keyword . "%";
         $param[':type'] = $type;

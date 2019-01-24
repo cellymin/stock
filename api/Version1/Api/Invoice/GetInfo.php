@@ -17,6 +17,12 @@ class Api_Invoice_GetInfo extends PhalApi_Api
                     'format'  => 'explode',
                     'require' => true
                 ),
+                'lionIds' => array('name' => 'lionIds',
+                    'type'    => 'array',
+                    'format'  => 'explode',
+                    'require' => false
+                ),
+                'lionNo' =>array('name' => 'lionNo','type' => 'string','require' => false)
             )
         );
     }
@@ -39,7 +45,13 @@ class Api_Invoice_GetInfo extends PhalApi_Api
         }
         $orderNo = array();
         foreach ($order as $k=>$v){
-            $orderNo[$v['invoiceId']] = $v['orderNo'];
+            $orderNo[$v['invoiceId']]['ifhe'] = 0;//未合并
+            if(!empty($this->lionIds)){
+                if(in_array($v['invoiceId'],$this->lionIds)){
+                    $orderNo[$v['invoiceId']]['ifhe'] = 1;
+                }
+            }
+            $orderNo[$v['invoiceId']]['orderNo'] = $v['orderNo'];
         }
         if ($list) {
             $rs['code'] = 1;
