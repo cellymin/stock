@@ -29,6 +29,33 @@
             <{/foreach}>
         </select>
     </div>
+    <div style="float:left;margin-right:5px">
+        <label>选择年</label>
+        <select name="year" id="" class="input-xlarge" style="width: 90px;">
+            <option value="0">= 请选择 =</option>
+            <{foreach from=$yarr item=yy}>
+        <option value="<{$yy}>" <{if $_GET.year==$yy}>selected<{else}><{if !$_GET.year && $y==$yy}>selected<{/if}><{/if}> ><{$yy}></option>
+            <{/foreach}>
+        </select>
+    </div>
+    <div style="float:left;margin-right:5px">
+        <label>选择月</label>
+        <select name="month" id="" class="input-xlarge" style="width: 85px;">
+            <option value="0">请选择</option>
+            <option value="01" <{if $_GET.month=='01'}>selected<{else}><{if !$_GET.month && $m=='01'}>selected<{/if}><{/if}> >01</option>
+            <option value="02" <{if $_GET.month=='02'}>selected<{else}><{if !$_GET.month && $m=='02'}>selected<{/if}><{/if}> >02</option>
+            <option value="03" <{if $_GET.month=='03'}>selected<{else}><{if !$_GET.month && $m=='03'}>selected<{/if}><{/if}> >03</option>
+            <option value="04" <{if $_GET.month=='04'}>selected<{else}><{if !$_GET.month && $m=='04'}>selected<{/if}><{/if}> >04</option>
+            <option value="05" <{if $_GET.month=='05'}>selected<{else}><{if !$_GET.month && $m=='05'}>selected<{/if}><{/if}> >05</option>
+            <option value="06" <{if $_GET.month=='06'}>selected<{else}><{if !$_GET.month && $m=='06'}>selected<{/if}><{/if}> >06</option>
+            <option value="07" <{if $_GET.month=='07'}>selected<{else}><{if !$_GET.month && $m=='07'}>selected<{/if}><{/if}>>07</option>
+            <option value="08" <{if $_GET.month=='08'}>selected<{else}><{if !$_GET.month && $m=='08'}>selected<{/if}><{/if}> >08</option>
+            <option value="09" <{if $_GET.month=='09'}>selected<{else}><{if !$_GET.month && $m=='09'}>selected<{/if}><{/if}> >09</option>
+            <option value="10" <{if $_GET.month=='10'}>selected<{else}><{if !$_GET.month && $m=='10'}>selected<{/if}><{/if}> >10</option>
+            <option value="11" <{if $_GET.month=='11'}>selected<{else}><{if !$_GET.month && $m=='11'}>selected<{/if}><{/if}> >11</option>
+            <option value="12" <{if $_GET.month=='12'}>selected<{else}><{if !$_GET.month && $m=='12'}>selected<{/if}><{/if}> >12</option>
+        </select>
+    </div>
 
 
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
