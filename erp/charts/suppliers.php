@@ -26,6 +26,12 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $depots_options[0] = "== 请选择 ==";
 }
 ksort($depots_options);
+if(!$year){
+    $year = date('Y',time());
+}
+if(!$month){
+    $month = date('m',time());
+}
 $list = Report::busReport($cateId,$companyId,$depotId,$year.$month);
 $y = date('Y',time());
 $m = date('m',time());

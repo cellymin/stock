@@ -637,7 +637,7 @@ class Report extends Base
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
-                WHERE (og.flag=1 {$cate_where} {$com_where} {$depot_where} and og.goodsCnt>0) {$ids_where} ";
+                WHERE (og.flag=1 {$cate_where} {$com_where} {$depot_where} and og.goodsCnt>0) {$ids_where} ORDER BY og.createTime DESC";
         foreach ($db->query($sql) as $d) {
             if (!isset($deport[$d['goodsId']])) {
                 $deport[$d['goodsId']]['goodsId'] = $d['goodsId'];
@@ -889,10 +889,12 @@ class Report extends Base
         }
         $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE
                  i.flag=1 AND i.type='1' AND i.adjustamount!='' {$time_whereadj_area} {$idin_where} GROUP BY i.orderId   ORDER BY i.invoiceId ";
-        foreach ($db->query($sql) as $v) {
-            $aa[] = $v['adjustamount'];
-            if ($v['adjustamount']) {
-                $lionpri = $lionpri + floatval($v['adjustamount']);
+        if($db->query($sql)){
+            foreach ($db->query($sql) as $v) {
+                $aa[] = $v['adjustamount'];
+                if ($v['adjustamount']) {
+                    $lionpri = $lionpri + floatval($v['adjustamount']);
+                }
             }
         }
         return array('list' => $list, 'total' => $total, 'adjpri' => $lionpri);
