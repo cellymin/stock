@@ -8,7 +8,7 @@ $selectAll = $_SESSION[UserSession::SESSION_NAME]['selectAll'];
 
 $cates = $company_options = array();
 $client = new PhalApiClient();
-$rs = $client->request('GoodsCate_Options.Go', array('parentId' => 0));
+$rs = $client->request('GoodsCate_GetList.go');
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $cates = $rs['content'];
 }

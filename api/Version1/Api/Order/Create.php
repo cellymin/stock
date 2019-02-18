@@ -9,7 +9,7 @@ class Api_Order_Create extends PhalApi_Api
             throw new PhalApi_Exception_BadRequest('缺少必要参数 type', 0);
         }
 
-        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'ALLOT_IN','PURCHASE_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT');
+        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'ALLOT_IN','PURCHASE_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN');
         if (!in_array($type, $range)) {
             throw new PhalApi_Exception_BadRequest('type 应为 ' . implode('/', $range) . '中的一个', 0);
         }
@@ -18,6 +18,14 @@ class Api_Order_Create extends PhalApi_Api
             return array(
                 'go' => array(
                     'supplierId' => array('name' => 'supplierId', 'type' => 'int', 'min' => 1, 'require' => true),
+                    'remark'=>array('name' => 'remark', 'type' => 'string', 'require' => false),
+                )
+            );
+        }
+        if ($type=='SALE_RETURN'){
+            return array(
+                'go' => array(
+                    'customerId' => array('name' => 'customerId', 'type' => 'int', 'min' => 1, 'require' => true),
                     'remark'=>array('name' => 'remark', 'type' => 'string', 'require' => false),
                 )
             );
@@ -53,6 +61,9 @@ class Api_Order_Create extends PhalApi_Api
 
         if (in_array($type, array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN'))) {
             $input['supplierId'] = $this->supplierId;
+        }
+        if ($type=='SALE_RETURN'){
+            $input['customerId'] = $this->customerId;
         }
         if (in_array($type, array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
             $input['depotId'] = $this->depotId;

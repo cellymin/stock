@@ -10,7 +10,7 @@ if (!defined('ACCESS')) {
 class Report extends Base
 {
     //各部门领用明细表
-    public static function usingReport($companyId, $keyword, $startTime, $endTime, $departmentId, $page_no)
+    public static function usingReport($companyId,$keyword, $startTime, $endTime,$departmentId,$page_no)
     {
         $db = self::__instance();
 
@@ -24,10 +24,14 @@ class Report extends Base
                 left join vich_companys e on e.companyId = oy.createCompany
                 left join vich_goods_units f on f.unitId = goodsUnitId
                 left join vich_orders_oy h on oy.orderId= h.orderId
-                where oy.flag=1 and e.flag=1 and d.flag=1 and f.flag=1 and (g.goodsSn like '%$keyword%' or g.goodsName like '%$keyword%') ";
+                where oy.flag=1 and e.flag=1 and d.flag=1 and f.flag=1 and (g.goodsSn like '%$keyword%' or g.goodsName like '%$keyword%')";
         $bindParam = array();
+        if(!$startTime){
+            $time=date('Y-01-01');
+            $sql .=" and oy.createTime>='$time'";
+        }
         if ($companyId) {
-            $sql .= ' and oy.createCompany=' . $companyId;
+            $sql .= ' and oy.createCompany='.$companyId;
             $bindParam['companyId'] = $companyId;
         }
         if ($startTime) {
@@ -38,12 +42,12 @@ class Report extends Base
             $sql .= " and oy.createTime<='$endTime' ";
             $bindParam['endTime'] = $endTime;
         }
-        if ($departmentId) {
-            $sql .= ' and oy.departmentId=' . $departmentId;
+        if($departmentId){
+            $sql .= ' and oy.departmentId='.$departmentId;
             $bindParam['departmentId'] = $departmentId;
         }
         $count = count($db->query($sql)->fetchAll());
-        if ($count > 0) {
+        if($count>0){
             $row_count = $count;//总条数
             $page_size = 20;
             $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
@@ -60,39 +64,39 @@ class Report extends Base
         $goods = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         //查询所有公司
-        if ($companyId > 0) {
-            $com = $db->select('vich_companys', 'companyId,companyName', array('companyId' => $companyId));
+        if($companyId>0){
+            $com = $db->select('vich_companys', 'companyId,companyName', array('companyId'=>$companyId));
             $comall = $db->select('vich_companys', 'companyId,companyName', array('flag' => 1));
-        } else {
+        }else{
             $com = $db->select('vich_companys', 'companyId,companyName', array('flag' => 1));
         }
 
         //查询所有部门
-        if ($departmentId > 0) {
-            $deps = $db->select('vich_departments', 'departmentId,departmentName', array('departmentId' => $departmentId));
+        if($departmentId>0){
+            $deps = $db->select('vich_departments', 'departmentId,departmentName', array('departmentId'=>$departmentId));
             $depsall = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
-        } else {
+        }else{
             $deps = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
         }
 
         $list = array();
-        if ($comall) {
-            foreach ($comall as $d) {
-                $list['com'][$d['companyId']] = $d['companyName'];
+        if($comall){
+            foreach ($comall as $d){
+                $list['com'][ $d['companyId']]=$d['companyName'];
             }
-        } else if ($com) {
-            foreach ($com as $d) {
-                $list['com'][$d['companyId']] = $d['companyName'];
+        }else if($com){
+            foreach ($com as $d){
+                $list['com'][ $d['companyId']]=$d['companyName'];
             }
         }
 
-        if ($depsall) {
-            foreach ($depsall as $d) {
-                $list['deps'][$d['departmentId']] = $d['departmentName'];
+        if($depsall){
+            foreach ($depsall as $d){
+                $list['deps'][ $d['departmentId']]=$d['departmentName'];
             }
-        } else if ($deps) {
-            foreach ($deps as $d) {
-                $list['deps'][$d['departmentId']] = $d['departmentName'];
+        }else if($deps){
+            foreach ($deps as $d){
+                $list['deps'][ $d['departmentId']]=$d['departmentName'];
             }
         }
         if (!$deps) {
@@ -100,7 +104,7 @@ class Report extends Base
         }
         if (!$goods && !$depsall && !$deps) {
             return array();
-        } else if (!$goods && $depsall) {
+        }else if(!$goods && $depsall){
             return $list;
         }
 
@@ -113,9 +117,8 @@ class Report extends Base
         $list['page_size'] = $page_size;
         return $list;
     }
-
     //各部门领用明细表
-    public static function usingReportold($companyId, $startTime, $endTime, $departmentId)
+    public static function usingReportold($companyId, $startTime, $endTime,$departmentId)
     {
         $db = self::__instance();
 
@@ -139,7 +142,7 @@ class Report extends Base
             $sql .= ' and oy.createTime<=:endTime';
             $bindParam['endTime'] = $endTime;
         }
-        if ($departmentId) {
+        if($departmentId){
             $sql .= ' and oy.departmentId=:departmentId';
             $bindParam['departmentId'] = $departmentId;
         }
@@ -149,21 +152,21 @@ class Report extends Base
         $goods = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         //查询所有部门
-        if ($departmentId > 0) {
-            $deps = $db->select('vich_departments', 'departmentId,departmentName', array('departmentId' => $departmentId));
+        if($departmentId>0){
+            $deps = $db->select('vich_departments', 'departmentId,departmentName', array('departmentId'=>$departmentId));
             $depsall = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
-        } else {
+        }else{
             $deps = $db->select('vich_departments', 'departmentId,departmentName', array('flag' => 1));
         }
 
         $list = array();
-        if ($depsall) {
-            foreach ($depsall as $d) {
-                $list['deps'][$d['departmentId']] = $d['departmentName'];
+        if($depsall){
+            foreach ($depsall as $d){
+                $list['deps'][ $d['departmentId']]=$d['departmentName'];
             }
-        } else if ($deps) {
-            foreach ($deps as $d) {
-                $list['deps'][$d['departmentId']] = $d['departmentName'];
+        }else if($deps){
+            foreach ($deps as $d){
+                $list['deps'][ $d['departmentId']]=$d['departmentName'];
             }
         }
         if (!$deps) {
@@ -171,7 +174,7 @@ class Report extends Base
         }
         if (!$goods && !$depsall) {
             return array();
-        } else if (!$goods && $depsall) {
+        }else if(!$goods && $depsall){
             return $list;
         }
 
@@ -230,7 +233,6 @@ class Report extends Base
 
         return $list;
     }
-
     //领用汇总表
     public static function usingReportTotal($companyId, $startTime, $endTime)
     {
@@ -246,6 +248,10 @@ class Report extends Base
         if ($companyId) {
             $sql .= ' and og.createCompany=:companyId';
             $bindParam['companyId'] = $companyId;
+        }
+        if(!$startTime){
+            $time=date('Y-01-01');
+            $sql .=" and oy.createTime>='$time'";
         }
         if ($startTime) {
             $sql .= ' and og.createTime>=:startTime';
@@ -265,9 +271,9 @@ class Report extends Base
             $cates = array();
             foreach ($db->query($sql) as $item) {
                 $cates[$item['cateId']] = array(
-                    'cateId' => $item['cateId'],
+                    'cateId'   => $item['cateId'],
                     'cateName' => $item['cateName'],
-                    'money' => 0,
+                    'money'    => 0,
                 );
             }
             if (!$cates) {
@@ -280,9 +286,9 @@ class Report extends Base
 
             foreach ($db->query($sql) as $dep) {
                 $arr[$dep['departmentId']] = array(
-                    'departmentId' => $dep['departmentId'],
+                    'departmentId'   => $dep['departmentId'],
                     'departmentName' => $dep['departmentName'],
-                    'goods' => $temp,
+                    'goods'          => $temp,
                 );
 
                 foreach ($row as $v) {
@@ -300,7 +306,7 @@ class Report extends Base
         return array();
     }
 
-    public static function busReport($cateId, $companyId, $depotId)
+    public static function busReport($cateId, $companyId,$depotId)
     {
         $db = self::__instance();
 
@@ -316,8 +322,14 @@ class Report extends Base
         $odout = array();
         $deport = array();
         $ids = array();
-        if ($cateId) {
-            $cate_where = ' AND g.goodsCateId1=' . $cateId;
+        if ($cateId){
+            $sql="SELECT parentId FROM vich_goods_cates WHERE cateId=".$cateId;
+            $parentId=$db->query($sql)->fetch();
+            if ($parentId['parentId']==0){
+                $cate_where = ' AND g.goodsCateId1=' . $cateId;
+            }else{
+                $cate_where = ' AND g.goodsCateId2=' . $cateId;
+            }
         }
         if ($companyId) {
             $com_where = ' AND og.createCompany=' . $companyId;
@@ -326,7 +338,7 @@ class Report extends Base
             $depot_where = ' AND og.depotId=' . $depotId;
         }
         //查询本月入库
-        if (!empty($depotId)) {
+        if(!empty($depotId)){
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_ip_goods og 
                 LEFT JOIN vich_orders_ip ip ON og.orderId = ip.orderId
@@ -338,7 +350,7 @@ class Report extends Base
                 LEFT JOIN vich_orders_iq iq ON og.orderId = iq.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 WHERE og.flag=1 AND iq.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}";
-        } else {
+        }else{
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_ip_goods og 
                 LEFT JOIN vich_orders_ip ip ON og.orderId = ip.orderId
@@ -368,7 +380,7 @@ class Report extends Base
         }
 
         //调拨入库
-        if (!empty($depotId)) {
+        if(!empty($depotId)){
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_id_goods og 
                 LEFT JOIN vich_orders_id id ON og.orderId = id.orderId
@@ -386,7 +398,7 @@ class Report extends Base
         }
 
         //查询本月出库//
-        if (!empty($depotId)) {
+        if(!empty($depotId)){
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_oq_goods og 
                 LEFT JOIN vich_orders_oq oq ON og.orderId = oq.orderId
@@ -404,7 +416,7 @@ class Report extends Base
                 LEFT JOIN vich_orders_so so ON og.orderId = so.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 WHERE og.flag=1 AND so.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where}";
-        } else {
+        }else{
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_od_goods og 
                 LEFT JOIN vich_orders_od od ON og.orderId = od.orderId
@@ -441,7 +453,7 @@ class Report extends Base
         }
 
         //调拨出库
-        if (!empty($depotId)) {
+        if(!empty($depotId)){
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_od_goods og 
                 LEFT JOIN vich_orders_od od ON og.orderId = od.orderId
@@ -457,17 +469,24 @@ class Report extends Base
                 $ids[] = $ot['goodsId'];
             }
         }
+        $sql1 = "SELECT og.goodsId FROM `vich_depot_goods` og
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 {$com_where} {$depot_where} {$cate_where}
+                GROUP BY goodsId HAVING SUM(goodsCnt)>0";
+        foreach ($db->query($sql1) as $ii) {
+            $ids[] = $ii['goodsId'];
+        }
         $ids = array_unique($ids);
-        if (!empty($ids)) {
-            $ids = implode(',', $ids);
-            $ids_where = 'OR og.goodsId in(' . $ids . ')';
+        if(!empty($ids)){
+            $ids = implode(',',$ids);
+            $ids_where = ' AND og.goodsId in(' . $ids.')';
         }
         //当前库存量
-        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,gn.unitName
+        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,gn.unitName,g.goodsSn
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
-                WHERE (og.flag=1 {$cate_where} {$com_where} {$depot_where} and og.goodsCnt>0) {$ids_where}";
+                WHERE og.flag=1 {$ids_where} {$cate_where} {$com_where} {$depot_where} ORDER BY og.id DESC ";
         foreach ($db->query($sql) as $d) {
             if (!isset($deport[$d['goodsId']])) {
                 $deport[$d['goodsId']]['goodsId'] = $d['goodsId'];
@@ -481,29 +500,29 @@ class Report extends Base
         }
         $list = array();
         $total = array(
-            'last' => array('count' => 0, 'money' => 0),
-            'buy' => array('count' => 0, 'money' => 0),
+            'last'  => array('count' => 0, 'money' => 0),
+            'buy'   => array('count' => 0, 'money' => 0),
             'using' => array('count' => 0, 'money' => 0),
             'transin' => array('count' => 0, 'money' => 0),
             'transout' => array('count' => 0, 'money' => 0),
             'depot' => array('count' => 0, 'money' => 0),
         );
-        if (!empty($depotId)) {
+        if(!empty($depotId)){
             if ($deport) {
                 foreach ($deport as $g) {
                     $list[$g['goodsId']] = array(
                         'goodsName' => $g['goodsName'],
                         'goodsSn' => $g['goodsSn'],
-                        'unitName' => $g['unitName'],     //计量单位
-                        'last' => array(                  //上月结存
+                        'unitName'  => $g['unitName'],     //计量单位
+                        'last'      => array(                  //上月结存
                             'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['count'],
                             'money' => $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'] + $odout[$g['goodsId']]['count'] - $idin[$g['goodsId']]['money'],
                         ),
-                        'buy' => array(                  //本月入库
+                        'buy'       => array(                  //本月入库
                             'count' => $in[$g['goodsId']]['count'],
                             'money' => $in[$g['goodsId']]['money'],
                         ),
-                        'using' => array(                  //本月出库
+                        'using'     => array(                  //本月出库
                             'count' => $out[$g['goodsId']]['count'],
                             'money' => $out[$g['goodsId']]['money'],
                         ),
@@ -515,7 +534,7 @@ class Report extends Base
                             'count' => $odout[$g['goodsId']]['count'],
                             'money' => $odout[$g['goodsId']]['money'],
                         ),
-                        'depot' => array(                  //本月结存
+                        'depot'     => array(                  //本月结存
                             'count' => $deport[$g['goodsId']]['count'],
                             'money' => $deport[$g['goodsId']]['money'],
                         ),
@@ -534,22 +553,22 @@ class Report extends Base
                     $total['depot']['money'] += $deport[$g['goodsId']]['money'];
                 }
             }
-        } else {
+        }else{
             if ($deport) {
                 foreach ($deport as $g) {
                     $list[$g['goodsId']] = array(
                         'goodsName' => $g['goodsName'],
                         'goodsSn' => $g['goodsSn'],
-                        'unitName' => $g['unitName'],     //计量单位
-                        'last' => array(                  //上月结存
+                        'unitName'  => $g['unitName'],     //计量单位
+                        'last'      => array(                  //上月结存
                             'count' => $deport[$g['goodsId']]['count'] + $out[$g['goodsId']]['count'] - $in[$g['goodsId']]['count'],
                             'money' => $deport[$g['goodsId']]['money'] + $out[$g['goodsId']]['money'] - $in[$g['goodsId']]['money'],
                         ),
-                        'buy' => array(                  //本月入库
+                        'buy'       => array(                  //本月入库
                             'count' => $in[$g['goodsId']]['count'],
                             'money' => $in[$g['goodsId']]['money'],
                         ),
-                        'using' => array(                  //本月出库
+                        'using'     => array(                  //本月出库
                             'count' => $out[$g['goodsId']]['count'],
                             'money' => $out[$g['goodsId']]['money'],
                         ),
@@ -561,7 +580,7 @@ class Report extends Base
                             'count' => $odout[$g['goodsId']]['count'],
                             'money' => $odout[$g['goodsId']]['money'],
                         ),
-                        'depot' => array(                  //本月结存
+                        'depot'     => array(                  //本月结存
                             'count' => $deport[$g['goodsId']]['count'],
                             'money' => $deport[$g['goodsId']]['money'],
                         ),
@@ -577,49 +596,8 @@ class Report extends Base
                 }
             }
         }
-        $kpri = array();
-        $lionids = array();
-        $lionpri = 0;
-        $inlionids = '';
-//        $sql = "SELECT  ip.orderId
-//                FROM vich_orders_ip_goods og
-//                LEFT JOIN vich_orders_ip ip ON og.orderId = ip.orderId
-//                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-//                WHERE og.flag=1 AND ip.flag = 3 AND og.createTime>='{$thisMonth}' {$cate_where} {$com_where} {$depot_where} ORDER BY ip.orderId ";
-//        foreach ($db->query($sql) as $v) {
-//            if ($orderids == '') {
-//                $orderids = $v['orderId'];
-//            } else {
-//                $orderids .= ',' . $v['orderId'];
-//            }
-//        }
-//        if (empty($orderids)) {
-//            return array('list' => '', 'total' => 0);
-//        }
-        $sql = "SELECT ids,adjustpri FROM vich_invoices_adjust WHERE createtime >'{$thisMonth}' ";
-        foreach ($db->query($sql) as $v) {
-            $lionpri = $lionpri + floatval($v['adjustpri']);
-            $aa[] = $v['adjustpri'];
-          if($v['ids']){
-              if($inlionids==''){
-                  $inlionids = $v['ids'];
-              }else{
-                  $inlionids .= ','.$v['ids'];
-              }
-          }
-        }
-		if($inlionids){
-            $idin_where = ' AND i.invoiceId NOT IN ($inlionids) ';
-        }
-        $sql = "SELECT i.invoiceId,i.adjustamount FROM vich_invoices i WHERE
-                 i.flag=1 AND i.type='1' AND i.adjustamount!='' AND createtime >'{$thisMonth}' {$idin_where} GROUP BY i.orderId   ORDER BY i.invoiceId ";
-        foreach ($db->query($sql) as $v){
-            $aa[] = $v['adjustamount'];
-            if($v['adjustamount']){
-                $lionpri = $lionpri + floatval($v['adjustamount']);
-            }
-        }
-        return array('list' => $list, 'total' => $total, 'adjpri' => $lionpri);
+
+        return array('list'=>$list,'total'=>$total);
     }
 
     public static function busTotalReport($companyId)
@@ -700,14 +678,14 @@ class Report extends Base
                 $deport[$d['goodsCateId1']]['money'] = 0;
                 $cate = self::getCateById($d['goodsCateId1']);
 
-                $deport[$d['goodsCateId1']]['cateName'] = $cate ? $cate['cateName'] : '';
+                $deport[$d['goodsCateId1']]['cateName'] = $cate?$cate['cateName']:'';
             }
             $deport[$d['goodsCateId1']]['money'] += $d['goodsPrice'] * $d['goodsCnt'];
         }
         $list = array();
         $total = array(
-            'last' => array('money' => 0),
-            'buy' => array('money' => 0),
+            'last'  => array('money' => 0),
+            'buy'   => array('money' => 0),
             'using' => array('money' => 0),
             'depot' => array('money' => 0),
         );
@@ -715,16 +693,16 @@ class Report extends Base
             foreach ($deport as $g) {
                 $list[$g['goodsCateId1']] = array(
                     'cateName' => $deport[$g['goodsCateId1']]['cateName'],
-                    'last' => array(
+                    'last'      => array(
                         'money' => $deport[$g['goodsCateId1']]['money'] + $out[$g['goodsCateId1']]['money'] - $in[$g['goodsCateId1']]['money'],
                     ),
-                    'buy' => array(                  //本月购入
+                    'buy'       => array(                  //本月购入
                         'money' => $in[$g['goodsCateId1']]['money'],
                     ),
-                    'using' => array(                  //本月领用
+                    'using'     => array(                  //本月领用
                         'money' => $out[$g['goodsCateId1']]['money'],
                     ),
-                    'depot' => array(                  //本月结存
+                    'depot'     => array(                  //本月结存
                         'money' => $deport[$g['goodsCateId1']]['money'],
                     ),
                 );
@@ -735,14 +713,13 @@ class Report extends Base
             }
         }
 
-        return array('list' => $list, 'total' => $total);
+        return array('list'=>$list,'total'=>$total);
     }
 
-    public static function getCateById($cateId)
-    {
+    public static function getCateById($cateId){
         $db = self::__instance();
-        $row = $db->select('vich_goods_cates', 'cateName', array('cateId' => $cateId));
-        if ($row) {
+        $row = $db->select('vich_goods_cates','cateName',array('cateId'=>$cateId));
+        if($row){
             return $row[0];
         }
         return array();

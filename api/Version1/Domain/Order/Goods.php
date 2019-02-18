@@ -91,36 +91,34 @@ class Domain_Order_Goods
             $model = new Model_DepotGoods();
 
             $goods = $model->get($this->id);
-
             if (!$goods) {
                 throw new PhalApi_Exception_BadRequest('库存商品不存在', 1);
             }
 
-            if ($goods['flag'] != 1) {
+            if ($goods['flag'] != 1 && $this->type!='SALE_RETURN') {
                 throw new PhalApi_Exception_BadRequest('商品库存为0', 1);
             }
 
-            if ($goods['goodsCnt'] < $this->goodsCnt && $this->type != 'INVENTORY') {
+            if ($goods['goodsCnt'] < $this->goodsCnt && $this->type != 'INVENTORY' && $this->type!='SALE_RETURN') {
                 throw new PhalApi_Exception_BadRequest('商品库存不足,库存:' . $goods['goodsCnt'], 1);
             }
-
             //判断重复
             $order_goods_model = new Model_OrderGoods();
             $repeat_goods = $order_goods_model->getRepeatV2($this->orderId, $this->id);
+
             if ($repeat_goods) {
                 throw new PhalApi_Exception_BadRequest('存在重复产品', 1);
             }
 
             $this->goods = $goods;
-
             //重新赋值
-            if($this->type!='SALE_OUT'){
+            if($this->type!='SALE_OUT'||$this->type!='SALE_RETURN'){
                 $this->goodsPrice = $goods['goodsPrice'];
             }
             $this->goodsId = $goods['goodsId'];
             $this->supplierId = $goods['supplierId'];
             $this->depotSubId = $goods['depotSubId'];
-            if($this->type == 'SALE_OUT'){
+            if($this->type == 'SALE_OUT'||$this->type == 'SALE_RETURN'){
                 $this->depotId = $goods['depotId'];
             }
         }
@@ -134,7 +132,7 @@ class Domain_Order_Goods
                 throw new PhalApi_Exception_BadRequest('订单商品不存在', 1);
             }
 
-            if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type=='SALE_OUT') {
+            if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type=='SALE_OUT' || $this->type=='SALE_RETURN') {
                 //出库验证商品库存
                 $depot_goods_model = new Model_DepotGoods();
 
@@ -243,9 +241,7 @@ class Domain_Order_Goods
     public function insert($input)
     {
         $this->chk('add');
-
         $model = new Model_OrderGoods();
-
         //重新赋值
         $input['goodsPrice'] = $this->goodsPrice;
         $input['supplierId'] = $this->supplierId;
@@ -264,17 +260,14 @@ class Domain_Order_Goods
             $input['depotGoodsId'] = $this->id;
             $input['depotSubId'] = $this->depotSubId;
             $input['orderSubNo'] = $this->goods['batchNo'];
-            if($this->type=='SALE_OUT'){
+            if($this->type=='SALE_OUT'||$this->type=='SALE_RETURN'){
                 $input['depotId'] = $this->depotId;
             }
-            if($this->type != 'USE_OUT'){
-                unset($input['supplierId']);
-            }
+            unset($input['supplierId']);
             unset($input['id']);
         }
 
         $input['orderFlag'] = $this->order['flag'];
-
         if ($this->type == 'PURCHASE_IN' || $this->type == 'ALLOT_IN') {
             //入库单商品批次号
             $prefix = $this->type == 'PURCHASE_IN' ? 'PN' : 'AN';

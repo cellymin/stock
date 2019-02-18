@@ -19,7 +19,8 @@ class Api_Order_Review extends PhalApi_Api
             'INVENTORY',
             'OTHER_IN',
             'OTHER_OUT',
-            'SALE_OUT'
+            'SALE_OUT',
+            'SALE_RETURN'
         );
         if (!in_array($type, $range)) {
             throw new PhalApi_Exception_BadRequest('type 应为 ' . implode('/', $range) . '中的一个', 0);

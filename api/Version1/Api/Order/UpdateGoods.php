@@ -20,7 +20,7 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             throw new PhalApi_Exception_BadRequest('缺少必要参数 type', 0);
         }
 
-        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT');
+        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN');
         if (!in_array($type, $range)) {
             throw new PhalApi_Exception_BadRequest('type 应为 ' . implode('/', $range) . '中的一个', 0);
         }
@@ -29,7 +29,7 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             'id'         => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
             'orderId'    => array('name' => 'orderId', 'type' => 'int', 'min' => 0, 'require' => true),
             'goodsPrice' => array('name' => 'goodsPrice', 'type' => 'float', 'min' => 0, 'require' => true),
-            'goodsCnt'   => array('name' => 'goodsCnt', 'type' => 'float', 'min' => 0, 'require' => true),
+            'goodsCnt'   => array('name' => 'goodsCnt', 'type' => 'int', 'min' => 0, 'require' => true),
             'remark'     => array('name' => 'remark', 'type' => 'string', 'require' => false),
         );
 
@@ -62,6 +62,9 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             unset($common_rules['goodsPrice']);
         }
         if($type=='SALE_OUT'){
+            unset($common_rules['goodsId']);
+        }
+        if ($type=='SALE_RETURN'){
             unset($common_rules['goodsId']);
         }
 

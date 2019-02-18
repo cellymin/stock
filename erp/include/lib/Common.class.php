@@ -277,7 +277,8 @@ class Common
             'USE_OUT'     => 'using_deliver_add',   //领用出库单
             'OTHER_OUT'   => 'other_deliver_add',   //其他出库单
             'INVENTORY'   => 'count_order_add',    //盘点单,
-            'SALE_OUT'    => 'add'
+            'SALE_OUT'    => 'add',
+            'SALE_RETURN' => 'return_add'           //销售退货单
         );
         if (array_key_exists($type, $url)) {
             return $url[$type];

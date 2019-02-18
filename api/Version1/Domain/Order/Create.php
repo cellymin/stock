@@ -25,6 +25,14 @@ class Domain_Order_Create
             }
             $input['supplierId'] = $data['supplierId'];
         }
+        if ($this->type == 'SALE_RETURN'){
+            $model = new Model_Customer();
+            $customer = $model->get($data['customerId']);
+            if (!$customer) {
+                throw new PhalApi_Exception_BadRequest('客户不存在', 0);
+            }
+            $input['customerId'] = $data['customerId'];
+        }
         if (in_array($this->type, array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
             $model = new Model_Depot();
             $supplier = $model->getById($data['depotId']);
@@ -51,10 +59,10 @@ class Domain_Order_Create
         $input['createUser'] = DI()->userInfo['userId'];
         $input['remark'] = $data['remark'];
         $input['createTime'] = date('Y-m-d H:i:s');
-
         $model = new Model_Order();
 //        error_log(print_r($input,1));
         $orderId = $model->insert($input);
+
         if ($orderId) {
             $log_model = new Model_LogOrder();
             $log_model->insert(array(
@@ -124,7 +132,8 @@ class Domain_Order_Create
             'USE_OUT'     => 'OY',   //领用出库单
             'OTHER_OUT'   => 'OQ',   //其他出库单
             'INVENTORY'   => 'PD',    //盘点单
-            'SALE_OUT'    => 'SO'    //销售单
+            'SALE_OUT'    => 'SO',   //销售单
+            'SALE_RETURN' => 'SR'    //销售退货单
         );
         return $prefix[$this->type];
     }

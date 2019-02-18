@@ -10,7 +10,7 @@ $page_html = "";
 $client = new PhalApiClient();
 
 $rs = $client->request('Order_GetList.Go', array(
-    'type'      => 'ARRIVAL',
+    'type'      => 'SALE_RETURN',
     'page_no'   => $page_no,
     'page_size' => PAGE_SIZE,
     'keyword'   => $keyword,
@@ -23,17 +23,16 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $status    = $rs['content']['status'];
 
     $list      = $rs['content']['list'];
-    $page_html = Pagination::showPager("arrival_order.php?keyword=$keyword&status=$status", $page_no, $page_size,
+    $page_html = Pagination::showPager("return.php?keyword=$keyword&status=$status", $page_no, $page_size,
         $row_count);
 } else {
     Common::tipWithMessage($client->getMsg(), 'error');
 }
 Template::assign('_GET', $_GET);
-Template::assign('type', 'ARRIVAL');
+Template::assign('type', 'SALE_RETURN');
 Template::assign('list', $list);
-Template::assign('create_url', 'arrival_order_create');
-Template::assign('details_url', 'arrival_order_details');
-Template::assign('delete_url', 'arrival_delete');
-Template::assign('change_url','arrival_order_change');
+Template::assign('create_url', 'return_create');
+Template::assign('details_url', 'return_details');
+Template::assign('delete_url', 'return_delete');
 Template::assign('page_html', $page_html);
 Template::display('order/list.tpl');

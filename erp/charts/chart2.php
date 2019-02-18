@@ -14,7 +14,6 @@ if(Common::isPost()){
 	$total_page=$row_count%$page_size==0?$row_count/$page_size:ceil($row_count/$page_size);
 	$total_page=$total_page<1?1:$total_page;
 	$start = ($page_no - 1) * $page_size;
-
 	$data = Chart::chart2($start, $total_page, $keyword, $depotId, $depotSubId, $companyId);
 	$data[0]['count'] = $row_count;
 	echo json_encode($data);

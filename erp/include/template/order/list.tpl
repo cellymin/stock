@@ -7,6 +7,9 @@
 <{$osadmin_quick_note}>
 <form class="form_search" action="" method="GET" style="margin-bottom:0px">
     <div class="btn-toolbar" style="float:right;padding-top:15px;">
+        <{if ($type=='SALE_OUT' ||$type=='ARRIVAL')}>
+        <a class="btn btn-primary layerModel" action="5" title="生成退货单"></i> 生成退货单</a>
+        <{/if}>
         <{if ($type!='OTHER_IN' && $type!='OTHER_OUT')}>
         <a class="btn btn-primary layerModel" action="1" title="新增订单" layerUrl="<{$create_url}>" layerW="500px"
            layerH="400px" layerT="2"><i class="icon-plus"></i> 新增</a>
@@ -45,7 +48,7 @@
     <a href="#page-stats" class="block-heading" data-toggle="collapse"><{$content_header.menu_name}>列表</a>
     <div id="page-stats" class="block-body collapse in">
         <form action="<{$delete_url}>.php" method="post">
-            <input type="hidden" name="type" value="<{$type}>">
+            <input id="type" type="hidden" name="type" value="<{$type}>">
             <table class="table table-striped" id="data_list">
                 <thead>
                 <tr>
@@ -59,7 +62,7 @@
                     <th>客户</th>
                     <{/if}>
                     <th>操作人员</th>
-                    <th>时间</th>
+                    <th>创建时间</th>
                     <th>备注</th>
                     <th>总额</th>
                     <th>产品总数</th>

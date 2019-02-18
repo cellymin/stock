@@ -34,5 +34,6 @@ Template::assign('list', $list);
 Template::assign('create_url', 'create');
 Template::assign('details_url', 'details');
 Template::assign('delete_url', 'del');
+Template::assign('change_url', 'change.php');
 Template::assign('page_html', $page_html);
 Template::display('order/list.tpl');

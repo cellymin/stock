@@ -18,7 +18,8 @@ class Api_Order_GetGoods extends PhalApi_Api
                         'ALLOT_OUT',
                         'USE_OUT',
                         'INVENTORY',
-                        'SALE_OUT'
+                        'SALE_OUT',
+                        'SALE_RETURN'
                     ),
                     'require' => true
                 ),
