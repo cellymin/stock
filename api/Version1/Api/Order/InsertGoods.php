@@ -35,7 +35,7 @@ class Api_Order_InsertGoods extends PhalApi_Api
             'orderId'    => array('name' => 'orderId', 'type' => 'int', 'min' => 0, 'require' => true),
             'goodsId'    => array('name' => 'goodsId', 'type' => 'int', 'min' => 0, 'require' => true),
             'goodsPrice' => array('name' => 'goodsPrice', 'type' => 'float', 'min' => 0, 'require' => true),
-            'goodsCnt'   => array('name' => 'goodsCnt', 'type' => 'int', 'min' => 0, 'require' => true),
+            'goodsCnt'   => array('name' => 'goodsCnt', 'type' => 'float', 'min' => 0, 'require' => true),
             'remark'     => array('name' => 'remark', 'type' => 'string', 'require' => false),
             'supplierId'     => array('name' => 'supplierId', 'type' => 'int', 'require' => false),
         );
