@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$cateId = $companyId = $depotId = "";
+$cateId = $companyId = $depotId = $year = $month ="";
 extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
@@ -26,8 +26,21 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $depots_options[0] = "== 请选择 ==";
 }
 ksort($depots_options);
-$list = Report::busReport($cateId,$companyId,$depotId);
-
+$list = Report::busReport($cateId,$companyId,$depotId,$year.$month);
+//echo '<pre/>';var_dump($list);
+//die();
+$y = date('Y',time());
+$m = date('m',time());
+Template::assign('y',$y);
+Template::assign('m',$m);
+$yarr = array();
+for($i=10;$i>=0;$i--){
+    $yarr[] = $y-$i ;
+    if($y-$i<=0){
+        breake;
+    }
+}
+Template::assign('yarr',$yarr);
 Template::assign('company_options',$company_options);
 Template::assign('cates',$cates);
 Template::assign('list',$list);
