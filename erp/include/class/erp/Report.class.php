@@ -447,7 +447,7 @@ class Report extends Base
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 WHERE og.flag=1 AND oq.flag = 3  {$time_where_area} {$cate_where} {$com_where} {$depot_where}
                 UNION ALL
-                SELECT og.goodsId,og.goodsPrice,og.goodsCnt   
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_oy_goods og 
                 LEFT JOIN vich_orders_oy oy ON og.orderId = oy.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
