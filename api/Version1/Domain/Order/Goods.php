@@ -112,7 +112,7 @@ class Domain_Order_Goods
 
             $this->goods = $goods;
             //重新赋值
-            if($this->type!='SALE_OUT'||$this->type!='SALE_RETURN'){
+            if($this->type!='SALE_OUT'&&$this->type!='SALE_RETURN'){
                 $this->goodsPrice = $goods['goodsPrice'];
             }
             $this->goodsId = $goods['goodsId'];
@@ -127,12 +127,11 @@ class Domain_Order_Goods
             $goods_model = new Model_OrderGoods();
 
             $goods = $goods_model->getById($this->orderId, $this->id);
-
             if (!$goods) {
                 throw new PhalApi_Exception_BadRequest('订单商品不存在', 1);
             }
 
-            if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type=='SALE_OUT' || $this->type=='SALE_RETURN') {
+            if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type=='SALE_OUT' || $this->type=='RETURN') {
                 //出库验证商品库存
                 $depot_goods_model = new Model_DepotGoods();
 
