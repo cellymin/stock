@@ -6,7 +6,7 @@ class Api_Order_GetList extends PhalApi_Api
     {
         return array(
             'go' => array(
-                'type' => array('name' => 'type', 'type' => 'enum', 'range' => array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY', 'OTHER_IN', 'OTHER_OUT','SALE_OUT','SALE_RETURN'), 'require' => true),
+                'type' => array('name' => 'type', 'type' => 'enum', 'range' => array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY', 'OTHER_IN', 'OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'), 'require' => true),
                 'page_no' => array('name' => 'page_no', 'type' => 'int', 'min' => 1, 'require' => true),
                 'page_size' => array('name' => 'page_size', 'type' => 'int', 'min' => 1, 'require' => true),
                 'keyword' => array('name' => 'keyword', 'type' => 'string', 'default' => '', 'require' => false),

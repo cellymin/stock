@@ -22,8 +22,9 @@ class Api_Order_Change extends PhalApi_Api
                 $saleOrder=DI()->notorm->orders_so->select('customerId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
             }elseif($type=='RETURN'){
                 $saleOrder=DI()->notorm->orders_dh->select('supplierId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
+            }else if($type == 'USE_OUT'){
+                $saleOrder=DI()->notorm->orders_oy->select('supplierId','depotId','totalMoney','totalCnt','flag','orderNo')->where('orderId',$this->orderId)->fetch();
             }
-
             if ($saleOrder['flag']!=3){
                 $rs['msg']='请选择审核通过订单';
                 return $rs;
@@ -106,7 +107,44 @@ class Api_Order_Change extends PhalApi_Api
                 DI()->notorm->commit('db_demo');
                 $rs['code'] = 1;
                 $rs['msg'] = '退货单生成成功';
-
+                return $rs;
+            }else if($type == 'USE_OUT'){
+                //领用退货单
+                $returnOrder=array(
+                    'orderNo'=>'UR'. date('ymdHis') . rand(1000, 9999),
+                    'supplierId' => $saleOrder['supplierId'],
+                    'depotId' => $saleOrder['depotId'],
+                    'totalMoney'=>$saleOrder['totalMoney'],
+                    'totalCnt'=>$saleOrder['totalCnt'],
+                    'flag'=>0,
+                    'createCompany'=>DI()->userInfo['companyId'],
+                    'createUser'=>DI()->userInfo['userId'],
+                    'createTime' => date('Y-m-d H:i:s'),
+                    'contactNo' => $saleOrder['orderNo']
+                );
+                $orderId=DI()->notorm->orders_oyth->insert($returnOrder);
+                $goodsList=DI()->notorm->orders_oy_goods->select('orderSubNo','depotGoodsId','goodsId','depotSubId','depotId'
+                    ,'goodsCnt','goodsPrice')->where('orderId',$this->orderId)->where('flag',1)->fetchAll();
+                foreach($goodsList as $k=>$v){
+                    $returnList[]=$input=array(
+                        'orderId'=>$orderId,
+                        'orderSubNo'=>$v['orderSubNo'],
+                        'depotGoodsId'=>$v['depotGoodsId'],
+                        'goodsId'=>$v['goodsId'],
+                        'depotSubId'=>$v['depotSubId'],
+                        'depotId'=>$v['depotId'],
+                        'goodsCnt'=>$v['goodsCnt'],
+                        'goodsPrice'=>$v['goodsPrice'],
+                        'flag'=>1,
+                        'createCompany'=>DI()->userInfo['companyId'],
+                        'createUser'=>DI()->userInfo['userId'],
+                        'createTime'=>date('Y-m-d H:i:s')
+                    );
+                    DI()->notorm->orders_soth_goods->insert($input);
+                }
+                DI()->notorm->commit('db_demo');
+                $rs['code'] = 1;
+                $rs['msg'] = '退货单生成成功';
                 return $rs;
             }
         }catch (PDOException $e){

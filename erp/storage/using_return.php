@@ -5,15 +5,11 @@ extract($_POST, EXTR_IF_EXISTS);
 $orderId=$orderId[0];
 $client = new PhalApiClient();
 $rs = $client->request('Order_Change.Go', array(
-    'type'      => 'SALE_RETURN',
+    'type'      => 'USE_OUT',
     'orderId'   => $orderId,
 ));
 if ($client->getRet() == PhalApiClient::RET_OK) {
-    Common::exitWithMessage('销售退货单生成成功1', 'sales/index.php');
+    Common::exitWithMessage('领用退货单生成成功', 'sales/index.php');
 }else {
-    Common::exitWithMessage($client->getMsg(),  'sales/index.php');
+    Common::exitWithMessage($client->getMsg(), 'storage/using_deliver.php');
 }
-
-
-
-
