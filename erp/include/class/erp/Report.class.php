@@ -26,6 +26,10 @@ class Report extends Base
                 left join vich_orders_oy h on oy.orderId= h.orderId
                 where oy.flag=1 and e.flag=1 and d.flag=1 and f.flag=1 and (g.goodsSn like '%$keyword%' or g.goodsName like '%$keyword%') ";
         $bindParam = array();
+        if(!$startTime){
+            $time=date('Y-01-01');
+            $sql .=" and oy.createTime>='$time'";
+        }
         if ($companyId) {
             $sql .= ' and oy.createCompany=' . $companyId;
             $bindParam['companyId'] = $companyId;
