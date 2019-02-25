@@ -9,7 +9,7 @@ class Api_Order_Save extends PhalApi_Api
                 'orderId' => array('name' => 'orderId', 'type' => 'int', 'min' => 0, 'require' => true),
                 'reviewer' => array('name' => 'reviewer', 'type' => 'int', 'min' => 0, 'require' => true),
                 'type' => array( 'name' => 'type', 'type' => 'enum',
-                    'range' => array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT'),
+                    'range' => array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN'),
                     'require' => true
                 ),
                 'flag' => array('name' => 'flag', 'type' => 'int', 'min' => 0, 'require' => false),

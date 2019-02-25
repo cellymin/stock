@@ -40,7 +40,6 @@ class Api_Invoice_Get extends PhalApi_Api
             } else {
                 $listIds = $domain->getListInfo($this->invoiceId);
             }
-
             if (!empty($listIds[1])) {
                 $resid = explode(',', $listIds[1]);
                 $this->invoiceId = array_unique(array_merge($this->invoiceId, $resid));
@@ -54,11 +53,11 @@ class Api_Invoice_Get extends PhalApi_Api
                 }
                 if (!empty($resid)) {
                     $resid = explode(',', $resid);//合并调整表中所有id
-                    $departid = array_unique(array_diff($this->invoiceId, $resid));
-                    if ($departid) {
-                        $departpri = DI()->notorm->invoices->select('adjustamount')->where('invoiceId', $departid)->fetchAll();
-                        if ($departpri) {
-                            foreach ($departpri as $v) {
+                    $departid = array_unique(array_diff( $this->invoiceId,$resid));
+                    if($departid){
+                        $departpri = DI()->notorm->invoices->select('adjustamount')->where('invoiceId',$departid)->fetchAll();
+                        if($departpri){
+                            foreach ($departpri as $v){
                                 $departprisum = $departprisum + floatval($v['adjustamount']);
                             }
                         }
@@ -67,10 +66,10 @@ class Api_Invoice_Get extends PhalApi_Api
                     $this->invoiceId = array_unique(array_merge($this->invoiceId, $resid));
                     $listIds['inids'] = $this->invoiceId;
                 }
-            } else { //合并表里没有
+            }else{ //合并表里没有
                 $departpri = DI()->notorm->invoices->select('adjustamount')->where('invoiceId', $this->invoiceId)->fetchAll();
-                if ($departpri) {
-                    foreach ($departpri as $v) {
+                if($departpri){
+                    foreach ($departpri as $v){
                         $departprisum = $departprisum + floatval($v['adjustamount']);
                     }
                 }

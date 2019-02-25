@@ -118,7 +118,7 @@ class Domain_Invoice_CURD
     /*
      * 获取含有invoiceId 的所有关联发票id
      */
-    public function getListInfo($invoiceId, $type = 0)
+    public function getListInfo($invoiceId,$type=0)
     {
         $heprinum = 0;
         $model = new Model_Invoice();
@@ -127,11 +127,11 @@ class Domain_Invoice_CURD
         foreach ($invoiceId as $k => $v) {
             $res = DI()->notorm->invoices_adjust->select('id,ids,adjustpri,trueInvoiceNo')->where("FIND_IN_SET($v,ids)")->fetchRows();
             if (!empty($res)) {
-                if (!empty($invoice[0])) {
-                    if (!in_array($res[0]['id'], $invoice[0])) {
+                if( !empty($invoice[0])){
+                    if(!in_array($res[0]['id'],$invoice[0]) ){
                         $heprinum = floatval($res[0]['adjustpri']) + $heprinum;
                     }
-                } else {
+                }else{
                     $heprinum = floatval($res[0]['adjustpri']) + $heprinum;
                 }
                 $invoice[0][] = $res[0]['id'];
@@ -148,23 +148,23 @@ class Domain_Invoice_CURD
         $invoiceids = array_unique($invoiceids);
         $invoicepri = array_unique($invoicepri);
         $trueInvoiceNo = array_unique($trueInvoiceNo);
-        if ((count($invoice) > 1 || count($invoiceids) > 1 || count($invoicepri) > 1) && $type) { //两张合并发票单
+        if ((count($invoice) > 1 || count($invoiceids) > 1 || count($invoicepri) > 1 )&& $type) { //两张合并发票单
             // return 1;
             throw new PhalApi_Exception_BadRequest('不能操作两张已合并发票');
         }
         if (!empty($invoiceids) && $type) {
             $invoice[1] = $invoiceids[0];//关联发票id
-        } else if (!empty($invoiceids) && !$type) {
+        }else if(!empty($invoiceids) && !$type){
             $invoice['invoiceids'] = $invoiceids;
         }
         if (!empty($invoicepri) && $type) {
             $invoice[2] = $invoicepri[0]; //调整金额
-        } else if (!empty($invoicepri) && !$type) {
+        }else if(!empty($invoicepri) && !$type){
             $invoice['adjprilist'] = $heprinum;
         }
         if (!empty($trueInvoiceNo) && $type) {
             $invoice[3] = $trueInvoiceNo[0]; //调整金额
-        } else if (!empty($trueInvoiceNo) && !$type) {
+        }else if(!empty($trueInvoiceNo) && !$type){
             $invoice['trueInvoiceNo'] = $trueInvoiceNo;
         }
         return $invoice;

@@ -56,13 +56,11 @@ class Domain_Order_Review
         if (!$order) {
             throw new PhalApi_Exception_BadRequest('订单不存在!', 0);
         }
-        if ($order['flag'] != 1) {
+        if ($order['flag'] != 1&&$order['flag'] != 3) {
             throw new PhalApi_Exception_BadRequest('订单状态错误!', 0);
         }
-
         $this->order_model = $order_model;
         $this->order = $order;
-
         if (DI()->userInfo['userGroup'] != 1 && DI()->userInfo['userId'] != $order['reviewer']) {
             throw new PhalApi_Exception_BadRequest('没有权限!', 0);
         }
@@ -89,6 +87,10 @@ class Domain_Order_Review
                 $this->workE();
             }
 
+            if ($this->type == 'SALE_RETURN'){
+                $this->workF();
+            }
+
             if($this->type=='PLAN' && $this->isCopy==1){
                 $this->copyPlan();
             }
@@ -107,6 +109,9 @@ class Domain_Order_Review
             throw new PhalApi_Exception_InternalServerError('异常', 0);
         }
     }
+
+
+
 
     protected function copyPlan(){
         $copy_order_model = new Model_OrderCopy('orders_dh','orderId');
@@ -262,6 +267,9 @@ class Domain_Order_Review
     }
 
 
+
+
+
     /**
      * '盘点单' 审核流程
      * @return mixed
@@ -308,6 +316,29 @@ class Domain_Order_Review
         return $input;
     }
 
+    //
+    protected function workF()
+    {
+
+        //更新审核信息
+        $input['review'] = $this->updateReviewer();
+
+        //订单日志
+        $this->orderLog($input['review']);
+
+        //审核通过
+        if ($this->flag == 3) {
+            //商品退库
+            $input['depot_goods'] = $this->returnDepot();
+
+            //库存日志
+            $this->depotLog(2, $input['depot_goods']);
+
+        }
+
+        //通知 订单创建人
+        return $input;
+    }
 
     /**
      * 当前订单日志
@@ -321,7 +352,7 @@ class Domain_Order_Review
         $num = $log_model->insert(array(
             'logUser'    => DI()->userInfo['userId'],
             'logType'    => strtoupper($this->result),
-            'logContent' => json_encode($logContent),
+            'logContent' => $this->encode_json($logContent),
             'orderId'    => $this->orderId,
             'orderType'  => $this->type,
             'createTime' => date('Y-m-d H:i:s')
@@ -332,6 +363,24 @@ class Domain_Order_Review
 
         $this->orderLog_model = $log_model;
         return $num;
+    }
+
+    // 使用url_encode对字符串进行编码
+    public function url_encode($str){
+        if(is_array($str)){
+            foreach ($str as $k=>$v){
+                $str[urlencode($k)]=$this->url_encode($v);
+            }
+        }else{
+            $str=urlencode($str);
+        }
+        return $str;
+    }
+
+    // 输出json数据不解析中文
+    public function encode_json($str){
+        $result=urldecode(json_encode($this->url_encode($str)));
+        return $result;
     }
 
     /**
@@ -347,8 +396,8 @@ class Domain_Order_Review
         $num = $log_model->insert(array(
             'logUser'    => DI()->userInfo['userId'],
             'logType'    => $type,
-            'logContent' => json_encode($logContent),
-            'depotId'    => ($this->type == 'SALE_OUT') ? 0 : $this->order['depotId'],
+            'logContent' => $this->encode_json($logContent),
+            'depotId'    => ($this->type == 'SALE_OUT'||$this->type == 'SALE_RETURN') ? 0 : $this->order['depotId'],
             'orderId'    => $this->orderId,
             'orderType'  => $this->type,
             'createTime' => date('Y-m-d H:i:s')
@@ -579,7 +628,53 @@ class Domain_Order_Review
                 'id'         => $g['depotGoodsId'],
                 'depotSubId' => $g['depotSubId'],
                 'batchNo'    => $depot_goods['batchNo'],
-                'goodsCnt'   => $g['goodsCnt']
+                'goodsCnt'   => $g['goodsCnt'],
+                'action'     => '审核通过'
+            );
+        }
+
+        return $input;
+    }
+
+//  商品退库
+    protected function returnDepot()
+    {
+        $input = array();
+
+        //订单商品
+        $goods_model = new Model_OrderGoods();
+        $goods = $goods_model->getAll($this->orderId);
+        if (!$goods) {
+            throw new PDOException('订单商品不存在', 1);
+        }
+
+        $depotGoods_model = new Model_DepotGoods();
+
+        foreach ($goods as $g) {
+            $depot_goods = $depotGoods_model->get($g['depotGoodsId']);
+            if (!$depot_goods || $depot_goods['flag'] != 1) {
+                throw new PDOException('库存商品不存在', 1);
+                break;
+            }
+//            if ($depot_goods['goodsCnt'] < $g['goodsCnt']) {
+//                throw new PDOException('库存商品不足,库存：' . $depot_goods['goodsCnt'], 1);
+//                break;
+//            }
+
+            $num = $depotGoods_model->update($g['depotGoodsId'], array(
+                'goodsCnt' => new NotORM_Literal('goodsCnt+' . $g['goodsCnt'])
+            ));
+            if ($num === false) {
+                throw new PDOException('库存更新失败', 1);
+                break;
+            }
+
+            $input[] = array(
+                'id'         => $g['depotGoodsId'],
+                'depotSubId' => $g['depotSubId'],
+                'batchNo'    => $depot_goods['batchNo'],
+                'goodsCnt'   => $g['goodsCnt'],
+                'action'     => '商品退货成功'
             );
         }
 

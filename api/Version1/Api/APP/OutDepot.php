@@ -69,9 +69,10 @@ class Api_App_OutDepot extends PhalApi_Api
             return $rs;
         }
 
-        $depotGoods = $domain->appget($goods['goodsId'], $_POST['depotId']);
+        $depotGoods = $domain->appget(intval($goods['goodsId']), intval($_POST['depotId']));
 //        $rs['content']=$depotGoods;
 //        return $rs;
+
         if (is_null($depotGoods)){
             $rs['msg']='库存异常';
             return $rs;
@@ -79,7 +80,6 @@ class Api_App_OutDepot extends PhalApi_Api
         if (!is_null($depotGoods[0]['sumCnt'])) {
             if ($depotGoods[0]['sumCnt'] == 0) {
                 $rs['msg'] = '商品库存不足';
-
                 return $rs;
             }
         } else {
@@ -91,7 +91,7 @@ class Api_App_OutDepot extends PhalApi_Api
         $rs['code'] = 1;
         $rs['content']['goodsId'] = $goods['goodsId'];
         $rs['content']['goodsName'] = $goods['goodsName'];
-        $rs['content']['goodsPrice'] = $depotGoods[0]['goodsPrice'];
+        $rs['content']['goodsPrice'] = 0;
         $rs['content']['goodsCnt'] = $depotGoods[0]['sumCnt'];
         $rs['msg'] = '获取商品信息成功';
 
@@ -133,13 +133,13 @@ class Api_App_OutDepot extends PhalApi_Api
             if ($postModel['goodsList']) {
 
                 foreach ($postModel['goodsList'] as $k => $v) {
-                    $outputgoods[] = self::getBatchInfo($v['goodsId'], $v['num']);
+                    $outputgoods[] = self::getBatchInfo($v['goodsId'], $v['num'],$input['depotId']);
                     foreach ($outputgoods[$k] as $kk => $vv) {
                         $input = array(
                             'orderId' => $id,
                             'goodsId' => $vv['goodsId'],
                             'supplierId'=>$vv['supplierId'],
-                            'goodsPrice' => $v['goodsPrice'],
+                            'goodsPrice' => $vv['goodsPrice'],
                             'orderSubNo' => $vv['batchNo'],
                             'depotGoodsId' => $vv['depotGoodsId'],
                             'goodsCnt' => $vv['goodsCnt'],
@@ -159,7 +159,7 @@ class Api_App_OutDepot extends PhalApi_Api
                             return $rs;
                         }
                         $totalcnt = floatval($vv['goodsCnt']) + $totalcnt;
-                        $totalmoney = floatval($vv['goodsCnt']) * $v['goodsPrice'] + $totalmoney;
+                        $totalmoney = floatval($vv['goodsCnt']) * $vv['goodsPrice'] + $totalmoney;
 
                         $logId[] = $log_model->insert(array(
                             'logUser'    => intval($_REQUEST['user_id']),
@@ -196,12 +196,12 @@ class Api_App_OutDepot extends PhalApi_Api
 
     }
 
-    public static function getBatchInfo($goodsTd, $goodsCnt)
+    public static function getBatchInfo($goodsTd, $goodsCnt,$depotId)
     {
         $list = DI()->notorm->depot_goods->select('id,batchNo,depotId,depotSubId,supplierId,goodsId,goodsPrice,goodsCnt')->where(
             'goodsId',
             $goodsTd
-        )->where('flag', 1)->where('goodsCnt > ?',0)->fetchAll();
+        )->where('flag', 1)->where('depotId',$depotId)->where('goodsCnt > ?',0)->fetchAll();
         foreach ($list as $k => $v) {
             $v['goodsCnt'] = floatval($v['goodsCnt']);
             $goodsCnt = floatval($goodsCnt);
@@ -212,6 +212,7 @@ class Api_App_OutDepot extends PhalApi_Api
                     'goodsId' => $v['goodsId'],
                     'batchNo' => $v['batchNo'],
                     'depotSubId'=>$v['depotSubId'],
+                    'goodsPrice'=>$v['goodsPrice'],
                     //  'orderId'    => $orderId,
                     'goodsCnt' => $v['goodsCnt'],
                     'depotId' => $v['depotId'],
@@ -227,6 +228,7 @@ class Api_App_OutDepot extends PhalApi_Api
                     'goodsId' => $v['goodsId'],
                     'batchNo' => $v['batchNo'],
                     'depotSubId'=>$v['depotSubId'],
+                    'goodsPrice'=>$v['goodsPrice'],
                     //  'orderId'    => $orderId,
                     'goodsCnt' => $goodsCnt,
                     'depotId' => $v['depotId'],

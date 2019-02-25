@@ -129,10 +129,10 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
 //        $param[':goodsId']=$goodsid;
 //        $param[':depotId']=$depotid;
 //        return $depotid;
+
         return DI()->notorm->depot_goods
-            ->select('goodsPrice,sum(goodsCnt) as sumCnt')
+            ->select('SUM(goodsCnt) as sumCnt')
             ->where('goodsId',$goodsid)->where('depotId',$depotid)->fetchAll();
 //        return $this->getORM()->queryAll($sql, $param);
-
     }
 }

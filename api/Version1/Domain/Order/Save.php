@@ -369,7 +369,8 @@ class Domain_Order_Save
             'USE_OUT'     => '领用出库单',   //领用出库单
             'OTHER_OUT'   => '其他出库单',   //其他出库单
             'INVENTORY'   => '盘点单',    //盘点单,
-            'SALE_OUT'    => '销售单'
+            'SALE_OUT'    => '销售单',
+            'SALE_RETURN' => '销售退货单'
         );
 
         return $prefix[$this->type] . '待审核：单号:' . $orderNo . ',金额:' . $totalMoney . ',时间:' . $createTime;

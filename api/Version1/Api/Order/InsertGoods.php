@@ -26,7 +26,7 @@ class Api_Order_InsertGoods extends PhalApi_Api
             throw new PhalApi_Exception_BadRequest('缺少必要参数 type', 0);
         }
 
-        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT');
+        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN');
         if (!in_array($type, $range)) {
             throw new PhalApi_Exception_BadRequest('type 应为 ' . implode('/', $range) . '中的一个', 0);
         }
@@ -70,6 +70,9 @@ class Api_Order_InsertGoods extends PhalApi_Api
             ),
             'SALE_OUT'=>array(
                 'id' => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
+            ),
+            'SALE_RETURN' =>array(
+                'id' => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
             )
         );
 
@@ -77,7 +80,7 @@ class Api_Order_InsertGoods extends PhalApi_Api
             unset($common_rules['goodsPrice']);
             unset($common_rules['goodsId']);
         }
-        if($type=='SALE_OUT'){
+        if($type=='SALE_OUT'||$type=='SALE_RETURN'){
             unset($common_rules['goodsId']);
         }
 
@@ -94,7 +97,6 @@ class Api_Order_InsertGoods extends PhalApi_Api
     public function go()
     {
         $rs = array('code' => 0, 'id' => '', 'msg' => '');
-
         $domain = new Domain_Order_Goods();
 
         $input = array();
@@ -102,10 +104,8 @@ class Api_Order_InsertGoods extends PhalApi_Api
             $domain->$name = $this->$name;
             $input[$name]  = $this->$name;
         }
-
         $domain->type = $this->type;
         $id = $domain->insert($input);
-
         if ($id === false) {
             $rs['msg'] = '保存失败';
             return $rs;

@@ -12,6 +12,11 @@ class Model_Customer extends PhalApi_Model_NotORM
         return 'customerId';
     }
 
+    public function getFields()
+    {
+        return 'customerId,customerName,customerAddress,customerUserName,supplierUserPhone,customerUserEmail,flag';
+    }
+
     public function delete($id)
     {
         return $this->update($id, array('flag' => '-1'));
@@ -30,6 +35,17 @@ class Model_Customer extends PhalApi_Model_NotORM
 
         return DI()->notorm->customers
             ->select($fields)
+            ->where($where, $param)
+            ->fetch();
+    }
+
+    public function getForOrder($customerId)
+    {
+        $where = 'customerId=? and flag=1';
+        $param[] = $customerId;
+
+        return DI()->notorm->customers
+            ->select($this->getFields())
             ->where($where, $param)
             ->fetch();
     }
