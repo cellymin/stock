@@ -90,7 +90,6 @@ class Api_Order_UpdateGoods extends PhalApi_Api
         }
 
         $domain->type = $this->type;
-
         $id = $domain->update($input);
         if ($id === false) {
             $rs['msg'] = '保存失败';

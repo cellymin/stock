@@ -5,7 +5,7 @@
 <div class="form_div">
     <div style="overflow: hidden" class="avoid-this">
         <button id="orderPrint" class="btn btn-primary" style="float: left;margin-bottom: 20px;" > 打印</button>
-        <a type="button" class="btn btn-primary" onclick="method5('oorder')" style="margin-left: 10px;">导出</a>
+        <a type="button" class="btn btn-primary" onclick="method5('order')" style="margin-left: 10px;">导出</a>
         <{if ($order.flag==0 || $order.flag==-3)}>
         <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="提交审核"
                 layerUrl="<{$toReview}>" layerW="360px" layerH="200px" layerT="2"
@@ -117,9 +117,7 @@
                     <{else}>
                     <th class="td80">数量</th>
                     <{/if}>
-                    <{if $type=='INVENTORY'}>
-                    <th class="td80">库存数量</th>
-                    <{/if}>
+
                     <th class="td90">价格</th>
                     <{if in_array($type,array('ALLOT_OUT','USE_OUT'))}>
                     <th class="td85">部门</th>
@@ -173,9 +171,7 @@
                                         <td class="td100"><{$v.depotSubName}></td>
                                         <{/if}>
                                         <td class="td80"><{$v.goodsCnt}></td>
-                                        <{if $type=='INVENTORY'}>
-                                        <td class="td80"><{$v.depotGoodsCnt}></td>
-                                        <{/if}>
+
                                         <td class="td90"><{$v.goodsPrice}></td>
                                         <{if in_array($type,array('ALLOT_OUT','USE_OUT'))}>
                                         <td class="td85"><{$v.departmentName}></td>

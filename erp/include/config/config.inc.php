@@ -14,7 +14,7 @@ define ( 'TEMPLATE_SYSPLUGINS', ADMIN_BASE_LIB . 'Smarty/sysplugins/' );
 define ( 'TEMPLATE_CONFIGS', ADMIN_BASE . '/config/' );
 define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
-define ( 'VERSION' ,'1.2.2');
+define ( 'VERSION' ,'1.3.1');
 define ( 'REVIEW' ,'1');
 
 
@@ -55,7 +55,7 @@ define('API_SECRECT','API%v1_ERP');
 define ( 'OSA_TABLE_PREFIX' ,'vich_');
 
 //页面设置
-define ( 'DEBUG' ,true);
+define ( 'DEBUG' ,false);
 define ( 'PAGE_SIZE', 15 );
 
 $OSA_TEMPLATES=array(

@@ -12,7 +12,11 @@ $rs = $client->request('Order_Change.Go', array(
 if ($client->getRet() == PhalApiClient::RET_OK) {
     Common::exitWithMessage('采购退货单生成成功', 'purchase/arrival_order.php');
 }else {
+<<<<<<< HEAD
     Common::tipWithMessage($client->getMsg(), 'error');
+=======
+    Common::exitWithMessage('请选择已审核订单', 'purchase/arrival_order.php');
+>>>>>>> master
 }
 
 

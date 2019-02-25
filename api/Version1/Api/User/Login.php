@@ -20,7 +20,6 @@ class Api_User_Login extends PhalApi_Api
         $password=$_POST['password'];
         $rs=array('code'=>0,'data'=>'','msg'=>'');
         $domain=new Domain_User_CURD();
-
         $user_info=$domain->checkPassword($user_name,$password);
         if ($user_info){
             $rs['code']=1;

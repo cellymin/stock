@@ -8,7 +8,11 @@ $selectAll = $_SESSION[UserSession::SESSION_NAME]['selectAll'];
 
 $cates = $company_options = array();
 $client = new PhalApiClient();
+<<<<<<< HEAD
 $rs = $client->request('GoodsCate_GetList.go');
+=======
+$rs =  $client->request('GoodsCate_GetList.go');
+>>>>>>> master
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $cates = $rs['content'];
 }
@@ -26,6 +30,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $depots_options[0] = "== 请选择 ==";
 }
 ksort($depots_options);
+<<<<<<< HEAD
 if(!$year){
     $year = date('Y',time());
 }
@@ -33,6 +38,11 @@ if(!$month){
     $month = date('m',time());
 }
 $list = Report::busReport($cateId,$companyId,$depotId,$year.$month);
+=======
+$list = Report::busReport($cateId,$companyId,$depotId,$year.$month);
+//echo '<pre/>';var_dump($list);
+//die();
+>>>>>>> master
 $y = date('Y',time());
 $m = date('m',time());
 Template::assign('y',$y);

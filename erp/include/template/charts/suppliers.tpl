@@ -9,6 +9,11 @@
     table thead tr td{ text-align: center!important;vertical-align: middle!important;border-right: 1px solid #fff}
     table tbody tr td{ text-align: center!important;vertical-align: middle!important;border-right: 1px solid #eee}
     table tbody tr:last-child{ font-weight: 700;font-size: 14px;color: #000}
+
+                          .ui-datepicker-calendar {
+                              display: none;// 不显示日期面板
+                          }
+
 </style>
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
 
@@ -21,9 +26,10 @@
         <{html_options name=depotId id="depotId" class="input-xlarge" options=$depots_options selected=$_GET.depotId}>
     </div>
     <div style="float:left;margin-right:5px">
-        <label>选择分类</label>
+        <label>选择分类 </label>
         <select name="cateId" id="" class="input-xlarge">
             <option value="0">= 请选择 =</option>
+
             <{foreach from=$cates item=c}>
             <option value="<{$c.cateId}>" <{if $_GET.cateId==$c.cateId}>selected<{/if}>><{$c.cateName}></option>
             <{/foreach}>
@@ -34,7 +40,11 @@
         <select name="year" id="" class="input-xlarge" style="width: 90px;">
             <option value="0">= 请选择 =</option>
             <{foreach from=$yarr item=yy}>
+<<<<<<< HEAD
         <option value="<{$yy}>" <{if $_GET.year==$yy}>selected<{else}><{if !$_GET.year && $y==$yy}>selected<{/if}><{/if}> ><{$yy}></option>
+=======
+            <option value="<{$yy}>" <{if $_GET.year==$yy}>selected<{else}><{if !$_GET.year && $y==$yy}>selected<{/if}><{/if}> ><{$yy}></option>
+>>>>>>> master
             <{/foreach}>
         </select>
     </div>
@@ -56,7 +66,10 @@
             <option value="12" <{if $_GET.month=='12'}>selected<{else}><{if !$_GET.month && $m=='12'}>selected<{/if}><{/if}> >12</option>
         </select>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>

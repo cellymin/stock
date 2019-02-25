@@ -7,7 +7,11 @@
 <{$osadmin_quick_note}>
 <form class="form_search" action="" method="GET" style="margin-bottom:0px">
     <div class="btn-toolbar" style="float:right;padding-top:15px;">
+<<<<<<< HEAD
         <{if ($type=='SALE_OUT' ||$type=='ARRIVAL' ||$type=='USE_OUT')}>
+=======
+        <{if ($type=='SALE_OUT' ||$type=='ARRIVAL')}>
+>>>>>>> master
         <a class="btn btn-primary layerModel" action="5" title="生成退货单"></i> 生成退货单</a>
         <{/if}>
         <{if ($type!='OTHER_IN' && $type!='OTHER_OUT')}>
@@ -66,6 +70,9 @@
                     <th>备注</th>
                     <th>总额</th>
                     <th>产品总数</th>
+                    <{if in_array($type,array('RETURN','SALE_RETURN'))}>
+                    <th>原始订单</th>
+                    <{/if}>
                     <th>状态</th>
                     <th>审核备注</th>
                 </tr>
@@ -87,6 +94,7 @@
                         <td><{$value.remark}></td>
                         <td><{$value.totalMoney}></td>
                         <td><{$value.totalCnt}></td>
+                        <td><{$value.contactNo}></td>
                         <td><{$value.status}></td>
                         <td><{$value.reviewerMemo}></td>
                     </tr>

@@ -47,14 +47,14 @@
             <tr>
                 <td><{$li.departmentName}></td>
                 <{foreach from=$li.goods item=g}>
-                <td><{$g.money}></td>
+                <td><{number_format($g.money,2)}></td>
                 <{/foreach}>
             </tr>
             <{/foreach}>
             <tr>
                 <td>合计</td>
                 <{foreach from=$list.total item=t}>
-                <td><{$t.money}></td>
+                <td><{number_format($t.money,2)}></td>
                 <{/foreach}>
             </tr>
             </tbody>

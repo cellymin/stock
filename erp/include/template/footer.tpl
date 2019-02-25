@@ -10,7 +10,7 @@
 		</div>
     <script src="<{$smarty.const.ADMIN_URL}>/assets/lib/bootstrap/js/bootstrap.js"></script>
 	
-<!--- + -快捷方式的提示 --->
+<!--  快捷方式的提示 -->
 	
 <script type="text/javascript">	
 	
