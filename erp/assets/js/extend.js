@@ -1,5 +1,5 @@
 $(document).on('click', '.layerModel', function () {
-
+    var type= $("input[name='type']").val();
     var action = parseInt($(this).attr('action'));
     var checkboxs = $('#data_list input[type=checkbox]:checked');
     var value = '';
@@ -27,6 +27,24 @@ $(document).on('click', '.layerModel', function () {
             name = $(v).attr('data-name');
             value = value+','+$(v).val();
         });
+    }
+    if (action == 5) {
+        if (checkboxs.length == 0) {
+            layer.msg('请选择操作项', {time: 1500, icon: 5});
+            return false;
+        }
+        if (checkboxs.length > 1) {
+            layer.msg('禁止多选', {time: 1500, icon: 2});
+            return false;
+        }
+        if(type=='ARRIVAL'){
+            $("#data_list").parent().attr('action','arrival_order_change.php');
+        }else if(type=='SALE_OUT'){
+            $("#data_list").parent().attr('action','change.php');
+        }
+
+        $("#data_list").parent().submit();
+        return true;
     }
     if (action != 3) {
         var url = $(this).attr('layerUrl');

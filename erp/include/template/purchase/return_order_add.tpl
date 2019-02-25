@@ -7,7 +7,7 @@
         <table>
             <tbody>
             <tr>
-                <td>商品</td>
+                <td width="100">商品</td>
                 <td><input type="text" value="<{$goods.goodsName}>" readonly></td>
             </tr>
             <tr>
@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td>价格</td>
-                <td><input name="goodsPrice" type="text" required></td>
+                <td><input name="goodsPrice" type="text" value="<{$goods.lastPrice}>" required></td>
             </tr>
             <tr>
                 <td>备注</td>

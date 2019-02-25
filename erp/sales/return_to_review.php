@@ -5,7 +5,6 @@ extract($_REQUEST, EXTR_IF_EXISTS);
 $reviewer_options = array();
 $client = new PhalApiClient();
 
-
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
         if (!empty($orderId)
@@ -18,7 +17,6 @@ if (Common::isPost()) {
                 'orderId'  => $orderId,
                 'reviewer' => $reviewer
             ));
-
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');
@@ -34,7 +32,7 @@ if (Common::isPost()) {
     }
 }
 
-$rs = $client->request('Reviewer_Options.Go', array('type' => 'SALE_OUT'));
+$rs = $client->request('Reviewer_Options.Go', array('type' => 'SALE_RETURN'));
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $reviewer_options = $rs['content'];
 }
@@ -42,7 +40,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 
 Template::assign('reviewer_options', $reviewer_options);
 Template::assign('orderId', $orderId);
-Template::assign('type', 'SALE_OUT');
-Template::assign('url', 'to_review.php');
+Template::assign('type', 'SALE_RETURN');
+Template::assign('url', 'return_to_review.php');
 Template::display('order/toReview.tpl');
 

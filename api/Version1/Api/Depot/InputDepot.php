@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class Api_Depot_InputDepot extends PhalApi_Api
 {

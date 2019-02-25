@@ -3,7 +3,7 @@
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 
 <div class="form_div">
-    <form method="post" action="return_order_modify.php">
+    <form method="post" action="return_modify.php">
         <table>
             <tbody>
             <tr>
@@ -25,7 +25,7 @@
             <tr>
                 <td>
                     <input type="hidden" name="orderId" value="<{$orderId}>">
-                    <input type="hidden" name="id" value="<{$id}>">
+                    <input type="hidden" name="id" value="<{$goods.id}>">
                     <input type="hidden" name="nonceStr" value="<{$nonceStr}>">
                 </td>
                 <td>
@@ -36,4 +36,7 @@
         </table>
     </form>
 </div>
+<script type="text/javascript">
+
+</script>
 

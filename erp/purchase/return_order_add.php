@@ -4,7 +4,6 @@ $goodsId = $orderId = $goodsCnt = $goodsPrice = $arrivalTime = $remark = $nonceS
 extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = $suppliers_options = array();
 $client = new PhalApiClient();
-
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
         $rs = $client->request('Order_InsertGoods.Go', array(
@@ -15,7 +14,6 @@ if (Common::isPost()) {
             'remark'     => $remark,
             'type'       => 'RETURN'
         ));
-
         if ($client->getRet() == PhalApiClient::RET_OK) {
             Common::unsetNonceStr();
             Common::closeWithMessage('保存成功', 'success', '1200', 0);

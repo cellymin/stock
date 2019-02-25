@@ -11,7 +11,7 @@
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
 	<div style="float:left;margin-right:5px">
         <label>关键词</label>
-        <input type="text" name="keyword" id="keyword" placeholder="产品条码/关键词">
+        <input type="text" name="keyword" id="keyword" placeholder="产品货号/产品条码/关键词">
     </div>
     <div style="float:left;margin-right:5px">
         <label>仓库</label>
@@ -47,6 +47,7 @@
 	<table class="table table-striped" id="data_list">
 			<thead>
 			<tr>
+				<th>产品货号</th>
 				<th>产品条码</th>
 				<th>产品名称</th>
 				<th>产品规格</th>
@@ -95,8 +96,9 @@ function _search(keyword, depotId, table, startTime, endTime){
             {
 				html += '<tr>';
                 html += '<td>'+ e[i]['goodsSn'] +'</td>';
+                html += '<td>'+ e[i]['goodsBarCode'] +'</td>';
                 html += '<td>'+ e[i]['goodsName'] +'</td>';
-		html += '<td>'+ e[i]['goodsSpec'] +'</td>';
+				html += '<td>'+ e[i]['goodsSpec'] +'</td>';
                 html += '<td>'+ e[i]['goodsCnt'] +'</td>';
                 html += '<td>'+ e[i]['reviewerTime'] +'</td>';
                 html += '<td>'+ e[i]['orderNo'] +'</td>';

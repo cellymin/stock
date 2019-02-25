@@ -9,9 +9,9 @@
 
 <form class="form_search"  action="" method="GET" style="margin-bottom:0px">
 	<div style="float:left;margin-right:5px">
-        <label>关键词</label>
-        <input type="text" name="keyword" id="keyword" placeholder="产品条码/关键词">
-    </div>
+		<label>关键词</label>
+		<input style="height: 30px" type="text" name="keyword" id="keyword" placeholder="产品货号/产品条码/关键词">
+	</div>
     <div style="float:left;margin-right:5px">
         <label>仓库</label>
         <{html_options name=depotId id="depotId" class="input-xlarge" options=$depots_options selected=$_GET.depotId}>
@@ -25,11 +25,11 @@
     </div>
     <div style="float:left;margin-right:5px">
         <label>日期段</label>
-        <input type="text" name="startTime" id="startTime" class="time_input" readonly value="<{$_GET.startTime}>">
+        <input style="height: 30px" type="text" name="startTime" id="startTime" class="time_input" readonly value="<{$_GET.startTime}>">
     </div>
     <div style="float:left;margin-right:5px">
         <label>至</label>
-        <input type="text" name="endTime" id="endTime" class="time_input" readonly value="<{$_GET.endTime}>">
+        <input style="height: 30px" type="text" name="endTime" id="endTime" class="time_input" readonly value="<{$_GET.endTime}>">
     </div>
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
@@ -44,6 +44,7 @@
 	<table class="table table-striped" id="data_list">
 			<thead>
 			<tr>
+				<th>产品货号</th>
 				<th>产品条码</th>
 				<th>产品名称</th>
 				<th>产品规格</th>
@@ -52,10 +53,10 @@
 				<th>单号</th>
 			</tr>
 			</thead>
-			<tbody id="list">							  
-			
+			<tbody id="list">
+
 			</tbody>
-		</table>						
+		</table>
 	</div>
 </div>
 
@@ -69,11 +70,11 @@ $(function(){
 		var table = $('#table').val();
 		var startTime = $('#startTime').val();
 		var endTime = $('#endTime').val();
-		
-		$('.block-heading').html('<font color="red">报表生成中,请勿刷新页面...</font>')
+
+		// $('.block-heading').html('<font color="red">报表生成中,请勿刷新页面...</font>')
 		$('#list').html('');
 		_search(keyword, depotId, table, startTime, endTime);
-		
+
 		return false;
 	})
 })
@@ -87,30 +88,28 @@ function _search(keyword, depotId, table, startTime, endTime){
 		dataType:"json",
 		success:function(e){
 			var html = '';
-			html += '<tr>';
-			html += '<td>'+ e[0]['goodsName'] +'</td>';
-			html += '<td>'+ e[0]['goodsPrice'] +'元</td>';
-			html += '<td>'+ e[0]['goodsCnt'] +'</td>';
-			html += '<td>'+ e[0]['goodsSpec'] +'</td>';
-			html += '<td>'+ e[0]['reviewerTime'] +'</td>';
-			html += '<td>'+ e[0]['orderNo'] +'</td>';
-			html += '</tr>';
-			$('#list').append(html);
-			if(e[0].count==0){
-				$('.block-heading').html('报表');
-				$('#list').html('');
-				alert('暂无数据');
-				return false;
+			var i;
+			for (i in e){
+                html += '<tr>';
+                html += '<td>'+ e[i]['goodsSn'] +'</td>';
+                html += '<td>'+ e[i]['goodsBarCode'] +'</td>';
+                html += '<td>'+ e[i]['goodsName'] +'</td>';
+                html += '<td>'+ e[i]['goodsSpec'] +'</td>';
+                html += '<td>'+ e[i]['goodsCnt'] +'</td>';
+                html += '<td>'+ e[i]['reviewerTime'] +'</td>';
+                html += '<td>'+ e[i]['orderNo'] +'</td>';
+                html += '</tr>';
 			}
-			page ++;
-			if(page<=e[0]['count']){
-				setTimeout(function(){
-					_search(keyword, depotsId, table, startTime, endTime)
-				},200)
-			}else{
-				$('.block-heading').html('报表');
-				alert('报表生成成功')
-			}
+
+            $('#list').append(html);
+            if(e[0].count==0){
+                $('.block-heading').html('报表');
+                $('#list').html('');
+                alert('暂无数据');
+                return false;
+            }
+            $('.block-heading').html('报表');
+            alert('报表生成成功')
 		}
 	});
 	return false;

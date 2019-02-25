@@ -26,7 +26,7 @@
 			
 		<{/foreach}>
 </div>
-	 <!--- 以上为左侧菜单栏 sidebar --->
+	 <!-- 以上为左侧菜单栏 sidebar -->
 <{if $sidebarStatus=='yes' }>
 <div id="content" class="content">
 <{else}>

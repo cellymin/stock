@@ -9,8 +9,8 @@ return array(
      * 应用接口层的统一参数
      */
     'apiCommonRules'     => array(
-        'sign' => array('name' => 'sign', 'require' => true),
-        'user' => array('name' => 'user', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => ''),
+//        'sign' => array('name' => 'sign', 'require' => true),
+//        'user' => array('name' => 'user', 'type' => 'int', 'min' => 1, 'require' => true, 'desc' => ''),
     ),
 
     /**

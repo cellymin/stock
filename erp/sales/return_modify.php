@@ -1,8 +1,8 @@
 <?php
 include '../include/init.inc.php';
-$id = $orderId = $goodsCnt = $remark = $nonceStr = $method = $goodsPrice = "";
+$id = $orderId = $goodsCnt = $goodsPrice = $arrivalTime = $remark = $nonceStr = "";
 extract($_REQUEST, EXTR_IF_EXISTS);
-$goods  = array();
+$goods = array();
 $client = new PhalApiClient();
 
 if (Common::isPost()) {
@@ -13,7 +13,7 @@ if (Common::isPost()) {
             'goodsCnt'   => $goodsCnt,
             'goodsPrice' => $goodsPrice,
             'remark'     => $remark,
-            'type'       => 'SALE_OUT'
+            'type'       => 'SALE_RETURN'
         ));
 
         if ($client->getRet() == PhalApiClient::RET_OK) {
@@ -33,15 +33,13 @@ if (Common::isPost()) {
 $rs = $client->request('Order_GetGoods.Go', array(
     'orderId' => $orderId,
     'id'      => $id,
-    'type'    => 'SALE_OUT'
+    'type'    => 'SALE_RETURN'
 ));
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods = $rs['content'];
 }
 
-
-
 Template::assign('goods', $goods);
 Template::assign('orderId', $orderId);
 Template::assign('id', $id);
-Template::display('sales/modify.tpl');
+Template::display('sales/return_modify.tpl');

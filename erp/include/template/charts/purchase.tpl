@@ -67,7 +67,7 @@
                     <td class="goodscnt"><{$ee.goodsCnt}></td>
                     <td><{$ee.unitName}></td>
                     <td><{$ee.createTime}></td>
-                    <td class="total"><{$ee.goodsPrice * $ee.goodsCnt}></td>
+                    <td class="total"><{number_format($ee.goodsPrice * $ee.goodsCnt,2)}></td>
                 </tr>
                 <{/foreach}>
             <tr><td>合计</td>
@@ -107,10 +107,10 @@
         $('.totalcnt').text(goodscnt.toFixed(4));
         $('.total').each(function () {
             tt = parseFloat($(this).text());
-            $(this).text(tt.toFixed(4));
+            $(this).text(tt.toFixed(2));
             goodstotal = goodstotal + tt;
         });
-        $('.totalall').text(goodstotal.toFixed(4));
+        $('.totalall').text(goodstotal.toFixed(2));
     });
 
 

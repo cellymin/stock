@@ -17,18 +17,34 @@
         <table>
             <tr>
                 <{if $type==1}>
-                <td width="40%" >供应商</td>
-                <td>
-                    <{if $isgai==1 }>
-                    <select id="selectInput" name="supplierId">
-                        <{foreach from=$suppliers_options item=v key=k}>
-                        <option value="<{$v.name}>" dd="<{$v.pinyin}>" es="<{$v.jianxie}>" ss="<{$k}>"><{$v.name}></option>
-                        <{/foreach}>
-                    </select>
-                    <{else}>
-                    <{html_options name=supplierId id="DropDownTimezone" options=$suppliers_options selected=0}>
+                    <{if $role==1}>
+                    <td width="40%" >客户</td>
+                    <td>
+                        <{if $isgai==1 }>
+                        <select id="selectInput" name="supplierId">
+                            <{foreach from=$customers_options item=v key=k}>
+                            <option value="<{$v.name}>" dd="<{$v.pinyin}>" es="<{$v.jianxie}>" ss="<{$k}>"><{$v.name}></option>
+                            <{/foreach}>
+                        </select>
+                        <{else}>
+                        <{html_options name=customerId id="DropDownTimezone" options=$customers_options selected=0}>
                         <{/if}>
-                </td>
+                    </td>
+                    <{else}>
+                    <td width="40%" >供应商</td>
+                    <td>
+                        <{if $isgai==1 }>
+                        <select id="selectInput" name="supplierId">
+                            <{foreach from=$suppliers_options item=v key=k}>
+                            <option value="<{$v.name}>" dd="<{$v.pinyin}>" es="<{$v.jianxie}>" ss="<{$k}>"><{$v.name}></option>
+                            <{/foreach}>
+                        </select>
+                        <{else}>
+                        <{html_options name=supplierId id="DropDownTimezone" options=$suppliers_options selected=0}>
+                        <{/if}>
+                    </td>
+                    <{/if}>
+
                 <{elseif $type==2}>
                 <td width="40%" >仓库</td>
                 <td><{html_options name=depotId id="DropDownTimezone" options=$depots_options selected=0}></td>
