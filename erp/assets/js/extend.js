@@ -41,11 +41,9 @@ $(document).on('click', '.layerModel', function () {
             $("#data_list").parent().attr('action','arrival_order_change.php');
         }else if(type=='SALE_OUT'){
             $("#data_list").parent().attr('action','change.php');
-<<<<<<< HEAD
+
         }else if(type == 'USE_OUT'){
             $("#data_list").parent().attr('action','using_return.php');
-=======
->>>>>>> master
         }
 
         $("#data_list").parent().submit();
