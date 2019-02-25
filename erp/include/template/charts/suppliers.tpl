@@ -40,11 +40,7 @@
         <select name="year" id="" class="input-xlarge" style="width: 90px;">
             <option value="0">= 请选择 =</option>
             <{foreach from=$yarr item=yy}>
-<<<<<<< HEAD
         <option value="<{$yy}>" <{if $_GET.year==$yy}>selected<{else}><{if !$_GET.year && $y==$yy}>selected<{/if}><{/if}> ><{$yy}></option>
-=======
-            <option value="<{$yy}>" <{if $_GET.year==$yy}>selected<{else}><{if !$_GET.year && $y==$yy}>selected<{/if}><{/if}> ><{$yy}></option>
->>>>>>> master
             <{/foreach}>
         </select>
     </div>
@@ -66,10 +62,6 @@
             <option value="12" <{if $_GET.month=='12'}>selected<{else}><{if !$_GET.month && $m=='12'}>selected<{/if}><{/if}> >12</option>
         </select>
     </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>

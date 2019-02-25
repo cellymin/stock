@@ -309,10 +309,8 @@ class Report extends Base
     public static function busReport($cateId, $companyId, $depotId, $date)
     {
         $db = self::__instance();
-
         $starttime = substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-01 00:00:00';
         $endtime = date('Y-m-d', strtotime('+1 month -1 days', strtotime(substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-01 0:0:0'))) . ' 23:59:59';
-
         $thisMonth = date('Y-m-d', time());
         if (strtotime($thisMonth) >= strtotime($endtime)) {
             //当前时间大于查询月月末 即查询的非本月
