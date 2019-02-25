@@ -2,7 +2,6 @@
 include '../include/init.inc.php';
 $keyword = $status = $page_no = "";
 extract($_GET, EXTR_IF_EXISTS);
-
 $page_no   = $page_no ? $page_no : 1;
 $list      = array();
 $page_html = "";

@@ -7,11 +7,7 @@
 <{$osadmin_quick_note}>
 <form class="form_search" action="" method="GET" style="margin-bottom:0px">
     <div class="btn-toolbar" style="float:right;padding-top:15px;">
-<<<<<<< HEAD
         <{if ($type=='SALE_OUT' ||$type=='ARRIVAL' ||$type=='USE_OUT')}>
-=======
-        <{if ($type=='SALE_OUT' ||$type=='ARRIVAL')}>
->>>>>>> master
         <a class="btn btn-primary layerModel" action="5" title="生成退货单"></i> 生成退货单</a>
         <{/if}>
         <{if ($type!='OTHER_IN' && $type!='OTHER_OUT')}>

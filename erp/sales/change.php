@@ -9,7 +9,6 @@ $rs = $client->request('Order_Change.Go', array(
     'orderId'   => $orderId,
 ));
 if ($client->getRet() == PhalApiClient::RET_OK) {
-
     Common::exitWithMessage('销售退货单生成成功', 'sales/index.php');
 }else {
     Common::exitWithMessage('请选择已审核订单', 'sales/index.php');

@@ -19,20 +19,12 @@ class Api_Order_Change extends PhalApi_Api
             DI()->notorm->beginTransaction('db_demo');
             $type=$this->type;
             if ($type=='SALE_RETURN'){
-<<<<<<< HEAD
                 $saleOrder=DI()->notorm->orders_so->select('customerId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
             }elseif($type=='RETURN'){
                 $saleOrder=DI()->notorm->orders_dh->select('supplierId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
             }else if($type == 'USE_OUT'){
                 $saleOrder=DI()->notorm->orders_oy->select('supplierId','depotId','totalMoney','totalCnt','flag','orderNo')->where('orderId',$this->orderId)->fetch();
             }
-=======
-                $saleOrder=DI()->notorm->orders_so->select('orderNo','customerId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
-            }elseif($type=='RETURN'){
-                $saleOrder=DI()->notorm->orders_dh->select('orderNo','supplierId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
-            }
-
->>>>>>> master
             if ($saleOrder['flag']!=3){
                 $rs['msg']='请选择审核通过订单';
                 return $rs;
@@ -45,10 +37,7 @@ class Api_Order_Change extends PhalApi_Api
                     'totalCnt'=>$saleOrder['totalCnt'],
                     'flag'=>0,
                     'createCompany'=>DI()->userInfo['companyId'],
-<<<<<<< HEAD
-=======
                     'contactNo'=>$saleOrder['orderNo'],
->>>>>>> master
                     'createUser'=>DI()->userInfo['userId'],
                     'createTime' => date('Y-m-d H:i:s')
                 );
@@ -85,10 +74,7 @@ class Api_Order_Change extends PhalApi_Api
                     'totalCnt' => $saleOrder['totalCnt'],
                     'flag' => 0,
                     'createCompany' => DI()->userInfo['companyId'],
-<<<<<<< HEAD
-=======
                     'contactNo'=>$saleOrder['orderNo'],
->>>>>>> master
                     'createUser' => DI()->userInfo['userId'],
                     'createTime' => date('Y-m-d H:i:s')
                 );
@@ -123,7 +109,6 @@ class Api_Order_Change extends PhalApi_Api
                 DI()->notorm->commit('db_demo');
                 $rs['code'] = 1;
                 $rs['msg'] = '退货单生成成功';
-<<<<<<< HEAD
                 return $rs;
             }else if($type == 'USE_OUT'){
                 //领用退货单
@@ -162,9 +147,6 @@ class Api_Order_Change extends PhalApi_Api
                 DI()->notorm->commit('db_demo');
                 $rs['code'] = 1;
                 $rs['msg'] = '退货单生成成功';
-=======
-
->>>>>>> master
                 return $rs;
             }
         }catch (PDOException $e){
