@@ -16,8 +16,6 @@ $rs = $client->request('Order_GetList.Go', array(
     'keyword'   => $keyword,
     'status'    => $status
 ));
-echo '<pre/>';var_dump($rs);
-die();
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $page_no   = $rs['content']['page_no'];
     $page_size = $rs['content']['page_size'];
@@ -25,16 +23,16 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $status    = $rs['content']['status'];
 
     $list      = $rs['content']['list'];
-    $page_html = Pagination::showPager("using_deliver.php?keyword=$keyword&status=$status", $page_no, $page_size,
+    $page_html = Pagination::showPager("return.php?keyword=$keyword&status=$status", $page_no, $page_size,
         $row_count);
 } else {
     Common::tipWithMessage($client->getMsg(), 'error');
 }
 Template::assign('_GET', $_GET);
-Template::assign('type', 'USE_OUT');
+Template::assign('type', 'USE_RETURN');
 Template::assign('list', $list);
-Template::assign('create_url', 'using_deliver_create');
-Template::assign('details_url', 'using_deliver_details');
-Template::assign('delete_url', 'oy_delete');
+Template::assign('create_url', 'return_create');
+Template::assign('details_url', 'return_details');
+Template::assign('delete_url', 'return_delete');
 Template::assign('page_html', $page_html);
 Template::display('order/list.tpl');

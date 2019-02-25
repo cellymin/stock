@@ -19,9 +19,9 @@ class Api_Order_Change extends PhalApi_Api
             DI()->notorm->beginTransaction('db_demo');
             $type=$this->type;
             if ($type=='SALE_RETURN'){
-                $saleOrder=DI()->notorm->orders_so->select('customerId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
+                $saleOrder=DI()->notorm->orders_so->select('customerId','orderNo','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
             }elseif($type=='RETURN'){
-                $saleOrder=DI()->notorm->orders_dh->select('supplierId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
+                $saleOrder=DI()->notorm->orders_dh->select('supplierId','totalMoney','totalCnt','flag','orderNo')->where('orderId',$this->orderId)->fetch();
             }else if($type == 'USE_OUT'){
                 $saleOrder=DI()->notorm->orders_oy->select('supplierId','depotId','totalMoney','totalCnt','flag','orderNo')->where('orderId',$this->orderId)->fetch();
             }
@@ -61,6 +61,7 @@ class Api_Order_Change extends PhalApi_Api
                     );
                     DI()->notorm->orders_soth_goods->insert($input);
                 }
+
                 DI()->notorm->commit('db_demo');
                 $rs['code'] = 1;
                 $rs['msg'] = '退货单生成成功';

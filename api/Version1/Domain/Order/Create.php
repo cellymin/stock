@@ -33,7 +33,7 @@ class Domain_Order_Create
             }
             $input['customerId'] = $data['customerId'];
         }
-        if (in_array($this->type, array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
+        if (in_array($this->type, array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','USE_RETURN'))) {
             $model = new Model_Depot();
             $supplier = $model->getById($data['depotId']);
             if (!$supplier) {

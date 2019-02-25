@@ -9,7 +9,7 @@ class Api_Order_Create extends PhalApi_Api
             throw new PhalApi_Exception_BadRequest('缺少必要参数 type', 0);
         }
 
-        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'ALLOT_IN','PURCHASE_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN');
+        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'ALLOT_IN','PURCHASE_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','USE_RETURN');
         if (!in_array($type, $range)) {
             throw new PhalApi_Exception_BadRequest('type 应为 ' . implode('/', $range) . '中的一个', 0);
         }
@@ -65,7 +65,7 @@ class Api_Order_Create extends PhalApi_Api
         if ($type=='SALE_RETURN'){
             $input['customerId'] = $this->customerId;
         }
-        if (in_array($type, array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
+        if (in_array($type, array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','USE_RETURN'))) {
             $input['depotId'] = $this->depotId;
         }
         if ($type == 'SALE_OUT') {
