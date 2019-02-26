@@ -25,6 +25,7 @@ class Api_Order_Change extends PhalApi_Api
             }else if($type == 'USE_OUT'){
                 $saleOrder=DI()->notorm->orders_oy->select('supplierId','depotId','totalMoney','totalCnt','flag','orderNo')->where('orderId',$this->orderId)->fetch();
             }
+
             if ($saleOrder['flag']!=3){
                 $rs['msg']='请选择审核通过订单';
                 return $rs;
@@ -114,7 +115,7 @@ class Api_Order_Change extends PhalApi_Api
             }else if($type == 'USE_OUT'){
                 //领用退货单
                 $returnOrder=array(
-                    'orderNo'=>'UR'. date('ymdHis') . rand(1000, 9999),
+                    'orderNo'=>'OR'. date('ymdHis') . rand(1000, 9999),
                     'supplierId' => $saleOrder['supplierId'],
                     'depotId' => $saleOrder['depotId'],
                     'totalMoney'=>$saleOrder['totalMoney'],
@@ -143,7 +144,7 @@ class Api_Order_Change extends PhalApi_Api
                         'createUser'=>DI()->userInfo['userId'],
                         'createTime'=>date('Y-m-d H:i:s')
                     );
-                    DI()->notorm->orders_soth_goods->insert($input);
+                    DI()->notorm->orders_oyth_goods->insert($input);
                 }
                 DI()->notorm->commit('db_demo');
                 $rs['code'] = 1;
@@ -154,6 +155,5 @@ class Api_Order_Change extends PhalApi_Api
             DI()->notorm->rollback('db_demo');
             throw new PhalApi_Exception_InternalServerError('服务器错误', 0);
         }
-
     }
 }

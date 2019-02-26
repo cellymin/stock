@@ -7,8 +7,7 @@ $page_no = $page_no ? $page_no : 1;
 $page_html = "";
 
 $client = new PhalApiClient();
-
-if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
+if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY','USE_RETURN'))) {
 
     //订单
     $rs = $client->request('Order_Get.Go', array(
@@ -20,8 +19,7 @@ if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
     if ($client->getRet() == PhalApiClient::RET_OK) {
         $order = $rs['content'];
     }
-
-
+//echo '<pre/>';var_dump($order); die();
     $rs = $client->request('DepotGoods_GetList.Go', array(
         'keyword'    => $keyword,
         'depotId'    => $order['depotId'],
@@ -30,7 +28,6 @@ if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
         'type'    => $type,
         'page_size'  => 7,
     ));
-
     if ($client->getRet() == PhalApiClient::RET_OK) {
         $page_no = $rs['content']['page_no'];
         $page_size = $rs['content']['page_size'];

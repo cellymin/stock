@@ -9,7 +9,7 @@ $rs = $client->request('Order_Change.Go', array(
     'orderId'   => $orderId,
 ));
 if ($client->getRet() == PhalApiClient::RET_OK) {
-    Common::exitWithMessage('领用退货单生成成功', 'sales/index.php');
+    Common::exitWithMessage('领用退货单生成成功', 'storage/using_deliver.php');
 }else {
     Common::exitWithMessage($client->getMsg(), 'storage/using_deliver.php');
 }

@@ -9,7 +9,7 @@ if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
         if ($depotId != 0) {
             $rs = $client->request('Order_Create.Go', array(
-                'type'    => 'USE_OUT',
+                'type'    => 'USE_RETURN',
                 'remark'      => $remark,
                 'depotId' => $depotId
             ));
@@ -35,7 +35,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $depots_options[0] = "== 请选择 ==";
 }
 
-Template::assign('form_url', 'using_deliver_create.php');
+Template::assign('form_url', 'return_create.php');
 Template::assign('type', '2');
 Template::assign('depots_options', $depots_options);
 Template::display('order/create.tpl');

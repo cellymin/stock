@@ -90,7 +90,6 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
         }
 
         $sql .= $limit;
-
         return $this->getORM()->queryAll($sql, $param);
     }
 

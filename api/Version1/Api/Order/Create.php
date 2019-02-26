@@ -74,7 +74,6 @@ class Api_Order_Create extends PhalApi_Api
         }
 
         $input['remark'] = $this->remark;
-
         $orderId = $domain->create($input);
         if ($orderId == false) {
             $rs['msg'] = '创建失败';

@@ -41,6 +41,7 @@ class Domain_Order_Create
             }
             $input['depotId'] = $data['depotId'];
         }
+
         if ($this->type == 'SALE_OUT') {
             $model = new Model_Customer();
             $customer = $model->get($data['customerId']);
@@ -55,12 +56,15 @@ class Domain_Order_Create
         $input['totalMoney'] = 0;
         $input['totalCnt'] = 0;
         $input['flag'] = 0;
+
         $input['createCompany'] = DI()->userInfo['companyId'];
         $input['createUser'] = DI()->userInfo['userId'];
         $input['remark'] = $data['remark'];
         $input['createTime'] = date('Y-m-d H:i:s');
+
         $model = new Model_Order();
 //        error_log(print_r($input,1));
+
         $orderId = $model->insert($input);
 
         if ($orderId) {
@@ -133,7 +137,8 @@ class Domain_Order_Create
             'OTHER_OUT'   => 'OQ',   //其他出库单
             'INVENTORY'   => 'PD',    //盘点单
             'SALE_OUT'    => 'SO',   //销售单
-            'SALE_RETURN' => 'SR'    //销售退货单
+            'SALE_RETURN' => 'SR' ,   //销售退货单
+            'USE_RETURN' => 'OR'    //销售退货单
         );
         return $prefix[$this->type];
     }
