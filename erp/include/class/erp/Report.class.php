@@ -633,7 +633,7 @@ class Report extends Base
             $ids_where = 'AND og.goodsId in(' . $ids . ')';
         }
         //当前库存量
-        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,gn.unitName
+        $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,goodsSn,gn.unitName
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
@@ -643,6 +643,7 @@ class Report extends Base
                 $deport[$d['goodsId']]['goodsId'] = $d['goodsId'];
                 $deport[$d['goodsId']]['goodsName'] = $d['goodsName'];
                 $deport[$d['goodsId']]['unitName'] = $d['unitName'];
+                $deport[$d['goodsId']]['goodsSn'] = $d['goodsSn'];
                 $deport[$d['goodsId']]['count'] = 0;
                 $deport[$d['goodsId']]['money'] = 0;
             }

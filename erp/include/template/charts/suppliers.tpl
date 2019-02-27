@@ -65,7 +65,7 @@
 
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
-        <a type="button" class="btn btn-primary" onclick="method5('data_list')">导出</a>
+        <a type="button" class="btn btn-primary" onclick="beforedao()">导出</a>
     </div>
     <div style="clear:both;"></div>
 </form>
@@ -75,17 +75,26 @@
     <div id="page-stats" class="block-body collapse in">
         <table class="table table-striped" id="data_list">
             <thead>
+            <tr border="0" style="display: none">
+                <td colspan="16">库存结转库存表</td>
+            </tr>
+            <tr border="0" style="display: none">
+                <td colspan="3"><{$companyName}></td>
+                <td colspan="6"><{$nowdate}></td>
+                <td colspan="7"> 导出人 ：<{$userName}></td>
+            </tr>
             <tr>
+                <td rowspan="2">产品编码</td>
                 <td rowspan="2" >产品名称</td>
                 <td rowspan="2">计量单位</td>
-                <td colspan="3">上月结存量</td>
-                <td colspan="3">本月入库量</td>
-                <td colspan="3">本月出库量</td>
+                <td colspan="3">上月结存</td>
+                <td colspan="3">本月入库</td>
+                <td colspan="3">本月出库</td>
                 <{if $_GET.depotId>0}>
-                <td colspan="3">本月调拨入库量</td>
-                <td colspan="3">本月调拨出库量</td>
+                <td colspan="3">本月调拨入库</td>
+                <td colspan="3">本月调拨出库</td>
                 <{/if}>
-                <td colspan="3">本月结存量</td>
+                <td colspan="3">本月结存</td>
                 <td rowspan="2">本月调整金额</td>
             </tr>
             <tr>
@@ -114,11 +123,12 @@
             <tbody>
             <{foreach from=$list.list item=v}>
             <tr>
+                <td><{$v.goodsSn}></td>
                 <td><{$v.goodsName}></td>
                 <td><{$v.unitName}></td>
                 <td><{$v.last.count}></td>
                 <td></td>
-                <td><{number_format($v.last.money,2)}></td>
+                <td> <{if $v.last.count>0}><{number_format($v.last.money,2)}> <{else}> 0 <{/if}> </td>
                 <td><{$v.buy.count}></td>
                 <td></td>
                 <td><{number_format($v.buy.money,2)}></td>
@@ -173,6 +183,13 @@
 <!---操作的确认层，相当于javascript:confirm函数--->
 <{$osadmin_action_confirm}>
 <script>
+    function beforedao(){
+        $('#data_list').children().children().eq(0).css('display','');
+        $('#data_list').children().children().eq(1).css('display','');
+        method5('data_list')
+        $('#data_list').children().children().eq(0).css('display','none');
+        $('#data_list').children().children().eq(1).css('display','none');
+    }
 
 </script>
 <!-- TPLEND 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
