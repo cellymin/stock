@@ -10,7 +10,7 @@ class Api_Order_DeleteGoods extends PhalApi_Api
                 'id' => array('name' => 'id', 'type' => 'array', 'format' => 'explode', 'require' => true),
                 'type' => array('name' => 'type', 'type' => 'enum',
                     'range' => array(
-                        'PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN'), 'require' => true
+                        'PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','USE_RETURN'), 'require' => true
                 ),
             )
         );

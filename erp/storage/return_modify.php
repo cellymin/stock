@@ -14,7 +14,7 @@ if (Common::isPost()) {
             'departmentId' => $departmentId,
             'employeeId'   => $employeeId,
             'remark'       => $remark,
-            'type'         => 'USE_OUT'
+            'type'         => 'USE_RETURN'
         ));
 
         if ($client->getRet() == PhalApiClient::RET_OK) {
@@ -34,7 +34,7 @@ if (Common::isPost()) {
 $rs = $client->request('Order_GetGoods.Go', array(
     'orderId' => $orderId,
     'id'      => $id,
-    'type'    => 'USE_OUT'
+    'type'    => 'USE_RETURN'
 ));
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods = $rs['content'];

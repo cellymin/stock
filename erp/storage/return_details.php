@@ -21,6 +21,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $row_count = $rs['content']['goods']['row_count'];
 
     $order = $rs['content'];
+//    echo '<pre/>';var_dump($order['goods']['list']);die();
 
 //    if ($page_no) {
 //        $page_html = Pagination::showPager("using_deliver_details.php?orderId=" . $orderId, $page_no, $page_size,
@@ -48,7 +49,7 @@ Template::assign('page_html', $page_html);
 Template::assign('js_confirm', $js_confirm);
 Template::assign('url', 'using_return_add');
 Template::assign('modify_url', 'return_modify');
-Template::assign('delete_url', 'oy_goods_delete');
+Template::assign('delete_url', 'return_goods_delete');
 Template::assign('toReview', 'oy_to_review');
 Template::assign('review', 'return_review');
 Template::assign('type', 'USE_RETURN');

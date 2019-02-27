@@ -66,7 +66,7 @@
                     <th>备注</th>
                     <th>总额</th>
                     <th>产品总数</th>
-                    <{if in_array($type,array('RETURN','SALE_RETURN'))}>
+                    <{if in_array($type,array('RETURN','SALE_RETURN','USE_RETURN'))}>
                     <th>原始订单</th>
                     <{/if}>
                     <th>状态</th>
@@ -90,7 +90,9 @@
                         <td><{$value.remark}></td>
                         <td><{$value.totalMoney}></td>
                         <td><{$value.totalCnt}></td>
+                        <{if in_array($type,array('RETURN','SALE_RETURN','USE_RETURN'))}>
                         <td><{$value.contactNo}></td>
+                        <{/if}>
                         <td><{$value.status}></td>
                         <td><{$value.reviewerMemo}></td>
                     </tr>

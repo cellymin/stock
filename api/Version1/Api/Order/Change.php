@@ -128,7 +128,7 @@ class Api_Order_Change extends PhalApi_Api
                 );
                 $orderId=DI()->notorm->orders_oyth->insert($returnOrder);
                 $goodsList=DI()->notorm->orders_oy_goods->select('orderSubNo','depotGoodsId','goodsId','depotSubId','depotId'
-                    ,'goodsCnt','goodsPrice')->where('orderId',$this->orderId)->where('flag',1)->fetchAll();
+                    ,'goodsCnt','goodsPrice','departmentId','employeeId')->where('orderId',$this->orderId)->where('flag',1)->fetchAll();
                 foreach($goodsList as $k=>$v){
                     $returnList[]=$input=array(
                         'orderId'=>$orderId,
@@ -139,6 +139,8 @@ class Api_Order_Change extends PhalApi_Api
                         'depotId'=>$v['depotId'],
                         'goodsCnt'=>$v['goodsCnt'],
                         'goodsPrice'=>$v['goodsPrice'],
+                        'departmentId'=>$v['departmentId'],
+                        'employeeId'=>$v['employeeId'],
                         'flag'=>1,
                         'createCompany'=>DI()->userInfo['companyId'],
                         'createUser'=>DI()->userInfo['userId'],

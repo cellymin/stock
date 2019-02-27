@@ -218,7 +218,7 @@ class Domain_Order_Goods
         $model = new Model_OrderGoods();
 
         $goods = $model->getById($orderId, $id);
-        if ($goods && ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY')) {
+        if ($goods && ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type == 'USE_RETURN')) {
 
             $model = new Model_Supplier();
             $supplier = $model->getForOrder($goods[0]['supplierId']);
@@ -283,7 +283,7 @@ class Domain_Order_Goods
     {
         $this->chk('edit');
 
-        if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY') {
+        if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type == 'USE_RETURN') {
             //出库单重新赋值
             $input['goodsPrice'] = $this->goods['goodsPrice'];
         }
