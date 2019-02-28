@@ -5,7 +5,8 @@ extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
 $selectAll = $_SESSION[UserSession::SESSION_NAME]['selectAll'];
-
+$companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
+$userName= $_SESSION[UserSession::SESSION_NAME]['user_name'];
 $cates = $company_options = array();
 $client = new PhalApiClient();
 
@@ -20,6 +21,11 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
         unset($company_options[0]);
     }
 }
+$company = $client->request('Company_Get.Go', array(
+    'companyId'=>$companyId
+));
+$companyName = $company['content']['companyName'];
+
 //仓库列表
 $rs = $client->request('Depot_Options.Go', array());
 if ($client->getRet() == PhalApiClient::RET_OK) {
@@ -27,7 +33,6 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $depots_options[0] = "== 请选择 ==";
 }
 ksort($depots_options);
-
 if(!$year){
     $year = date('Y',time());
 }
@@ -46,10 +51,14 @@ for($i=10;$i>=0;$i--){
         breake;
     }
 }
+$nowdate = strval(date('Y-m-d',time()));
+Template::assign('nowdate',$nowdate);
 Template::assign('yarr',$yarr);
 Template::assign('company_options',$company_options);
 Template::assign('cates',$cates);
 Template::assign('list',$list);
 Template::assign('_GET',$_GET);
 Template::assign('depots_options', $depots_options);
+Template::assign('companyName',$companyName);
+Template::assign('userName',$userName);
 Template::display('charts/suppliers.tpl');
