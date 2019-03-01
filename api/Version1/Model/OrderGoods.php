@@ -314,6 +314,10 @@ class Model_OrderGoods extends PhalApi_Model_NotORM
             ->queryAll($sql, $param);
     }
 
+    public function getReturnById(){
+
+    }
+
     public function getAll($orderId)
     {
         return $this->getORM()

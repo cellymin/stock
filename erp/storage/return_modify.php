@@ -16,7 +16,6 @@ if (Common::isPost()) {
             'remark'       => $remark,
             'type'         => 'USE_RETURN'
         ));
-
         if ($client->getRet() == PhalApiClient::RET_OK) {
             Common::unsetNonceStr();
             Common::closeWithMessage('保存成功', 'success', '1200', 0);

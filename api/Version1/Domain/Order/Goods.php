@@ -282,17 +282,21 @@ class Domain_Order_Goods
     public function update($input)
     {
         $this->chk('edit');
-
         if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type == 'USE_RETURN') {
             //出库单重新赋值
             $input['goodsPrice'] = $this->goods['goodsPrice'];
+        }
+        $order_model = new Model_Order();
+        if($this->type == 'USE_RETURN'){
+            $returninfo = $order_model->getFromId($this->orderId);
+            if(floatval($returninfo[0]['goodsCnt'])<floatval($input['goodsCnt'])) {
+               return false;
+            }
         }
         unset($input['id']);
         $input['orderFlag'] = $this->order['flag'];
 
         $order_goods_model = new Model_OrderGoods();
-
-
         if ($input['goodsCnt'] < 1) {
             $input['totalMoney'] = new NotORM_Literal('totalMoney-' . ($this->goods['goodsPrice'] * $this->goods['goodsCnt']));
             $input['totalCnt'] = new NotORM_Literal('totalCnt-' . $this->goods['goodsCnt']);

@@ -95,6 +95,10 @@ class Api_Order_UpdateGoods extends PhalApi_Api
 
         $domain->type = $this->type;
         $id = $domain->update($input);
+        if(!$id && $this->type == 'USE_RETURN'){
+            $rs['msg'] = '退货数量大于出库数量';
+            return $rs;
+        }
         if ($id === false) {
             $rs['msg'] = '保存失败';
             return $rs;

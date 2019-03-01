@@ -34,6 +34,14 @@ class Model_Order extends PhalApi_Model_NotORM
 
         return $arr[$status];
     }
+    public function getFromId($orderId)
+    {
+        $param[':orderId'] = $orderId;
+        $sql =  "SELECT og.goodsCnt FROM vich_orders_oyth th
+                LEFT JOIN vich_orders_oy oy ON th.contactNo = oy.orderNo 
+                LEFT JOIN vich_orders_oy_goods og ON oy.orderId = og.orderId WHERE th.orderId=:orderId";
+        return $this->getORM()->queryAll($sql, $param);
+    }
 
     public function getById($orderId)
     {
