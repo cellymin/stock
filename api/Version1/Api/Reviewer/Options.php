@@ -6,7 +6,7 @@ class Api_Reviewer_Options extends PhalApi_Api
     {
         return array(
             'go' => array(
-                'type' => array('name' => 'type', 'type' => 'enum', 'range' => array('supplier','PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN'), 'require' => true)
+                'type' => array('name' => 'type', 'type' => 'enum', 'range' => array('supplier','PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','USE_RETURN'), 'require' => true)
             )
         );
     }

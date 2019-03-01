@@ -628,14 +628,14 @@ class Report extends Base
         $ids = array_unique($ids);
         if (!empty($ids)) {
             $ids = implode(',', $ids);
-            $ids_where = 'AND og.goodsId in(' . $ids . ')';
+            $ids_where = 'OR og.goodsId in(' . $ids . ')';
         }
         //当前库存量
         $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,goodsSn,gn.unitName
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
-                WHERE (og.flag=1 {$cate_where} {$com_where} {$depot_where} and og.goodsCnt>0) {$ids_where} ORDER BY og.createTime DESC";
+                WHERE (og.flag=1 {$cate_where} {$com_where} {$depot_where} and og.goodsCnt>0) {$ids_where} ORDER BY g.goodsSn ASC,og.createTime DESC";
         foreach ($db->query($sql) as $d) {
             if (!isset($deport[$d['goodsId']])) {
                 $deport[$d['goodsId']]['goodsId'] = $d['goodsId'];

@@ -56,7 +56,7 @@
                     <th>单号</th>
                     <{if in_array($type,array('PLAN','ARRIVAL','RETURN','PURCHASE_IN'))}>
                     <th>供应商</th>
-                    <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT'))}>
+                    <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
                     <th>仓库</th>
                     <{else}>
                     <th>客户</th>
@@ -80,7 +80,7 @@
                         <td><{$value.orderNo}></td>
                         <{if in_array($type,array('PLAN','ARRIVAL','RETURN','PURCHASE_IN'))}>
                         <td><{$value.supplierName}></td>
-                        <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT'))}>
+                        <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
                         <td><{$value.depotName}></td>
                         <{else}>
                         <td><{$value.customerName}></td>

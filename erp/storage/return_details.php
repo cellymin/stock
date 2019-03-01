@@ -50,7 +50,7 @@ Template::assign('js_confirm', $js_confirm);
 Template::assign('url', 'using_return_add');
 Template::assign('modify_url', 'return_modify');
 Template::assign('delete_url', 'return_goods_delete');
-Template::assign('toReview', 'oy_to_review');
+Template::assign('toReview', 'return_to_review');
 Template::assign('review', 'return_review');
 Template::assign('type', 'USE_RETURN');
 Template::display('order/details.tpl');

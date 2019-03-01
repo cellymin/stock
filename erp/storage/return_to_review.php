@@ -17,6 +17,7 @@ if (Common::isPost()) {
                 'orderId'  => $orderId,
                 'reviewer' => $reviewer
             ));
+//            echo '<pre/>';var_dump($rs);die();
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');
@@ -31,7 +32,7 @@ if (Common::isPost()) {
     }
 }
 
-$rs = $client->request('Reviewer_Options.Go', array('type' => 'SALE_RETURN'));
+$rs = $client->request('Reviewer_Options.Go', array('type' => 'USE_RETURN'));
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $reviewer_options = $rs['content'];
 }
@@ -39,7 +40,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 
 Template::assign('reviewer_options', $reviewer_options);
 Template::assign('orderId', $orderId);
-Template::assign('type', 'SALE_RETURN');
+Template::assign('type', 'USE_RETURN');
 Template::assign('url', 'return_to_review.php');
 Template::display('order/toReview.tpl');
 

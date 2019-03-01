@@ -152,7 +152,7 @@
             <tr>
                 <td>合计</td>
                 <td></td>
-
+                <td></td>
                 <td><{$list.total.last.count}></td>
                 <td></td>
                 <td><{number_format($list.total.last.money,2)}></td>

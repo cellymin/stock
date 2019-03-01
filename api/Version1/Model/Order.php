@@ -123,7 +123,7 @@ class Model_Order extends PhalApi_Model_NotORM
         }
         if (in_array(
             DI()->request->get('type'),
-            array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY', 'OTHER_IN', 'OTHER_OUT')
+            array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY', 'OTHER_IN', 'OTHER_OUT','USE_RETURN')
         )) {
             $join = 'left join vich_depots d on d.depotId=o.depotId ';
             $columns = 'd.depotName,';
