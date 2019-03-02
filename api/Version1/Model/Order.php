@@ -34,12 +34,16 @@ class Model_Order extends PhalApi_Model_NotORM
 
         return $arr[$status];
     }
-    public function getFromId($orderId)
+    public function getFromId($orderId,$id)
     {
         $param[':orderId'] = $orderId;
-        $sql =  "SELECT og.goodsCnt FROM vich_orders_oyth th
-                LEFT JOIN vich_orders_oy oy ON th.contactNo = oy.orderNo 
-                LEFT JOIN vich_orders_oy_goods og ON oy.orderId = og.orderId WHERE th.orderId=:orderId";
+        $param[':id'] = $id;
+        $sql = "SELECT DISTINCT(tg.goodsCnt)
+                FROM vich_orders_oyth th
+                INNER JOIN vich_orders_oyth_goods tg on th.orderId=tg.orderId
+                INNER JOIN vich_orders_oy oy ON th.contactNo = oy.orderNo
+                INNER JOIN vich_orders_oy_goods og ON oy.orderId = og.orderId
+                INNER JOIN vich_orders_oy_goods oog on oog.goodsId = tg.goodsId WHERE th.orderId=:orderId AND tg.id = :id";
         return $this->getORM()->queryAll($sql, $param);
     }
 

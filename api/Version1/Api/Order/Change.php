@@ -25,7 +25,6 @@ class Api_Order_Change extends PhalApi_Api
             }else if($type == 'USE_OUT'){
                 $saleOrder=DI()->notorm->orders_oy->select('supplierId','depotId','totalMoney','totalCnt','flag','orderNo')->where('orderId',$this->orderId)->fetch();
             }
-
             if ($saleOrder['flag']!=3){
                 $rs['msg']='请选择审核通过订单';
                 return $rs;
@@ -113,6 +112,11 @@ class Api_Order_Change extends PhalApi_Api
                 $rs['msg'] = '退货单生成成功';
                 return $rs;
             }else if($type == 'USE_OUT'){
+                //查看是否有有效退货单存在
+                $ifexist = DI()->notorm->orders_oyth->select('orderId')->where('contactNo',"$saleOrder[orderNo]")->where('flag!=?',-1)->fetch();
+                if(!empty($ifexist)){
+                    throw new PhalApi_Exception_BadRequest('退货单已存在', 0);
+                }
                 //领用退货单
                 $returnOrder=array(
                     'orderNo'=>'OR'. date('ymdHis') . rand(1000, 9999),

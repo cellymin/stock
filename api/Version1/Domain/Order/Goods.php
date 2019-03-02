@@ -288,7 +288,7 @@ class Domain_Order_Goods
         }
         $order_model = new Model_Order();
         if($this->type == 'USE_RETURN'){
-            $returninfo = $order_model->getFromId($this->orderId);
+            $returninfo = $order_model->getFromId($this->orderId,$input['id']);
             if(floatval($returninfo[0]['goodsCnt'])<floatval($input['goodsCnt'])) {
                return false;
             }

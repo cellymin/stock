@@ -14,7 +14,7 @@ if (Common::isPost()) {
             'orderId' => $orderId,
             'memo'    => $memo
         ));
-        var_dump($rs);die();
+//       echo '<pre/>'; var_dump($rs);die();
         if ($client->getRet() == PhalApiClient::RET_OK) {
             Common::unsetNonceStr();
             Common::closeWithMessage('操作成功', 'success');

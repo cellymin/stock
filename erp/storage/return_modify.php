@@ -5,7 +5,7 @@ extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = array();
 $client = new PhalApiClient();
 
-if (Common::isPost()) {
+if (Common::isPost()) {;
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
         $rs = $client->request('Order_UpdateGoods.Go', array(
             'id'           => $id,

@@ -326,6 +326,16 @@ class Model_OrderGoods extends PhalApi_Model_NotORM
             ->fetchAll();
     }
 
+    public function getUseaGoods($orderId){
+        $param[':orderId'] = $orderId;
+        $sql = "SELECT og.* FROM vich_orders_oy oy
+                LEFT JOIN vich_orders_oyth th ON oy.orderNo = th.contactNo
+                LEFT JOIN vich_orders_oy_goods og ON oy.orderId = og.orderId
+                WHERE th.orderId = :orderId";
+        return $this->getORM()
+            ->queryAll($sql, $param);
+    }
+
     //多条插入
     public function insert_multi($type, $data)
     {
