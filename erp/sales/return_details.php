@@ -14,6 +14,7 @@ $rs = $client->request('Order_Get.Go', array(
     'page_no'   => $page_no,
     'page_size' => 0
 ));
+
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $page_no = $rs['content']['goods']['page_no'];
     $page_size = $rs['content']['goods']['page_size'];
