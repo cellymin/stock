@@ -39,7 +39,9 @@
     </div>
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
-        <a type="button" class="btn btn-primary" onclick="method5('data_list')">导出</a>
+        <{if in_array($type,array('PURCHASE_IN', 'OTHER_IN', 'ALLOT_IN', 'ALLOT_OUT','USE_OUT','OTHER_OUT','INVENTORY','SALE_OUT','SALE_RETURN'))}>
+        <a type="button" class="btn btn-primary" onclick="beforedao()">导出</a>
+        <{/if}>
     </div>
     <div style="clear:both;"></div>
 </form>
@@ -49,8 +51,18 @@
     <div id="page-stats" class="block-body collapse in">
         <form action="<{$delete_url}>.php" method="post">
             <input id="type" type="hidden" name="type" value="<{$type}>">
+
             <table class="table table-striped" id="data_list">
+
                 <thead>
+                <tr border="0" style="display: none">
+                    <td colspan="11"><{$content_header.menu_name}></td>
+                </tr>
+                <tr border="0" style="display: none">
+                    <td colspan="3"><{$companyName}></td>
+                    <td colspan="3"><{$nowdate}></td>
+                    <td colspan="5"> 导出人 ：<{$userName}></td>
+                </tr>
                 <tr>
                     <th><input type="checkbox" id="chkAll"></th>
                     <th>单号</th>
@@ -104,6 +116,16 @@
 
 <!---操作的确认层，相当于javascript:confirm函数--->
 <{$osadmin_action_confirm}>
+<script>
+
+    function beforedao(){
+        $('#data_list').children().children().eq(0).css('display','');
+        $('#data_list').children().children().eq(1).css('display','');
+        method5('data_list')
+        $('#data_list').children().children().eq(0).css('display','none');
+        $('#data_list').children().children().eq(1).css('display','none');
+    }
+</script>
 
 <!-- TPLEND 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
 <{include file="footer.tpl" }>

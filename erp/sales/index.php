@@ -2,7 +2,8 @@
 include '../include/init.inc.php';
 $keyword = $status = $page_no = "";
 extract($_GET, EXTR_IF_EXISTS);
-
+$companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
+$userName= $_SESSION[UserSession::SESSION_NAME]['user_name'];
 $page_no   = $page_no ? $page_no : 1;
 $list      = array();
 $page_html = "";
@@ -28,6 +29,14 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 } else {
     Common::tipWithMessage($client->getMsg(), 'error');
 }
+$company = $client->request('Company_Get.Go', array(
+    'companyId'=>$companyId
+));
+$companyName = $company['content']['companyName'];
+$nowdate = strval(date('Y-m-d',time()));
+Template::assign('nowdate',$nowdate);
+Template::assign('companyName',$companyName);
+Template::assign('userName',$userName);
 Template::assign('_GET', $_GET);
 Template::assign('type', 'SALE_OUT');
 Template::assign('list', $list);

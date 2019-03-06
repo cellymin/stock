@@ -282,7 +282,6 @@ class User extends Base{
 		if(strpos($user_group['group_role'],$menu['menu_id'])){
 			$user_info['setting']=1;
 		}
-		
 		$login_time = time();
 		$login_ip = Common::getIp ();
 		$update_data = array ('login_ip' => $login_ip, 'login_time' => $login_time );
@@ -290,5 +289,6 @@ class User extends Base{
 		$user_info['login_ip']=$login_ip;
 		$user_info['login_time']=Common::getDateTime($login_time);
 		UserSession::setSessionInfo( $user_info);
+
 	}
 }
