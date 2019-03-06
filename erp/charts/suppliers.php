@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$cateId = $companyId = $depotId = $year = $month ="";
+$cateId = $companyId = $depotId = $year = $month = $keyword ="";
 extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
@@ -38,9 +38,8 @@ if(!$year){
 if(!$month){
     $month = date('m',time());
 }
-$list = Report::busReport($cateId,$companyId,$depotId,$year.$month);
-//echo '<pre/>';var_dump($list);
-//die();
+$list = Report::busReport($cateId,$companyId,$depotId,$year.$month,$keyword);
+
 $y = date('Y',time());
 $m = date('m',time());
 Template::assign('y',$y);

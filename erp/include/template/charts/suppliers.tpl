@@ -25,6 +25,7 @@
         <label>仓库</label>
         <{html_options name=depotId id="depotId" class="input-xlarge" options=$depots_options selected=$_GET.depotId}>
     </div>
+
     <div style="float:left;margin-right:5px">
         <label>选择分类 </label>
         <select name="cateId" id="" class="input-xlarge">
@@ -34,6 +35,10 @@
             <option value="<{$c.cateId}>" <{if $_GET.cateId==$c.cateId}>selected<{/if}>><{$c.cateName}></option>
             <{/foreach}>
         </select>
+    </div>
+    <div style="float:left;margin-right:5px">
+        <label>关键词</label>
+        <input type="text" name="keyword" id="keyword" placeholder="产品条码/关键词"  value="<{$_GET.keyword}>">
     </div>
     <div style="float:left;margin-right:5px">
         <label>选择年</label>
@@ -152,7 +157,7 @@
             <tr>
                 <td>合计</td>
                 <td></td>
-
+                <td></td>
                 <td><{$list.total.last.count}></td>
                 <td></td>
                 <td><{number_format($list.total.last.money,2)}></td>
