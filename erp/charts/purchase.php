@@ -5,7 +5,8 @@ extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
 $selectAll = $_SESSION[UserSession::SESSION_NAME]['selectAll'];
-
+$companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
+$userName= $_SESSION[UserSession::SESSION_NAME]['user_name'];
 if($user_group!=1 && $selectAll!=1){
     $companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
 }
@@ -39,6 +40,14 @@ if($row_count>0){
         $row_count);
     Template::assign('page_html', $page_html);
 }
+$company = $client->request('Company_Get.Go', array(
+    'companyId'=>$companyId
+));
+$companyName = $company['content']['companyName'];
+$nowdate = strval(date('Y-m-d',time()));
+Template::assign('nowdate',$nowdate);
+Template::assign('companyName',$companyName);
+Template::assign('userName',$userName);
 Template::assign('subinfo',$subinfo);
 Template::assign('company_options',$company_options);
 Template::assign('goods',$goods);

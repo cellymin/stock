@@ -2,7 +2,8 @@
 include '../include/init.inc.php';
 $companyId = $keyword = $depotId = $depotSubId = $page_no = "";
 extract($_REQUEST,EXTR_IF_EXISTS);
-
+$companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
+$userName= $_SESSION[UserSession::SESSION_NAME]['user_name'];
 if(empty($depotId)) $depotId=0;
 
 if(Common::isPost()){
@@ -58,7 +59,14 @@ if(Common::isGet()){
 	}
 }
 
-
+$company = $client->request('Company_Get.Go', array(
+    'companyId'=>$companyId
+));
+$companyName = $company['content']['companyName'];
+$nowdate = strval(date('Y-m-d',time()));
+Template::assign('nowdate',$nowdate);
+Template::assign('companyName',$companyName);
+Template::assign('userName',$userName);
 Template::assign('_GET', $_GET);
 Template::assign('depotId', $depotId);
 Template::assign('company_options', $company_options);

@@ -5,6 +5,8 @@ extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
 $selectAll = $_SESSION[UserSession::SESSION_NAME]['selectAll'];
+$companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
+$userName= $_SESSION[UserSession::SESSION_NAME]['user_name'];
 
 $company_options = array();
 
@@ -20,7 +22,14 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 
 $list = Report::usingReportTotal($companyId ,$startTime ,$endTime);
 
-
+$company = $client->request('Company_Get.Go', array(
+    'companyId'=>$companyId
+));
+$companyName = $company['content']['companyName'];
+$nowdate = strval(date('Y-m-d',time()));
+Template::assign('nowdate',$nowdate);
+Template::assign('companyName',$companyName);
+Template::assign('userName',$userName);
 Template::assign('company_options',$company_options);
 Template::assign('_GET',$_GET);
 Template::assign('list',$list);

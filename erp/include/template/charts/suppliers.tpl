@@ -81,7 +81,7 @@
         <table class="table table-striped" id="data_list">
             <thead>
             <tr border="0" style="display: none">
-                <td colspan="16">库存结转库存表</td>
+                <td colspan="16">出入库盘存表</td>
             </tr>
             <tr border="0" style="display: none">
                 <td colspan="3"><{$companyName}></td>

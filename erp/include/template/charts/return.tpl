@@ -25,7 +25,7 @@
     </div>
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
-        <a type="button" class="btn btn-primary" onclick="method5('data_list')">导出</a>
+        <a type="button" class="btn btn-primary" onclick="beforedao()">导出</a>
     </div>
     <div style="clear:both;"></div>
 </form>
@@ -35,6 +35,14 @@
     <div id="page-stats" class="block-body collapse in">
         <table class="table table-striped" border="1" id="data_list">
             <thead>
+            <tr border="0" style="display: none">
+                <td colspan="3">各部门领用汇总表</td>
+            </tr>
+            <tr border="0" style="display: none">
+                <td><{$companyName}></td>
+                <td><{$nowdate}></td>
+                <td> 导出人 ：<{$userName}></td>
+            </tr>
             <tr>
                 <td>部门\项目</td>
                 <{foreach from=$list.total item=t}>
@@ -68,3 +76,13 @@
 
 <!-- TPLEND 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
 <{include file="footer.tpl" }>
+<script>
+
+    function beforedao(){
+        $('#data_list').children().children().eq(0).css('display','');
+        $('#data_list').children().children().eq(1).css('display','');
+        method5('data_list')
+        $('#data_list').children().children().eq(0).css('display','none');
+        $('#data_list').children().children().eq(1).css('display','none');
+    }
+</script>

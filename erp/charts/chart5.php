@@ -1,6 +1,9 @@
 <?php
 include '../include/init.inc.php';
 $keyword = $depotId = $table = $startTime = $endTime = "";
+$companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
+$userName= $_SESSION[UserSession::SESSION_NAME]['user_name'];
+
 extract($_REQUEST,EXTR_IF_EXISTS);
 
 if(Common::isPost()){
@@ -30,6 +33,13 @@ $rs = $client->request('Depot_Options.Go', array());
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $depots_options = $rs['content'];
 }
-
+$company = $client->request('Company_Get.Go', array(
+    'companyId'=>$companyId
+));
+$companyName = $company['content']['companyName'];
+$nowdate = strval(date('Y-m-d',time()));
+Template::assign('nowdate',$nowdate);
+Template::assign('companyName',$companyName);
+Template::assign('userName',$userName);
 Template::assign('depots_options', $depots_options);
 Template::display('charts/chart5.tpl');
