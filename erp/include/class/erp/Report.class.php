@@ -281,6 +281,7 @@ class Report extends Base
             }
 
             $arr = array();
+            $allnum = 0;
             $temp = $cates;
             $sql = 'select departmentId,departmentName from vich_departments where flag=1';
 
@@ -296,11 +297,14 @@ class Report extends Base
                         $cates[$v['goodsCateId1']]['money'] += $v['goodsPrice'] * $v['goodsCnt'];
                         $arr[$dep['departmentId']]['goods'][$v['goodsCateId1']]['money'] += $v['goodsPrice'] * $v['goodsCnt'];
                     }
+                    if($v['departmentId'] == $dep['departmentId'] ){
+                        $arr[$dep['departmentId']]['rownum'] += $v['goodsPrice'] * $v['goodsCnt'];
+                        $allnum += $v['goodsPrice'] * $v['goodsCnt'];
+                    }
                 }
             }
-
             if ($arr) {
-                return array('total' => $cates, 'list' => $arr);
+                return array('total' => $cates, 'list' => $arr,'allnum'=>$allnum);
             }
         }
         return array();
