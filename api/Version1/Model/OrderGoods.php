@@ -331,7 +331,19 @@ class Model_OrderGoods extends PhalApi_Model_NotORM
         $sql = "SELECT og.* FROM vich_orders_oy oy
                 LEFT JOIN vich_orders_oyth th ON oy.orderNo = th.contactNo
                 LEFT JOIN vich_orders_oy_goods og ON oy.orderId = og.orderId
-                WHERE th.orderId = :orderId";
+                WHERE og.flag=1 AND oy.flag=3 AND th.orderId = :orderId ";
+        return $this->getORM()
+            ->queryAll($sql, $param);
+    }
+    //可能有不同批次的同一个商品
+    public function getUseBatchNo($orderId,$goodsId,$batchNo){
+        $param[':orderId'] = $orderId;
+        $param[':goodsId'] = $goodsId;
+        $param[':batchNo'] = $batchNo;
+        $sql = "SELECT og.goodsCnt FROM vich_orders_oy oy
+                LEFT JOIN vich_orders_oyth th ON oy.orderNo = th.contactNo
+                LEFT JOIN vich_orders_oy_goods og ON oy.orderId = og.orderId
+                WHERE og.flag=1 AND oy.flag=3 AND th.orderId = :orderId AND og.goodsId =:goodsId AND og.orderSubNo = :batchNo";
         return $this->getORM()
             ->queryAll($sql, $param);
     }

@@ -54,11 +54,7 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             'USE_OUT'     => array(
                 'departmentId' => array('name' => 'departmentId', 'type' => 'int', 'min' => 0, 'require' => true),
                 'employeeId'   => array('name' => 'employeeId', 'type' => 'int', 'min' => 0, 'require' => true),
-            ),
-            'USE_RETURN'     => array(
-                'departmentId' => array('name' => 'departmentId', 'type' => 'int', 'min' => 0, 'require' => true),
-                'employeeId'   => array('name' => 'employeeId', 'type' => 'int', 'min' => 0, 'require' => true),
-            ),
+            )
         );
 
         if ($type == 'ALLOT_OUT' || $type == 'USE_OUT' || $type=='INVENTORY' || $type=='USE_RETURN' ) {
@@ -95,6 +91,7 @@ class Api_Order_UpdateGoods extends PhalApi_Api
 
         $domain->type = $this->type;
         $id = $domain->update($input);
+//        return $id;
         if(!$id && $this->type == 'USE_RETURN'){
             $rs['msg'] = '退货数量大于出库数量';
             return $rs;

@@ -11,11 +11,10 @@ if (Common::isPost()) {;
             'id'           => $id,
             'orderId'      => $orderId,
             'goodsCnt'     => $goodsCnt,
-            'departmentId' => $departmentId,
-            'employeeId'   => $employeeId,
             'remark'       => $remark,
             'type'         => 'USE_RETURN'
         ));
+//                echo '<pre/>';var_dump($rs);die();
         if ($client->getRet() == PhalApiClient::RET_OK) {
             Common::unsetNonceStr();
             Common::closeWithMessage('保存成功', 'success', '1200', 0);

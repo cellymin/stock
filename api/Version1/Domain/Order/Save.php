@@ -314,8 +314,8 @@ class Domain_Order_Save
         $reGoods = array();
         $usingGoods = array();
         foreach ($goods as $k=>$v){
-            $reGoods[$v['goodsId']]['goodsCnt'] = $v['goodsCnt'];
-            $reids[] = $v['goodsId'];
+            $reGoods[$v['goodsId']][$v['orderSubNo']]['goodsCnt'] = $v['goodsCnt'];
+            $reids[] = $v['orderSubNo'];
         }
         //退货商品不存在于出库商品中
 
@@ -324,14 +324,14 @@ class Domain_Order_Save
         }
         $useGoods = $goods_model->getUseaGoods($orderId);
         foreach ($useGoods as $kk=>$vv) {
-            $usingGoods[$vv['goodsId']]['goodsCnt'] = $vv['goodsCnt'];
-            if(isset($reGoods[$vv['goodsId']])){
-                if($usingGoods[$vv['goodsId']]['goodsCnt']<$reGoods[$vv['goodsId']]['goodsCnt']){
+            $usingGoods[$vv['goodsId']][$vv['orderSubNo']]['goodsCnt'] = $vv['goodsCnt'];
+            if(isset($reGoods[$vv['goodsId']][$vv['orderSubNo']]  )){
+                if($usingGoods[$vv['goodsId']][$vv['orderSubNo']]['goodsCnt']<$reGoods[$vv['goodsId']][$vv['orderSubNo']]['goodsCnt']){
                     throw new PDOException('商品数量大于出库数量', 1);
                     break;
                 }
             }
-            $usingids[] = $vv['goodsId'];
+            $usingids[] = $vv['orderSubNo'];
         }
         $diffids = array_diff($reids,$usingids);
         if(!empty($diffids)){
