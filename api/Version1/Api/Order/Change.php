@@ -131,13 +131,14 @@ class Api_Order_Change extends PhalApi_Api
                     'contactNo' => $saleOrder['orderNo']
                 );
                 $orderId=DI()->notorm->orders_oyth->insert($returnOrder);
-                $goodsList=DI()->notorm->orders_oy_goods->select('orderSubNo','depotGoodsId','goodsId','depotSubId','depotId'
+                $goodsList=DI()->notorm->orders_oy_goods->select('orderSubNo','depotGoodsId','goodsId','depotSubId','depotId','supplierId'
                     ,'goodsCnt','goodsPrice','departmentId','employeeId')->where('orderId',$this->orderId)->where('flag',1)->fetchAll();
                 foreach($goodsList as $k=>$v){
                     $returnList[]=$input=array(
                         'orderId'=>$orderId,
                         'orderSubNo'=>$v['orderSubNo'],
                         'depotGoodsId'=>$v['depotGoodsId'],
+                        'supplierId' => $v['supplierId'],
                         'goodsId'=>$v['goodsId'],
                         'depotSubId'=>$v['depotSubId'],
                         'depotId'=>$v['depotId'],

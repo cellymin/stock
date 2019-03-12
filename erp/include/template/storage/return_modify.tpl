@@ -20,19 +20,15 @@
             </tr>
             <tr>
                 <td><b>部门</b></td>
-                <td><{html_options name=departmentId id="departmentId" class="input-xlarge" options=$department_options selected=$departmentId}></td>
+                <td id="bumen"><{html_options name=departmentId id="departmentId" class="input-xlarge" options=$department_options selected=$departmentId}></td>
             </tr>
             <tr>
                 <td><b>负责人</b></td>
-                <td><{html_options name=employeeId id="employeeId" class="input-xlarge" options=$employee_options selected=$goods.employeeId required="true"}></td>
+                <td id="fuzeren"><{html_options name=employeeId id="employeeId" class="input-xlarge" options=$employee_options selected=$goods.employeeId required="true"}></td>
             </tr>
             <tr>
                 <td>数量</td>
                 <td><input name="goodsCnt" type="text" value="<{$goods.goodsCnt}>" required></td>
-            </tr>
-            <tr>
-                <td>价格</td>
-                <td><input name="goodsPrice" type="text" value="<{$goods.goodsPrice}>" required></td>
             </tr>
             <tr>
                 <td>备注</td>
@@ -54,9 +50,12 @@
 </div>
 <script type="text/javascript">
     $(function(){
+
         $('#departmentId').change(function(){
             var departmentId = $('#departmentId').val();
             window.location.href = "return_modify.php?method=options&orderId=<{$orderId}>&id=<{$id}>&departmentId="+departmentId
         })
+         $('#bumen').find('select').attr("disabled","disabled");
+         $('#fuzeren').find('select').attr("disabled","disabled");
     })
 </script>

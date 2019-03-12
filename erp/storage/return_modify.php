@@ -35,6 +35,7 @@ $rs = $client->request('Order_GetGoods.Go', array(
     'id'      => $id,
     'type'    => 'USE_RETURN'
 ));
+
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods = $rs['content'];
 }

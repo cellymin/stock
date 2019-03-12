@@ -5,7 +5,7 @@
 <div class="form_div">
     <div style="overflow: hidden" class="avoid-this">
         <button id="orderPrint" class="btn btn-primary" style="float: left;margin-bottom: 20px;" > 打印</button>
-        <a type="button" class="btn btn-primary" onclick="method5('order')" style="margin-left: 10px;">导出</a>
+        <a type="button" class="btn btn-primary" onclick="method5('oorder')" style="margin-left: 10px;">导出</a>
         <{if ($order.flag==0 || $order.flag==-3)}>
         <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="提交审核"
                 layerUrl="<{$toReview}>" layerW="360px" layerH="200px" layerT="2"
