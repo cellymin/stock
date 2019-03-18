@@ -22,6 +22,8 @@ class Api_Order_Change extends PhalApi_Api
                 $saleOrder=DI()->notorm->orders_so->select('orderNo','customerId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
             }elseif($type=='RETURN'){
                 $saleOrder=DI()->notorm->orders_dh->select('orderNo','supplierId','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
+            }elseif($type=='PURCHASE_IN'){
+                $saleOrder=DI()->notorm->orders_ip->select('supplierId','depotId','orderNo','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
             }
 
             if ($saleOrder['flag']!=3){
@@ -109,6 +111,52 @@ class Api_Order_Change extends PhalApi_Api
                 $rs['code'] = 1;
                 $rs['msg'] = '退货单生成成功';
 
+                return $rs;
+            }elseif($type=='PURCHASE_IN'){
+                //查看是否有有效采购单退货单存在
+                $ifexist = DI()->notorm->orders_ipth->select('orderId')->where('contactNo',"$saleOrder[orderNo]")->where('flag!=?',-1)->fetch();
+                if(!empty($ifexist)){
+                    throw new PhalApi_Exception_BadRequest('退货单已存在', 0);
+                }
+                //采购退货单
+                $returnOrder=array(
+                    'orderNo'=>'IR'. date('ymdHis') . rand(1000, 9999),
+                    'supplierId' => $saleOrder['supplierId'],
+                    'depotId' => $saleOrder['depotId'],
+                    'totalMoney'=>$saleOrder['totalMoney'],
+                    'totalCnt'=>$saleOrder['totalCnt'],
+                    'flag'=>0,
+                    'createCompany'=>DI()->userInfo['companyId'],
+                    'createUser'=>DI()->userInfo['userId'],
+                    'createTime' => date('Y-m-d H:i:s'),
+                    'contactNo' => $saleOrder['orderNo']
+                );
+                $orderId=DI()->notorm->orders_oyth->insert($returnOrder);
+                $goodsList=DI()->notorm->orders_oy_goods->select('orderSubNo','depotGoodsId','goodsId','depotSubId','depotId','supplierId'
+                    ,'goodsCnt','goodsPrice','departmentId','employeeId')->where('orderId',$this->orderId)->where('flag',1)->fetchAll();
+                foreach($goodsList as $k=>$v){
+                    $returnList[]=$input=array(
+                        'orderId'=>$orderId,
+                        'orderSubNo'=>$v['orderSubNo'],
+                        'depotGoodsId'=>$v['depotGoodsId'],
+                        'supplierId' => $v['supplierId'],
+                        'goodsId'=>$v['goodsId'],
+                        'depotSubId'=>$v['depotSubId'],
+                        'depotId'=>$v['depotId'],
+                        'goodsCnt'=>$v['goodsCnt'],
+                        'goodsPrice'=>$v['goodsPrice'],
+                        'departmentId'=>$v['departmentId'],
+                        'employeeId'=>$v['employeeId'],
+                        'flag'=>1,
+                        'createCompany'=>DI()->userInfo['companyId'],
+                        'createUser'=>DI()->userInfo['userId'],
+                        'createTime'=>date('Y-m-d H:i:s')
+                    );
+                    DI()->notorm->orders_oyth_goods->insert($input);
+                }
+                DI()->notorm->commit('db_demo');
+                $rs['code'] = 1;
+                $rs['msg'] = '退货单生成成功';
                 return $rs;
             }
         }catch (PDOException $e){

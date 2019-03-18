@@ -119,7 +119,7 @@ class Model_Goods extends PhalApi_Model_NotORM
             $param[':goodsCateId'] = $goodsCateId;
         }
 
-        $sql .= ' order by g.createTime desc';
+        $sql .= ' order by g.goodsSn asc,g.createTime desc';
 
         $sql .= $limit;
 
