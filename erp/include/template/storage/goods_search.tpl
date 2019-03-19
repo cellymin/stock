@@ -5,7 +5,7 @@
     <form class="form_search" action="" method="GET" style="margin-bottom:0px;float: left;">
         <input type="hidden" name="type" value="<{$_GET.type}>">
         <input type="hidden" name="orderId" value="<{$_GET.orderId}>">
-        <{if !in_array($_GET.type,array('ALLOT_OUT','USE_OUT','INVENTORY'))}>
+        <{if !in_array($_GET.type,array('ALLOT_OUT','USE_OUT','INVENTORY','USE_RETURN'))}>
         <div style="float:left;margin-right:5px">
             <select name="goodsCateId" id="" style="width: 130px">
                 <{foreach from=$goodsCate item=v}>
@@ -46,7 +46,7 @@
         <{/if}> *}>
     </div>
     <div>
-        <{if !in_array($_GET.type,array('ALLOT_OUT','USE_OUT','INVENTORY'))}>
+        <{if !in_array($_GET.type,array('ALLOT_OUT','USE_OUT','INVENTORY','USE_RETURN'))}>
         <table class="table table-striped" id="data_list">
             <thead>
             <tr>

@@ -5,7 +5,7 @@
 <div class="form_div">
     <div style="overflow: hidden" class="avoid-this">
         <button id="orderPrint" class="btn btn-primary" style="float: left;margin-bottom: 20px;" > 打印</button>
-        <a type="button" class="btn btn-primary" onclick="method5('order')" style="margin-left: 10px;">导出</a>
+        <a type="button" class="btn btn-primary" onclick="method5('oorder')" style="margin-left: 10px;">导出</a>
         <{if ($order.flag==0 || $order.flag==-3)}>
         <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="提交审核"
                 layerUrl="<{$toReview}>" layerW="360px" layerH="200px" layerT="2"
@@ -22,7 +22,7 @@
         <button type="submit" class="btn btn-primary layerModel" <{if ($type=='ALLOT_OUT' || $type=='PURCHASE_RETURN')}> style="display:none;" <{/if}>
                 style="float: right;margin-bottom: 20px;margin-right: 15px;" action="1" title="商品"
                 layerUrl="goods_search" layerW="850px" layerH="500px" layerT="2"
-                layerD="type=<{$type}>&orderId=<{$order.orderId}><{if ($type=='ALLOT_OUT' || $type=='USE_OUT')}>&depotId=<{$order.depotId}><{/if}>"><i class="icon-search"></i> 产品
+                layerD="type=<{$type}>&orderId=<{$order.orderId}><{if ($type=='ALLOT_OUT' || $type=='USE_OUT' || $type=='USE_RETURN')}>&depotId=<{$order.depotId}><{/if}>"><i class="icon-search"></i> 产品
         </button>
         <button type="submit" class="btn btn-primary layerModel"
                 style="float: right;margin-bottom: 20px;margin-right: 15px;" action="2" title="订单产品"
@@ -64,7 +64,7 @@
                     <td><{$order.supplierName}></td>
                     <td>税率</td>
                     <td><{$order.taxrate}></td>
-                    <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT'))}>
+                    <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
                     <td>仓库</td>
                     <td><{$order.depotName}></td>
                     <{else}>
@@ -92,7 +92,7 @@
                     <{else}>
                     <th class="td120">名称</th>
                     <{/if}>
-                    <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN'))}>
+                    <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                     <{if $type=='PURCHASE_IN'}>
                     <th class="td50">规格</th>
                     <{else}>
@@ -103,7 +103,7 @@
                     <{else}>
                     <th class="td150">批次号</th>
                     <{/if}>
-                    <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN'))}>
+                    <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                     <th class="td120">供应商</th>
                     <{/if}>
                     <{if $type=='PURCHASE_IN' || $type=='SALE_OUT'|| $type=='SALE_RETURN'}>
@@ -119,7 +119,7 @@
                     <{/if}>
 
                     <th class="td90">价格</th>
-                    <{if in_array($type,array('ALLOT_OUT','USE_OUT'))}>
+                    <{if in_array($type,array('ALLOT_OUT','USE_OUT','USE_RETURN'))}>
                     <th class="td85">部门</th>
                     <th class="td85">领用人</th>
                     <{/if}>
@@ -151,7 +151,7 @@
                                         <{else}>
                                         <td class="td120"><{$v.goodsName}></td>
                                         <{/if}>
-                                        <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN'))}>
+                                        <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                                         <{if $type=='PURCHASE_IN'}>
                                         <td class="td50"><{$v.goodsSpec}></td>
                                         <{else}>
@@ -161,7 +161,7 @@
                                         <{else}>
                                         <td class="td150"><{$v.orderSubNo}></td>
                                         <{/if}>
-                                        <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN'))}>
+                                        <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                                         <td class="td120"><{$v.supplierName}></td>
                                         <{/if}>
                                         <{if $type=='PURCHASE_IN' || $type=='SALE_OUT' || $type=='SALE_RETURN'}>
@@ -173,7 +173,7 @@
                                         <td class="td80"><{$v.goodsCnt}></td>
 
                                         <td class="td90"><{$v.goodsPrice}></td>
-                                        <{if in_array($type,array('ALLOT_OUT','USE_OUT'))}>
+                                        <{if in_array($type,array('ALLOT_OUT','USE_OUT','USE_RETURN'))}>
                                         <td class="td85"><{$v.departmentName}></td>
                                         <td class="td85"><{$v.employeeName}></td>
                                         <{/if}>
@@ -206,7 +206,7 @@
                                         <th class="td120">名称</th>
                                         <{/if}>
 
-                                        <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT'))}>
+                                        <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
                                         <{if $type=='PURCHASE_IN'}>
                                         <th class="td50">规格</th>
                                         <{else}>
@@ -216,7 +216,7 @@
                                         <{else}>
                                         <th class="td150">批次号</th>
                                         <{/if}>
-                                        <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT'))}>
+                                        <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
                                         <th class="td120">供应商</th>
                                         <{/if}>
                                         <{if $type=='PURCHASE_IN'}>
@@ -234,7 +234,7 @@
                                         <th class="td80">库存数量</th>
                                         <{/if}>
                                         <th class="td90">价格</th>
-                                        <{if in_array($type,array('ALLOT_OUT','USE_OUT'))}>
+                                        <{if in_array($type,array('ALLOT_OUT','USE_OUT','USE_RETURN'))}>
                                         <th class="td85">部门</th>
                                         <th class="td85">领用人</th>
                                         <{/if}>

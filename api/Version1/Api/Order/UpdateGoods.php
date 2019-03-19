@@ -20,7 +20,9 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             throw new PhalApi_Exception_BadRequest('缺少必要参数 type', 0);
         }
 
-        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','PURCHASE_RETURN');
+
+        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','USE_RETURN','PURCHASE_RETURN');
+
         if (!in_array($type, $range)) {
             throw new PhalApi_Exception_BadRequest('type 应为 ' . implode('/', $range) . '中的一个', 0);
         }
@@ -54,10 +56,10 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             'USE_OUT'     => array(
                 'departmentId' => array('name' => 'departmentId', 'type' => 'int', 'min' => 0, 'require' => true),
                 'employeeId'   => array('name' => 'employeeId', 'type' => 'int', 'min' => 0, 'require' => true),
-            ),
+            )
         );
 
-        if ($type == 'ALLOT_OUT' || $type == 'USE_OUT' || $type=='INVENTORY' ) {
+        if ($type == 'ALLOT_OUT' || $type == 'USE_OUT' || $type=='INVENTORY' || $type=='USE_RETURN' ) {
             unset($common_rules['goodsId']);
             unset($common_rules['goodsPrice']);
         }
@@ -90,7 +92,11 @@ class Api_Order_UpdateGoods extends PhalApi_Api
 
         $domain->type = $this->type;
         $id = $domain->update($input);
-      //  return $id;
+        if(!$id && $this->type == 'USE_RETURN'){
+            $rs['msg'] = '退货数量大于出库数量';
+            return $rs;
+        }
+
         if ($id === false) {
             $rs['msg'] = '保存失败';
             return $rs;

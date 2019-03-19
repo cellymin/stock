@@ -26,7 +26,7 @@ class Api_Order_InsertGoods extends PhalApi_Api
             throw new PhalApi_Exception_BadRequest('缺少必要参数 type', 0);
         }
 
-        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN');
+        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','USE_RETURN');
         if (!in_array($type, $range)) {
             throw new PhalApi_Exception_BadRequest('type 应为 ' . implode('/', $range) . '中的一个', 0);
         }
@@ -73,10 +73,16 @@ class Api_Order_InsertGoods extends PhalApi_Api
             ),
             'SALE_RETURN' =>array(
                 'id' => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
+            ),
+            'USE_RETURN' => array(
+                'id' => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
+                'departmentId' => array('name' => 'departmentId', 'type' => 'int', 'min' => 0, 'require' => true),
+                'employeeId' => array('name' => 'employeeId', 'type' => 'int', 'min' => 0, 'require' => true),
+                'supplierId' => array('name' => 'supplierId', 'type' => 'int', 'min' => 0, 'require' => true),
             )
         );
 
-        if ($type == 'ALLOT_OUT' || $type == 'USE_OUT' || $type == 'INVENTORY' ) {
+        if ($type == 'ALLOT_OUT' || $type == 'USE_OUT' || $type == 'INVENTORY' || $type = 'USE_RETURN' ) {
             unset($common_rules['goodsPrice']);
             unset($common_rules['goodsId']);
         }

@@ -5,18 +5,16 @@ extract($_REQUEST, EXTR_IF_EXISTS);
 $goods = array();
 $client = new PhalApiClient();
 
-if (Common::isPost()) {
+if (Common::isPost()) {;
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
         $rs = $client->request('Order_UpdateGoods.Go', array(
             'id'           => $id,
             'orderId'      => $orderId,
             'goodsCnt'     => $goodsCnt,
-            'departmentId' => $departmentId,
-            'employeeId'   => $employeeId,
             'remark'       => $remark,
-            'type'         => 'USE_OUT'
+            'type'         => 'USE_RETURN'
         ));
-        
+//                echo '<pre/>';var_dump($rs);die();
         if ($client->getRet() == PhalApiClient::RET_OK) {
             Common::unsetNonceStr();
             Common::closeWithMessage('保存成功', 'success', '1200', 0);
@@ -34,8 +32,9 @@ if (Common::isPost()) {
 $rs = $client->request('Order_GetGoods.Go', array(
     'orderId' => $orderId,
     'id'      => $id,
-    'type'    => 'USE_OUT'
+    'type'    => 'USE_RETURN'
 ));
+
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $goods = $rs['content'];
 }
@@ -70,4 +69,4 @@ Template::assign('employee_options', $employee_options);
 Template::assign('orderId', $orderId);
 Template::assign('departmentId', $departmentId);
 Template::assign('id', $id);
-Template::display('storage/using_deliver_modify.tpl');
+Template::display('storage/return_modify.tpl');

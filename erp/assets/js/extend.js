@@ -43,6 +43,9 @@ $(document).on('click', '.layerModel', function () {
             $("#data_list").parent().attr('action','change.php');
         }else if(type == 'PURCHASE_IN'){
             $("#data_list").parent().attr('action','purchase_return.php');
+
+        }else if(type == 'USE_OUT'){
+            $("#data_list").parent().attr('action','using_return.php');
         }
 
         $("#data_list").parent().submit();

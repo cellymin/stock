@@ -280,6 +280,7 @@ class Common
             'SALE_OUT'    => 'add',
             'SALE_RETURN' => 'return_add',//销售退货单
             'PURCHASE_RETURN' => 'purchase_return_add',//销售退货单
+            'USE_RETURN' => 'using_return_add'
         );
         if (array_key_exists($type, $url)) {
             return $url[$type];

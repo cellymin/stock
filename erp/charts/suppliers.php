@@ -9,7 +9,8 @@ $companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
 $userName= $_SESSION[UserSession::SESSION_NAME]['user_name'];
 $cates = $company_options = array();
 $client = new PhalApiClient();
-$rs =  $client->request('GoodsCate_GetList.go');
+
+$rs = $client->request('GoodsCate_GetList.go');
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $cates = $rs['content'];
 }
@@ -38,6 +39,7 @@ if(!$year){
 if(!$month){
     $month = date('m',time());
 }
+
 $list = Report::busReport($cateId,$companyId,$depotId,$year.$month,$keyword);
 
 $y = date('Y',time());

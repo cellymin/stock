@@ -32,7 +32,7 @@ class Domain_Order_Review
     protected function getResult($result)
     {
         $rs = array(
-            'pass'   => 3,
+            'pass' => 3,
             'nopass' => -3
         );
         if (array_key_exists($result, $rs)) {
@@ -56,7 +56,7 @@ class Domain_Order_Review
         if (!$order) {
             throw new PhalApi_Exception_BadRequest('订单不存在!', 0);
         }
-        if ($order['flag'] != 1&&$order['flag'] != 3) {
+        if ($order['flag'] != 1 && $order['flag'] != 3) {
             throw new PhalApi_Exception_BadRequest('订单状态错误!', 0);
         }
         $this->order_model = $order_model;
@@ -87,14 +87,17 @@ class Domain_Order_Review
                 $this->workE();
             }
 
-            if ($this->type == 'SALE_RETURN'){
+            if ($this->type == 'SALE_RETURN') {
                 $this->workF();
             }
+            if ($this->type == 'USE_RETURN') {
+                $this->workH();
+            }
 
-            if($this->type=='PLAN' && $this->isCopy==1){
+            if ($this->type == 'PLAN' && $this->isCopy == 1) {
                 $this->copyPlan();
             }
-            if($this->type=='ARRIVAL' && $this->isCopy==1){
+            if ($this->type == 'ARRIVAL' && $this->isCopy == 1) {
                 $this->copyArrival();
             }
 
@@ -111,42 +114,42 @@ class Domain_Order_Review
     }
 
 
-
-
-    protected function copyPlan(){
-        $copy_order_model = new Model_OrderCopy('orders_dh','orderId');
-        $copy_order_goods_model = new Model_OrderCopy('orders_dh_goods','id');
+    protected function copyPlan()
+    {
+        $copy_order_model = new Model_OrderCopy('orders_dh', 'orderId');
+        $copy_order_goods_model = new Model_OrderCopy('orders_dh_goods', 'id');
         $order_goods_model = new Model_OrderGoods();
         $order_goods = $order_goods_model->getAll($this->order['orderId']);
 
-        $this->order['orderNo'] = 'DH'. date('ymdHis') . rand(1000, 9999);
+        $this->order['orderNo'] = 'DH' . date('ymdHis') . rand(1000, 9999);
         $this->order['linkOrder'] = $this->order['orderId'];
         $this->order['flag'] = 0;
         unset($this->order['orderId']);
 
         $id = $copy_order_model->insert($this->order);
-        foreach ($order_goods as $row){
+        foreach ($order_goods as $row) {
             $row['orderId'] = $id;
             unset($row['id']);
             $copy_order_goods_model->insert($row);
         }
     }
 
-    protected function copyArrival(){
-        $copy_order_model = new Model_OrderCopy('orders_ip','orderId');
-        $copy_order_goods_model = new Model_OrderCopy('orders_ip_goods','id');
+    protected function copyArrival()
+    {
+        $copy_order_model = new Model_OrderCopy('orders_ip', 'orderId');
+        $copy_order_goods_model = new Model_OrderCopy('orders_ip_goods', 'id');
         $order_goods_model = new Model_OrderGoods();
         $order_goods = $order_goods_model->getAll($this->order['orderId']);
 
-        $this->order['orderNo'] = 'IP'. date('ymdHis') . rand(1000, 9999);
+        $this->order['orderNo'] = 'IP' . date('ymdHis') . rand(1000, 9999);
         $this->order['linkOrder'] = $this->order['orderId'];
         $this->order['flag'] = 0;
         unset($this->order['orderId']);
 
         $id = $copy_order_model->insert($this->order);
-        foreach ($order_goods as $row){
+        foreach ($order_goods as $row) {
             $row['orderId'] = $id;
-            $row['orderSubNo'] = 'PN'. date('ymdHis') . rand(1000, 9999);
+            $row['orderSubNo'] = 'PN' . date('ymdHis') . rand(1000, 9999);
             unset($row['id']);
             $copy_order_goods_model->insert($row);
         }
@@ -199,14 +202,14 @@ class Domain_Order_Review
     {
 
         $input = array(
-            'invoiceNo'     => 'IN' . date('ymdHis') . rand(1000, 9999),
-            'orderId'       => $this->order['orderId'],
-            'supplierId'    => $this->order['supplierId'],
-            'totalMoney'    => $this->order['totalMoney'],
-            'companyId'     => $this->order['createCompany'],
-            'flag'          => 1,
-            'createTime'    => date('Y-m-d H:i:s'),
-            'createUser'    => DI()->userInfo['userId'],
+            'invoiceNo' => 'IN' . date('ymdHis') . rand(1000, 9999),
+            'orderId' => $this->order['orderId'],
+            'supplierId' => $this->order['supplierId'],
+            'totalMoney' => $this->order['totalMoney'],
+            'companyId' => $this->order['createCompany'],
+            'flag' => 1,
+            'createTime' => date('Y-m-d H:i:s'),
+            'createUser' => DI()->userInfo['userId'],
             'createCompany' => DI()->userInfo['companyId']
         );
 
@@ -241,17 +244,17 @@ class Domain_Order_Review
             if ($this->type == 'SALE_OUT') {
                 //生成销售发票
                 $input = array(
-                    'invoiceNo'     => 'IN' . date('ymdHis') . rand(1000, 9999),
-                    'orderId'       => $this->order['orderId'],
-                    'supplierId'    => $this->order['customerId'],
-                    'totalMoney'    => $this->order['totalMoney'],
-                    'companyId'     => $this->order['createCompany'],
-                    'flag'          => 1,
-                    'createTime'    => date('Y-m-d H:i:s'),
-                    'createUser'    => DI()->userInfo['userId'],
+                    'invoiceNo' => 'IN' . date('ymdHis') . rand(1000, 9999),
+                    'orderId' => $this->order['orderId'],
+                    'supplierId' => $this->order['customerId'],
+                    'totalMoney' => $this->order['totalMoney'],
+                    'companyId' => $this->order['createCompany'],
+                    'flag' => 1,
+                    'createTime' => date('Y-m-d H:i:s'),
+                    'createUser' => DI()->userInfo['userId'],
                     'createCompany' => DI()->userInfo['companyId'],
                     'invoiceStatus' => 1,
-                    'type'          => 2
+                    'type' => 2
                 );
 
                 $model = new Model_Invoice();
@@ -265,9 +268,6 @@ class Domain_Order_Review
         //通知 订单创建人
         return $input;
     }
-
-
-
 
 
     /**
@@ -340,6 +340,86 @@ class Domain_Order_Review
         return $input;
     }
 
+
+    protected function workH()
+    {
+        //更新审核信息
+        $inout['review'] = $this->updateReviewer();
+
+        //订单日志
+        $this->orderLog( $inout['review']);
+        //审核通过
+        if ($this->flag == 3) {
+            //商品退货
+            $input['depot_goods'] = $this->useReturn($this->orderId);
+            //库存日志
+
+        }
+        return $input;
+    }
+    /**
+     * 领用退货入库
+     *
+     */
+    protected function useReturn($orderId)
+    {
+        $input = array();
+
+        //订单商品
+        $goods_model = new Model_OrderGoods();
+        $goods = $goods_model->getAll($orderId);
+        $reGoods = array();
+        $usingGoods = array();
+        foreach ($goods as $k=>$v){
+            $reGoods[$v['goodsId']]['goodsCnt'] = $v['goodsCnt'];
+            $reids[] = $v['goodsId'];
+        }
+        //退货商品不存在于出库商品中
+
+        if (!$goods) {
+            throw new PDOException('订单商品不存在', 1);
+        }
+        $useGoods = $goods_model->getUseaGoods($orderId);
+        foreach ($useGoods as $kk=>$vv) {
+            $usingGoods[$vv['goodsId']]['goodsCnt'] = $vv['goodsCnt'];
+            if(isset($reGoods[$vv['goodsId']])){
+                if($usingGoods[$vv['goodsId']]['goodsCnt']<$reGoods[$vv['goodsId']]['goodsCnt']){
+                    throw new PDOException('商品数量大于出库数量', 1);
+                }
+            }
+            $usingids[] = $vv['goodsId'];
+        }
+        $diffids = array_diff($reids,$usingids);
+        if(!empty($diffids)){
+            throw new PDOException('商品不存在于出库清单中', 1);
+        }
+        //入库，更改库存
+        $depotGoods_model = new Model_DepotGoods();
+        foreach ($goods as $g) {
+            $depot_goods = $depotGoods_model->get($g['depotGoodsId']);
+            if (!$depot_goods || $depot_goods['flag'] != 1) {
+                throw new PDOException('库存商品不存在', 1);
+                break;
+            }
+            $goodsInfo_model = new Model_Goods();
+            $goodsinfo = $goodsInfo_model->fetch($depot_goods['goodsId']);
+            $num = DI()->notorm->depot_goods->where('id', $g['depotGoodsId'])->update(array('goodsCnt' => new NotORM_Literal("goodsCnt + $g[goodsCnt]")));
+            if ($num === false) {
+                throw new PDOException('库存更新失败', 1);
+                break;
+            }
+
+            $input[] = array(
+                'id'         => $g['depotGoodsId'],
+                'depotSubId' => $g['depotSubId'],
+                'batchNo'    => $depot_goods['batchNo'],
+                'goodsCnt'   => $g['goodsCnt']
+            );
+        }
+
+        return $input;
+    }
+
     /**
      * 当前订单日志
      * @param $logContent
@@ -350,11 +430,11 @@ class Domain_Order_Review
         //审核日志
         $log_model = new Model_LogOrder();
         $num = $log_model->insert(array(
-            'logUser'    => DI()->userInfo['userId'],
-            'logType'    => strtoupper($this->result),
+            'logUser' => DI()->userInfo['userId'],
+            'logType' => strtoupper($this->result),
             'logContent' => $this->encode_json($logContent),
-            'orderId'    => $this->orderId,
-            'orderType'  => $this->type,
+            'orderId' => $this->orderId,
+            'orderType' => $this->type,
             'createTime' => date('Y-m-d H:i:s')
         ));
         if (!$num) {
@@ -366,20 +446,22 @@ class Domain_Order_Review
     }
 
     // 使用url_encode对字符串进行编码
-    public function url_encode($str){
-        if(is_array($str)){
-            foreach ($str as $k=>$v){
-                $str[urlencode($k)]=$this->url_encode($v);
+    public function url_encode($str)
+    {
+        if (is_array($str)) {
+            foreach ($str as $k => $v) {
+                $str[urlencode($k)] = $this->url_encode($v);
             }
-        }else{
-            $str=urlencode($str);
+        } else {
+            $str = urlencode($str);
         }
         return $str;
     }
 
     // 输出json数据不解析中文
-    public function encode_json($str){
-        $result=urldecode(json_encode($this->url_encode($str)));
+    public function encode_json($str)
+    {
+        $result = urldecode(json_encode($this->url_encode($str)));
         return $result;
     }
 
@@ -394,12 +476,12 @@ class Domain_Order_Review
         $log_model = new Model_LogDepot();
 
         $num = $log_model->insert(array(
-            'logUser'    => DI()->userInfo['userId'],
-            'logType'    => $type,
+            'logUser' => DI()->userInfo['userId'],
+            'logType' => $type,
             'logContent' => $this->encode_json($logContent),
-            'depotId'    => ($this->type == 'SALE_OUT'||$this->type == 'SALE_RETURN') ? 0 : $this->order['depotId'],
-            'orderId'    => $this->orderId,
-            'orderType'  => $this->type,
+            'depotId' => ($this->type == 'SALE_OUT' || $this->type == 'SALE_RETURN') ? 0 : $this->order['depotId'],
+            'orderId' => $this->orderId,
+            'orderType' => $this->type,
             'createTime' => date('Y-m-d H:i:s')
         ));
         if (!$num) {
@@ -418,12 +500,12 @@ class Domain_Order_Review
     protected function updateReviewer()
     {
         $input = array(
-            'reviewer'     => DI()->userInfo['userId'],
+            'reviewer' => DI()->userInfo['userId'],
             'reviewerTime' => date('Y-m-d H:i:s'),
             'reviewerMemo' => $this->memo,
-            'flag'         => $this->flag,
-            'updateTime'   => date('Y-m-d H:i:s'),
-            'updateUser'   => DI()->userInfo['userId'],
+            'flag' => $this->flag,
+            'updateTime' => date('Y-m-d H:i:s'),
+            'updateUser' => DI()->userInfo['userId'],
         );
 
         $num = $this->order_model->update($this->orderId, $input);
@@ -461,10 +543,10 @@ class Domain_Order_Review
             }
 
             $depot_input[] = array(
-                'id'         => $g['depotGoodsId'],
-                'batchNo'    => $g['orderSubNo'],
+                'id' => $g['depotGoodsId'],
+                'batchNo' => $g['orderSubNo'],
                 'depotSubId' => $g['depotSubId'],
-                'goodsCnt'   => $g['goodsCnt'],
+                'goodsCnt' => $g['goodsCnt'],
             );
         }
 
@@ -492,17 +574,17 @@ class Domain_Order_Review
 
         foreach ($goods as $g) {
             $depot_input[] = array(
-                'batchNo'       => $g['orderSubNo'],
-                'depotId'       => ($this->type == 'PURCHASE_IN') ? $g['depotId'] : $this->order['depotId'],
-                'depotSubId'    => $g['depotSubId'],
-                'supplierId'    => $g['supplierId'],
-                'goodsId'       => $g['goodsId'],
-                'goodsPrice'    => $g['goodsPrice'],
-                'goodsCnt'      => $g['goodsCnt'],
-                'flag'          => 1,
+                'batchNo' => $g['orderSubNo'],
+                'depotId' => ($this->type == 'PURCHASE_IN') ? $g['depotId'] : $this->order['depotId'],
+                'depotSubId' => $g['depotSubId'],
+                'supplierId' => $g['supplierId'],
+                'goodsId' => $g['goodsId'],
+                'goodsPrice' => $g['goodsPrice'],
+                'goodsCnt' => $g['goodsCnt'],
+                'flag' => 1,
                 'createCompany' => DI()->userInfo['companyId'],
-                'createUser'    => DI()->userInfo['userId'],
-                'createTime'    => date('Y-m-d H:i:s'),
+                'createUser' => DI()->userInfo['userId'],
+                'createTime' => date('Y-m-d H:i:s'),
             );
 
             // 验证仓库是否存在
@@ -576,9 +658,9 @@ class Domain_Order_Review
             foreach ($price as $id => $g) {
                 $id = $model->update($id, array(
                     'lastPrice' => $g['lastPrice'],
-                    'minPrice'  => $g['minPrice'],
-                    'maxPrice'  => $g['maxPrice'],
-                    'avgPrice'  => sprintf('%.2f', $g['totalMoney'] / $g['count']),
+                    'minPrice' => $g['minPrice'],
+                    'maxPrice' => $g['maxPrice'],
+                    'avgPrice' => sprintf('%.2f', $g['totalMoney'] / $g['count']),
                 ));
                 if ($id === false) {
                     throw new PDOException('产品价格更新失败', 1);
@@ -625,14 +707,13 @@ class Domain_Order_Review
             }
 
             $input[] = array(
-                'id'         => $g['depotGoodsId'],
+                'id' => $g['depotGoodsId'],
                 'depotSubId' => $g['depotSubId'],
-                'batchNo'    => $depot_goods['batchNo'],
-                'goodsCnt'   => $g['goodsCnt'],
-                'action'     => '审核通过'
+                'batchNo' => $depot_goods['batchNo'],
+                'goodsCnt' => $g['goodsCnt'],
+                'action' => '审核通过'
             );
         }
-
         return $input;
     }
 
@@ -670,11 +751,11 @@ class Domain_Order_Review
             }
 
             $input[] = array(
-                'id'         => $g['depotGoodsId'],
+                'id' => $g['depotGoodsId'],
                 'depotSubId' => $g['depotSubId'],
-                'batchNo'    => $depot_goods['batchNo'],
-                'goodsCnt'   => $g['goodsCnt'],
-                'action'     => '商品退货成功'
+                'batchNo' => $depot_goods['batchNo'],
+                'goodsCnt' => $g['goodsCnt'],
+                'action' => '商品退货成功'
             );
         }
 
@@ -690,17 +771,17 @@ class Domain_Order_Review
     {
         //其他出库单
         $out_input = array(
-            'orderId'    => 0,
+            'orderId' => 0,
             'totalMoney' => 0,
-            'totalCnt'   => 0,
-            'goods'      => array()
+            'totalCnt' => 0,
+            'goods' => array()
         );
         //其他入库单
         $in_input = array(
-            'orderId'    => 0,
+            'orderId' => 0,
             'totalMoney' => 0,
-            'totalCnt'   => 0,
-            'goods'      => array()
+            'totalCnt' => 0,
+            'goods' => array()
         );
 
         //订单商品
@@ -729,19 +810,19 @@ class Domain_Order_Review
                 }
 
                 $in_input['goods'][] = array(
-                    'orderId'       => $in_input['orderId'],
-                    'orderSubNo'    => $depot_goods['batchNo'],
-                    'depotGoodsId'  => $depot_goods['id'],
-                    'depotId'       => $this->order['depotId'],
-                    'goodsId'       => $depot_goods['goodsId'],
-                    'supplierId'    => $depot_goods['supplierId'],
-                    'depotSubId'    => $depot_goods['depotSubId'],
-                    'goodsPrice'    => $depot_goods['goodsPrice'],
-                    'goodsCnt'      => ($g['goodsCnt'] - $depot_goods['goodsCnt']),
-                    'flag'          => 1,
+                    'orderId' => $in_input['orderId'],
+                    'orderSubNo' => $depot_goods['batchNo'],
+                    'depotGoodsId' => $depot_goods['id'],
+                    'depotId' => $this->order['depotId'],
+                    'goodsId' => $depot_goods['goodsId'],
+                    'supplierId' => $depot_goods['supplierId'],
+                    'depotSubId' => $depot_goods['depotSubId'],
+                    'goodsPrice' => $depot_goods['goodsPrice'],
+                    'goodsCnt' => ($g['goodsCnt'] - $depot_goods['goodsCnt']),
+                    'flag' => 1,
                     'createCompany' => DI()->userInfo['companyId'],
-                    'createUser'    => DI()->userInfo['userId'],
-                    'createTime'    => date('Y-m-d H:i:s')
+                    'createUser' => DI()->userInfo['userId'],
+                    'createTime' => date('Y-m-d H:i:s')
                 );
 
                 $in_input['totalMoney'] += $depot_goods['goodsPrice'] * ($g['goodsCnt'] - $depot_goods['goodsCnt']);
@@ -763,19 +844,19 @@ class Domain_Order_Review
                 }
 
                 $out_input['goods'][] = array(
-                    'orderId'       => $out_input['orderId'],
-                    'orderSubNo'    => $depot_goods['batchNo'],
-                    'depotGoodsId'  => $depot_goods['id'],
-                    'goodsId'       => $depot_goods['goodsId'],
-                    'supplierId'    => $depot_goods['supplierId'],
-                    'depotId'       => $this->order['depotId'],
-                    'depotSubId'    => $depot_goods['depotSubId'],
-                    'goodsPrice'    => $depot_goods['goodsPrice'],
-                    'goodsCnt'      => ($depot_goods['goodsCnt'] - $g['goodsCnt']),
-                    'flag'          => 1,
+                    'orderId' => $out_input['orderId'],
+                    'orderSubNo' => $depot_goods['batchNo'],
+                    'depotGoodsId' => $depot_goods['id'],
+                    'goodsId' => $depot_goods['goodsId'],
+                    'supplierId' => $depot_goods['supplierId'],
+                    'depotId' => $this->order['depotId'],
+                    'depotSubId' => $depot_goods['depotSubId'],
+                    'goodsPrice' => $depot_goods['goodsPrice'],
+                    'goodsCnt' => ($depot_goods['goodsCnt'] - $g['goodsCnt']),
+                    'flag' => 1,
                     'createCompany' => DI()->userInfo['companyId'],
-                    'createUser'    => DI()->userInfo['userId'],
-                    'createTime'    => date('Y-m-d H:i:s')
+                    'createUser' => DI()->userInfo['userId'],
+                    'createTime' => date('Y-m-d H:i:s')
                 );
 
                 $out_input['totalMoney'] += $depot_goods['goodsPrice'] * ($depot_goods['goodsCnt'] - $g['goodsCnt']);
@@ -832,11 +913,11 @@ class Domain_Order_Review
         }
 
         $logId = $this->orderLog_model->insert(array(
-            'logUser'    => DI()->userInfo['userId'],
-            'logType'    => 'CREATE',
+            'logUser' => DI()->userInfo['userId'],
+            'logType' => 'CREATE',
             'logContent' => json_encode($input),
-            'orderId'    => $orderId,
-            'orderType'  => $type,
+            'orderId' => $orderId,
+            'orderType' => $type,
             'createTime' => date('Y-m-d H:i:s')
         ));
         if (!$logId) {
@@ -873,19 +954,19 @@ class Domain_Order_Review
         //更新订单
         $num = $this->order_model->updateOther($type, $input['orderId'], array(
             'totalMoney' => $input['totalMoney'],
-            'totalCnt'   => $input['totalCnt'],
-            'flag'       => 1
+            'totalCnt' => $input['totalCnt'],
+            'flag' => 1
         ));
         if (!$num) {
             throw new PDOException($msg . '更新失败', 1);
         }
         //日志
         $num = $this->orderLog_model->insert(array(
-            'logUser'    => DI()->userInfo['userId'],
-            'logType'    => 'INSERT',
+            'logUser' => DI()->userInfo['userId'],
+            'logType' => 'INSERT',
             'logContent' => json_encode($input),
-            'orderId'    => $input['orderId'],
-            'orderType'  => $type,
+            'orderId' => $input['orderId'],
+            'orderType' => $type,
             'createTime' => date('Y-m-d H:i:s')
         ));
         if (!$num) {

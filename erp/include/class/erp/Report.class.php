@@ -309,10 +309,8 @@ class Report extends Base
     public static function busReport($cateId, $companyId, $depotId, $date,$keyword)
     {
         $db = self::__instance();
-
         $starttime = substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-01 00:00:00';
         $endtime = date('Y-m-d', strtotime('+1 month -1 days', strtotime(substr($date, 0, 4) . '-' . substr($date, 4, 2) . '-01 0:0:0'))) . ' 23:59:59';
-
         $thisMonth = date('Y-m-d', time());
         if (strtotime($thisMonth) >= strtotime($endtime)) {
             //当前时间大于查询月月末 即查询的非本月
@@ -366,7 +364,19 @@ class Report extends Base
                 FROM vich_orders_iq_goods og 
                 LEFT JOIN vich_orders_iq iq ON og.orderId = iq.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=1 AND iq.flag = 3 {$time_where_area} {$cate_where} {$com_where} {$depot_where}";
+                WHERE og.flag=1 AND iq.flag = 3 {$time_where_area} {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_oyth_goods og 
+                LEFT JOIN vich_orders_oyth oyth ON og.orderId = oyth.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND oyth.flag = 3 {$time_where_area} {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_soth_goods og 
+                LEFT JOIN vich_orders_soth soth ON og.orderId = soth.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND soth.flag = 3 {$time_where_area} {$cate_where} {$com_where} {$depot_where}";
             } else {
                 $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_ip_goods og 
@@ -384,7 +394,19 @@ class Report extends Base
                 FROM vich_orders_iq_goods og 
                 LEFT JOIN vich_orders_iq iq ON og.orderId = iq.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=1 AND iq.flag = 3  {$time_where_area} {$cate_where} {$com_where} {$depot_where}";
+                WHERE og.flag=1 AND iq.flag = 3  {$time_where_area} {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_oyth_goods og 
+                LEFT JOIN vich_orders_oyth oyth ON og.orderId = oyth.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND oyth.flag = 3 {$time_where_area} {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_soth_goods og 
+                LEFT JOIN vich_orders_soth soth ON og.orderId = soth.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND soth.flag = 3 {$time_where_area} {$cate_where} {$com_where} {$depot_where}";
             }
             foreach ($db->query($sql) as $i) {
                 if (!isset($localin[$i['goodsId']])) {
@@ -500,7 +522,19 @@ class Report extends Base
                 FROM vich_orders_iq_goods og 
                 LEFT JOIN vich_orders_iq iq ON og.orderId = iq.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=1 AND iq.flag = 3 {$time_where} {$cate_where} {$com_where} {$depot_where}";
+                WHERE og.flag=1 AND iq.flag = 3 {$time_where} {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_oyth_goods og 
+                LEFT JOIN vich_orders_oyth oyth ON og.orderId = oyth.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND oyth.flag = 3 {$time_where} {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_soth_goods og 
+                LEFT JOIN vich_orders_soth soth ON og.orderId = soth.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND soth.flag = 3 {$time_where} {$cate_where} {$com_where} {$depot_where}";
         } else {
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
                 FROM vich_orders_ip_goods og 
@@ -518,7 +552,19 @@ class Report extends Base
                 FROM vich_orders_iq_goods og 
                 LEFT JOIN vich_orders_iq iq ON og.orderId = iq.orderId
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
-                WHERE og.flag=1 AND iq.flag = 3  {$time_where} {$cate_where} {$com_where} {$depot_where}";
+                WHERE og.flag=1 AND iq.flag = 3  {$time_where} {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_oyth_goods og 
+                LEFT JOIN vich_orders_oyth oyth ON og.orderId = oyth.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND oyth.flag = 3 {$time_where} {$cate_where} {$com_where} {$depot_where}
+                UNION ALL
+                SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
+                FROM vich_orders_soth_goods og 
+                LEFT JOIN vich_orders_soth soth ON og.orderId = soth.orderId
+                LEFT JOIN vich_goods g on g.goodsId=og.goodsId
+                WHERE og.flag=1 AND soth.flag = 3 {$time_where} {$cate_where} {$com_where} {$depot_where}";
         }
         foreach ($db->query($sql) as $i) {
             if (!isset($in[$i['goodsId']])) {
@@ -529,7 +575,6 @@ class Report extends Base
             $in[$i['goodsId']]['count'] += $i['goodsCnt'];
             $ids[] = $i['goodsId'];
         }
-
         //调拨入库
         if (!empty($depotId)) {
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt 
@@ -638,6 +683,7 @@ class Report extends Base
                 FROM vich_depot_goods og
                 LEFT JOIN vich_goods g on g.goodsId=og.goodsId
                 LEFT JOIN vich_goods_units gn on gn.unitId=g.goodsUnitId
+
                 WHERE g.goodsSn like '%$keyword%' or g.goodsName like '%$keyword%' ORDER BY g.goodsSn ASC,og.createTime DESC";
         }else{
             $sql = "SELECT og.goodsId,og.goodsPrice,og.goodsCnt,g.goodsName,goodsSn,gn.unitName

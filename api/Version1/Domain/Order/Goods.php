@@ -22,6 +22,7 @@ class Domain_Order_Goods
 
     public function chk($action = 'add')
     {
+
         if ($action == 'add' && $this->type != 'INVENTORY' && $this->goodsCnt < 1) {
             throw new PhalApi_Exception_BadRequest('数量不能为0', 1);
         }
@@ -85,6 +86,8 @@ class Domain_Order_Goods
             }
 
             $this->goods = $goods;
+
+
         }
 
         if ($action == 'add' && isset($this->id)) {
@@ -95,11 +98,11 @@ class Domain_Order_Goods
                 throw new PhalApi_Exception_BadRequest('库存商品不存在', 1);
             }
 
-            if ($goods['flag'] != 1 && $this->type!='SALE_RETURN') {
+            if ($goods['flag'] != 1 && $this->type != 'SALE_RETURN') {
                 throw new PhalApi_Exception_BadRequest('商品库存为0', 1);
             }
 
-            if ($goods['goodsCnt'] < $this->goodsCnt && $this->type != 'INVENTORY' && $this->type!='SALE_RETURN') {
+            if ($goods['goodsCnt'] < $this->goodsCnt && $this->type != 'INVENTORY' && $this->type != 'SALE_RETURN') {
                 throw new PhalApi_Exception_BadRequest('商品库存不足,库存:' . $goods['goodsCnt'], 1);
             }
             //判断重复
@@ -109,20 +112,29 @@ class Domain_Order_Goods
             if ($repeat_goods) {
                 throw new PhalApi_Exception_BadRequest('存在重复产品', 1);
             }
-
+            $usegoodsCnt = $order_goods_model->getUseBatchNo($this->orderId, $goods['goodsId'], $goods['batchNo']);
+            if ($this->type == 'USE_RETURN') {
+                if (!$usegoodsCnt) {
+                    throw new PhalApi_Exception_BadRequest('不存在该批次出库产品', 1);
+                } else if (floatval($usegoodsCnt[0]['goodsCnt']) == 0) {
+                    throw new PhalApi_Exception_BadRequest('出库数量不合法', 1);
+                } else if (floatval($usegoodsCnt[0]['goodsCnt']) > 0 && $this->goodsCnt > floatval($usegoodsCnt[0]['goodsCnt'])) {
+                    throw new PhalApi_Exception_BadRequest('退货数量大于出库数量', 1);
+                }
+            }
             $this->goods = $goods;
+
             //重新赋值
-            if($this->type!='SALE_OUT'&&$this->type!='SALE_RETURN'){
+            if ($this->type != 'SALE_OUT' && $this->type != 'SALE_RETURN') {
                 $this->goodsPrice = $goods['goodsPrice'];
             }
             $this->goodsId = $goods['goodsId'];
             $this->supplierId = $goods['supplierId'];
             $this->depotSubId = $goods['depotSubId'];
-            if($this->type == 'SALE_OUT'||$this->type == 'SALE_RETURN'){
+            if ($this->type == 'SALE_OUT' || $this->type == 'SALE_RETURN') {
                 $this->depotId = $goods['depotId'];
             }
         }
-
         if ($action == 'edit' && isset($this->id)) {
             $goods_model = new Model_OrderGoods();
 
@@ -131,7 +143,7 @@ class Domain_Order_Goods
                 throw new PhalApi_Exception_BadRequest('订单商品不存在', 1);
             }
 
-            if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type=='SALE_OUT') {
+            if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type == 'SALE_OUT' || $this->type == 'RETURN') {
                 //出库验证商品库存
                 $depot_goods_model = new Model_DepotGoods();
 
@@ -165,6 +177,7 @@ class Domain_Order_Goods
                 }
             }
             $order_goods_model = new Model_OrderGoods();
+
             if ($this->type == 'PURCHASE_RETURN') {
                 $usegoodsCnt = $order_goods_model->getPurchaseBatchNo($this->orderId,  $goods[0]['goodsId'], $goods[0]['orderSubNo']);
                 if (!$usegoodsCnt) {
@@ -175,6 +188,17 @@ class Domain_Order_Goods
                     throw new PhalApi_Exception_BadRequest('退货数量大于出库数量', 1);
                 }
             }
+            if ($this->type == 'USE_RETURN') {
+                $usegoodsCnt = $order_goods_model->getUseBatchNo($this->orderId,  $goods[0]['goodsId'], $goods[0]['orderSubNo']);
+                if (!$usegoodsCnt) {
+                    throw new PhalApi_Exception_BadRequest('不存在该批次出库产品', 1);
+                } else if (floatval($usegoodsCnt[0]['goodsCnt']) == 0) {
+                    throw new PhalApi_Exception_BadRequest('出库数量不合法', 1);
+                } else if (floatval($usegoodsCnt[0]['goodsCnt']) > 0 && $this->goodsCnt > floatval($usegoodsCnt[0]['goodsCnt'])) {
+                    throw new PhalApi_Exception_BadRequest('退货数量大于出库数量', 1);
+                }
+            }
+
             $this->goods = $goods[0];
         }
 
@@ -228,7 +252,7 @@ class Domain_Order_Goods
         $model = new Model_OrderGoods();
 
         $goods = $model->getById($orderId, $id);
-        if ($goods && ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY')) {
+        if ($goods && ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type == 'USE_RETURN')) {
 
             $model = new Model_Supplier();
             $supplier = $model->getForOrder($goods[0]['supplierId']);
@@ -259,7 +283,7 @@ class Domain_Order_Goods
         $input['createCompany'] = DI()->userInfo['companyId'];
         $input['createUser'] = DI()->userInfo['userId'];
         $input['createTime'] = date('Y-m-d H:i:s');
-        if(in_array($this->type,array('ALLOT_IN','USE_OUT','INVENTORY','ALLOT_OUT'))){
+        if (in_array($this->type, array('ALLOT_IN', 'USE_OUT', 'INVENTORY', 'ALLOT_OUT'))) {
             $input['depotId'] = $this->order['depotId'];
         }
 
@@ -269,10 +293,10 @@ class Domain_Order_Goods
             $input['depotGoodsId'] = $this->id;
             $input['depotSubId'] = $this->depotSubId;
             $input['orderSubNo'] = $this->goods['batchNo'];
-            if($this->type=='SALE_OUT'||$this->type=='SALE_RETURN'){
+            if ($this->type == 'SALE_OUT' || $this->type == 'SALE_RETURN') {
                 $input['depotId'] = $this->depotId;
             }
-            unset($input['supplierId']);
+            //unset($input['supplierId']);
             unset($input['id']);
         }
 
@@ -281,7 +305,7 @@ class Domain_Order_Goods
             //入库单商品批次号
             $prefix = $this->type == 'PURCHASE_IN' ? 'PN' : 'AN';
             $input['orderSubNo'] = $prefix . date('ymdHis') . rand(1000, 9999);
-            if(!empty($this->ratepri)){
+            if (!empty($this->ratepri)) {
                 $input['ratepri'] = $this->ratepri;
             }
         }
@@ -291,18 +315,25 @@ class Domain_Order_Goods
 
     public function update($input)
     {
+
          $this->chk('edit');
 
-        if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY') {
+        if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY' || $this->type == 'USE_RETURN' ) {
+
             //出库单重新赋值
             $input['goodsPrice'] = $this->goods['goodsPrice'];
+        }
+        $order_model = new Model_Order();
+        if ($this->type == 'USE_RETURN') {
+            $returninfo = $order_model->getFromId($this->orderId, $input['id']);
+            if (floatval($returninfo[0]['goodsCnt']) < floatval($input['goodsCnt'])) {
+                return false;
+            }
         }
         unset($input['id']);
         $input['orderFlag'] = $this->order['flag'];
 
         $order_goods_model = new Model_OrderGoods();
-
-
         if ($input['goodsCnt'] < 1) {
             $input['totalMoney'] = new NotORM_Literal('totalMoney-' . ($this->goods['goodsPrice'] * $this->goods['goodsCnt']));
             $input['totalCnt'] = new NotORM_Literal('totalCnt-' . $this->goods['goodsCnt']);

@@ -45,7 +45,7 @@
         <select name="year" id="" class="input-xlarge" style="width: 90px;">
             <option value="0">= 请选择 =</option>
             <{foreach from=$yarr item=yy}>
-            <option value="<{$yy}>" <{if $_GET.year==$yy}>selected<{else}><{if !$_GET.year && $y==$yy}>selected<{/if}><{/if}> ><{$yy}></option>
+        <option value="<{$yy}>" <{if $_GET.year==$yy}>selected<{else}><{if !$_GET.year && $y==$yy}>selected<{/if}><{/if}> ><{$yy}></option>
             <{/foreach}>
         </select>
     </div>

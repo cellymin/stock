@@ -8,7 +8,7 @@ class Api_Order_Delete extends PhalApi_Api
             'go' => array(
                 'orderId' => array('name' => 'orderId', 'type' => 'array', 'format' => 'explode', 'require' => true),
                 'type' => array('name' => 'type', 'type' => 'enum',
-                    'range' => array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','PURCHASE_RETURN'),
+                    'range' => array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','USE_RETURN','PURCHASE_RETURN'),
                     'require' => true
                 ),
             )
