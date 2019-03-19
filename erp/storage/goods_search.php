@@ -21,7 +21,6 @@ if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
         $order = $rs['content'];
     }
 
-
     $rs = $client->request('DepotGoods_GetList.Go', array(
         'keyword'    => $keyword,
         'depotId'    => $order['depotId'],
@@ -65,7 +64,6 @@ if (in_array($type, array('ALLOT_OUT', 'USE_OUT', 'INVENTORY'))) {
         'page_no'     => $page_no,
         'page_size'   => 7,
     ));
-
     if ($client->getRet() == PhalApiClient::RET_OK) {
         $page_no = $rs['content']['page_no'];
         $page_size = $rs['content']['page_size'];

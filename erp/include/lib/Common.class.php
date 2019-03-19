@@ -278,7 +278,8 @@ class Common
             'OTHER_OUT'   => 'other_deliver_add',   //其他出库单
             'INVENTORY'   => 'count_order_add',    //盘点单,
             'SALE_OUT'    => 'add',
-            'SALE_RETURN' => 'return_add'           //销售退货单
+            'SALE_RETURN' => 'return_add',//销售退货单
+            'PURCHASE_RETURN' => 'purchase_return_add',//销售退货单
         );
         if (array_key_exists($type, $url)) {
             return $url[$type];

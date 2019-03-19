@@ -33,7 +33,8 @@ class Domain_Reviewer_Options
             'USE_OUT'       => 199,
             'INVENTORY'     => 202,
             'SALE_OUT'=>275,
-            'SALE_RETURN'=>291
+            'SALE_RETURN'=>291,
+            'PURCHASE_RETURN'=>317
         );
 
         $role = array_key_exists($type, $roles) ? $roles[$type] : 0;

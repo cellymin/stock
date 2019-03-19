@@ -20,7 +20,7 @@ class Api_Order_UpdateGoods extends PhalApi_Api
             throw new PhalApi_Exception_BadRequest('缺少必要参数 type', 0);
         }
 
-        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN');
+        $range = array('PLAN', 'ARRIVAL', 'RETURN', 'PURCHASE_IN', 'ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','SALE_OUT','SALE_RETURN','PURCHASE_RETURN');
         if (!in_array($type, $range)) {
             throw new PhalApi_Exception_BadRequest('type 应为 ' . implode('/', $range) . '中的一个', 0);
         }
@@ -82,7 +82,6 @@ class Api_Order_UpdateGoods extends PhalApi_Api
         $rs = array('code' => 0, 'id' => '', 'msg' => '');
 
         $domain = new Domain_Order_Goods();
-
         $input = array();
         foreach ($this->rules as $name => $value) {
             $domain->$name = $this->$name;
@@ -91,6 +90,7 @@ class Api_Order_UpdateGoods extends PhalApi_Api
 
         $domain->type = $this->type;
         $id = $domain->update($input);
+      //  return $id;
         if ($id === false) {
             $rs['msg'] = '保存失败';
             return $rs;

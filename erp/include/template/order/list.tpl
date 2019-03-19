@@ -10,7 +10,7 @@
         <{if ($type=='SALE_OUT' ||$type=='ARRIVAL' || $type=='PURCHASE_IN')}>
         <a class="btn btn-primary layerModel" action="5" title="生成退货单"></i> 生成退货单</a>
         <{/if}>
-        <{if ($type!='OTHER_IN' && $type!='OTHER_OUT')}>
+        <{if ($type!='OTHER_IN' && $type!='OTHER_OUT' && $type!='PURCHASE_RETURN')}>
         <a class="btn btn-primary layerModel" action="1" title="新增订单" layerUrl="<{$create_url}>" layerW="500px"
            layerH="400px" layerT="2"><i class="icon-plus"></i> 新增</a>
         <{/if}>

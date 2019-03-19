@@ -19,7 +19,7 @@
         </button>
         <{/if}>
         <{if in_array($order.flag,array(0,1,-3)) && !in_array($type,array('OTHER_IN','OTHER_OUT'))}>
-        <button type="submit" class="btn btn-primary layerModel"
+        <button type="submit" class="btn btn-primary layerModel" <{if ($type=='ALLOT_OUT' || $type=='PURCHASE_RETURN')}> style="display:none;" <{/if}>
                 style="float: right;margin-bottom: 20px;margin-right: 15px;" action="1" title="商品"
                 layerUrl="goods_search" layerW="850px" layerH="500px" layerT="2"
                 layerD="type=<{$type}>&orderId=<{$order.orderId}><{if ($type=='ALLOT_OUT' || $type=='USE_OUT')}>&depotId=<{$order.depotId}><{/if}>"><i class="icon-search"></i> 产品

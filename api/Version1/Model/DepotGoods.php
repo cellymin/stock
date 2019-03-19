@@ -135,4 +135,9 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
             ->where('goodsId',$goodsid)->where('depotId',$depotid)->fetchAll();
 //        return $this->getORM()->queryAll($sql, $param);
     }
+    public function getGoodsInfo($goodsId,$batchNo,$depotId){
+        return DI()->notorm->depot_goods
+            ->select('*')
+            ->where('goodsId',$goodsId)->where('batchNo',$batchNo)->where('depotId',$depotId)->fetch();
+    }
 }

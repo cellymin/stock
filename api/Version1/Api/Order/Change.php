@@ -25,7 +25,6 @@ class Api_Order_Change extends PhalApi_Api
             }elseif($type=='PURCHASE_IN'){
                 $saleOrder=DI()->notorm->orders_ip->select('supplierId','depotId','orderNo','totalMoney','totalCnt','flag')->where('orderId',$this->orderId)->fetch();
             }
-
             if ($saleOrder['flag']!=3){
                 $rs['msg']='请选择审核通过订单';
                 return $rs;
@@ -131,28 +130,27 @@ class Api_Order_Change extends PhalApi_Api
                     'createTime' => date('Y-m-d H:i:s'),
                     'contactNo' => $saleOrder['orderNo']
                 );
-                $orderId=DI()->notorm->orders_oyth->insert($returnOrder);
-                $goodsList=DI()->notorm->orders_oy_goods->select('orderSubNo','depotGoodsId','goodsId','depotSubId','depotId','supplierId'
-                    ,'goodsCnt','goodsPrice','departmentId','employeeId')->where('orderId',$this->orderId)->where('flag',1)->fetchAll();
+                $orderId=DI()->notorm->orders_ipth->insert($returnOrder);
+                $goodsList=DI()->notorm->orders_ip_goods->select('orderSubNo','goodsId','depotSubId','depotId','supplierId'
+                    ,'goodsCnt','goodsPrice','ratepri','usecostpri')->where('orderId',$this->orderId)->where('flag',1)->fetchAll();
                 foreach($goodsList as $k=>$v){
                     $returnList[]=$input=array(
                         'orderId'=>$orderId,
                         'orderSubNo'=>$v['orderSubNo'],
-                        'depotGoodsId'=>$v['depotGoodsId'],
                         'supplierId' => $v['supplierId'],
                         'goodsId'=>$v['goodsId'],
                         'depotSubId'=>$v['depotSubId'],
                         'depotId'=>$v['depotId'],
                         'goodsCnt'=>$v['goodsCnt'],
                         'goodsPrice'=>$v['goodsPrice'],
-                        'departmentId'=>$v['departmentId'],
-                        'employeeId'=>$v['employeeId'],
                         'flag'=>1,
                         'createCompany'=>DI()->userInfo['companyId'],
                         'createUser'=>DI()->userInfo['userId'],
-                        'createTime'=>date('Y-m-d H:i:s')
+                        'createTime'=>date('Y-m-d H:i:s'),
+                        'ratepri'=> $v['ratepri'],
+                        'usecostpri'=> $v['usecostpri']
                     );
-                    DI()->notorm->orders_oyth_goods->insert($input);
+                    DI()->notorm->orders_ipth_goods->insert($input);
                 }
                 DI()->notorm->commit('db_demo');
                 $rs['code'] = 1;
@@ -163,6 +161,5 @@ class Api_Order_Change extends PhalApi_Api
             DI()->notorm->rollback('db_demo');
             throw new PhalApi_Exception_InternalServerError('服务器错误', 0);
         }
-
     }
 }

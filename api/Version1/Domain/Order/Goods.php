@@ -164,7 +164,17 @@ class Domain_Order_Goods
                     throw new PhalApi_Exception_BadRequest('存在相同库位的登记产品', 1);
                 }
             }
-
+            $order_goods_model = new Model_OrderGoods();
+            if ($this->type == 'PURCHASE_RETURN') {
+                $usegoodsCnt = $order_goods_model->getPurchaseBatchNo($this->orderId,  $goods[0]['goodsId'], $goods[0]['orderSubNo']);
+                if (!$usegoodsCnt) {
+                    throw new PhalApi_Exception_BadRequest('不存在该批次出库产品', 1);
+                } else if (floatval($usegoodsCnt[0]['goodsCnt']) == 0) {
+                    throw new PhalApi_Exception_BadRequest('出库数量不合法', 1);
+                } else if (floatval($usegoodsCnt[0]['goodsCnt']) > 0 && $this->goodsCnt > floatval($usegoodsCnt[0]['goodsCnt'])) {
+                    throw new PhalApi_Exception_BadRequest('退货数量大于出库数量', 1);
+                }
+            }
             $this->goods = $goods[0];
         }
 
@@ -281,7 +291,7 @@ class Domain_Order_Goods
 
     public function update($input)
     {
-        $this->chk('edit');
+         $this->chk('edit');
 
         if ($this->type == 'ALLOT_OUT' || $this->type == 'USE_OUT' || $this->type == 'INVENTORY') {
             //出库单重新赋值
