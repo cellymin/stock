@@ -123,22 +123,6 @@ class Domain_Order_Save
                 if (!$num) {
                     throw new PDOException('库存日志错误', 1);
                 }
-            }else if(in_array($this->type, array('USE_RETURN'))){
-                //商品退货
-                $input['depot_goods'] = $this->useReturn($orderId);
-                $log_model = new Model_LogDepot();
-                $num = $log_model->insert(array(
-                    'logUser'    => DI()->userInfo['userId'],
-                    'logType'    => 1,
-                    'logContent' => json_encode( $input['depot_goods']),
-                    'depotId'    => $order['depotId'],
-                    'orderId'    => $orderId,
-                    'orderType'  => $this->type,
-                    'createTime' => date('Y-m-d H:i:s')
-                ));
-                if (!$num) {
-                    throw new PDOException('库存日志错误', 1);
-                }
             }
 
             DI()->notorm->commit('db_demo');
@@ -370,66 +354,6 @@ class Domain_Order_Save
         }
         return $input;
     }
-    protected function useReturn($orderId)
-    {
-        $input = array();
-        //订单商品
-        $goods_model = new Model_OrderGoods();
-        $goods = $goods_model->getAll($orderId);
-        if (!$goods) {
-            throw new PDOException('订单商品不存在', 1);
-        }
-        $reGoods = array();
-        $usingGoods = array();
-        foreach ($goods as $k=>$v){
-            $reGoods[$v['goodsId']][$v['orderSubNo']]['goodsCnt'] = $v['goodsCnt'];
-            $reids[] = $v['orderSubNo'];
-        }
-        //退货商品不存在于出库商品中
-
-        if (!$goods) {
-            throw new PDOException('订单商品不存在', 1);
-        }
-        $useGoods = $goods_model->getUseaGoods($orderId);
-        foreach ($useGoods as $kk=>$vv) {
-            $usingGoods[$vv['goodsId']][$vv['orderSubNo']]['goodsCnt'] = $vv['goodsCnt'];
-            if(isset($reGoods[$vv['goodsId']][$vv['orderSubNo']]  )){
-                if($usingGoods[$vv['goodsId']][$vv['orderSubNo']]['goodsCnt']<$reGoods[$vv['goodsId']][$vv['orderSubNo']]['goodsCnt']){
-                    throw new PDOException('商品数量大于出库数量', 1);
-                    break;
-                }
-            }
-            $usingids[] = $vv['orderSubNo'];
-        }
-        $diffids = array_diff($reids,$usingids);
-        if(!empty($diffids)){
-            throw new PDOException('商品不存在于出库清单中', 1);
-        }
-        //入库，更改库存
-        $depotGoods_model = new Model_DepotGoods();
-        foreach ($goods as $g) {
-            $depot_goods = $depotGoods_model->get($g['depotGoodsId']);
-            if (!$depot_goods || $depot_goods['flag'] != 1) {
-                throw new PDOException('库存商品不存在', 1);
-                break;
-            }
-            $goodsInfo_model = new Model_Goods();
-            $goodsinfo = $goodsInfo_model->fetch($depot_goods['goodsId']);
-            $num = DI()->notorm->depot_goods->where('id', $g['depotGoodsId'])->update(array('goodsCnt' => new NotORM_Literal("goodsCnt + $g[goodsCnt]")));
-            if ($num === false) {
-                throw new PDOException('库存更新失败', 1);
-                break;
-            }
-            $input[] = array(
-                'id'         => $g['depotGoodsId'],
-                'depotSubId' => $g['depotSubId'],
-                'batchNo'    => $depot_goods['batchNo'],
-                'goodsCnt'   => $g['goodsCnt']
-            );
-        }
-        return $input;
-    }
-
     /**
      * 商品出库
      * @return array
