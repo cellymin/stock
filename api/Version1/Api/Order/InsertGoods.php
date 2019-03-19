@@ -71,7 +71,7 @@ class Api_Order_InsertGoods extends PhalApi_Api
             'SALE_OUT'=>array(
                 'id' => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
             ),
-            'SALE_RETURN' =>array(
+            'SALE_RETURN' => array(
                 'id' => array('name' => 'id', 'type' => 'int', 'min' => 0, 'require' => true),
             ),
             'USE_RETURN' => array(
@@ -80,9 +80,10 @@ class Api_Order_InsertGoods extends PhalApi_Api
                 'employeeId' => array('name' => 'employeeId', 'type' => 'int', 'min' => 0, 'require' => true),
                 'supplierId' => array('name' => 'supplierId', 'type' => 'int', 'min' => 0, 'require' => true),
             )
+
         );
 
-        if ($type == 'ALLOT_OUT' || $type == 'USE_OUT' || $type == 'INVENTORY' || $type = 'USE_RETURN' ) {
+        if ($type == 'ALLOT_OUT' || $type == 'USE_OUT' || $type == 'INVENTORY' || $type == 'USE_RETURN'  ) {
             unset($common_rules['goodsPrice']);
             unset($common_rules['goodsId']);
         }
