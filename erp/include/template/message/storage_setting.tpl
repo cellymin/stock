@@ -10,7 +10,7 @@
                     <{html_options name=depotId id="depot" options=$depot_options selected=$_GET.depotId}>
                 </td>
             </tr>
-            <tr>
+            <tr style="display: none;">
                 <td>库位</td>
                 <td>
                     <{html_options name=depotSubId id="depotSub" options=$depotSub_options selected=$_GET.depotSubId}>

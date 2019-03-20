@@ -8,13 +8,13 @@ $depot_options = $depotSub_options = $goods_cates = $goods_options = array();
 
 if(Common::isPost()){
     if($nonceStr==$_SESSION[UserSession::SESSION_NAME]['form_nonceStr']){
-        if(MsgSetting::setGoodsIsExists($depotSubId,$goodsId)){
+        if(MsgSetting::setGoodsIsExists($depotId,$goodsId)){
             $id = MsgSetting::setGoods($depotId,$depotSubId,$goodsCateId,$goodsId,$minWarnNum);
             if($id){
                 Common::unsetNonceStr();
                 SysLog::addLog ( UserSession::getUserName(), 'ADD', 'MsgSetting' ,$id, json_encode(array(
                     'depotId'=>$depotId,
-                    'depotSubId'=>$depotSubId,
+//                    'depotSubId'=>$depotSubId,
                     'goodsCateId'=>$goodsCateId,
                     'goodsId'=>$goodsId,
                     'minWarnNum'=>$minWarnNum,
@@ -39,10 +39,10 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $depot_options = $rs['content'];
 }
 
-$rs = $client->request('DepotSub_Options.Go', array('depotId' => $depotId ? $depotId : key($depot_options)));
-if ($client->getRet() == PhalApiClient::RET_OK) {
-    $depotSub_options = $rs['content'];
-}
+//$rs = $client->request('DepotSub_Options.Go', array('depotId' => $depotId ? $depotId : key($depot_options)));
+//if ($client->getRet() == PhalApiClient::RET_OK) {
+//    $depotSub_options = $rs['content'];
+//}
 
 $rs = $client->request('GoodsCate_GetList.Go', array());
 if ($client->getRet() == PhalApiClient::RET_OK) {

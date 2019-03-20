@@ -12,7 +12,8 @@ $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row
 $total_page = $total_page < 1 ? 1 : $total_page;
 $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
 $start = ($page_no - 1) * $page_size;
-$list = MsgSetting::listSetGoods($start, $page_size, $keyword);
+$list = MsgSetting::listSetGoodsNew($start, $page_size, $keyword);
+
 
 $page_html=Pagination::showPager("storage_sets.php?keyword=$keyword",$page_no,$page_size,$row_count);
 

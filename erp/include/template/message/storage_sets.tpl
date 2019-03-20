@@ -31,7 +31,7 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>库位</th>
+                    <th>仓库</th>
                     <th>商品</th>
                     <th>最小预警库存</th>
                     <th>公司</th>
@@ -42,7 +42,7 @@
                 <{foreach from=$list item=v}>
                     <tr>
                     <td><input type="checkbox" data-name="id" name="id[]" value="<{$v.id}>"></td>
-                    <td><{$v.depotSubName}></td>
+                    <td><{$v.depotName}></td>
                     <td><{$v.goodsName}></td>
                     <td><{$v.minWarnNum}></td>
                     <td><{$v.companyName}></td>

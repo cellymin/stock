@@ -9,9 +9,9 @@ if (!defined('ACCESS')) {
  */
 class MsgSetting extends Base
 {
-    public static function setGoods($depotId, $depotSubId, $goodsCateId, $goodsId, $minWarnNum)
+    public static function setGoods($depotId, $depotSubId='', $goodsCateId, $goodsId, $minWarnNum)
     {
-        if (empty($depotId) || empty($depotSubId) || empty($goodsCateId) || empty($goodsId) || empty($minWarnNum)) {
+        if (empty($depotId) || empty($goodsCateId) || empty($goodsId) || empty($minWarnNum)) {
             return false;
         }
 
@@ -19,7 +19,7 @@ class MsgSetting extends Base
 
         $input = array(
             'depotId'       => $depotId,
-            'depotSubId'    => $depotSubId,
+            //'depotSubId'    => $depotSubId,
             'goodsId'       => $goodsId,
             'goodsCateId'   => $goodsCateId,
             'minWarnNum'    => $minWarnNum,
@@ -38,7 +38,7 @@ class MsgSetting extends Base
         $db = self::__instance();
         $condition = array(
             'AND' => array(
-                'depotSubId'    => $depotSubId,
+                'depotId'    => $depotSubId,
                 'goodsId'       => $goodsId,
                 'createCompany' => $_SESSION[UserSession::SESSION_NAME]['companyId'],
                 'flag'          => 1
@@ -96,6 +96,40 @@ class MsgSetting extends Base
             $sql .= " limit $start,$page_size";
         }
 
+        $stmt = $db->prepare($sql);
+        $stmt->execute($param);
+
+        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($list) {
+            return $list;
+        }
+        return array();
+    }
+
+    public static function listSetGoodsNew($start, $page_size, $keyword)
+    {
+        $db = self::__instance();
+
+        $sql = "SELECT msd.*, g.goodsName,dp.depotName,co.companyName
+                FROM vich_msetting_depot msd
+                LEFT JOIN vich_goods g ON g.goodsId = msd.goodsId
+                LEFT JOIN vich_depots dp ON dp.depotId = msd.depotId
+                LEFT JOIN vich_companys co ON co.companyId = msd.createCompany
+                where msd.flag=1 and (g.goodsName like :keyword or g.searchKey like :keyword)";
+
+        $selectAll = $_SESSION[UserSession::SESSION_NAME]['selectAll'];
+        $userGroup = $_SESSION[UserSession::SESSION_NAME]['user_group'];
+        $companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
+
+        $param[':keyword'] = '%' . $keyword . '%';
+
+        if ($userGroup != 1 && $selectAll != 1) {
+            $sql .= " and msd.createCompany=:companyId";
+            $param[':companyId'] = $companyId;
+        }
+        if ($page_size) {
+            $sql .= " limit $start,$page_size";
+        }
         $stmt = $db->prepare($sql);
         $stmt->execute($param);
 
