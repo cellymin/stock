@@ -5,14 +5,14 @@ class Domain_Message_Msg
     public static function send($fromUser, $toUser, $content, $type, $companyId, $showType = 0)
     {
         $input = array(
-            'fromUser'   => $fromUser,
-            'toUser'     => $toUser,
-            'content'    => $content,
-            'type'       => $type,
-            'companyId'  => $companyId,
-            'showType'   => $showType,
-            'flag'       => 0,
-            'targetId'   => 0,
+            'fromUser' => $fromUser,
+            'toUser' => $toUser,
+            'content' => $content,
+            'type' => $type,
+            'companyId' => $companyId,
+            'showType' => $showType,
+            'flag' => 0,
+            'targetId' => 0,
             'createTime' => date('Y-m-d H:i:s'),
         );
 
@@ -63,40 +63,69 @@ class Domain_Message_Msg
         }
     }
 
-    public static function depotWarningCreate($companyId, $userId,$depotInfo)
+    public static function depotWarningCreate($companyId, $userId, $depotInfo, $type)
     {
-        if(!empty($depotInfo)){
-            foreach ($depotInfo as $list){
+        if (!empty($depotInfo)) {
+            foreach ($depotInfo as $list) {
                 //获取库存预警信息
-                $setgoods = Model_MSettingDepot::searchDepotGoodsSetting($list['createCompany'],$list['goodsId'],$list['depotId']);
-                $count = Model_DepotGoods::sumCompanyDepotGoods($list['createCompany'],$list['depotId'], $list['goodsId']);
-                if (intval($count) <= $setgoods[0]['minWarnNum']) {
-                    //发送消息
-                    $count = $count ? $count : 0;
-                    $content = '库存预警：库位:' . $setgoods[0]['depotName'] . ',商品:' . $setgoods[0]['goodsName'] . ',库存:' . $count;
-                    self::send(0, $userId, $content, 1, $companyId, 1);
-                    //是否已存在申请单
-                     $ifexist = Model_DepotGoods::ifExistDepotRequest($setgoods[0]['goodsId'],$setgoods[0]['depotId']);
-                     if(empty($ifexist) || !$ifexist){
-                         //插入申请单
-                         return $setgoods;
-                        $create = array(
-                             'depotId'   => $setgoods['depotId'],
-                             'goodsId`'    => $setgoods['goodsId'],
-                             'goodsCnt'       => $count,
-                             'createCompany'  => $companyId,
-                             'createUser'   => $userId,
-                             'flag'       => 0,
-                             'createTime' => date('Y-m-d H:i:s'),
-                         );
+                $setgoods = Model_MSettingDepot::searchDepotGoodsSetting($list['createCompany'], $list['goodsId'], $list['depotId']);
+                $count = Model_DepotGoods::sumCompanyDepotGoods($list['createCompany'], $list['depotId'], $list['goodsId']);
+                if (in_array($type, array('USE_OUT', 'ALLOT_OUT','PURCHASE_RETURN','SALE_OUT'))) {
+                    if (intval($count) <= $setgoods[0]['minWarnNum']) {
+                        //发送消息
+                        $count = $count ? $count : 0;
+                        $content = '库存预警：库位:' . $setgoods[0]['depotName'] . ',商品:' . $setgoods[0]['goodsName'] . ',库存:' . $count;
+                        self::send(0, $userId, $content, 1, $companyId, 1);
+                        //是否已存在申请单
+                        $ifexist = Model_DepotGoods::ifExistDepotRequest($setgoods[0]['goodsId'], $setgoods[0]['depotId']);
+                        if (empty($ifexist) || !$ifexist) {
+                            //插入申请单
+                            $data = array(
+                                'depotId' => intval($setgoods[0]['depotId']),
+                                'goodsId' => intval($setgoods[0]['goodsId']),
+                                'goodsCnt' => $count,
+                                'createCompany' => $companyId,
+                                'createUser' => $userId,
+                                'flag' => 0,
+                                'createTime' => date('Y-m-d H:i:s')
+                            );
+                            $rid = DI()->notorm->request_goods->insert($data);
 
-                           return DI()->notorm->request_goods->insert($create);
-                         }else{
-                         //更新申请单
-
-                     }
-                }else{
-                    return 2;
+                        } else {
+                            //更新申请单 或者已处理过的申请单再次打开
+                            $nowcnt = strval($count);
+                            if ($nowcnt < 0) {
+                                throw new PDOException('库存不足', 1);
+                            }
+                            $data = array(
+                                'goodsCnt' => $nowcnt,
+                                'updateTime' => date('Y-m-d H:i:s'),
+                                'flag' => 0
+                            );
+                            $rs = DI()->notorm->request_goods->where('id', $ifexist['id'])->update($data);
+                        }
+                    }
+                }else if(in_array($type, array('PURCHASE_IN','USE_RETURN','SALE_RETURN'))){
+                    //入库判断库存是否已满足，自动改变状态
+                    $ifexist = Model_DepotGoods::ifExistDepotRequest($setgoods[0]['goodsId'], $setgoods[0]['depotId']);
+                    if(!empty($ifexist)){
+                        //已存在申请单
+                        $count = $count ? $count : 0;
+                        if($count > $setgoods[0]['minWarnNum']){
+                            $data = array(
+                                'flag' => 1,
+                                'updateTime' => date('Y-m-d H:i:s')
+                            );
+                        }else{
+                            $data = array(
+                                'goodsCnt' => $count,
+                                'warehousing' => strval($list['goodsCnt']),
+                                'updateTime' => date('Y-m-d H:i:s'),
+                                'flag' => 0
+                            );
+                        }
+                        $rs = DI()->notorm->request_goods->where('id', $ifexist['id'])->update($data);
+                    }
                 }
             }
         }
@@ -122,18 +151,18 @@ class Domain_Message_Msg
         if ($list) {
             foreach ($list as $item) {
                 $exists = $msg_model->invoiceMsgExists($item['invoiceId']);
-                if(!$exists){
+                if (!$exists) {
                     $content = '催票提醒：发票号:' . $item['invoiceNo'] . ',预计收票时间:' . $item['endTime'];
 
                     $input = array(
-                        'fromUser'   => 0,
-                        'toUser'     => $item['createUser'],
-                        'content'    => $content,
-                        'type'       => 3,
-                        'companyId'  => $companyId,
-                        'showType'   => 4,
-                        'flag'       => 0,
-                        'targetId'   => $item['invoiceId'],
+                        'fromUser' => 0,
+                        'toUser' => $item['createUser'],
+                        'content' => $content,
+                        'type' => 3,
+                        'companyId' => $companyId,
+                        'showType' => 4,
+                        'flag' => 0,
+                        'targetId' => $item['invoiceId'],
                         'createTime' => date('Y-m-d H:i:s'),
                     );
                     $model = new Model_Message();
@@ -143,24 +172,25 @@ class Domain_Message_Msg
         }
     }
 
-    public static function DeliverWarning($companyId){
+    public static function DeliverWarning($companyId)
+    {
         $list = Model_Order::getNeedSendDeliverMsg($companyId);
         $msg_model = new Model_Message();
         if ($list) {
             foreach ($list as $item) {
                 $exists = $msg_model->invoiceMsgExists($item['orderId']);
-                if(!$exists){
+                if (!$exists) {
                     $content = '发货提醒：单号:' . $item['orderNo'] . ',预计发货时间:' . $item['deliverTime'];
 
                     $input = array(
-                        'fromUser'   => 0,
-                        'toUser'     => $item['reviewer'],
-                        'content'    => $content,
-                        'type'       => 3,
-                        'companyId'  => $companyId,
-                        'showType'   => 0,
-                        'flag'       => 0,
-                        'targetId'   => $item['orderId'],
+                        'fromUser' => 0,
+                        'toUser' => $item['reviewer'],
+                        'content' => $content,
+                        'type' => 3,
+                        'companyId' => $companyId,
+                        'showType' => 0,
+                        'flag' => 0,
+                        'targetId' => $item['orderId'],
                         'createTime' => date('Y-m-d H:i:s'),
                     );
                     $model = new Model_Message();

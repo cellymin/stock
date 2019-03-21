@@ -22,11 +22,9 @@ class Domain_Order_Goods
 
     public function chk($action = 'add')
     {
-
         if ($action == 'add' && $this->type != 'INVENTORY' && $this->goodsCnt < 1) {
             throw new PhalApi_Exception_BadRequest('数量不能为0', 1);
         }
-
         if (isset($this->arrivalTime)) {
             $unixTime = strtotime($this->arrivalTime);
             if (!$unixTime) {
@@ -39,6 +37,7 @@ class Domain_Order_Goods
                 throw new PhalApi_Exception_BadRequest('日期不能小于当前日期', 1);
             }
         }
+
 
         if (isset($this->orderId)) {
             $model = new Model_Order();
@@ -58,7 +57,6 @@ class Domain_Order_Goods
 
             $this->order = $order;
         }
-
         if ($action == 'add' && isset($this->goodsId)) {
             $model = new Model_Goods();
             $goods = $model->getForOrder($this->goodsId);
@@ -286,7 +284,6 @@ class Domain_Order_Goods
         if (in_array($this->type, array('ALLOT_IN', 'USE_OUT', 'INVENTORY', 'ALLOT_OUT'))) {
             $input['depotId'] = $this->order['depotId'];
         }
-
         if (isset($input['id'])) {
             //出库单商品 重新赋值
             $input['goodsId'] = $this->goodsId;
@@ -296,7 +293,7 @@ class Domain_Order_Goods
             if ($this->type == 'SALE_OUT' || $this->type == 'SALE_RETURN') {
                 $input['depotId'] = $this->depotId;
             }
-            //unset($input['supplierId']);
+            unset($input['supplierId']);
             unset($input['id']);
         }
 
@@ -309,7 +306,6 @@ class Domain_Order_Goods
                 $input['ratepri'] = $this->ratepri;
             }
         }
-
         return $model->insert($input);
     }
 

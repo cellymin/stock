@@ -46,7 +46,6 @@ class Api_Order_Review extends PhalApi_Api
     public function go()
     {
         $rs = array('code' => 0, 'content' => '', 'msg' => '');
-
         $data = array(
             'type'          => DI()->request->get('type'),
             'orderId'       => $this->orderId,

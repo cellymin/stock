@@ -92,6 +92,7 @@ class Domain_Order_Save
                 if ($this->type == 'PURCHASE_IN') {
                     $this->createInvoice($order);
                 }
+                Domain_Message_Msg::depotWarningCreate($order['createCompany'], $reviewer,$input['depot_goods'],$this->type);
             }else if(in_array($this->type, array('USE_OUT', 'ALLOT_OUT'))){
                 //商品出库
                 $input['depot_goods'] =  $this->outDepot($orderId);
@@ -110,7 +111,7 @@ class Domain_Order_Save
                     throw new PDOException('库存日志错误', 1);
                 }
                 //库存预警
-             return   Domain_Message_Msg::depotWarningCreate($order['createCompany'], $reviewer,$input['depot_goods']);
+                Domain_Message_Msg::depotWarningCreate($order['createCompany'], $reviewer,$input['depot_goods'],$this->type);
             }else if(in_array($this->type, array('USE_RETURN'))){
                 //商品退货
                 $input['depot_goods'] = $this->useReturn($orderId);
@@ -127,6 +128,7 @@ class Domain_Order_Save
                 if (!$num) {
                     throw new PDOException('库存日志错误', 1);
                 }
+                Domain_Message_Msg::depotWarningCreate($order['createCompany'], $reviewer,$input['depot_goods'],$this->type);
             }else if(in_array($this->type, array('PURCHASE_RETURN'))) {
                 //商品退货
                 $input['depot_goods'] = $this->ipReturn($orderId);
@@ -143,6 +145,7 @@ class Domain_Order_Save
                 if (!$num) {
                     throw new PDOException('库存日志错误', 1);
                 }
+                Domain_Message_Msg::depotWarningCreate($order['createCompany'], $reviewer,$input['depot_goods'],$this->type);
             }
 
             DI()->notorm->commit('db_demo');
@@ -367,7 +370,10 @@ class Domain_Order_Save
                 'id'         => $depot_goods['id'],
                 'depotSubId' => $g['depotSubId'],
                 'batchNo'    => $depot_goods['batchNo'],
-                'goodsCnt'   => $g['goodsCnt']
+                'goodsCnt'   => $g['goodsCnt'],
+                'depotId' => $g['depotId'],
+                'goodsId' => $g['goodsId'],
+                'createCompany' => $g['createCompany']
             );
         }
         return $input;
@@ -426,7 +432,10 @@ class Domain_Order_Save
                 'id'         => $g['depotGoodsId'],
                 'depotSubId' => $g['depotSubId'],
                 'batchNo'    => $depot_goods['batchNo'],
-                'goodsCnt'   => $g['goodsCnt']
+                'goodsCnt'   => $g['goodsCnt'],
+                'depotId' => $g['depotId'],
+                'goodsId' => $g['goodsId'],
+                'createCompany' => $g['createCompany']
             );
         }
         return $input;

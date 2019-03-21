@@ -105,7 +105,6 @@ class Api_Order_InsertGoods extends PhalApi_Api
     {
         $rs = array('code' => 0, 'id' => '', 'msg' => '');
         $domain = new Domain_Order_Goods();
-
         $input = array();
         foreach ($this->rules as $name => $value) {
             $domain->$name = $this->$name;

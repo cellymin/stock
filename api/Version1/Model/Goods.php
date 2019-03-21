@@ -55,7 +55,50 @@ class Model_Goods extends PhalApi_Model_NotORM
             ->count();
     }
 
+    public function countRequest($keyword,$status){
+        $where = 'WHERE rg.flag!=-1 AND (goodsBarCode LIKE :keyword OR searchKey LIKE :keyword OR goodsName LIKE :keyword OR goodsSn LIKE :keyword)';
+        $param = array(':keyword' => '%' . $keyword . '%');
+        $param[':status'] = $status;
+        if($status ==0 || $status ==1) {
+            $where .= " AND rg.flag=:status ";
+        }
+        $sql = "SELECT count(og.goodsId) as count FROM vich_request_goods rg JOIN vich_goods og ON rg.goodsId = og.goodsId ".$where;
+        return DI()->notorm->goods->queryAll($sql, $param);
+    }
 
+    public  function getRequestList($start,$page_size,$keyword,$status){
+
+        if ($page_size) {
+            $limit = " limit $start,$page_size";
+        }
+        $where = 'WHERE rg.flag!=-1 AND (goodsBarCode LIKE :keyword OR searchKey LIKE :keyword OR goodsName LIKE :keyword OR goodsSn LIKE :keyword)  ';
+        $param = array(':keyword' => '%' . $keyword . '%');
+        $param[':status'] = $status;
+        if($status ==0 || $status ==1) {
+            $where .= " AND rg.flag=:status ";
+        }
+        $where .= ' order by og.goodsSn asc,rg.createTime desc ';
+        $sql = 'SELECT og.goodsId,og.goodsName,og.goodsSn,dp.depotName,rg.goodsCnt,rg.createTime,
+               (case rg.flag when 0 then "未处理" when 1 then "已处理" when -1 then "已失效" end) as status,og.lastPrice
+                FROM vich_request_goods rg 
+                INNER JOIN vich_goods og ON rg.goodsId = og.goodsId
+                LEFT join vich_depots as dp on rg.depotId=dp.depotId
+                '.$where.$limit;
+
+        $requestList = DI()->notorm->goods->queryAll($sql, $param);
+        $newlist = array();
+        foreach ($requestList as $kk){
+            $sqlids = 'SELECT sp.supplierName FROM vich_orders_ip ip
+                       LEFT JOIN vich_orders_ip_goods ig ON ip.orderId = ig.orderId
+                       LEFT JOIN vich_suppliers sp ON ip.supplierId = sp.supplierId
+                       WHERE ig.goodsId = '.$kk['goodsId'].' ORDER BY ip.createTime DESC LIMIT 1';
+            $supplierName =  DI()->notorm->goods->queryAll($sqlids);
+            $newlist[$kk['goodsId']]=$kk;
+            $newlist[$kk['goodsId']]['suppliername'] = $supplierName[0]['supplierName'];
+            unset($supplierName);
+        }
+    return $newlist;
+    }
     public function get($id, $fields = '*')
     {
         $where = 'flag=1 and goodsId=?';

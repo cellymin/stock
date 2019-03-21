@@ -240,7 +240,7 @@ class Domain_Order_Review
             //库存日志
             $this->depotLog(2, $input['depot_goods']);
             //库存预警
-            Domain_Message_Msg::depotWarning($this->order['createCompany'], $this->order['reviewer']);
+            Domain_Message_Msg::depotWarningCreate($this->order['createCompany'], $this->order['reviewer'],$input['depot_goods'],$this->type);
             if ($this->type == 'SALE_OUT') {
                 //生成销售发票
                 $input = array(
@@ -319,7 +319,6 @@ class Domain_Order_Review
     //
     protected function workF()
     {
-
         //更新审核信息
         $input['review'] = $this->updateReviewer();
 
@@ -333,6 +332,8 @@ class Domain_Order_Review
 
             //库存日志
             $this->depotLog(2, $input['depot_goods']);
+
+            Domain_Message_Msg::depotWarningCreate($this->order['createCompany'], $this->order['reviewer'],$input['depot_goods'],$this->type);
 
         }
 
@@ -684,7 +685,6 @@ class Domain_Order_Review
         if (!$goods) {
             throw new PDOException('订单商品不存在', 1);
         }
-
         $depotGoods_model = new Model_DepotGoods();
 
         foreach ($goods as $g) {
@@ -705,13 +705,16 @@ class Domain_Order_Review
                 throw new PDOException('库存更新失败', 1);
                 break;
             }
-
             $input[] = array(
                 'id' => $g['depotGoodsId'],
                 'depotSubId' => $g['depotSubId'],
                 'batchNo' => $depot_goods['batchNo'],
                 'goodsCnt' => $g['goodsCnt'],
-                'action' => '审核通过'
+                'action' => '审核通过',
+                'createCompany' => $g['createCompany'],
+                'depotId' => $g['depotId'],
+                'goodsCnt'   => $g['goodsCnt'],
+                'goodsId' => $g['goodsId']
             );
         }
         return $input;
@@ -755,7 +758,11 @@ class Domain_Order_Review
                 'depotSubId' => $g['depotSubId'],
                 'batchNo' => $depot_goods['batchNo'],
                 'goodsCnt' => $g['goodsCnt'],
-                'action' => '商品退货成功'
+                'action' => '商品退货成功',
+                'depotId' => $g['depotId'],
+                'createCompany' => $g['createCompany'],
+                'goodsCnt'   => $g['goodsCnt'],
+                'goodsId' => $g['goodsId']
             );
         }
 
