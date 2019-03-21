@@ -110,7 +110,7 @@ class Domain_Order_Save
                     throw new PDOException('库存日志错误', 1);
                 }
                 //库存预警
-                Domain_Message_Msg::depotWarning($order['createCompany'], $reviewer);
+             return   Domain_Message_Msg::depotWarningCreate($order['createCompany'], $reviewer,$input['depot_goods']);
             }else if(in_array($this->type, array('USE_RETURN'))){
                 //商品退货
                 $input['depot_goods'] = $this->useReturn($orderId);
@@ -472,7 +472,10 @@ class Domain_Order_Save
             $input[] = array(
                 'id'         => $g['depotGoodsId'],
                 'depotSubId' => $g['depotSubId'],
+                'depotId' => $g['depotId'],
+                'goodsId' => $g['goodsId'],
                 'batchNo'    => $depot_goods['batchNo'],
+                'createCompany' => $g['createCompany'],
                 'goodsCnt'   => $g['goodsCnt']
             );
         }

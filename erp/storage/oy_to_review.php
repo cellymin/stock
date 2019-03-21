@@ -15,11 +15,12 @@ if (Common::isPost()) {
         ) {
 
             $rs = $client->request('Order_Save.Go', array(
-                'type'     => $type,
-                'orderId'  => $orderId,
+                'type' => $type,
+                'orderId' => $orderId,
                 'reviewer' => $reviewer,
             ));
-
+            var_dump($rs);
+            die();
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');

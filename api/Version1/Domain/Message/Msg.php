@@ -50,16 +50,53 @@ class Domain_Message_Msg
     public static function depotWarning($companyId, $userId)
     {
         $sets = Model_MSettingDepot::searchDepotSetting($companyId);
-
         if ($sets) {
             foreach ($sets as $set) {
-                $count = Model_DepotGoods::sumCompanyDepotGoods($companyId, $set['depotSubId'], $set['goodsId']);
+                $count = Model_DepotGoods::sumCompanyDepotGoods($companyId, $set['depotId'], $set['goodsId']);
                 if ($count <= $set['minWarnNum']) {
                     //发送消息
                     $count = $count ? $count : 0;
-                    $content = '库存预警：库位:' . $set['depotSubName'] . ',商品:' . $set['goodsName'] . ',库存:' . $count;
-
+                    $content = '库存预警：库位:' . $set['depotName'] . ',商品:' . $set['goodsName'] . ',库存:' . $count;
                     self::send(0, $userId, $content, 1, $companyId, 1);
+                }
+            }
+        }
+    }
+
+    public static function depotWarningCreate($companyId, $userId,$depotInfo)
+    {
+        if(!empty($depotInfo)){
+            foreach ($depotInfo as $list){
+                //获取库存预警信息
+                $setgoods = Model_MSettingDepot::searchDepotGoodsSetting($list['createCompany'],$list['goodsId'],$list['depotId']);
+                $count = Model_DepotGoods::sumCompanyDepotGoods($list['createCompany'],$list['depotId'], $list['goodsId']);
+                if (intval($count) <= $setgoods[0]['minWarnNum']) {
+                    //发送消息
+                    $count = $count ? $count : 0;
+                    $content = '库存预警：库位:' . $setgoods[0]['depotName'] . ',商品:' . $setgoods[0]['goodsName'] . ',库存:' . $count;
+                    self::send(0, $userId, $content, 1, $companyId, 1);
+                    //是否已存在申请单
+                     $ifexist = Model_DepotGoods::ifExistDepotRequest($setgoods[0]['goodsId'],$setgoods[0]['depotId']);
+                     if(empty($ifexist) || !$ifexist){
+                         //插入申请单
+                         return $setgoods;
+                        $create = array(
+                             'depotId'   => $setgoods['depotId'],
+                             'goodsId`'    => $setgoods['goodsId'],
+                             'goodsCnt'       => $count,
+                             'createCompany'  => $companyId,
+                             'createUser'   => $userId,
+                             'flag'       => 0,
+                             'createTime' => date('Y-m-d H:i:s'),
+                         );
+
+                           return DI()->notorm->request_goods->insert($create);
+                         }else{
+                         //更新申请单
+
+                     }
+                }else{
+                    return 2;
                 }
             }
         }
@@ -132,5 +169,6 @@ class Domain_Message_Msg
             }
         }
     }
+
 
 }

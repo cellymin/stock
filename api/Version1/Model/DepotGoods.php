@@ -117,9 +117,9 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
         }
     }
 
-    public static function sumCompanyDepotGoods($companyId,$depotSubId,$goodsId){
+    public static function sumCompanyDepotGoods($companyId,$depotId,$goodsId){
         return DI()->notorm->depot_goods
-            ->where('flag=1 and createCompany=? and depotSubId=? and goodsId=?',array($companyId,$depotSubId,$goodsId
+            ->where('flag=1 and createCompany=? and depotId=? and goodsId=?',array($companyId,$depotId,$goodsId
             ))->sum('goodsCnt');
     }
 
@@ -139,5 +139,29 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
         return DI()->notorm->depot_goods
             ->select('*')
             ->where('goodsId',$goodsId)->where('batchNo',$batchNo)->where('depotId',$depotId)->fetch();
+    }
+    /**
+     *出库生成采购申请单
+     * param goodsId depotId
+     *
+     */
+    public static function createRequestGoods(){
+
+    }
+    /**
+     * 入库修改申请单状态或者已入库数量
+     */
+    public static function modifyRequestGoods(){
+
+    }
+
+    /***
+     * 是否已存在改采购申请单
+     * @param $goodsId $depotId
+     */
+    public static function ifExistDepotRequest($goodsId,$depotId){
+       return DI()->notorm->request_goods
+           ->select('id')->where('goodsId',$goodsId)->where('depotId',$depotId)->where('flag!=?','-1')
+           ->fetch();
     }
 }
