@@ -5,6 +5,9 @@
 
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
+<style>
+.export {display:none;}
+</style>
 <form class="form_search" action="" method="GET" style="margin-bottom:0px">
     <div style="float:left;margin-right:5px">
         <label>选择状态</label>
@@ -19,7 +22,7 @@
     </div>
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
-        <a type="button" class="btn btn-primary" onclick="method5('data_list')">导出</a>
+        <a type="button" class="btn btn-primary" onclick="beforeExport(this)">导出</a>
     </div>
     <div style="clear:both;"></div>
 </form>
@@ -35,27 +38,37 @@
                     <th>商品编码</th>
                     <th>商品名称</th>
                     <!--th>仓库</th-->
+                    <th class="export" >数量</th>
+                    <th>单价</th>
+                    <th class="export">金额</th>
                     <th>供应商</th>
-                    <th>价格</th>
+                    <th class="export">调整供应商</th>
                     <th>库存数量</th>
                     <th>状态</th>
                     <th>创建时间</th>
+                    <th class="export">申请部门</th>
+                    <th class="export">备注</th>
                 </tr>
                 </thead>
                 <tbody>
+                <{foreach from=$list key=index item=value}>
                     <tr>
-                        <{foreach name=invoices from=$list key=index item=value}>
                         <td><{$value.goodsSn}></td>
                         <td><{$value.goodsName}></td>
-                        <td><{$value.suppliername}></td>
+                        <td class="export"></td>
                         <td><{$value.lastPrice}></td>
+                        <td class="export"></td>
+                        <td><{$value.suppliername}></td>
+                        <td class="export"></td>
                         <!--td><{$value.depotName}></td-->
                         <td><{$value.goodsCnt}></td>
                         <td><{$value.status}></td>
                         <td><{$value.createTime}></td>
-                        <{/foreach}>
-                    </tr>
+                        <td class="export"></td>
+                        <td class="export"></td>
 
+                    </tr>
+                    <{/foreach}>
                 </tbody>
             </table>
         </form>
@@ -71,6 +84,8 @@
 
 
 <script>
-
+function beforeExport(e) {
+    method5('data_list')
+}
 
 </script>

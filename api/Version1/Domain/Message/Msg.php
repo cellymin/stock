@@ -125,6 +125,9 @@ class Domain_Message_Msg
                             );
                         }
                         $rs = DI()->notorm->request_goods->where('id', $ifexist['id'])->update($data);
+                        if(!$rs){
+                            throw new PDOException('更新采购单失败', 1);
+                        }
                     }
                 }
             }
