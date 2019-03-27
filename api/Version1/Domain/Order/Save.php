@@ -274,7 +274,6 @@ class Domain_Order_Save
 
                     $price[$g['goodsId']]['totalMoney'] = $total[0]['totalMoney'] ? $total[0]['totalMoney'] : $g['goodsPrice'];
                     $price[$g['goodsId']]['count'] = $total[0]['count'];
-
                     //价格预警
                     $content = Domain_Message_Msg::priceWarning($goods['goodsId'], $this->order['createCompany'],
                         $goods['lastPrice'], $g['goodsPrice'], $goods['goodsName']);
@@ -283,6 +282,7 @@ class Domain_Order_Save
                     ) {
                         throw new PDOException('消息错误', 1);
                     }
+
                 } else {
                     $price[$g['goodsId']]['lastPrice'] = $g['goodsPrice'];
 
@@ -295,7 +295,6 @@ class Domain_Order_Save
                 }
 
             }
-
         }
         //入库
         $depot_model = new Model_DepotGoods();

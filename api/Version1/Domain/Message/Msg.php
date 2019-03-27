@@ -69,6 +69,9 @@ class Domain_Message_Msg
             foreach ($depotInfo as $list) {
                 //获取库存预警信息
                 $setgoods = Model_MSettingDepot::searchDepotGoodsSetting($list['createCompany'], $list['goodsId'], $list['depotId']);
+                if(empty($setgoods)){
+                    break;
+                }
                 $count = Model_DepotGoods::sumCompanyDepotGoods($list['createCompany'], $list['depotId'], $list['goodsId']);
                 if (in_array($type, array('USE_OUT', 'ALLOT_OUT','PURCHASE_RETURN','SALE_OUT'))) {
                     if (intval($count) <= $setgoods[0]['minWarnNum']) {
