@@ -52,6 +52,9 @@ class Domain_Invoice_CURD
         $invoiceNo = array();
         foreach ($invoiceIds as $invoiceId) {
             $invoice = $model->get($invoiceId);
+            if(empty($invoice)){
+                break;
+            }
             $user = DI()->userInfo;
             if (!empty($invoice['trueInvoiceNo'])) {
                 $invoiceNo[] = $invoice['trueInvoiceNo'];
@@ -114,7 +117,35 @@ class Domain_Invoice_CURD
         }
         return $list;
     }
+    /*
+     * 获取含税价总价
+     *
+     */
+    public function getPriceHan($invoiceId){
+        if(!empty($invoiceId)){
+            if(is_array($invoiceId)){
+               $idsstr = implode(',',$invoiceId);
+               $sql = "SELECT ig.* FROM `vich_invoices` i
+                       INNER JOIN vich_orders_ip ip ON i.orderId = ip.orderId
+                       INNER JOIN vich_orders_ip_goods ig ON ip.orderId = ig.orderId
+                       WHERE i.flag = 1 AND i.type = '1' AND ip.flag = 3 AND ig.flag = 1 AND i.invoiceId IN (".$idsstr.")";
+               $res = DI()->notorm->invoices->queryAll($sql);
+               if(empty($res)){
+                   return false;
+               }
+               $totalpri = 0;
+               foreach ($res as $k){
+                   if($k['usecostpri']>0){
+                       $totalpri += $k['goodsCnt'] * $k['usecostpri'];
+                   }else{
+                       $totalpri += $k['goodsCnt'] * $k['goodsPrice'];
+                   }
+               }
+               return $totalpri;
+            }
+        }
 
+    }
     /*
      * 获取含有invoiceId 的所有关联发票id
      */

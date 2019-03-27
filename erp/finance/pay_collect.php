@@ -38,8 +38,6 @@ if (!empty($invoiceId)) {
         'invoiceId' => trim($invoiceId, ','),
         'action' => 2,
     ));
-//    var_dump($rs);
-//    die();
     if ($rs['lionid']) {
         $lionid = $rs['lionid'][0];
         Template::assign('lionid', $lionid);

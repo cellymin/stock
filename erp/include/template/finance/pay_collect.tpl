@@ -21,8 +21,8 @@
                 <td colspan="3"> <b><input type="text" name="trueInvoiceNo" style="font-size: 14px;" value="<{if $lionidinfo[3]!=''}><{$lionidinfo[3]}><{else}><{$list.trueInvoiceNo}><{/if}>" /></b></td>
             </tr>
             <tr>
-                <td colspan="1">合计金额</td>
-                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b><{sprintf('%.2f',$list.totalMoney)}></b></a></td>
+                <td colspan="1">含税金额</td>
+                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b><{sprintf('%.2f',$list.pritotal)}></b></a></td>
             </tr>
             <tr>
                 <td colspan="1">调整金额</td>
