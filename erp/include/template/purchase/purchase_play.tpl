@@ -23,7 +23,7 @@
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
         <a type="button" class="btn btn-primary" onclick="beforeExport(this)">导出</a>
-        <button id="orderPrint" class="btn btn-primary" style="" > 打印</button>
+        <button id="orderPrint" class="btn btn-primary" style="" onclick="printorder(this)" > 打印</button>
     </div>
     <div style="clear:both;"></div>
 </form>
@@ -88,43 +88,40 @@
 function beforeExport(e) {
     method5('data_list')
 }
-jQuery(function ($) {
+function printorder() {
     'use strict';
-    $("#orderPrint").on('click', function () {
+    $('.form_search').hide();
+    $('.breadcrumb').hide();
+    $('.pagination').hide();
+    $('.pageHead').show();
+    $('.export').show();
+    $(".form_div").print({
 
-        $('.form_search').hide();
-        $('.breadcrumb').hide();
-        $('.pagination').hide();
-        $('.pageHead').show();
-        $('.export').show();
-        $(".form_div").print({
+        //是否包含父文档的样式，默认为true
+        globalStyles: true,
+        //是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
+        mediaPrint: false,
+        //外部样式
+        stylesheet: '<{$smarty.const.ADMIN_URL}>/assets/css/print.css',
+        //Print in a hidden iframe
+        iframe: false,
+        //不想打印的元素的jQuery选择器
+        noPrintSelector: ".avoid-this",
 
-            //是否包含父文档的样式，默认为true
-            globalStyles: true,
-            //是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
-            mediaPrint: false,
-            //外部样式
-            stylesheet: '<{$smarty.const.ADMIN_URL}>/assets/css/print.css',
-            //Print in a hidden iframe
-            iframe: false,
-            //不想打印的元素的jQuery选择器
-            noPrintSelector: ".avoid-this",
-
-            //Add this at top
-            prepend: 'Hello World',
-            //将内容添加到打印内容的后面
-            append: '11111',
-            //回调方法
-            deferred: $.Deferred().done(function () {
-                console.log('Printing done', arguments);
-                $('.pageHead').hide();
-            })
-        });
-        $('.form_search').show();
-        $('.breadcrumb').show();
-        $('.pagination').show();
+        //Add this at top
+        prepend: 'Hello World',
+        //将内容添加到打印内容的后面
+        append: '11111',
+        //回调方法
+        deferred: $.Deferred().done(function () {
+            console.log('Printing done', arguments);
+            $('.pageHead').hide();
+        })
     });
+    $('.form_search').show();
+    $('.breadcrumb').show();
+    $('.pagination').show();
+}
 
-});
 
 </script>
