@@ -122,6 +122,6 @@ function printorder() {
     $('.breadcrumb').show();
     $('.pagination').show();
 }
-
+ 
 
 </script>
