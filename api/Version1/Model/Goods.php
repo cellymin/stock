@@ -163,7 +163,7 @@ class Model_Goods extends PhalApi_Model_NotORM
         $param = array(':keyword' => '%' . $keyword . '%');
 
         if ($goodsCateId) {
-            $sql .= ' and g.goodsCateId=:goodsCateId ';
+            $sql .= ' and (goodsCateId=:goodsCateId or goodsCateId1=:goodsCateId or goodsCateId2=:goodsCateId) ';
             $param[':goodsCateId'] = $goodsCateId;
         }
 
