@@ -126,9 +126,6 @@ function beforeExport(e) {
       $(this).parent().parent().remove();
     });
     $('.printnone').remove();
-    // var table = $('#data_list').html();
-    // console.log(table);
-    // return false;
     method5('data_list')
     $('#data_list').html(table);
 
