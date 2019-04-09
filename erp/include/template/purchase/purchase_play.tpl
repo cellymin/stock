@@ -36,7 +36,26 @@
             <table class="table table-striped" id="data_list">
                 <thead>
                 <tr  class="export" >
-                    <th colspan="13" >申请日期：<{$nowdate}></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>采购申请单</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr  class="export" >
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th style="float: right">申请日期：<{$nowdate}></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <th class="printnone">#</th>
@@ -102,13 +121,16 @@
 
 <script>
 function beforeExport(e) {
+    var table = $('#data_list').html();
     $('input:checkbox:not(:checked)').each(function(i){
-      $(this).parent().parent().css('display','none');
+      $(this).parent().parent().remove();
     });
+    $('.printnone').remove();
+    // var table = $('#data_list').html();
+    // console.log(table);
+    // return false;
     method5('data_list')
-    $('input:checkbox:not(:checked)').each(function(i){
-        $(this).parent().parent().css('display','');
-    });
+    $('#data_list').html(table);
 
 
 }
