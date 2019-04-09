@@ -146,8 +146,10 @@ function beforeprint() {
 }
 function printorder() {
     'use strict';
+    $('.header').hide();
     $('.navbar').hide();
     $('.form_search').hide();
+    $('.block-heading').hide();
     $('.breadcrumb').hide();
     $('.pagination').hide();
     $('.printnone').hide();
@@ -176,7 +178,10 @@ function printorder() {
             $('.pageHead').hide();
         })
     });
+
+    $('.header').show();
     $('.form_search').show();
+    $('.block-heading').show();
     $('.breadcrumb').show();
     $('.pagination').show();
     $('.navbar').show();
