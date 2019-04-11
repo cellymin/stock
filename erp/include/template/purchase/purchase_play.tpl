@@ -77,7 +77,7 @@
                 <tbody>
                 <{foreach from=$list key=index item=value}>
                     <tr>
-                        <td class="printnone"><input type="checkbox" name="checkbox" value="<{$value.goodsSn}>"></td>
+                        <td class="printnone"><label><input type="checkbox" name="checkbox" value="<{$value.goodsSn}>"></label></td>
                         <td><{$value.goodsSn}></td>
                         <td><{$value.goodsName}></td>
                         <td class="export"></td>
@@ -123,7 +123,7 @@
 function beforeExport(e) {
     var table = $('#data_list').html();
     $('input:checkbox:not(:checked)').each(function(i){
-      $(this).parent().parent().remove();
+      $(this).parent().parent().parent().remove();
     });
     $('.printnone').remove();
     method5('data_list')
@@ -133,11 +133,11 @@ function beforeExport(e) {
 }
 function beforeprint() {
     $('input:checkbox:not(:checked)').each(function(i){
-        $(this).parent().parent().css('display','none');
+        $(this).parent().parent().parent().css('display','none');
     });
     printorder();
     $('input:checkbox:not(:checked)').each(function(i){
-        $(this).parent().parent().css('display','');
+        $(this).parent().parent().parent().css('display','');
     });
      $('.export').css('display','none')
 }
