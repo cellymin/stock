@@ -93,7 +93,6 @@ if (!$orderAddUrl) {
     Common::closeWithMessage('路径错误', 'error');
 }
 
-
 Template::assign('_GET', $_GET);
 Template::assign('list', $list);
 Template::assign('orderAddUrl', $orderAddUrl);

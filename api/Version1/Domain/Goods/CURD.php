@@ -53,8 +53,11 @@ class Domain_Goods_CURD
         $total_page = $total_page < 1 ? 1 : $total_page;
         $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
         $start = ($page_no - 1) * $page_size;
-
-        $list = $model->getList($start, $page_size, $keyword, $goodsCateId);
+        if($page_size==999){
+            $list = $model->getList($start,0, $keyword, $goodsCateId);
+        } else {
+            $list = $model->getList($start, $page_size, $keyword, $goodsCateId);
+        }
 
         $rs = array(
             'row_count' => $row_count,

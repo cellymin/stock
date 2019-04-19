@@ -7,6 +7,12 @@
 <{$osadmin_quick_note}>
 <style>
 .export {display:none;}
+ table tr td{
+    border: 1px solid #e2e2e2;
+}
+.jiaxian th{
+    border: 1px solid #e2e2e2;
+}
 </style>
 <form class="form_search" action="" method="GET" style="margin-bottom:0px">
     <div style="float:left;margin-right:5px">
@@ -33,7 +39,7 @@
     <div id="page-stats" class="block-body collapse in">
         <form action="<{$delete_url}>.php" method="post">
             <input id="type" type="hidden" name="type" value="<{$type}>">
-            <table class="table table-striped" id="data_list">
+            <table class="table table-striped" id="data_list" >
                 <thead>
                 <tr  class="export" >
                     <th></th>
@@ -57,7 +63,7 @@
                     <th style="float: right">申请日期：<{$nowdate}></th>
                     <th></th>
                 </tr>
-                <tr>
+                <tr class="jiaxian">
                     <th class="printnone">#</th>
                     <th>商品编码</th>
                     <th>商品名称</th>
@@ -121,24 +127,39 @@
 
 <script>
 function beforeExport(e) {
-    var table = $('#data_list').html();
-    $('input:checkbox:not(:checked)').each(function(i){
-      $(this).parent().parent().parent().remove();
+    var k = 0;
+    $('input:checkbox:checked').each(function(i){
+        k = i+1;
     });
-    $('.printnone').remove();
-    method5('data_list')
-    $('#data_list').html(table);
-
+    if(k==0){
+        method5('data_list')
+    }else{
+        var table = $('#data_list').html();
+        $('input:checkbox:not(:checked)').each(function(i){
+            $(this).parent().parent().parent().remove();
+        });
+        $('.printnone').remove();
+        method5('data_list')
+        $('#data_list').html(table);
+    }
 
 }
 function beforeprint() {
-    $('input:checkbox:not(:checked)').each(function(i){
-        $(this).parent().parent().parent().css('display','none');
+    var k = 0;
+    $('input:checkbox:checked').each(function(i){
+        k = i+1;
     });
-    printorder();
-    $('input:checkbox:not(:checked)').each(function(i){
-        $(this).parent().parent().parent().css('display','');
-    });
+    if(k==0){
+        method5('data_list')
+    }else{
+        $('input:checkbox:not(:checked)').each(function(i){
+            $(this).parent().parent().parent().css('display','none');
+        });
+        printorder();
+        $('input:checkbox:not(:checked)').each(function(i){
+            $(this).parent().parent().parent().css('display','');
+        });
+    }
      $('.export').css('display','none')
 }
 function printorder() {

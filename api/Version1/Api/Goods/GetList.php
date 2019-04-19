@@ -17,7 +17,6 @@ class Api_Goods_GetList extends PhalApi_Api
     public function go()
     {
         $rs = array('code' => 0, 'content' => '', 'msg' => '');
-
         $domain = new Domain_Goods_CURD();
         $list = $domain->getList($this->page_no, $this->page_size, $this->keyword, $this->goodsCateId);
 

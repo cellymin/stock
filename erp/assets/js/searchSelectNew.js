@@ -52,7 +52,7 @@ function inputSelect(){
         //输入框内未填入信息是下方提示
         if(selectInputVal == "undefined" || selectInputVal == "null" || selectInputVal == "" ){
             for(var i = 0 ; i < selectOptions.length ; i++ ){
-                selectDiv.append("<span class='selectSpan' onclick='chooseOption(this);' onmouseover='mi();' onmouseout='mo();' ssd='"+selectOptions[i].attr('ss')+"' value='" + selectOptions[i].val() + "'>" + selectOptions[i].text() + "</span><br>");
+                selectDiv.append("<span class='selectSpan' onclick='chooseOption(this);' onmouseover='mi();' onmouseout='mo();'  taxrate='"+selectOptions[i].attr('taxrate')+"' ssd='"+selectOptions[i].attr('ss')+"' value='" + selectOptions[i].val() + "'>" + selectOptions[i].text() + "</span><br>");
             }
             selectDiv.show();
             return;
@@ -74,7 +74,7 @@ function inputSelect(){
             }
         });
         for(var i = 0 ; i < matchOption.length ; i++ ){
-            selectDiv.append("<span class='selectSpan' onclick='chooseOption(this);' onmouseover='mi();' onmouseout='mo();' ssd='"+matchOption[i].attr('ss')+"' value='" + matchOption[i].val() + "'><b>" + matchOption[i].text() + "</b></span><br>");
+            selectDiv.append("<span class='selectSpan' onclick='chooseOption(this);' onmouseover='mi();' onmouseout='mo();' taxrate='"+matchOption[i].attr('taxrate')+"' ssd='"+matchOption[i].attr('ss')+"' value='" + matchOption[i].val() + "'><b>" + matchOption[i].text() + "</b></span><br>");
         }
         selectDiv.show();
         return;
@@ -93,7 +93,7 @@ function inputSelect(){
 function chooseOption(obj){
     $("#selectInputClone").val($(obj).attr("value"));
     $('.selectssss').remove();
-    $('#selectInputClone').after('<input class="selectssss" name="'+$('#selectInputClone').attr("name")+'" type="hidden" value="'+$(obj).attr("ssd")+'" />');
+    $('#selectInputClone').after('<input class="selectssss" name="'+$('#selectInputClone').attr("name")+'" taxrate="'+$(obj).attr("taxrate")+'" type="hidden" value="'+$(obj).attr("ssd")+'" />');
     $("#selectDiv").hide();
 }
 
@@ -122,7 +122,7 @@ function changeSelectDivOption(obj){
     var va = $(obj).val();
     if(va == ""){
         selectOptions.forEach(function(item,index,array){
-            $("#selectDiv").append("<span class='selectSpan' onclick='chooseOption(this);' onmouseover='mi();' onmouseout='mo();' ssd='"+item.attr('ss')+"' value='" + item.val() + "'><b>" + item.text() + "</b></span><br>");
+            $("#selectDiv").append("<span class='selectSpan' onclick='chooseOption(this);' onmouseover='mi();' onmouseout='mo();' taxrate='"+item.attr('taxrate')+"' ssd='"+item.attr('ss')+"' value='" + item.val() + "'><b>" + item.text() + "</b></span><br>");
         });
     }else {
         var regStr = "";
@@ -137,7 +137,7 @@ function changeSelectDivOption(obj){
         selectOptions.forEach(function(item,index,array){
             var tt = (item.val()+'  '+item.attr('dd')+''+item.attr('es')).replace(/\s/g, "");
             if(reg.test(tt)){
-                $("#selectDiv").append("<span class='selectSpan' onclick='chooseOption(this);' onmouseover='mi();' onmouseout='mo();' ssd='"+item.attr('ss')+"' value='" + item.val() + "'><b>" + item.text() + "</b></span><br>");
+                $("#selectDiv").append("<span class='selectSpan' onclick='chooseOption(this);' onmouseover='mi();' onmouseout='mo();' taxrate='"+item.attr('taxrate')+"' ssd='"+item.attr('ss')+"' value='" + item.val() + "'><b>" + item.text() + "</b></span><br>");
             }
         });
 

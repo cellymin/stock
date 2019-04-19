@@ -17,7 +17,6 @@ class Domain_DepotGoods_CURD
 
     public function getList()
     {
-
         $model = new Model_DepotGoods();
 
         //总条数

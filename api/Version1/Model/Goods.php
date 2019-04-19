@@ -154,11 +154,12 @@ class Model_Goods extends PhalApi_Model_NotORM
             $limit = " limit $start,$page_size";
         }
 
-        $sql = 'select g.goodsId,g.goodsSn,g.goodsBarCode,g.goodsName,g.goodsSpec,g.goodsCateId,c.cateName,g.goodsUnitId,u.unitName,'
-            . 'g.lastPrice,g.minPrice,g.maxPrice,g.avgPrice,g.productionDate,g.invalidDate,g.searchKey,g.remark '
+        $sql = 'select g.goodsId,g.goodsSn,g.goodsBarCode,g.goodsName,g.goodsSpec,g.goodsCateId,c.cateName,g.goodsUnitId,u.unitName,g.usecostpri,'
+            . 'g.lastPrice,g.minPrice,g.maxPrice,g.avgPrice,g.productionDate,g.invalidDate,g.searchKey,g.remark ,b.depotId,b.depotSubId '
             . 'from vich_goods g '
             . 'left join vich_goods_cates c on c.cateId=g.goodsCateId '
             . 'left join vich_goods_units u on u.unitId=g.goodsUnitId '
+            .' LEFT JOIN (SELECT MAX(createTime),depotId,depotSubId,goodsId FROM vich_depot_goods WHERE flag = 1 GROUP BY goodsId) AS b ON b.goodsId = g.goodsId '
             . 'where g.flag=1 and (g.goodsBarCode like :keyword or g.searchKey like :keyword or g.goodsName like :keyword or g.goodsSn like :keyword) ';
         $param = array(':keyword' => '%' . $keyword . '%');
 
@@ -168,7 +169,6 @@ class Model_Goods extends PhalApi_Model_NotORM
         }
 
         $sql .= ' order by g.goodsSn asc,g.createTime desc';
-
         $sql .= $limit;
 
         return DI()->notorm->goods->queryAll($sql, $param);
