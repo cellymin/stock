@@ -88,13 +88,18 @@ class Model_Goods extends PhalApi_Model_NotORM
         $requestList = DI()->notorm->goods->queryAll($sql, $param);
         $newlist = array();
         foreach ($requestList as $kk){
-            $sqlids = 'SELECT sp.supplierName FROM vich_orders_ip ip
+            $sqlids = 'SELECT sp.supplierName,sp.taxrate,ig.usecostpri,ig.goodsPrice FROM vich_orders_ip ip
                        LEFT JOIN vich_orders_ip_goods ig ON ip.orderId = ig.orderId
                        LEFT JOIN vich_suppliers sp ON ip.supplierId = sp.supplierId
                        WHERE ig.goodsId = '.$kk['goodsId'].' ORDER BY ip.createTime DESC LIMIT 1';
             $supplierName =  DI()->notorm->goods->queryAll($sqlids);
             $newlist[$kk['goodsId']]=$kk;
             $newlist[$kk['goodsId']]['suppliername'] = $supplierName[0]['supplierName'];
+            $newlist[$kk['goodsId']]['usecostpri'] = $supplierName[0]['usecostpri'];
+            $newlist[$kk['goodsId']]['goodsPrice'] = $supplierName[0]['goodsPrice'];
+            if(floatval($supplierName[0]['usecostpri'])>0 && floatval($supplierName[0]['taxrate'])>0){
+                $newlist[$kk['goodsId']]['lastratepri'] = $supplierName[0]['usecostpri'] * (1+floatval($supplierName[0]['taxrate']));
+            }
             unset($supplierName);
         }
     return $newlist;
@@ -158,7 +163,7 @@ class Model_Goods extends PhalApi_Model_NotORM
         $param = array(':keyword' => '%' . $keyword . '%');
 
         if ($goodsCateId) {
-            $sql .= ' and g.goodsCateId=:goodsCateId ';
+            $sql .= ' and (goodsCateId=:goodsCateId or goodsCateId1=:goodsCateId or goodsCateId2=:goodsCateId) ';
             $param[':goodsCateId'] = $goodsCateId;
         }
 
