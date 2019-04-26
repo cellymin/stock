@@ -146,6 +146,16 @@ class Model_Goods extends PhalApi_Model_NotORM
             ->fetch();
     }
 
+    public function getForName($goodsName, $fields = '*')
+    {
+        $where = 'flag=1 and goodsName=?';
+        $param[] = $goodsName;
+
+        return DI()->notorm->goods
+            ->select($fields)
+            ->where($where, $param)
+            ->fetch();
+    }
 
     public function getList($start, $page_size, $keyword, $goodsCateId)
     {
@@ -269,6 +279,9 @@ class Model_Goods extends PhalApi_Model_NotORM
             $result=DI()->notorm->goods->queryAll($sql,$param);
         }
         return $result;
+    }
+    public function updateName($goodsId){
+        $param[':goodsCateId'] = $goodsCateId;
     }
 
 }

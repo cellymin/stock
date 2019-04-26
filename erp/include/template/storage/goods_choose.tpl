@@ -7,13 +7,26 @@
             <input type="text" name="keyword" value="<{$_GET.keyword}>" placeholder="输入货号,助记词,产品名称"
                    style="width: 160px;">
         </div>
+        <div style="float:left;margin-right:5px">
+            <select name="goodsCateId" id="" style="width: 130px">
+                <{foreach from=$goodsCate item=v}>
+            <option value="<{$v.cateId}>" <{if $_GET.goodsCateId==$v.cateId}>selected<{/if}>>
+                <{if $v.level>1}>
+                |<{str_repeat('-',$v.level)}>&nbsp;<{$v.cateName}>
+                <{else}>
+                <{$v.cateName}>
+                <{/if}>
+                </option>
+                <{/foreach}>
+            </select>
+        </div>
         <div class="btn-toolbar" style="padding-bottom:0px;margin-top:0px;margin-bottom:0px;float: left">
             <button type="submit" class="btn btn-primary"><i class="icon-search"></i></button>
         </div>
         <div style="clear:both;"></div>
     </form>
     <div class="btn-toolbar" style="padding-bottom:0px;margin-top:0px;margin-bottom:0px;float: right">
-             <button class="btn btn-primary" onclick="choosesupplier()">选择</button>
+        <button class="btn btn-primary" onclick="choosesupplier()">选择</button>
     </div>
     <div>
 
@@ -33,9 +46,15 @@
             <tbody>
             <{foreach name=module from=$list key=index item=value}>
                 <tr>
-                    <td><input data-name="goodsId" type="checkbox" value="<{$value.supplierId}>" onclick="ifmore()"></td>
-                    <td class="supp"><{$value.supplierName}></td>
-                    <td class="taxrate"><{$value.taxrate}></td>
+                    <td><input data-name="goodsId" type="checkbox" value="<{$value.goodsId}>" onclick="ifexist(this)">
+                    </td>
+                    <td class="goodsName"><{$value.goodsName}></td>
+                    <td class="goodsSpec"><{$value.goodsSpec}></td>
+                    <td class="unitName"><{$value.unitName}></td>
+                    <td class="lastPrice"><{$value.lastPrice}></td>
+                    <td class="minPrice"><{$value.minPrice}></td>
+                    <td class="maxPrice"><{$value.maxPrice}></td>
+                    <td class="avgPrice"><{$value.avgPrice}></td>
                 </tr>
                 <{/foreach}>
             </tbody>
@@ -44,31 +63,68 @@
     </div>
 </div>
 <script>
-function ifmore(){
-    $('input:checkbox:checked').each(function(i){
-       if(i>0){
-           $(this).prop("checked",false);
-           alert("不能选择多个");
-       }
-    });
-}
-function choosesupplier() {
+    var goodsname = new Array();
 
-    var index = parent.layer.getFrameIndex(window.name);
+    function ifexist(e) {
+        var clickname = $(e).parent().next().text();
+        if (goodsname.length == 0) {
+            parent.$('#tb_1 tr').each(function (i) {
 
-    $('input:checkbox:checked').each(function(i){
-        if(i>0){
-            alert("不能选择多个");
+                if (i > 0) {
+                    var idname = $(this).children().eq(0).children().eq(0).attr('id');
+                    console.log(idname);
+                    if(idname=='selectInputGClone'){
+                        return true;
+                    }else{
+                        var gname = $(this).children().eq(0).text().trim().replace(/\s/g, "");
+                        if (gname != '' && gname != '选择') {
+                            goodsname.push(gname)
+                        }
+                    }
+                }
+            })
+        }
+        var k = goodsname.indexOf(clickname);
+        if (k >= 0 && $(e).attr('checked') == 'checked') {
+            alert('商品重复');
+            $(e).attr('checked', false);
+            return false;
+        } else {
+            if ($(e).attr('checked') == 'checked') {
+                goodsname.push(clickname);
+            }
+            else {
+                var index = goodsname.indexOf(clickname);
+                if (index > -1) {
+                    goodsname.splice(index, 1);
+                }
+            }
+        }
+    }
+
+    function choosesupplier() {
+        var index = parent.layer.getFrameIndex(window.name);
+        trs = '';
+        var taxrate = parseFloat(parent.$('.selectssss').attr('taxrate'));
+
+        if (1 < taxrate || taxrate <= 0) {
+            alert('税率不合法')
             return false;
         }
-        var checkid = $(this).val();
-        var supp = $(this).parent().parent().find('.supp').text();
-        var taxrate = $(this).parent().parent().find('.taxrate').text();
-        parent.$('#selectInputClone').val(supp);
-        parent.$('.selectssss').remove();
-        parent.$('#selectInputClone').after('<input class="selectssss" name="'+parent.$('#selectInputClone').attr("name")+'" type="hidden" value="'+checkid+'"  taxrate="'+taxrate+'" />');
-        parent.layer.close(index);
-    });
-}
+        $('input:checkbox:checked').each(function (i) {
+
+            var goodsId = $(this).val();
+            var goodsName = $(this).parent().parent().find('.goodsName').text();
+            var goodsSpec = $(this).parent().parent().find('.goodsSpec').text();
+            var unitName = $(this).parent().parent().find('.unitName').text();
+            var lastPrice = $(this).parent().parent().find('.lastPrice').text();
+            var hanpri = parseFloat(lastPrice) * (1 + taxrate);
+            $(this).attr('checked', false);
+            trs += '<tr><td>' + goodsName + '<i class="icon-pencil" attid="'+goodsId+ '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + goodsSpec + '</td><td>' + unitName + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat(lastPrice).toFixed(6) + '</td><td  class="pritype"><select name="costprice"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td onclick="delgoods(this)">删除</td></tr>'
+        });
+        parent.$('#tb_1').children().children().eq(-2).after(trs);
+        parent.$('.goodsName').val(goodsname);
+
+    }
 
 </script>

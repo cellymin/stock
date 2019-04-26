@@ -43,6 +43,14 @@ class Domain_Goods_CURD
         return $model->getForUD($goodsId, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark');
     }
 
+    public function getForName($goodsName)
+    {
+        $model = new Model_Goods();
+
+        return $model->getForName($goodsName, 'goodsId');
+    }
+
+
     public function getList($page_no, $page_size, $keyword, $goodsCateId)
     {
         $model = new Model_Goods();
