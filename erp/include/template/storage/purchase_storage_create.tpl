@@ -3,13 +3,51 @@
 <{include file ="sidebar.tpl"}>
 <style>
     span {
-        width: 100%;
+        /*width: 100%;*/
         display: block;
+    }
+    .search{
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+    }
+    .search_text{
+        display: inline-block;
+        line-height: 30px;
+    }
+    .saveSubmit{
+        position: absolute;
+        bottom: 80px;
+        right: 100px;
+        width: 80px;
+        height: 40px;
+        background-color: #4d5b76;
+        color: #fff;
+    }
+    #selectDivG{
+        width: 220px;
+        height: 200px;
+        overflow-y:auto;
+        white-space:nowrap;
+    }
+    #selectDiv{
+        position: absolute;
+        top: 30px;
+        width: 280px;
+        height: 500px;
+        overflow-y:auto;
+        white-space:nowrap;
+        background-color: #BEBEBE;
+    }
+    .imgDel{
+        width: 30px;
+        height: 30px;
     }
 </style>
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 <div class="search" style="display: flex">
-    供应商 <select id="selectInput" name="supplierId">
+    <span class="search_text">供应商</span>
+     <select class="search_select" id="selectInput" name="supplierId">
         <{foreach from=$suppliers_options item=v key=k}>
         <option value="<{$v.name}>" dd="<{$v.pinyin}>" es="<{$v.jianxie}>" ss="<{$k}>" taxrate="<{$v.taxrate}>">
             <{$v.name}>
@@ -18,19 +56,21 @@
     </select>
     <a class="layerModel choosesupps" action="1" title="选择供应商" layerUrl="<{$suppliers_url}>" layerW="600px"
        layerH="500px" layerT="2"><i class="icon-plus"></i> 选择</a>
-    仓库<select name="depotId" onchange="liand(this)" id="depotlist">
+    <span class="search_text" style="margin-left: 20px;">仓库</span>
+    <select class="search_select" name="depotId" onchange="liand(this)" id="depotlist">
         <{foreach from=$depots_options item=v key=k}>
         <option value="<{$k}>"><{$v}></option>
         <{/foreach}>
     </select>
     <div class="depotsub">
-        库位<select name="depotSubId" id="depotSubId">
+        <span class="search_text" style="margin-left: 20px;">库位</span>
+        <select class="search_select" name="depotSubId" id="depotSubId">
 
         </select>
     </div>
 </div>
 <hr/>
-<table border="1" id="tb_1">
+<table class="table" border="1" id="tb_1">
     <input type="hidden" class="goodsName" value="11" name="ss"/>
     <tr>
         <th>材料名称</th>
@@ -61,19 +101,19 @@
         <td></td>
         <td></td>
     </tr>
+</table>
+<div class="other">
     <div>
-        <span>其他信息</span>
-        <hr>
-        <textarea></textarea>
+        <span style="font-weight: bold;border-bottom:1px solid #e2e2e2; ">其他信息</span>
+        <span style="margin: 30px;">备注：<textarea style="width: 50%;height: 100px;"></textarea></span>
     </div>
     <div>
-        <span>金额</span>
-        <hr>
-        <div style="display: flex"><span>入库总金额：￥<em style="font-style:normal" class="totalmoney">0</em></span> <span>入库总数：<em
+        <span style="font-weight: bold;border-bottom:1px solid #e2e2e2; ">入库金额</span>
+        <div style="display: flex"><span style="margin: 30px;">入库总金额：￥<em style="font-style:normal" class="totalmoney">0</em></span> <span style="margin: 30px;">入库总数：<em
                         style="font-style:normal" class="totalnum"> 0</em></span></div>
     </div>
-    <button onclick="savelist();">保存</button>
-</table>
+    <button onclick="savelist();" class="saveSubmit">保存</button>
+</div>
 <script src="<{$smarty.const.ADMIN_URL}>/assets/js/searchSelectNew.js"></script>
 <script type="text/javascript">
     var goosNames = new Array();
@@ -140,10 +180,10 @@
         var top = selectInputGClone.offset().top + selectInputGClone.height() + 5;
         var width = selectInputGClone.width();
         $("#selectDivG").css({
-            "position": "absolute",
-            "top": top,
-            "left": left,
-            "width": width,
+            // "position": "absolute",
+            // "top": top,
+            // "left": left,
+            // "width": width,
             "border": "1px solid #aaaaaa",
             "display": "none"
         })
@@ -229,7 +269,7 @@
         $('.selectssssG').remove();
         $('#selectInputGClone').after('<input class="selectssssG" name="' + $('#selectInputGClone').attr("name") + '" type="hidden" value="' + $(obj).attr("ssd") + '" />');
         $("#selectDivG").hide();
-        $('#selectInputGClone').parent().parent().after('<tr><td><i class="gname">' + $(obj).text() + '</i><i class="icon-pencil" attid="' + $(obj).attr("ssd") + '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + $(obj).attr("goodsSpec") + '</td><td>' + $(obj).attr("unitName") + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat($(obj).attr("lastPrice")).toFixed(6) + '</td><td class="pritype"><select name="costprice" onchange="totalcount()"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td onclick="delgoods(this)">删除</td></tr><tr><td>' + selecthtml + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
+        $('#selectInputGClone').parent().parent().after('<tr><td><i class="gname">' + $(obj).text() + '</i><i class="icon-pencil" attid="' + $(obj).attr("ssd") + '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + $(obj).attr("goodsSpec") + '</td><td>' + $(obj).attr("unitName") + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat($(obj).attr("lastPrice")).toFixed(6) + '</td><td class="pritype"><select name="costprice" onchange="totalcount()"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td></tr><tr><td>' + selecthtml + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
         $("#selectInputGClone").parent().parent().remove();
         goosNames.push($(obj).text().trim().replace(/\s/g, ""));
         sousuo();
@@ -475,7 +515,7 @@
         var oldhtml = '<i class="icon-pencil" attid="' + goodsId + '" onclick="changename(this)" title="修改商品名称"></i>'
         var gname = $(e).parent().find('.gname').text().trim().replace(/\s/g, "");
         beforgn = gname;
-        $(e).parent().html('<input type="text" name="goodsId" attid="' + goodsId + '" value="' + gname + '"  class="chgname" /><button onclick="changeN(this)">确定</button>');
+        $(e).parent().html('<input type="text" name="goodsId" attid="' + goodsId + '" value="' + gname + '"  class="chgname" /><img onclick="changeN(this)" class="imgDel" src="../assets/images/OK.png"><img onclick="quitchange(this)" class="imgDel" src="../assets/images/exit.png">');
 
     }
 
@@ -483,6 +523,9 @@
         $(e).attr('disabled', "true");
         var gn = $(e).parent().find('.chgname').val().trim().replace(/\s/g, "");
         var gid = $(e).parent().find('.chgname').attr('attid');
+        if(gn==beforgn){
+            alert('没有修改')
+        }
         if (gid > 0) {
             $.ajax({
                 type: "post",
@@ -516,6 +559,12 @@
             alert('商品非法');
             return false;
         }
+    }
+    function quitchange(e) {
+        $(e).attr('disabled', "true");
+        var gid = $(e).parent().find('.chgname').attr('attid');
+        $(e).parent().html('<i class="gname">' + beforgn + '</i><i class="icon-pencil" attid="' + gid + '" onclick="changename(this)" title="修改商品名称"></i>');
+
     }
     function savelist() {
         var trlen = $('#tb_1 tr').length;

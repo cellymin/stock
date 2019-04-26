@@ -120,7 +120,7 @@
             var lastPrice = $(this).parent().parent().find('.lastPrice').text();
             var hanpri = parseFloat(lastPrice) * (1 + taxrate);
             $(this).attr('checked', false);
-            trs += '<tr><td>' + goodsName + '<i class="icon-pencil" attid="'+goodsId+ '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + goodsSpec + '</td><td>' + unitName + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat(lastPrice).toFixed(6) + '</td><td  class="pritype"><select name="costprice"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td onclick="delgoods(this)">删除</td></tr>'
+            trs += '<tr><td><i class="gname">' + goodsName + '</i><i class="icon-pencil" attid="'+goodsId+ '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + goodsSpec + '</td><td>' + unitName + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat(lastPrice).toFixed(6) + '</td><td  class="pritype"><select name="costprice"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td></tr>'
         });
         parent.$('#tb_1').children().children().eq(-2).after(trs);
         parent.$('.goodsName').val(goodsname);

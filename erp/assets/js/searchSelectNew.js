@@ -36,10 +36,10 @@ function inputSelect(){
     var top = selectInputClone.offset().top + selectInputClone.height() + 5;
     var width = selectInputClone.width();
     $("#selectDiv").css({
-        "position":"absolute",
-        "top":top,
-        "left":left,
-        "width":width,
+        // "position":"absolute",
+        // "top":top,
+        // "left":left,
+        // "width":width,
         "border":"1px solid #aaaaaa",
         "display":"none"
     })
