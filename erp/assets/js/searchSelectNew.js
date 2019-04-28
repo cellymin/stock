@@ -17,7 +17,7 @@ function inputSelect(){
     }
     var select = $(arguments[0]);
     //给selectInput添加输入框内文本改变事件在IE下为oninput在其他浏览器下为onpropertychange
-    var selectInput = "<input id='" + "selectInputClone" + "'  oninput='onInput(this);' onpropertychange='onPropertyChange(this);'  type='text' name='" + select.attr("name") + "'></input>";
+    var selectInput = "<input id='" + "selectInputClone" + "'  oninput='onInput(this);' onpropertychange='onPropertyChange(this);'  type='text' name='" + select.attr("name") + "' placeholder='请输入供应商名称或者字母简写'></input>";
     var selectDiv = "<div id='" + "selectDiv" + "'></div>";
     var selectOption_ = select.find("option");
     selectOptions = new Array(selectOption_.length);
@@ -95,6 +95,7 @@ function chooseOption(obj){
     $('.selectssss').remove();
     $('#selectInputClone').after('<input class="selectssss" name="'+$('#selectInputClone').attr("name")+'" taxrate="'+$(obj).attr("taxrate")+'" type="hidden" value="'+$(obj).attr("ssd")+'" />');
     $("#selectDiv").hide();
+    afterChangeSupp($(obj).attr("taxrate"));
 }
 
 //span鼠标进入事件

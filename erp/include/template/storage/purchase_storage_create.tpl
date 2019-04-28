@@ -43,6 +43,10 @@
         width: 30px;
         height: 30px;
     }
+    .imgDel1{
+        width: 28px;
+        height: 28px;
+    }
 </style>
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 <div class="search" style="display: flex">
@@ -54,8 +58,9 @@
         </option>
         <{/foreach}>
     </select>
+    <img onclick="quitchangesupp(this)" class="imgDel1" src="../assets/images/exit.png">
     <a class="layerModel choosesupps" action="1" title="选择供应商" layerUrl="<{$suppliers_url}>" layerW="600px"
-       layerH="500px" layerT="2"><i class="icon-plus"></i> 选择</a>
+       layerH="500px" layerT="2" style="display: none;"><i class="icon-plus"></i> 选择</a>
     <span class="search_text" style="margin-left: 20px;">仓库</span>
     <select class="search_select" name="depotId" onchange="liand(this)" id="depotlist">
         <{foreach from=$depots_options item=v key=k}>
@@ -157,7 +162,7 @@
         var select = $(arguments[0]);
         //给selectInputG添加输入框内文本改变事件在IE下为oninput在其他浏览器下为onpropertychange
 
-        var selectInputG = "<input id='" + "selectInputGClone" + "'  oninput='onInputG(this);' onpropertychange='onPropertyChangeG(this);'  type='text' name='" + select.attr("name") + "'></input><a class='layerModel' action='1' title='选择商品' layerUrl='goods_choose' layerW='800px' layerH='700px' layerT='2'><i class='icon-plus'></i> 选择</a>";
+        var selectInputG = "<input id='" + "selectInputGClone" + "'  oninput='onInputG(this);' onpropertychange='onPropertyChangeG(this);'  type='text' name='" + select.attr("name") + "'  placeholder='请输入商品名称或者字母简写' /></input><a class='layerModel' action='1' title='选择商品' layerUrl='goods_choose' layerW='800px' layerH='700px' layerT='2'><i class='icon-plus'></i> 选择</a>";
         var selectDivG = "<div id='" + "selectDivG" + "'></div>";
         if (selectOption_ == null) {
             selectOption_ = select.find("option");
@@ -237,16 +242,16 @@
     function chooseOptionG(obj) {
         var supp = $('#selectInputClone').val();
         if (supp == '') {
-            alert('供应商不能为空');
             $("#selectDivG").hide();
+            Alert('供应商不能为空');
             return false;
         }
         var taxrate = parseFloat($('.selectssss').attr('taxrate'));
         if (1 > taxrate > 0) {
             var hanpri = parseFloat($(obj).attr("lastPrice")) * (1 + taxrate);
         } else {
-            alert('税率不合法')
             $("#selectDivG").hide();
+            Alert('税率不合法')
             return false;
         }
         if ($('.goodsName').val() != '11') {
@@ -261,25 +266,25 @@
         }
         var i = goosNames.indexOf($(obj).text().trim().replace(/\s/g, ""));
         if (i >= 0) {
-            alert('商品重复');
             $("#selectDivG").hide();
+            Alert('商品重复');
             return false;
         }
         $("#selectInputGClone").val($(obj).attr("value"));
         $('.selectssssG').remove();
         $('#selectInputGClone').after('<input class="selectssssG" name="' + $('#selectInputGClone').attr("name") + '" type="hidden" value="' + $(obj).attr("ssd") + '" />');
         $("#selectDivG").hide();
-        $('#selectInputGClone').parent().parent().after('<tr><td><i class="gname">' + $(obj).text() + '</i><i class="icon-pencil" attid="' + $(obj).attr("ssd") + '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + $(obj).attr("goodsSpec") + '</td><td>' + $(obj).attr("unitName") + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat($(obj).attr("lastPrice")).toFixed(6) + '</td><td class="pritype"><select name="costprice" onchange="totalcount()"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td></tr><tr><td>' + selecthtml + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
+        $('#selectInputGClone').parent().parent().after('<tr><td><i class="gname">' + $(obj).text() + '</i><i class="icon-pencil" attid="' + $(obj).attr("ssd") + '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + $(obj).attr("goodsSpec") + '</td><td>' + $(obj).attr("unitName") + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat($(obj).attr("lastPrice")).toFixed(6) + '</td><td class="pritype"><select name="costprice" onchange="totalcount()"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td><td class="ttrate" style="display:none ;">'+ taxrate +'</td></tr><tr><td>' + selecthtml + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
         $("#selectInputGClone").parent().parent().remove();
         goosNames.push($(obj).text().trim().replace(/\s/g, ""));
         sousuo();
-        if (goosNames.length > 0) {
-            $('#selectInputClone').attr('disabled', true);
-            $('.choosesupps').removeClass("layerModel");
-        } else {
-            $('#selectInputClone').removeAttr('disabled');
-            $('.choosesupps').addClass("layerModel");
-        }
+        // if (goosNames.length > 0) {
+        //     $('#selectInputClone').attr('disabled', true);
+        //     $('.choosesupps').removeClass("layerModel");
+        // } else {
+        //     $('#selectInputClone').removeAttr('disabled');
+        //     $('.choosesupps').addClass("layerModel");
+        // }
     }
 
     //span鼠标进入事件
@@ -405,13 +410,13 @@
             goosNames.splice(index, 1);
         }
         $(e).parent().remove();
-        if (goosNames.length > 0) {
-            $('#selectInputClone').attr('disabled', true);
-            $('.choosesupps').removeClass("layerModel");
-        } else {
-            $('#selectInputClone').removeAttr('disabled');
-            $('.choosesupps').addClass("layerModel");
-        }
+        // if (goosNames.length > 0) {
+        //     $('#selectInputClone').attr('disabled', true);
+        //     $('.choosesupps').removeClass("layerModel");
+        // } else {
+        //     $('#selectInputClone').removeAttr('disabled');
+        //     $('.choosesupps').addClass("layerModel");
+        // }
         totalcount();
     }
 
@@ -499,8 +504,8 @@
                             totalpri = parseFloat((num * buhanpri * (1 + taxrate))) + parseFloat(totalpri);
                         }
                     } else {
-                        alert('税率不合法')
                         $("#selectDivG").hide();
+                        Alert('税率不合法')
                         return false;
                     }
                 }
@@ -519,12 +524,17 @@
 
     }
 
+    function quitchangesupp() {
+        $('#selectInputClone').val('');
+        $('.selectssss').remove();
+    }
+
     function changeN(e) {
         $(e).attr('disabled', "true");
         var gn = $(e).parent().find('.chgname').val().trim().replace(/\s/g, "");
         var gid = $(e).parent().find('.chgname').attr('attid');
         if(gn==beforgn){
-            alert('没有修改')
+            Alert('没有修改')
         }
         if (gid > 0) {
             $.ajax({
@@ -535,7 +545,6 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.code == 1) {
-                        alert('修改成功');
                         $(e).removeAttr('disabled', "true");
                         $(e).parent().html('<i class="gname">' + gn + '</i><i class="icon-pencil" attid="' + gid + '" onclick="changename(this)" title="修改商品名称"></i>');
                         var index = goosNames.indexOf(beforgn);
@@ -552,11 +561,12 @@
                                 return false;
                             }
                         });
+                        Alert('修改成功');
                     }
                 }
             })
         } else {
-            alert('商品非法');
+            Alert('商品非法');
             return false;
         }
     }
@@ -603,8 +613,8 @@
                     gpro = '';
                     gproarr = new Array();
                 }else{
-                    alert(gproarr['goodsName']+'数量为空,请补全');
                     goodslist = new Array();
+                    Alert(gproarr['goodsName']+'数量为空,请补全');
                     return false;
                 }
             }
@@ -618,14 +628,99 @@
                 dataType: "json",
                 success: function (data) {
                   if(data.code==1){
-                      alert(data.msg);
+                      Alert(data.msg);
                   }else{
-                      alert(data.msg);
+                      Alert(data.msg);
                       return false;
                   }
                 }
             })
         }
+    }
+    function Alert(str) {
+        var msgw,msgh,bordercolor;
+        msgw=350;//提示窗口的宽度
+        msgh=80;//提示窗口的高度
+        titleheight=25 //提示窗口标题高度
+        bordercolor="#336699";//提示窗口的边框颜色
+        titlecolor="#99CCFF";//提示窗口的标题颜色
+        var sWidth,sHeight;
+        //获取当前窗口尺寸
+        sWidth = document.body.offsetWidth;
+        sHeight = document.body.offsetHeight;
+//    //背景div
+        var bgObj=document.createElement("div");
+        bgObj.setAttribute('id','alertbgDiv');
+        bgObj.style.position="absolute";
+        bgObj.style.top="0";
+        bgObj.style.background="#E8E8E8";
+        bgObj.style.filter="progid:DXImageTransform.Microsoft.Alpha(style=3,opacity=25,finishOpacity=75";
+        bgObj.style.opacity="0.6";
+        bgObj.style.left="0";
+        bgObj.style.width = sWidth + "px";
+        bgObj.style.height = sHeight + "px";
+        bgObj.style.zIndex = "10000";
+        document.body.appendChild(bgObj);
+        //创建提示窗口的div
+        var msgObj = document.createElement("div")
+        msgObj.setAttribute("id","alertmsgDiv");
+        msgObj.setAttribute("align","center");
+        msgObj.style.background="white";
+        msgObj.style.border="1px solid " + bordercolor;
+        msgObj.style.position = "absolute";
+        msgObj.style.left = "50%";
+        msgObj.style.font="12px/1.6em Verdana, Geneva, Arial, Helvetica, sans-serif";
+        //窗口距离左侧和顶端的距离
+        msgObj.style.marginLeft = "-225px";
+        //窗口被卷去的高+（屏幕可用工作区高/2）-150
+        msgObj.style.top = document.body.scrollTop+(window.screen.availHeight/2)-150 +"px";
+        msgObj.style.width = msgw + "px";
+        msgObj.style.height = msgh + "px";
+        msgObj.style.textAlign = "center";
+        msgObj.style.lineHeight ="25px";
+        msgObj.style.zIndex = "10001";
+        document.body.appendChild(msgObj);
+        //提示信息标题
+        var title=document.createElement("h4");
+        title.setAttribute("id","alertmsgTitle");
+        title.setAttribute("align","left");
+        title.style.margin="0";
+        title.style.padding="3px";
+        title.style.background = bordercolor;
+        title.style.filter="progid:DXImageTransform.Microsoft.Alpha(startX=20, startY=20, finishX=100, finishY=100,style=1,opacity=75,finishOpacity=100);";
+        title.style.opacity="0.75";
+        title.style.border="1px solid " + bordercolor;
+        title.style.height="18px";
+        title.style.font="12px Verdana, Geneva, Arial, Helvetica, sans-serif";
+        title.style.color="white";
+        title.innerHTML="提示信息";
+        document.getElementById("alertmsgDiv").appendChild(title);
+        //提示信息
+        var txt = document.createElement("p");
+        txt.setAttribute("id","msgTxt");
+        txt.style.margin="16px 0";
+        txt.innerHTML = str;
+        document.getElementById("alertmsgDiv").appendChild(txt);
+        //设置关闭时间
+        window.setTimeout("closewin()",1000);
+    }
+    function closewin() {
+        document.body.removeChild(document.getElementById("alertbgDiv"));
+        document.getElementById("alertmsgDiv").removeChild(document.getElementById("alertmsgTitle"));
+        document.body.removeChild(document.getElementById("alertmsgDiv"));
+    }
+    function afterChangeSupp(){
+        var trlen = $('#tb_1 tr').length;
+        $('#tb_1 tr').each(function(i) {
+            var nowrate = parseFloat($('.selectssss').attr('taxrate'));
+            if(i>0 && i<trlen-1) {
+                if (parseFloat($(this).find('.ttrate').text()) != nowrate) {
+                    var buhan = parseFloat($(this).find('.buhanpri').text());
+                    $(this).find('.hanpri').val(parseFloat(parseFloat(buhan) * (1 + nowrate)).toFixed(2));
+                    $(this).find('.ttrate').text(nowrate)
+                }
+            }
+        });
     }
 </script>
 

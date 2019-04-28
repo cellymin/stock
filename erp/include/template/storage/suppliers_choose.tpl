@@ -64,6 +64,19 @@ function choosesupplier() {
         parent.$('#selectInputClone').after('<input class="selectssss" name="'+parent.$('#selectInputClone').attr("name")+'" type="hidden" value="'+checkid+'"  taxrate="'+taxrate+'" />');
         parent.layer.close(index);
     });
+    afterChangeSupp();
 }
-
+function afterChangeSupp(){
+    var trlen = parent.$('#tb_1 tr').length;
+    parent.$('#tb_1 tr').each(function(i) {
+        var nowrate = parseFloat(parent.$('.selectssss').attr('taxrate'));
+        if(i>0 && i<trlen-1) {
+            if (parseFloat($(this).find('.ttrate').text()) != nowrate) {
+                var buhan = parseFloat($(this).find('.buhanpri').text());
+                $(this).find('.hanpri').val(parseFloat(parseFloat(buhan) * (1 + nowrate)).toFixed(2));
+                $(this).find('.ttrate').text(nowrate)
+            }
+        }
+    });
+}
 </script>

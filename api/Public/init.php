@@ -65,7 +65,6 @@ DI()->_formatterBank = 'Common_Formatter_Bank';
 //签名验证服务
 DI()->filter = 'Common_Filter';
 
-
 /**
 // 缓存 - Memcache/Memcached
 DI()->cache = function () {
