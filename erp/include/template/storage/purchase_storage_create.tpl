@@ -90,6 +90,8 @@
         <th>含税价</th>
         <th>不含税价</th>
         <th>成本价</th>
+        <th>可抵税率</th>
+        <th>可否抵扣</th>
         <th>操作</th>
     </tr>
     <{foreach name=module from=$order.goods.list key=index item=value}>
@@ -100,7 +102,7 @@
         <td><input type="text" value="<{$value.goodsCnt|string_format:"%.2f"}>" style="width:45px;" onkeyup="changenum()"></td>
         <td><input type="text" style="width:45px;" class="hanpri" value="<{$value.ratepri|string_format:"%.2f"}>" onkeyup="ratejisuan(this)" /></td>
         <td class="buhanpri"><{if $value.usecostpri >0 }><{$value.usecostpri}><{else}><{$value.goodsPrice}><{/if}></td>
-        <td class="pritype"><select name="costprice" onchange="totalcount()"><option value="1" <{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0}> selected="selected"<{/if}> >不含税价</option><option value="2" <{if $value.usecostpri != $value.goodsPrice && $value.usecostpri>0}> selected="selected"<{/if}>>含税价</option> </select></td>
+        <td class="pritype"><select name="costprice" onchange="changecb(this)"><option value="1" <{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0}> selected="selected"<{/if}> >不含税价</option><option value="2" <{if $value.usecostpri != $value.goodsPrice && $value.usecostpri>0}> selected="selected"<{/if}>>含税价</option> </select></td>
         <td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td>
         <td class="ttrate" style="display:none ;"><{$value.unitName}><{$value.taxrate}></td></tr>
     </tr>
@@ -308,7 +310,7 @@
         $('.selectssssG').remove();
         $('#selectInputGClone').after('<input class="selectssssG" name="' + $('#selectInputGClone').attr("name") + '" type="hidden" value="' + $(obj).attr("ssd") + '" />');
         $("#selectDivG").hide();
-        $('#selectInputGClone').parent().parent().after('<tr><td><i class="gname">' + $(obj).text() + '</i><i class="icon-pencil" attid="' + $(obj).attr("ssd") + '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + $(obj).attr("goodsSpec") + '</td><td>' + $(obj).attr("unitName") + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat($(obj).attr("lastPrice")).toFixed(6) + '</td><td class="pritype"><select name="costprice" onchange="totalcount()"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td><td class="ttrate" style="display:none ;">'+ taxrate +'</td></tr><tr><td>' + selecthtml + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
+        $('#selectInputGClone').parent().parent().after('<tr><td><i class="gname">' + $(obj).text() + '</i><i class="icon-pencil" attid="' + $(obj).attr("ssd") + '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + $(obj).attr("goodsSpec") + '</td><td>' + $(obj).attr("unitName") + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat($(obj).attr("lastPrice")).toFixed(6) + '</td><td class="pritype"><select name="costprice" onchange="changecb(this)" style="width:100px;"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td><input type="text" style="width:45px;" class="dikourate" value="'+ taxrate +'"  onkeyup="chgbuhanpri(this)" /></td><td><select name="ifdikou" class="ifdikou" style="width:100px;"><option value="1" selected="selected">可抵扣</option><option value="2">不可抵扣</option> </select></td><td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td><td class="ttrate" style="display:none ;">'+ taxrate +'</td></tr><tr><td>' + selecthtml + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
         $("#selectInputGClone").parent().parent().remove();
         goosNames.push($(obj).text().trim().replace(/\s/g, ""));
         sousuo();
@@ -499,6 +501,21 @@
         }
         totalcount();
     }
+    function chgbuhanpri(e){
+        var hanlen = $(e).val().split('.')[1];
+        var hanpri = parseFloat($(e).parent().parent().find('.hanpri').val());//含税价
+        if (hanpri != 'NaN') {
+            var rate = parseFloat($(e).val());
+            ;//税率
+            var lastpri = hanpri / (1 + rate); //不含税价格=含税价/(1+税率)
+            if (isNaN(lastpri)) {
+                $(e).parent().parent().find('.buhanpri').text(0);
+            } else {
+                $(e).parent().parent().find('.buhanpri').text(decimal(lastpri, 6));
+            }
+        }
+        totalcount();
+    }
 
     function decimal(num, v) {
         var vv = Math.pow(10, v);
@@ -544,6 +561,19 @@
         });
         $('.totalmoney').text(parseFloat(totalpri).toFixed(2));
         $('.totalnum').text(totalnum);
+
+    }
+
+    function changecb(e) {
+        var pritype = parseInt($(e).val());
+        if(pritype==2){
+            $(e).parent().parent().find('.ifdikou').val(2);
+            $(e).parent().parent().find('.ifdikou').attr('disabled', "true");
+        }else if(pritype==1) {
+            $(e).parent().parent().find('.ifdikou').val(1);
+            $(e).parent().parent().find('.ifdikou').removeAttr('disabled');
+        }
+        totalcount();
     }
 
     function changename(e) {

@@ -9,6 +9,10 @@ extract($_POST, EXTR_IF_EXISTS);
 $client = new PhalApiClient();
 $page_no = $page_no ? $page_no : 1;
 //
+//$pinyin = new PinYin();
+//$input_data['quanpin'] = strtoupper($pinyin->getpy('你好'));
+//$input_data['jianxie'] = strtoupper($pinyin->getpy('你好', false));
+//var_dump($input_data);die();
 if (intval($orderId) > 0) {
     $rs = $client->request('Order_Get.Go', array(
         'type' => 'PURCHASE_IN',
@@ -214,8 +218,8 @@ if ($tab == 1) {
                 foreach ($goods_options as $k => $v) {
                     $new_goods_options[$v['goodsId']]['goodsId'] = $v['goodsId'];
                     $new_goods_options[$v['goodsId']]['goodsName'] = $v['goodsName'];
-                    $new_goods_options[$v['goodsId']]['pinyin'] = $v['quanpin'];
-                    $new_goods_options[$v['goodsId']]['jianxie'] = $v['jianxie'];
+                    $new_goods_options[$v['goodsId']]['pinyin'] = strtolower($v['quanpin']);
+                    $new_goods_options[$v['goodsId']]['jianxie'] = strtolower($v['jianxie']);
                     $new_goods_options[$v['goodsId']]['goodsSpec'] = $v['goodsSpec'];//规格
                     $new_goods_options[$v['goodsId']]['unitName'] = $v['unitName'];//单位
                     if ($v['usecostpri'] > 0) {
@@ -238,8 +242,8 @@ if ($tab == 1) {
                 $new_suppliers_options[$k]['id'] = $k;
                 $new_suppliers_options[$k]['name'] = $v['supplierName'];
                 $new_suppliers_options[$k]['taxrate'] = $v['taxrate'];
-                $new_suppliers_options[$k]['pinyin'] = $v['quanpin'];
-                $new_suppliers_options[$k]['jianxie'] = $v['jianxie'];
+                $new_suppliers_options[$k]['pinyin'] = strtolower($v['quanpin']);
+                $new_suppliers_options[$k]['jianxie'] = strtolower($v['jianxie']);
             }
         }
 }

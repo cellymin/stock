@@ -14,6 +14,7 @@ $unitList = array();
 $code = '';
 
 if (Common::isPost()) {
+    $pinyin = new PinYin();
 	$input_data = array();
 	$input_data['goodsSn'] = $goodsSn;
 	$input_data['goodsBarCode'] = $goodsBarCode;
@@ -29,9 +30,8 @@ if (Common::isPost()) {
 	$input_data['remark'] = $remark;
 	$input_data['flag'] = 1;
 	$input_data['createTime'] = date('Y-m-d H:i:s');
-	
-	
-	
+    $input_data['quanpin'] = strtoupper($pinyin->getpy($goodsName));
+    $input_data['jianxie'] = strtoupper($pinyin->getpy($goodsName, false));
 	
     if ($method == 'opt') {
         $list = array();
