@@ -26,6 +26,8 @@ class Domain_Supplier_Options
             foreach ($options as $row){
                 $rs[$row['supplierId']]['supplierName'] = $row['supplierName'];
                 $rs[$row['supplierId']]['taxrate'] = $row['taxrate'];
+                $rs[$row['supplierId']]['quanpin'] = $row['quanpin'];
+                $rs[$row['supplierId']]['jianxie'] = $row['jianxie'];
             }
         }
 

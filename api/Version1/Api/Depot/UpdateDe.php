@@ -1,11 +1,13 @@
 <?php
 
-class Api_Depot_InputDe extends PhalApi_Api
+class Api_Depot_UpdateDe extends PhalApi_Api
 {
     public function getRules()
     {
         return array(
             'go' => array(
+                'orderId' => array('name' => 'orderId', 'type' => 'int', 'require' => true),
+                'oldGoosNamesstr' => array('name' => 'oldGoosNamesstr', 'type' => 'array', 'format' => 'explode', 'require' => false),
                 'goosL' => array('name' => 'goosL', 'type' => 'array', 'format' => 'json', 'require' => true),
                 'supplierId' => array('name' => 'suppId', 'type' => 'int', 'require' => true),
                 'depotId' => array('name' => 'depotId', 'type' => 'int', 'require' => true),
@@ -42,21 +44,18 @@ class Api_Depot_InputDe extends PhalApi_Api
             DI()->notorm->beginTransaction('db_demo');
             $orderInfo = array(
                 'supplierId' => $supplierId,
-                'orderNo' => 'IP' . date('ymdHis') . rand(1000, 9999),
                 'totalMoney' => $this->totalPri,
                 'totalCnt' => $this->toalNum,
                 'flag' => 0,
-                'createCompany' => DI()->userInfo['companyId'],
-                'createUser' =>  DI()->userInfo['userId'],
-                'createTime' => date('Y-m-d H:i:s'),
+                'updateUser' =>  DI()->userInfo['userId'],
+                'updateTime' => date('Y-m-d H:i:s'),
                 'remark' => $this->beizhu,
-                'from' => 1
             );
             $goodsmodel = new Model_OrderGoods();
             $log_model = new Model_LogOrder();
-            $res = DI()->notorm->orders_ip->insert($orderInfo);
-            if ($res['id']) {
-                $orderId = $res['id'];
+            $res = DI()->notorm->orders_ip->where('orderId',$this->orderId)->update($orderInfo);
+            if ($res>0) {
+                $orderId = $this->orderId;
                 foreach ($goosL as $k => $v) {
                     if (empty($v['goodsId'])) {
                         $rs['msg'] = '没有商品ID';
@@ -78,16 +77,35 @@ class Api_Depot_InputDe extends PhalApi_Api
                         'createTime' => date('Y-m-d H:i:s')
 
                     );
-                    DI()->notorm->orders_ip_goods->insert($input);
 
-                    $logId[] = $log_model->insert(array(
-                        'logUser' => DI()->userInfo['userId'],
-                        'logType' => 'INSERT',
-                        'logContent' => json_encode($input),
-                        'orderId' => $orderId,
-                        'orderType' => 'PURCHASE_IN',
-                        'createTime' => date('Y-m-d H:i:s')
-                    ));
+                    if(!empty($this->oldGoosNamesstr) && in_array($v['goodsId'],$this->oldGoosNamesstr)){
+                        unset($input['goodsId']);
+                        unset($input['orderId']);
+                        unset($input['orderSubNo']);
+                        unset($input['createUser']);
+                        unset($input['createTime']);
+                        $rrid = DI()->notorm->orders_ip_goods->where('orderId',$orderId)->where('goodsId',$v['goodsId'])->update($input);
+                        if($rrid>0){
+                            $logId[] = $log_model->insert(array(
+                                'logUser' => DI()->userInfo['userId'],
+                                'logType' => 'UPDATE',
+                                'logContent' => json_encode($input),
+                                'orderId' => $orderId,
+                                'orderType' => 'PURCHASE_IN',
+                                'createTime' => date('Y-m-d H:i:s')
+                            ));
+                        }
+                    }else{
+                        DI()->notorm->orders_ip_goods->insert($input);
+                        $logId[] = $log_model->insert(array(
+                            'logUser' => DI()->userInfo['userId'],
+                            'logType' => 'INSERT',
+                            'logContent' => json_encode($input),
+                            'orderId' => $orderId,
+                            'orderType' => 'PURCHASE_IN',
+                            'createTime' => date('Y-m-d H:i:s')
+                        ));
+                    }
                 }
             }
             DI()->notorm->commit('db_demo');

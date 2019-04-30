@@ -50,6 +50,9 @@
 </style>
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 <div class="search" style="display: flex">
+    <{if !empty($order)}>
+    <input type="hidden" class="haveorder" haveTax="<{$order.taxrate}>" haveSuppId="<{$order.supplierId}>" haveSuppName="<{$order.supplierName}>" />
+    <{/if}>
     <span class="search_text">供应商</span>
      <select class="search_select" id="selectInput" name="supplierId">
         <{foreach from=$suppliers_options item=v key=k}>
@@ -64,13 +67,15 @@
     <span class="search_text" style="margin-left: 20px;">仓库</span>
     <select class="search_select" name="depotId" onchange="liand(this)" id="depotlist">
         <{foreach from=$depots_options item=v key=k}>
-        <option value="<{$k}>"><{$v}></option>
+        <option value="<{$k}>"   <{if $order.goods.list[0].depotId == $k }>selected <{/if}> ><{$v}></option>
         <{/foreach}>
     </select>
     <div class="depotsub">
         <span class="search_text" style="margin-left: 20px;">库位</span>
         <select class="search_select" name="depotSubId" id="depotSubId">
-
+            <{if $order.goods.list }>
+            <option value="<{$order.goods.list[0].depotSubId}>" selected><{$order.goods.list[0].depotSubName}></option>
+            <{/if}>
         </select>
     </div>
 </div>
@@ -87,6 +92,19 @@
         <th>成本价</th>
         <th>操作</th>
     </tr>
+    <{foreach name=module from=$order.goods.list key=index item=value}>
+    <tr>
+        <td><i class="gname"><{$value.goodsName}></i><i class="icon-pencil" attid="<{$value.goodsId}>" onclick="changename(this)" title="修改商品名称"></i></td>
+        <td><{$value.goodsSpec}></td>
+        <td><{$value.unitName}></td>
+        <td><input type="text" value="<{$value.goodsCnt|string_format:"%.2f"}>" style="width:45px;" onkeyup="changenum()"></td>
+        <td><input type="text" style="width:45px;" class="hanpri" value="<{$value.ratepri|string_format:"%.2f"}>" onkeyup="ratejisuan(this)" /></td>
+        <td class="buhanpri"><{if $value.usecostpri >0 }><{$value.usecostpri}><{else}><{$value.goodsPrice}><{/if}></td>
+        <td class="pritype"><select name="costprice" onchange="totalcount()"><option value="1" <{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0}> selected="selected"<{/if}> >不含税价</option><option value="2" <{if $value.usecostpri != $value.goodsPrice && $value.usecostpri>0}> selected="selected"<{/if}>>含税价</option> </select></td>
+        <td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td>
+        <td class="ttrate" style="display:none ;"><{$value.unitName}><{$value.taxrate}></td></tr>
+    </tr>
+    <{/foreach}>
     <tr>
         <td>
             <select id="selectInputG" name="goodsId">
@@ -110,31 +128,47 @@
 <div class="other">
     <div>
         <span style="font-weight: bold;border-bottom:1px solid #e2e2e2; ">其他信息</span>
-        <span style="margin: 30px;">备注：<textarea style="width: 50%;height: 100px;"></textarea></span>
+        <span style="margin: 30px;">备注：<textarea class="beizhu" style="width: 50%;height: 100px;"><{$order.remark}></textarea></span>
     </div>
     <div>
         <span style="font-weight: bold;border-bottom:1px solid #e2e2e2; ">入库金额</span>
-        <div style="display: flex"><span style="margin: 30px;">入库总金额：￥<em style="font-style:normal" class="totalmoney">0</em></span> <span style="margin: 30px;">入库总数：<em
-                        style="font-style:normal" class="totalnum"> 0</em></span></div>
+        <div style="display: flex"><span style="margin: 30px;">入库总金额：￥<em style="font-style:normal" class="totalmoney"><{$order.totalMoney|string_format:"%.2f"}></em></span> <span style="margin: 30px;">入库总数：<em
+                        style="font-style:normal" class="totalnum"> <{$order.totalCnt|string_format:"%.2f"}></em></span></div>
     </div>
     <button onclick="savelist();" class="saveSubmit">保存</button>
 </div>
+<{include file="footer.tpl" }>
 <script src="<{$smarty.const.ADMIN_URL}>/assets/js/searchSelectNew.js"></script>
 <script type="text/javascript">
     var goosNames = new Array();
+    var oldGoosNames = new Array();
     var totalnum = 0;
     var totalpri = 0;
     var beforgn = '';
     var selectOption_ = null;
     var flagG = false;//标记点击也面时输入框下方的div是否消失
     var selectOptionsG = null;//输入框提示的option数组
-    if (goosNames.length > 0) {
-        $('.choosesupps').removeClass("layerModel");
-    } else {
-        $('.choosesupps').addClass("layerModel");
-    }
     selecthtml = '<select id="selectInputG" name="supplierId">' + $('#selectInputG').html() + '</select>';
     sousuo();
+    $(function () {
+        var suppinfoId = $('.haveorder').attr('haveSuppId');
+        var suppinfoName = $('.haveorder').attr('haveSuppName');
+        var suppinfoTax = $('.haveorder').attr('haveTax');
+        if(parseFloat(suppinfoId)>0){
+            $('#selectInputClone').val(suppinfoName);
+        }
+        $('#selectInputClone').after('<input class="selectssss" name="'+$('#selectInputClone').attr("name")+'" taxrate="'+suppinfoTax+'" type="hidden" value="'+suppinfoId+'" />');
+        var trlen =  $('#tb_1 tr').length;
+        $('#tb_1 tr').each(function (i) {
+            if(i>0 && i<trlen-1) {
+                // goodslist[i]['goodsName'] = $(this).children().eq(0).text();
+                gname = $(this).children().eq(0).text().trim().replace(/\s/g, "");
+                ggid = $(this).children().eq(0).children().eq(1).attr('attid').trim().replace(/\s/g, "");
+                goosNames.push(gname);
+                oldGoosNames.push(ggid);
+            }
+        })
+    });
 
     function selecttext() {
         var selecthtml = '<select id="selectInputG" name="supplierId">' + $('#selectInputG').html() + '</select>';
@@ -162,7 +196,7 @@
         var select = $(arguments[0]);
         //给selectInputG添加输入框内文本改变事件在IE下为oninput在其他浏览器下为onpropertychange
 
-        var selectInputG = "<input id='" + "selectInputGClone" + "'  oninput='onInputG(this);' onpropertychange='onPropertyChangeG(this);'  type='text' name='" + select.attr("name") + "'  placeholder='请输入商品名称或者字母简写' /></input><a class='layerModel' action='1' title='选择商品' layerUrl='goods_choose' layerW='800px' layerH='700px' layerT='2'><i class='icon-plus'></i> 选择</a>";
+        var selectInputG = "<input id='" + "selectInputGClone" + "'  oninput='onInputG(this);' onpropertychange='onPropertyChangeG(this);'  type='text' name='" + select.attr("name") + "'  placeholder='请输入商品或选择商品' /></input><a class='layerModel' action='1' title='选择商品' layerUrl='goods_choose' layerW='800px' layerH='700px' layerT='2'><i class='icon-plus'></i> 选择</a>";
         var selectDivG = "<div id='" + "selectDivG" + "'></div>";
         if (selectOption_ == null) {
             selectOption_ = select.find("option");
@@ -394,30 +428,28 @@
     }
 
     function delgoods(e) {
-        if ($('.goodsName').val() != '11') {
-            var gdn = $('.goodsName').val();
-            goosNames1 = gdn.split(",")
-            $.each(goosNames1, function (index, value) {
-                if ($.inArray(value, goosNames) < 0) {
-                    goosNames.push(value);
-                }
-            });
-            $('.goodsName').val(11)
+        if(confirm("确定删除？"))
+        {
+            if ($('.goodsName').val() != '11') {
+                var gdn = $('.goodsName').val();
+                goosNames1 = gdn.split(",")
+                $.each(goosNames1, function (index, value) {
+                    if ($.inArray(value, goosNames) < 0) {
+                        goosNames.push(value);
+                    }
+                });
+                $('.goodsName').val(11)
+            }
+            var tt = $(e).parent().children().eq(0).text().trim().replace(/\s/g, "");
+            var index = goosNames.indexOf(tt);
+            if (index > -1) {
+                goosNames.splice(index, 1);
+            }
+            $(e).parent().remove();
+            totalcount();
+        }else{
+            return false;
         }
-        var tt = $(e).parent().children().eq(0).text().trim().replace(/\s/g, "");
-        var index = goosNames.indexOf(tt);
-        if (index > -1) {
-            goosNames.splice(index, 1);
-        }
-        $(e).parent().remove();
-        // if (goosNames.length > 0) {
-        //     $('#selectInputClone').attr('disabled', true);
-        //     $('.choosesupps').removeClass("layerModel");
-        // } else {
-        //     $('#selectInputClone').removeAttr('disabled');
-        //     $('.choosesupps').addClass("layerModel");
-        // }
-        totalcount();
     }
 
     function liand(e) {
@@ -435,7 +467,6 @@
                     $.each(data, function (n, value) {
                         trs += '<option value="' + n + '" >' + value + '</option>';
                     });
-
                     $(e).parent().parent().find('.depotsub select').html(trs);
                 }
 
@@ -578,15 +609,17 @@
     }
     function savelist() {
         var trlen = $('#tb_1 tr').length;
+        var posttype = 'add';
         var goodslist = new Array();
         var gpro = '';
         var gproarr = new Array();
-        var toalNum =   parseFloat($('.totalmoney').text()).toFixed(4);
-        var totalPri =  parseFloat($('.totalnum').text()).toFixed(4);
+        var toalNum =   parseFloat($('.totalnum').text()).toFixed(4);
+        var totalPri =  parseFloat($('.totalmoney').text()).toFixed(4);
         var suppId = $('.selectssss').val();
         var depotId = $('#depotlist').val();
         var depotSubId = $('#depotSubId').val();
         var taxrate = parseFloat($('.selectssss').attr('taxrate'));
+        var beizhu = $('.beizhu').val().trim().replace(/\s/g, "");
         $('#tb_1 tr').each(function(i) {
             if(i>0 && i<trlen-1){
                 // goodslist[i]['goodsName'] = $(this).children().eq(0).text();
@@ -619,16 +652,22 @@
                 }
             }
         });
+        var orderId = getQueryString("orderId");
+        if(parseInt(orderId)>0){
+            posttype = 'edit';
+        }
+        var oldGoosNamesstr = oldGoosNames.join(',');
         if(goodslist.length>0){
             $.ajax({
                 type: "post",
                 url: "purchase_storage_createnew.php",
-                data:{action:'add',goodslist:JSON.stringify(goodslist),suppId:suppId,depotId:depotId,depotSubId:depotSubId,toalNum:toalNum,totalPri,totalPri,taxrate:taxrate},
+                data:{action:posttype,goodslist:JSON.stringify(goodslist),suppId:suppId,depotId:depotId,depotSubId:depotSubId,toalNum:toalNum,totalPri:totalPri,taxrate:taxrate,orderId:orderId,oldGoosNamesstr:oldGoosNamesstr,beizhu:beizhu},
                 async: false,
                 dataType: "json",
                 success: function (data) {
                   if(data.code==1){
                       Alert(data.msg);
+                      window.location.href = 'purchase_storage_new.php';
                   }else{
                       Alert(data.msg);
                       return false;
@@ -636,6 +675,14 @@
                 }
             })
         }
+    }
+    function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
     }
     function Alert(str) {
         var msgw,msgh,bordercolor;

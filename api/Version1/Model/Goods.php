@@ -164,7 +164,7 @@ class Model_Goods extends PhalApi_Model_NotORM
             $limit = " limit $start,$page_size";
         }
 
-        $sql = 'select g.goodsId,g.goodsSn,g.goodsBarCode,g.goodsName,g.goodsSpec,g.goodsCateId,c.cateName,g.goodsUnitId,u.unitName,g.usecostpri,'
+        $sql = 'select g.goodsId,g.goodsSn,g.goodsBarCode,g.goodsName,g.goodsSpec,g.goodsCateId,c.cateName,g.goodsUnitId,u.unitName,g.usecostpri,g.quanpin,g.jianxie,'
             . 'g.lastPrice,g.minPrice,g.maxPrice,g.avgPrice,g.productionDate,g.invalidDate,g.searchKey,g.remark ,b.depotId,b.depotSubId '
             . 'from vich_goods g '
             . 'left join vich_goods_cates c on c.cateId=g.goodsCateId '
