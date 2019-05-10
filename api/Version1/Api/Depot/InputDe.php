@@ -73,6 +73,8 @@ class Api_Depot_InputDe extends PhalApi_Api
                         'ratepri' => $v['ratepri'],//含税价
                         'usecostpri' => $v['usecostpri'],//不含税价
                         'orderSubNo' => 'PN' . date('ymdHis') . rand(1000, 9999),
+                        'taxrateself' => $v['taxrate'],
+                        'tikmark' => $v['tikmark'],
                         'flag' => 1,
                         'createUser' => DI()->userInfo['userId'],
                         'createTime' => date('Y-m-d H:i:s')

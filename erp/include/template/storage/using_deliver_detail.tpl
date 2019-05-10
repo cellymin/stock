@@ -53,57 +53,30 @@
     <{if !empty($order)}>
 <input type="hidden" class="haveorder" haveTax="<{$order.taxrate}>" haveSuppId="<{$order.supplierId}>" haveSuppName="<{$order.supplierName}>" />
     <{/if}>
-    <span class="search_text">供应商</span>
-    <select class="search_select" id="selectInput" name="supplierId" disabled>
-
-        <option  ss="<{$order.supplierId}>" <{if $order.supplierId==$k}> selected <{/if}> >
-            <{$order.supplierName}>
-        </option>
-    </select>
-    <a class="layerModel choosesupps" action="1" title="选择供应商" layerUrl="<{$suppliers_url}>" layerW="600px"
-       layerH="500px" layerT="2" style="display: none;"><i class="icon-plus"></i> 选择</a>
-    <span class="search_text" style="margin-left: 20px;">仓库</span>
-    <select class="search_select" name="depotId" onchange="liand(this)" id="depotlist" disabled>
-        <{foreach from=$depots_options item=v key=k}>
-    <option value="<{$k}>"   <{if $order.goods.list[0].depotId == $k }>selected <{/if}> ><{$v}></option>
-        <{/foreach}>
-    </select>
-    <div class="depotsub">
-        <span class="search_text" style="margin-left: 20px;">库位</span>
-        <select class="search_select" name="depotSubId" id="depotSubId" disabled>
-            <{if $order.goods.list }>
-            <option value="<{$order.goods.list[0].depotSubId}>" selected><{$order.goods.list[0].depotSubName}></option>
-            <{/if}>
-        </select>
-    </div>
 </div>
-<hr/>
 <table class="table" border="1" id="tb_1">
     <input type="hidden" class="status" value="<{$order.flag}>"/>
     <input type="hidden" class="goodsName" value="11" name="ss"/>
     <tr>
-        <th>材料名称</th>
-        <th>规格</th>
-        <th>单位</th>
-        <th>入库数量
-        <th>含税价</th>
-        <th>不含税价</th>
-        <th>成本价</th>
-        <th>可低税率</th>
-        <th>可否抵扣</th>
+        <th>名称</th>
+        <th>批次号</th>
+        <th>仓库</th>
+        <th>库位</th>
+        <th>数量</th>
+        <th>价格</th>
+        <th>部门</th>
+        <th>负责人</th>
     </tr>
     <{foreach name=module from=$order.goods.list key=index item=value}>
     <tr>
         <td><i class="gname" style="font-style: normal"><{$value.goodsName}></i></td>
-        <td><{$value.goodsSpec}></td>
-        <td><{$value.unitName}></td>
-        <td><{$value.goodsCnt|string_format:"%.2f"}></td>
-        <td><{$value.ratepri|string_format:"%.2f"}></td>
-        <td><{if $value.usecostpri >0 }><{$value.usecostpri}><{else}><{$value.goodsPrice}><{/if}></td>
-        <td><{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0}> 不含税价 <{/if}><{if $value.usecostpri != $value.goodsPrice && $value.usecostpri>0}> 含税价<{/if}></td>
-        <td><input type="text" style="width:45px;" class="dikourate" value="<{if $value.taxrateself  }><{$value.taxrateself}><{else}><{$order.taxrate}><{/if}>"  onkeyup="chgbuhanpri(this)" disabled /></td>
-        <td><select name="ifdikou" class="ifdikou" style="width:100px;" disabled><option value="1" <{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0 || $value.tikmark==1}> selected="selected"<{/if}> >可抵扣</option><option value="2"<{if ($value.usecostpri != $value.goodsPrice && $value.usecostpri>0) ||  $value.tikmark==2}> selected="selected"<{/if}>>不可抵扣</option> </select></td>
-        <td class="ttrate" style="display:none ;"><{$value.taxrate}></td></tr>
+        <td><{$value.orderSubNo}></td>
+        <td><{$order.depotName}></td>
+        <td><{$value.depotSubName}></td>
+        <td><{$value.goodsCnt}></td>
+        <td><{$value.goodsPrice}></td>
+        <td><{$value.departmentName}></td>
+        <td><{$value.employeeName}></td></tr>
     </tr>
     <{/foreach}>
 </table>
@@ -113,8 +86,8 @@
         <span style="margin: 30px;">备注：<textarea style="width: 50%;height: 100px;" disabled><{$order.remark}></textarea></span>
     </div>
     <div>
-        <span style="font-weight: bold;border-bottom:1px solid #e2e2e2; ">入库金额</span>
-        <div style="display: flex"><span style="margin: 30px;">入库总金额：￥<em style="font-style:normal" class="totalmoney"><{$order.totalMoney|string_format:"%.2f"}></em></span> <span style="margin: 30px;">入库总数：<em
+        <span style="font-weight: bold;border-bottom:1px solid #e2e2e2; ">出库金额</span>
+        <div style="display: flex"><span style="margin: 30px;">出库总金额：￥<em style="font-style:normal" class="totalmoney"><{$order.totalMoney|string_format:"%.2f"}></em></span> <span style="margin: 30px;">出库总数：<em
                         style="font-style:normal" class="totalnum"> <{$order.totalCnt|string_format:"%.2f"}></em></span></div>
     </div>
     <button onclick="editlist(this);" class="saveSubmit">修改</button>

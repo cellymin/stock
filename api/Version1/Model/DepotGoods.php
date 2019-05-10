@@ -67,7 +67,14 @@ class Model_DepotGoods extends PhalApi_Model_NotORM
             . 'left join vich_depots d on d.depotId=dg.depotId '
             . 'left join vich_depot_subs ds on ds.depotSubId=dg.depotSubId '
             . 'where (g.goodsName like :keyword or dg.batchNo like :keyword or g.goodsSn like :keyword) and dg.flag=1  ';
-
+        if(!$depotId){
+            $sql = 'select dg.*,d.depotName,ds.depotSubName,g.goodsName,g.quanpin,g.jianxie '
+                . 'from vich_depot_goods dg '
+                . 'left join vich_goods g on g.goodsId=dg.goodsId '
+                . 'left join vich_depots d on d.depotId=dg.depotId '
+                . 'left join vich_depot_subs ds on ds.depotSubId=dg.depotSubId '
+                . 'where (g.goodsName like :keyword or dg.batchNo like :keyword or g.goodsSn like :keyword) and dg.flag=1  ';
+        }
         $param = array();
         $param[':keyword'] = "%$keyword%";
 

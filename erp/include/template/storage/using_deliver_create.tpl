@@ -49,73 +49,64 @@
     }
 </style>
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
-<div class="search" style="display: flex">
-    <{if !empty($order)}>
-    <input type="hidden" class="haveorder" haveTax="<{$order.taxrate}>" haveSuppId="<{$order.supplierId}>" haveSuppName="<{$order.supplierName}>" />
-    <{/if}>
-    <span class="search_text">供应商</span>
-     <select class="search_select" id="selectInput" name="supplierId">
-        <{foreach from=$suppliers_options item=v key=k}>
-        <option value="<{$v.name}>" dd="<{$v.pinyin}>" es="<{$v.jianxie}>" ss="<{$k}>" taxrate="<{$v.taxrate}>">
-            <{$v.name}>
-        </option>
-        <{/foreach}>
-    </select>
-    <img onclick="quitchangesupp(this)" class="imgDel1" src="../assets/images/exit.png">
-    <a class="layerModel choosesupps" action="1" title="选择供应商" layerUrl="<{$suppliers_url}>" layerW="600px"
-       layerH="500px" layerT="2" style="display: none;"><i class="icon-plus"></i> 选择</a>
-    <span class="search_text" style="margin-left: 20px;">仓库</span>
-    <select class="search_select" name="depotId" onchange="liand(this)" id="depotlist">
-        <{foreach from=$depots_options item=v key=k}>
-        <option value="<{$k}>"   <{if $order.goods.list[0].depotId == $k }>selected <{/if}> ><{$v}></option>
-        <{/foreach}>
-    </select>
-    <div class="depotsub">
-        <span class="search_text" style="margin-left: 20px;">库位</span>
-        <select class="search_select" name="depotSubId" id="depotSubId">
-            <{if $order.goods.list }>
-            <option value="<{$order.goods.list[0].depotSubId}>" selected><{$order.goods.list[0].depotSubName}></option>
-            <{/if}>
-        </select>
-    </div>
-</div>
-<hr/>
+
 <table class="table" border="1" id="tb_1">
     <input type="hidden" class="goodsName" value="11" name="ss"/>
+    <tr style="display:none;">
+        <td><select name="depart" onchange="changedepart(this);" id="departlist">
+                <{foreach from=$department_options item=v key=k}>
+                <option value="<{$k}>"><{$v}></option>
+                <{/foreach}>
+            </select>
+        </td>
+        <td class="employee"><select name="employeeId">
+
+            </select>
+        </td>
+    </tr>
     <tr>
-        <th>材料名称</th>
-        <th>规格</th>
-        <th>单位</th>
-        <th>入库数量
-        <th>含税价</th>
-        <th>不含税价</th>
-        <th>成本价</th>
-        <th>可抵税率</th>
-        <th>可否抵扣</th>
+        <th>名称_批次号</th>
+        <th>仓库</th>
+        <th>库位
+        <th>数量</th>
+        <th>入库时间</th>
+        <th>部门</th>
+        <th>负责人</th>
         <th>操作</th>
     </tr>
     <{foreach name=module from=$order.goods.list key=index item=value}>
     <tr>
-        <td><i class="gname" style="font-style:normal"><{$value.goodsName}></i><i class="icon-pencil" attid="<{$value.goodsId}>" onclick="changename(this)" title="修改商品名称"></i></td>
-        <td><{$value.goodsSpec}></td>
-        <td><{$value.unitName}></td>
-        <td><input type="text" value="<{$value.goodsCnt|string_format:"%.2f"}>" style="width:45px;" onkeyup="changenum()"></td>
-        <td><input type="text" style="width:45px;" class="hanpri" value="<{$value.ratepri|string_format:"%.2f"}>" onkeyup="ratejisuan(this)" /></td>
-        <td class="buhanpri"><{if $value.usecostpri >0 }><{$value.usecostpri}><{else}><{$value.goodsPrice}><{/if}></td>
-        <td class="pritype"><select name="costprice" onchange="changecb(this)" style="width:100px;"><option value="1" <{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0}> selected="selected"<{/if}> >不含税价</option><option value="2" <{if $value.usecostpri != $value.goodsPrice && $value.usecostpri>0}> selected="selected"<{/if}>>含税价</option> </select></td>
-        <td><input type="text" style="width:45px;" class="dikourate" value="<{if $value.taxrateself  }><{$value.taxrateself}><{else}><{$order.taxrate}><{/if}>"  onkeyup="chgbuhanpri(this)" /></td>
-        <td><select name="ifdikou" class="ifdikou" style="width:100px;" disabled><option value="1" <{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0}> selected="selected"<{/if}> >可抵扣</option><option value="2"<{if $value.usecostpri != $value.goodsPrice && $value.usecostpri>0}> selected="selected"<{/if}>>不可抵扣</option> </select></td>
+        <td attid="<{$order.depotGoodsId}>"><i style="font-style: normal;" class="gname"><{$value.goodsName}>_<{$value.orderSubNo}></i><i
+                    attid="<{$value.goodsId}>" title="修改商品名称"></i></td>
+        <td><{$order.depotName}></td>
+        <td><{$value.depotSubName}></td>
+        <td><input type="text" value="<{$value.goodsCnt|string_format:"%.2f"}>" style="width:45px;"
+                   onkeyup="changenum(this)"></td>
+        <td><{$value.createTime}></td>
+        <td class="depart"><select name="bumen" onchange="changedepart(this)" style="width:100px;">
+                <{foreach from=$department_options item=v key=k}>
+            <option value="<{$k}>" <{if $k == $value.departmentId }> selected <{/if}> ><{$v}></option>
+                <{/foreach}>
+            </select></td>
+        <td class="employee"><select name="employeeId" style="width:100px;">
+                <{if $order.goods.list }>
+                <option value="<{$value.employeeId}>" selected><{$value.employeeName}></option>
+                <{/if}>
+            </select></td>
         <td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td>
-        <td class="ttrate" style="display:none ;"><{$value.unitName}><{$value.taxrate}></td></tr>
+        <td class="depotid" style="display:none ;"><{$order.depotId}></td>
+        <td class="depotsubid" style="display:none ;"><{$value.depotSubId}></td>
+        <td class="supplierid" style="display:none ;"><{$value.supplierId}></td>
+        <td class="goodsPrice" style="display:none ;"><{$value.goodsPrice}></td>
     </tr>
-    <{/foreach}>
+        <{/foreach}>
     <tr>
         <td>
             <select id="selectInputG" name="goodsId">
                 <{foreach from=$goods_options item=v key=k}>
-                <option value="<{$v.goodsName}>" dd="<{$v.pinyin}>" es="<{$v.jianxie}>" ss="<{$k}>"
-                        unitName="<{$v.unitName}>" goodsSpec="<{$v.goodsSpec}>" lastPrice="<{$v.lastPrice}>"
-                        depotId="<{$v.depotId}>" depotSubId="<{$v.depotSubId}>"><{$v.goodsName}>
+                <option depotgoodsId=<{$k}> value="<{$v.goodsName}>" dd="<{$v.pinyin}>" es="<{$v.jianxie}>" ss="<{$v.goodsId}>"
+                        depotId="<{$v.depotId}>" depotSubId="<{$v.depotSubId}>" supplierId="<{$v.supplierId}>"
+                        depotName="<{$v.depotName}>" depotSubName="<{$v.depotSubName}>" goodsPrice="<{$v.goodsPrice}>" createTime="<{$v.createTime}>" ><{$v.goodsName}>
                 </option>
                 <{/foreach}>
             </select>
@@ -142,7 +133,6 @@
     <button onclick="savelist();" class="saveSubmit">保存</button>
 </div>
 <{include file="footer.tpl" }>
-<script src="<{$smarty.const.ADMIN_URL}>/assets/js/searchSelectNew.js"></script>
 <script type="text/javascript">
     var goosNames = new Array();
     var oldGoosNames = new Array();
@@ -155,16 +145,9 @@
     selecthtml = '<select id="selectInputG" name="supplierId">' + $('#selectInputG').html() + '</select>';
     sousuo();
     $(function () {
-        var suppinfoId = $('.haveorder').attr('haveSuppId');
-        var suppinfoName = $('.haveorder').attr('haveSuppName');
-        var suppinfoTax = $('.haveorder').attr('haveTax');
-        if(parseFloat(suppinfoId)>0){
-            $('#selectInputClone').val(suppinfoName);
-        }
-        $('#selectInputClone').after('<input class="selectssss" name="'+$('#selectInputClone').attr("name")+'" taxrate="'+suppinfoTax+'" type="hidden" value="'+suppinfoId+'" />');
         var trlen =  $('#tb_1 tr').length;
         $('#tb_1 tr').each(function (i) {
-            if(i>0 && i<trlen-1) {
+            if(i>1 && i<trlen-1) {
                 // goodslist[i]['goodsName'] = $(this).children().eq(0).text();
                 gname = $(this).children().eq(0).text().trim().replace(/\s/g, "");
                 ggid = $(this).children().eq(0).children().eq(1).attr('attid').trim().replace(/\s/g, "");
@@ -173,11 +156,6 @@
             }
         })
     });
-
-    function selecttext() {
-        var selecthtml = '<select id="selectInputG" name="supplierId">' + $('#selectInputG').html() + '</select>';
-        return selecthtml;
-    }
 
     function sousuo() {
         //填入选择之后整行填入数据
@@ -200,7 +178,7 @@
         var select = $(arguments[0]);
         //给selectInputG添加输入框内文本改变事件在IE下为oninput在其他浏览器下为onpropertychange
 
-        var selectInputG = "<input id='" + "selectInputGClone" + "'  oninput='onInputG(this);' onpropertychange='onPropertyChangeG(this);'  type='text' name='" + select.attr("name") + "'  placeholder='请输入商品或选择商品' /></input><a class='layerModel' action='1' title='选择商品' layerUrl='goods_choose' layerW='800px' layerH='700px' layerT='2'><i class='icon-plus'></i> 选择</a>";
+        var selectInputG = "<input id='" + "selectInputGClone" + "'  oninput='onInputG(this);' onpropertychange='onPropertyChangeG(this);'  type='text' name='" + select.attr("name") + "'  placeholder='请输入商品或选择商品' /></input><a class='layerModel' action='1' title='选择商品' layerUrl='depot_goods_choose' layerW='800px' layerH='700px' layerT='2'><i class='icon-plus'></i> 选择</a>";
         var selectDivG = "<div id='" + "selectDivG" + "'></div>";
         if (selectOption_ == null) {
             selectOption_ = select.find("option");
@@ -239,7 +217,7 @@
             //输入框内未填入信息是下方提示
             if (selectInputGVal == "undefined" || selectInputGVal == "null" || selectInputGVal == "") {
                 for (var i = 0; i < selectOptionsG.length; i++) {
-                    selectDivG.append("<span class='selectSpanG' onclick='chooseOptionG(this);' onmouseover='miG();' onmouseout='moG();' goodsSpec='" + selectOptionsG[i].attr('goodsSpec') + "' unitName='" + selectOptionsG[i].attr('unitName') + "' lastPrice='" + selectOptionsG[i].attr('lastPrice') + "' depotId='" + selectOptionsG[i].attr('depotId') + "' depotSubId='" + selectOptionsG[i].attr('depotSubId') + "' ssd='" + selectOptionsG[i].attr('ss') + "' value='" + selectOptionsG[i].val() + "'>" + selectOptionsG[i].text() + "</span><br>");
+                    selectDivG.append("<span class='selectSpanG' onclick='chooseOptionG(this);' onmouseover='miG();' onmouseout='moG();' depotgoodsId='"+ selectOptionsG[i].attr('depotgoodsId') +"' depotId='"+selectOptionsG[i].attr('depotId')+"' depotSubId='"+selectOptionsG[i].attr('depotSubId')+"'  depotName= '"+selectOptionsG[i].attr('depotName')+"'supplierId='" + selectOptionsG[i].attr('supplierId') + "' depotSubName='" + selectOptionsG[i].attr('depotSubName') + "' goodsPrice='" + selectOptionsG[i].attr('goodsPrice') + "' depotId='" + selectOptionsG[i].attr('depotId') + "' depotSubId='" + selectOptionsG[i].attr('depotSubId') + "' ssd='" + selectOptionsG[i].attr('ss') + "' createTime='" + selectOptionsG[i].attr('createTime') + "' value='" + selectOptionsG[i].val() + "'>" + selectOptionsG[i].text() + "</span><br>");
                 }
                 selectDivG.show();
                 return;
@@ -261,7 +239,7 @@
                 }
             });
             for (var i = 0; i < matchOption.length; i++) {
-                selectDivG.append("<span class='selectSpanG' onclick='chooseOptionG(this);' onmouseover='miG();' onmouseout='moG();' goodsSpec='" + selectOptionsG[i].attr('goodsSpec') + "' unitName='" + selectOptionsG[i].attr('unitName') + "' lastPrice='" + selectOptionsG[i].attr('lastPrice') + "' depotId='" + selectOptionsG[i].attr('depotId') + "' depotSubId='" + selectOptionsG[i].attr('depotSubId') + "' ssd='" + matchOption[i].attr('ss') + "' value='" + matchOption[i].val() + "'><b>" + matchOption[i].text() + "</b></span><br>");
+                selectDivG.append("<span class='selectSpanG' onclick='chooseOptionG(this);' onmouseover='miG();' onmouseout='moG();' depotgoodsId='"+ selectOptionsG[i].attr('depotgoodsId') +"' depotId='"+selectOptionsG[i].attr('depotId')+"' depotSubId='"+selectOptionsG[i].attr('depotSubId')+"' depotName ='"+selectOptionsG[i].attr('depotName')+"'supplierId='" + selectOptionsG[i].attr('supplierId') + "' depotSubName='" + selectOptionsG[i].attr('depotSubName') + "' goodsPrice='" + selectOptionsG[i].attr('goodsPrice') + "' depotId='" + selectOptionsG[i].attr('depotId') + "' depotSubId='" + selectOptionsG[i].attr('depotSubId') + "' ssd='" + matchOption[i].attr('ss') + "'  createTime='" + selectOptionsG[i].attr('createTime') + "' value='" + matchOption[i].val() + "'><b>" + matchOption[i].text() + "</b></span><br>");
             }
             selectDivG.show();
             return;
@@ -278,20 +256,7 @@
 
     //下方span单击事件
     function chooseOptionG(obj) {
-        var supp = $('#selectInputClone').val();
-        if (supp == '') {
-            $("#selectDivG").hide();
-            Alert('供应商不能为空');
-            return false;
-        }
-        var taxrate = parseFloat($('.selectssss').attr('taxrate'));
-        if (1 > taxrate > 0) {
-            var hanpri = parseFloat($(obj).attr("lastPrice")) * (1 + taxrate);
-        } else {
-            $("#selectDivG").hide();
-            Alert('税率不合法')
-            return false;
-        }
+        var departeslect = $('#departlist').html();
         if ($('.goodsName').val() != '11') {
             var gdn = $('.goodsName').val();
             goosNames1 = gdn.split(",")
@@ -312,17 +277,10 @@
         $('.selectssssG').remove();
         $('#selectInputGClone').after('<input class="selectssssG" name="' + $('#selectInputGClone').attr("name") + '" type="hidden" value="' + $(obj).attr("ssd") + '" />');
         $("#selectDivG").hide();
-        $('#selectInputGClone').parent().parent().after('<tr><td><i class="gname" style="font-style:normal">' + $(obj).text() + '</i><i class="icon-pencil" attid="' + $(obj).attr("ssd") + '" onclick="changename(this)" title="修改商品名称"></i></td><td>' + $(obj).attr("goodsSpec") + '</td><td>' + $(obj).attr("unitName") + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum()"></td><td><input type="text" style="width:45px;" class="hanpri" value=" ' + hanpri.toFixed(2) + '" onkeyup="ratejisuan(this)" /></td><td class="buhanpri">' + parseFloat($(obj).attr("lastPrice")).toFixed(6) + '</td><td class="pritype"><select name="costprice" onchange="changecb(this)" style="width:100px;"><option value="1" selected="selected">不含税价</option><option value="2">含税价</option> </select></td><td><input type="text" style="width:45px;" class="dikourate" value="'+ taxrate +'"  onkeyup="chgbuhanpri(this)" /></td><td><select name="ifdikou" disabled class="ifdikou" style="width:100px;"><option value="1" selected="selected">可抵扣</option><option value="2">不可抵扣</option> </select></td><td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td><td class="ttrate" style="display:none ;">'+ taxrate +'</td></tr><tr><td>' + selecthtml + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
+        $('#selectInputGClone').parent().parent().after('<tr><td attid="'+  $(obj).attr("depotgoodsId") +'"><i style="font-style: normal;" class="gname">' + $(obj).text() + '</i><i  attid="' + $(obj).attr("ssd") + '" title="修改商品名称"></i></td><td>' + $(obj).attr("depotname") + '</td><td>' + $(obj).attr("depotsubname") + '</td><td><input type="text" value="" style="width:45px;" onkeyup="changenum(this)"></td><td>' + ($(obj).attr("createtime")).substring(0,10) + '</td><td class="depart"><select name="bumen" onchange="changedepart(this)" style="width:100px;">'+departeslect+' </select></td><td class="employee"><select name="employeeId" style="width:100px;"> </select></td><td onclick="delgoods(this)"><img class="imgDel" src="../assets/images/trash.png"></td><td class="depotid" style="display:none ;">'+$(obj).attr("depotid") +'</td><td class="depotsubid" style="display:none ;">'+$(obj).attr("depotsubid") +'</td><td class="supplierid" style="display:none ;">'+$(obj).attr("supplierid") +'</td><td class="goodsPrice" style="display:none ;">'+$(obj).attr("goodsPrice") +'</td></tr><tr><td>' + selecthtml + '</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
         $("#selectInputGClone").parent().parent().remove();
         goosNames.push($(obj).text().trim().replace(/\s/g, ""));
         sousuo();
-        // if (goosNames.length > 0) {
-        //     $('#selectInputClone').attr('disabled', true);
-        //     $('.choosesupps').removeClass("layerModel");
-        // } else {
-        //     $('#selectInputClone').removeAttr('disabled');
-        //     $('.choosesupps').addClass("layerModel");
-        // }
     }
 
     //span鼠标进入事件
@@ -353,7 +311,7 @@
         var va = $(obj).val();
         if (va == "") {
             selectOptionsG.forEach(function (item, index, array) {
-                $("#selectDivG").append("<span class='selectSpanG' onclick='chooseOptionG(this);' onmouseover='miG();' onmouseout='moG();'  goodsSpec='" + item.attr('goodsSpec') + "' unitName='" + item.attr('unitName') + "' lastPrice='" + item.attr('lastPrice') + "' depotId='" + item.attr('depotId') + "' depotSubId='" + item.attr('depotSubId') + "' ssd='" + item.attr('ss') + "' value='" + item.val() + "'><b>" + item.text() + "</b></span><br>");
+                $("#selectDivG").append("<span class='selectSpanG' onclick='chooseOptionG(this);' onmouseover='miG();' onmouseout='moG();' depotgoodsId='"+ item.attr('depotgoodsId') +"' depotId='"+item.attr('depotId')+"' depotSubId='"+item.attr('depotSubId')+"' depotName='"+item.attr('depotName')+"'supplierId='" + item.attr('supplierId') + "' depotSubName='" + item.attr('depotSubName') + "' goodsPrice='" + item.attr('goodsPrice') + "' depotId='" + item.attr('depotId') + "' depotSubId='" + item.attr('depotSubId') + "' ssd='" + item.attr('ss') + "'  createTime='" + item.attr('createTime') + "' value='" + item.val() + "'><b>" + item.text() + "</b></span><br>");
             });
         } else {
             var regStr = "";
@@ -368,12 +326,13 @@
             selectOptionsG.forEach(function (item, index, array) {
                 var tt = (item.val() + '  ' + item.attr('dd') + '' + item.attr('es')).replace(/\s/g, "");
                 if (reg.test(tt)) {
-                    $("#selectDivG").append("<span class='selectSpanG' onclick='chooseOptionG(this);' onmouseover='miG();' onmouseout='moG();' goodsSpec='" + item.attr('goodsSpec') + "' unitName='" + item.attr('unitName') + "' lastPrice='" + item.attr('lastPrice') + "' depotId='" + item.attr('depotId') + "' depotSubId='" + item.attr('depotSubId') + "' ssd='" + item.attr('ss') + "' value='" + item.val() + "'><b>" + item.text() + "</b></span><br>");
+                    $("#selectDivG").append("<span class='selectSpanG' onclick='chooseOptionG(this);' onmouseover='miG();' onmouseout='moG();' depotgoodsId='"+ item.attr('depotgoodsId') +"' depotId='"+item.attr('depotId')+"' depotSubId='"+item.attr('depotSubId')+"' depotName= '"+item.attr('depotName')+"'supplierId='" + item.attr('supplierId') + "' depotSubName='" + item.attr('depotSubName') + "' goodsPrice='" + item.attr('goodsPrice') + "' depotId='" + item.attr('depotId') + "' depotSubId='" + item.attr('depotSubId') + "' ssd='" + item.attr('ss') + "'  createTime='" + item.attr('createTime') + "' value='" + item.val() + "'><b>" + item.text() + "</b></span><br>");
                 }
             });
-
             //这里可以遍历新的异步请求数组照上面写
         }
+
+
 
     }
 
@@ -461,7 +420,7 @@
         if (depotId > 1) {
             $.ajax({
                 type: "post",
-                url: "purchase_storage_createnew.php?tab=1",
+                url: "purchase_storage_createnew.php",
                 data:{depotId:depotId},
                 async: false,
                 dataType: "json",
@@ -503,23 +462,6 @@
         }
         totalcount();
     }
-    function chgbuhanpri(e){
-        var hanpri = parseFloat($(e).parent().parent().find('.hanpri').val());//含税价
-        console.log( $(e).val().length);
-        if (hanpri != 'NaN') {
-            var rate = parseFloat($(e).val());
-            if(rate>0 && rate<1 ){
-               //税率
-                var lastpri = hanpri / (1 + rate); //不含税价格=含税价/(1+税率)
-                if (isNaN(lastpri)) {
-                    $(e).parent().parent().find('.buhanpri').text(0);
-                } else {
-                    $(e).parent().parent().find('.buhanpri').text(decimal(lastpri, 6));
-                }
-            }
-        }
-        totalcount();
-    }
 
     function decimal(num, v) {
         var vv = Math.pow(10, v);
@@ -527,39 +469,46 @@
     }
 
     function changenum(e) {
+        // var goodsCnt = parseFloat($(e).val());
+        // var goodsId = parseInt($(e).parent().parent().children().eq(0).children().eq(1).attr('attid'));
+        // var goodsname = $(e).parent().parent().children().eq(0).text().trim().replace(/\s/g, "");
+        // var depotId = parseInt($(e).parent().parent().find('.depotid').text());
+        // var depotsubId = parseInt($(e).parent().parent().find('.depotsubid').text());
+        // var supplierId = parseInt($(e).parent().parent().find('.supplierid').text());
+        // var depotgoodsId = parseInt($(e).parent().parent().children().eq(0).attr('attid'));
+        // var index = goodsname .indexOf("_");
+        // var pn  = goodsname .substring(index + 1, goodsname .length);
+        // if (goodsCnt > 0) {
+          //  $.ajax({
+          //      type: "post",
+         //       url: "using_deliver_createnew.php?tab=1",
+          //      data:{goodsId:goodsId,goodsCnt:goodsCnt,depotgoodsId:depotgoodsId,action:'ifnum'},
+           //     async: false,
+          //      dataType: "json",
+          //      success: function (data) {
+        //             if(data.code!=1){
+        //                 Alert(data.msg);
+        //             }
+        //         }
+        //     })
+        // }
         totalcount();
-        return false;
     }
 
     function totalcount() {
         totalnum = 0;
         totalpri = 0;
         $('#tb_1 tr').each(function (i) {
-            if (i > 0) {
+            if (i > 1) {
                 var oldnum = $(this).children().eq(3).children().val();
                 var num = parseFloat($(this).children().eq(3).children().val());
                 if ((isNaN(num) && oldnum != '') || (isNaN(num) && oldnum != 'undefined')) {
                     $(this).children().eq(3).children().val('');
                     return true;
                 } else {
-                    var buhanpri = parseFloat($(this).find('.buhanpri').text());
-                    var taxrate = parseFloat($('.selectssss').attr('taxrate'));
-                    var pritype = parseFloat($(this).find('.pritype select option:selected').val());
-                    if (1 > taxrate > 0) {
-                        //不含税
-                        if (pritype == 1) {
-                            totalnum = parseFloat(num) + parseFloat(totalnum);
-                            totalpri = parseFloat((num * buhanpri)) + parseFloat(totalpri);
-                        } else if (pritype == 2) {
-                            //含税
-                            totalnum = parseFloat(num) + parseFloat(totalnum);
-                            totalpri = parseFloat((num * buhanpri * (1 + taxrate))) + parseFloat(totalpri);
-                        }
-                    } else {
-                        $("#selectDivG").hide();
-                        Alert('税率不合法')
-                        return false;
-                    }
+                    var goodsPrice = parseFloat($(this).find('.goodsPrice').text());
+                    totalpri = parseFloat((num * goodsPrice)) + parseFloat(totalpri);
+                    totalnum = parseFloat(num) + parseFloat(totalnum);
                 }
             }
         });
@@ -655,18 +604,11 @@
         var taxrate = parseFloat($('.selectssss').attr('taxrate'));
         var beizhu = $('.beizhu').val().trim().replace(/\s/g, "");
         $('#tb_1 tr').each(function(i) {
-            if(i>0 && i<trlen-1){
-                var rateself = $(this).children().eq(7).children().eq(0).val()
-                if (parseFloat(rateself)>0 && parseFloat(rateself)<1){
-                    taxrate = parseFloat(rateself);
-                } else {
-                    Alert($(this).children().eq(0).text().trim().replace(/\s/g, "") + '税率不对')
-                    return false;
-                }
+            if(i>1 && i<trlen-1){
                 // goodslist[i]['goodsName'] = $(this).children().eq(0).text();
-                    gproarr['goodsName'] = $(this).children().eq(0).text().trim().replace(/\s/g, "");
-                gproarr['goodsId'] = $(this).children().eq(0).children().eq(1).attr('attid').trim().replace(/\s/g, "");
-                gproarr['goodsCnt'] = $(this).children().eq(3).children().eq(0).val().trim().replace(/\s/g, "");
+                gproarr['goodsName']=$(this).children().eq(0).text().trim().replace(/\s/g, "");
+                gproarr['goodsId']=$(this).children().eq(0).children().eq(1).attr('attid').trim().replace(/\s/g, "");
+                gproarr['goodsCnt']=$(this).children().eq(3).children().eq(0).val().trim().replace(/\s/g, "");
 
                 gpro = 'goodsName--'+$(this).children().eq(0).text().trim().replace(/\s/g, "")+',';
                 gpro += 'goodsId--'+$(this).children().eq(0).children().eq(1).attr('attid').trim().replace(/\s/g, "")+',';
@@ -675,8 +617,7 @@
                     gpro += 'usecostpri--'+$(this).children().eq(5).text().trim().replace(/\s/g, "")+',';
                     gpro += 'ratepri--'+$(this).children().eq(4).children().eq(0).val().trim().replace(/\s/g, "")+',';
                     var type = parseInt($(this).children().eq(6).children().eq(0).val());
-                    gpro += 'taxrate--'+taxrate+',';
-                    gpro += 'tikmark--'+parseInt($(this).children().eq(8).children().eq(0).val())+',';;
+
                     if(type==1){
                         //不含税价
                         gpro += 'goodsPrice--'+$(this).children().eq(5).text().trim().replace(/\s/g, "");
@@ -702,7 +643,7 @@
         if(goodslist.length>0){
             $.ajax({
                 type: "post",
-                url: "purchase_storage_createnew.php?tab=1",
+                url: "purchase_storage_createnew.php",
                 data:{action:posttype,goodslist:JSON.stringify(goodslist),suppId:suppId,depotId:depotId,depotSubId:depotSubId,toalNum:toalNum,totalPri:totalPri,taxrate:taxrate,orderId:orderId,oldGoosNamesstr:oldGoosNamesstr,beizhu:beizhu},
                 async: false,
                 dataType: "json",
@@ -802,7 +743,7 @@
         var trlen = $('#tb_1 tr').length;
         $('#tb_1 tr').each(function(i) {
             var nowrate = parseFloat($('.selectssss').attr('taxrate'));
-            if(i>0 && i<trlen-1) {
+            if(i>1 && i<trlen-1) {
                 if (parseFloat($(this).find('.ttrate').text()) != nowrate) {
                     var buhan = parseFloat($(this).find('.buhanpri').text());
                     $(this).find('.hanpri').val(parseFloat(parseFloat(buhan) * (1 + nowrate)).toFixed(2));
@@ -810,6 +751,32 @@
                 }
             }
         });
+    }
+
+    function changedepart(e) {
+        var departmentId = parseInt($(e).find("option:selected").val());
+        if (departmentId > 1) {
+            $.ajax({
+                type: "post",
+                url: "using_deliver_createnew.php?tab=1",
+                data:{departmentId:departmentId},
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    var arr = Object.keys(data);
+                    var trs = "";
+                    $.each(data, function (n, value) {
+                        if(n>0){
+                            trs += '<option value="' + n + '" >' + value + '</option>';
+                        }
+                    });
+                    $(e).parent().parent().find('.employee select').html(trs);
+                }
+
+            })
+        } else {
+            return false;
+        }
     }
 </script>
 

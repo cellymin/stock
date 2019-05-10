@@ -28,8 +28,12 @@ class Domain_DepotGoods_CURD
         $total_page = $total_page < 1 ? 1 : $total_page;
         $page_no    = $this->page_no > ($total_page) ? ($total_page) : $this->page_no;
         $start      = ($page_no - 1) * $this->page_size;
+        if($this->page_size==999){
+            $list = $model->getList($start,0, $this->keyword, $this->depotId, $this->depotSubId,$this->type);
+        } else {
+            $list = $model->getList($start, $this->page_size, $this->keyword, $this->depotId, $this->depotSubId,$this->type);
+        }
 
-        $list = $model->getList($start, $this->page_size, $this->keyword, $this->depotId, $this->depotSubId,$this->type);
 
         $rs = array(
             'row_count'  => $row_count,
