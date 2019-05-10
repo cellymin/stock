@@ -139,7 +139,7 @@
         <div style="display: flex"><span style="margin: 30px;">入库总金额：￥<em style="font-style:normal" class="totalmoney"><{$order.totalMoney|string_format:"%.2f"}></em></span> <span style="margin: 30px;">入库总数：<em
                         style="font-style:normal" class="totalnum"> <{$order.totalCnt|string_format:"%.2f"}></em></span></div>
     </div>
-    <button onclick="savelist();" class="saveSubmit">保存</button>
+    <button onclick="savelist(this);" class="saveSubmit">保存</button>
 </div>
 <{include file="footer.tpl" }>
 <script src="<{$smarty.const.ADMIN_URL}>/assets/js/searchSelectNew.js"></script>
@@ -505,7 +505,6 @@
     }
     function chgbuhanpri(e){
         var hanpri = parseFloat($(e).parent().parent().find('.hanpri').val());//含税价
-        console.log( $(e).val().length);
         if (hanpri != 'NaN') {
             var rate = parseFloat($(e).val());
             if(rate>0 && rate<1 ){
@@ -641,7 +640,8 @@
         $(e).parent().html('<i class="gname">' + beforgn + '</i><i class="icon-pencil" attid="' + gid + '" onclick="changename(this)" title="修改商品名称"></i>');
 
     }
-    function savelist() {
+    function savelist(e) {
+        $(e).attr('disabled', "true");
         var trlen = $('#tb_1 tr').length;
         var posttype = 'add';
         var goodslist = new Array();
@@ -709,9 +709,10 @@
                 success: function (data) {
                   if(data.code==1){
                       Alert(data.msg);
-                      window.location.href = 'purchase_storage_new.php';
+                      window.location.href = 'purchase_storage_createnew.php?orderId='+data.orderId;
                   }else{
                       Alert(data.msg);
+                      $(e).removeAttr('disabled');
                       return false;
                   }
                 }

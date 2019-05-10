@@ -94,6 +94,7 @@ class Api_Depot_InputDe extends PhalApi_Api
             }
             DI()->notorm->commit('db_demo');
             $rs['code'] = 1;
+            $rs['orderId'] = $orderId;
             $rs['msg'] = '提交成功';
             return $rs;
 
