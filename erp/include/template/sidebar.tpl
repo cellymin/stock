@@ -40,14 +40,14 @@
             <h1 class="page-title"><{$content_header.menu_name}></h1>
         </div>
         
-		<ul class="breadcrumb">
-            <li><a href="<{$smarty.const.ADMIN_URL}><{$content_header.module_url}>"> <{$content_header.module_name}> </a> <span class="divider">/</span></li>
+		<ul class="breadcrumb" style="display: flex">
+            <li style="display: flex"><a href="<{$smarty.const.ADMIN_URL}><{$content_header.module_url}>"> <{$content_header.module_name}> </a> <span class="divider">/</span></li>
            
 			<{if $content_header.father_menu}>
-			<li><a href="<{$smarty.const.ADMIN_URL}><{$content_header.father_menu_url}>"> <{$content_header.father_menu_name}> </a> <span class="divider">/</span></li>
+			<li style="display: flex"><a href="<{$smarty.const.ADMIN_URL}><{$content_header.father_menu_url}>"> <{$content_header.father_menu_name}> </a> <span class="divider">/</span></li>
 			<{/if}>
 			
-			<li class="active"><{$content_header.menu_name}></li>
+			<li class="active" style="display: flex"><{$content_header.menu_name}></li>
 			<{if $content_header.shortcut_allowed}>
 				<{if $content_header.menu_id|in_array:$user_info.shortcuts_arr}>
 					<a title= "移除快捷菜单" href="#"><li class="active"><i class="icon-minus" method="del" url="<{$smarty.const.ADMIN_URL}>/ajax/shortcut.php?menu_id=<{$content_header.menu_id}>"></i></li></a>

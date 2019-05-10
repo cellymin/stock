@@ -68,6 +68,9 @@ class Model_OrderGoods extends PhalApi_Model_NotORM
             $columns .= 'dd.depotName,';
             $left_join .= 'left join vich_depots dd on dd.depotId=og.depotId ';
         }
+        if ($type == 'PURCHASE_IN') {
+            $columns .= 'og.usecostpri,';
+        }
 
         if (in_array($type, array('ALLOT_OUT', 'USE_OUT','USE_RETURN'))) {
             $columns .= 'de.departmentName,e.employeeName,';
