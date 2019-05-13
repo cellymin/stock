@@ -129,13 +129,14 @@
            if(orderId>0){
                $.ajax({
                    type: "post",
-                   url: "purchase_storage_createnew.php",
+                   url: "purchase_storage_createnew.php?tab=1",
                    data:{action:'pass',orderId:orderId},
                    async: false,
                    dataType: "json",
                    success: function (data) {
                        if(data.code==1){
                            $(e).parent().parent().children().eq(8).text('审核通过');
+                           $(e).parent().parent().children().eq(10).text('');
                            Alert('审核通过');
                        }else{
                            Alert(data.msg);
