@@ -78,7 +78,6 @@
                     <th>原始订单</th>
                     <{/if}>
                     <th>状态</th>
-                    <th>审核备注</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -103,7 +102,6 @@
                         <td><{$value.contactNo}></td>
                         <{/if}>
                         <td><{$value.status}></td>
-                        <td><{$value.reviewerMemo}></td>
                         <td><{if $value.status!='审核通过'}><img title="审核通过" class="imgDel" onclick="pass(this)" class="imgDel1" src="../assets/images/pass.png"><{/if}></td>
                     </tr>
                     <{/foreach}>

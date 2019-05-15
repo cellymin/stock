@@ -23,7 +23,7 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
     $status    = $rs['content']['status'];
 
     $list      = $rs['content']['list'];
-    $page_html = Pagination::showPager("purchase_storage.php?keyword=$keyword&status=$status", $page_no, $page_size,
+    $page_html = Pagination::showPager("purchase_storage_new.php?keyword=$keyword&status=$status", $page_no, $page_size,
         $row_count);
 } else {
     Common::tipWithMessage($client->getMsg(), 'error');
