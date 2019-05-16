@@ -23,6 +23,7 @@ class Domain_Order_List
         $list = $model->getList($start, $page_size, $keyword, $status);
 
         $rs = array(
+            'status' => $status,
             'row_count' => $row_count,
             'total_page' => $total_page,
             'page_no' => $page_no,

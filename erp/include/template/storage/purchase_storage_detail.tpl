@@ -91,6 +91,7 @@
         <th>成本价</th>
         <th>可低税率</th>
         <th>可否抵扣</th>
+        <th style="display:none ;">原始税率</th>
     </tr>
     <{foreach name=module from=$order.goods.list key=index item=value}>
     <tr>
@@ -101,8 +102,8 @@
         <td><{$value.ratepri|string_format:"%.2f"}></td>
         <td><{if $value.usecostpri >0 }><{$value.usecostpri}><{else}><{$value.goodsPrice}><{/if}></td>
         <td><{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0}> 不含税价 <{/if}><{if $value.usecostpri != $value.goodsPrice && $value.usecostpri>0}> 含税价<{/if}></td>
-        <td><input type="text" style="width:45px;" class="dikourate" value="<{if $value.taxrateself  }><{$value.taxrateself}><{else}><{$order.taxrate}><{/if}>"  onkeyup="chgbuhanpri(this)" disabled /></td>
-        <td><select name="ifdikou" class="ifdikou" style="width:100px;" disabled><option value="1" <{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0 || $value.tikmark==1}> selected="selected"<{/if}> >可抵扣</option><option value="2"<{if ($value.usecostpri != $value.goodsPrice && $value.usecostpri>0) ||  $value.tikmark==2}> selected="selected"<{/if}>>不可抵扣</option> </select></td>
+        <td><{if $value.taxrateself  }><{$value.taxrateself}><{else}><{$order.taxrate}><{/if}></td>
+        <td><{if $value.usecostpri == $value.goodsPrice || !$value.usecostpri>0 || $value.tikmark==1}>可抵扣<{/if}> <{if ($value.usecostpri != $value.goodsPrice && $value.usecostpri>0) ||  $value.tikmark==2}> 不可抵扣<{/if}></td>
         <td class="ttrate" style="display:none ;"><{$value.taxrate}></td></tr>
     </tr>
     <{/foreach}>
@@ -118,6 +119,7 @@
                         style="font-style:normal" class="totalnum"> <{$order.totalCnt|string_format:"%.2f"}></em></span></div>
     </div>
     <button onclick="editlist(this);" class="saveSubmit">修改</button>
+    <button class="btn btn-primary " style="color: #fff;width: 80px;height: 40px;margin-left: 80px;bottom:80px; position: absolute;border: 0px;" onclick="method5('tb_1')">导出</button>
 </div>
 <{include file="footer.tpl" }>
 <script type="text/javascript">
