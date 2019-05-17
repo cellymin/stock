@@ -36,26 +36,10 @@
             <table class="table table-striped" id="data_list">
                 <thead>
                 <tr  class="export" >
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>采购申请单</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <td colspan="9" style="text-align: center">采购申请单</td>
                 </tr>
                 <tr  class="export" >
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th style="float: right">申请日期：<{$nowdate}></th>
-                    <th></th>
+                    <td colspan="9" style="text-align: right">申请日期：<{$nowdate}></td>
                 </tr>
                 <tr>
                     <th class="printnone">#</th>
