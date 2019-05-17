@@ -8,6 +8,7 @@ extract($_REQUEST, EXTR_IF_EXISTS);
 
 $goods = $cateList = $unitList = array();
 $client = new PhalApiClient();
+$pinyin = new PinYin();
 
 if (Common::isPost()) {
     if ($method == 'opt') {
@@ -33,6 +34,9 @@ if (Common::isPost()) {
             $input['invalidDate'] = $invalidDate;
             $input['searchKey'] = $searchKey;
             $input['remark'] = $remark;
+            $input['quanpin'] = strtoupper($pinyin->getpy($goodsName));
+            $input['jianxie'] = strtoupper($pinyin->getpy($goodsName,false));
+//            var_dump($input);die();
 
             $res = $client->request('Goods_Update.Go', $input);
             if ($client->getRet() == PhalApiClient::RET_OK) {

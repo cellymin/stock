@@ -18,6 +18,8 @@ class Api_Goods_Update extends PhalApi_Api
                 'invalidDate'    => array('name' => 'invalidDate', 'type' => 'date', 'require' => true),
                 'searchKey'      => array('name' => 'searchKey', 'type' => 'string', 'require' => false),
                 'remark'         => array('name' => 'remark', 'type' => 'string', 'require' => false),
+                'quanpin'      => array('name' => 'quanpin', 'type' => 'string', 'require' => false),
+                'jianxie'         => array('name' => 'jianxie', 'type' => 'string', 'require' => false),
             )
         );
     }
@@ -56,6 +58,8 @@ class Api_Goods_Update extends PhalApi_Api
             'invalidDate'    => $this->invalidDate,
             'searchKey'      => $this->searchKey,
             'remark'         => $this->remark,
+            'quanpin'      => $this->quanpin,
+            'jianxie'         => $this->jianxie,
         );
 
         $domain = new Domain_Goods_CURD();
