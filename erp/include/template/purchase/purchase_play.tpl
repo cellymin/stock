@@ -23,7 +23,7 @@
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
         <a type="button" class="btn btn-primary" onclick="beforeExport(this)">导出</a>
-        <button id="orderPrint" class="btn btn-primary" style="" onclick="printorder(this)" > 打印</button>
+        <button id="orderPrint" class="btn btn-primary" style="" onclick="beforeprint(this)" > 打印</button>
     </div>
     <div style="clear:both;"></div>
 </form>
@@ -35,18 +35,25 @@
             <input id="type" type="hidden" name="type" value="<{$type}>">
             <table class="table table-striped" id="data_list">
                 <thead>
+                <tr  class="export" >
+                    <td colspan="9" style="text-align: center">采购申请单</td>
+                </tr>
+                <tr  class="export" >
+                    <td colspan="9" style="text-align: right">申请日期：<{$nowdate}></td>
+                </tr>
                 <tr>
+                    <th class="printnone">#</th>
                     <th>商品编码</th>
                     <th>商品名称</th>
                     <!--th>仓库</th-->
                     <th class="export" >数量</th>
-                    <th>单价</th>
+                    <th>含税单价</th>
                     <th class="export">金额</th>
                     <th>供应商</th>
                     <th class="export">调整供应商</th>
-                    <th>库存数量</th>
-                    <th>状态</th>
-                    <th>创建时间</th>
+                    <th class="printnone">库存数量</th>
+                    <th class="printnone">状态</th>
+                    <th class="printnone">创建时间</th>
                     <th class="export">申请部门</th>
                     <th class="export">备注</th>
                 </tr>
@@ -54,22 +61,34 @@
                 <tbody>
                 <{foreach from=$list key=index item=value}>
                     <tr>
+                        <td class="printnone"><label><input type="checkbox" name="checkbox" value="<{$value.goodsSn}>"></label></td>
                         <td><{$value.goodsSn}></td>
                         <td><{$value.goodsName}></td>
                         <td class="export"></td>
-                        <td><{$value.lastPrice}></td>
+                        <td>
+                            <{if $value.lastratepri >0 }>
+                            <{$value.lastratepri|string_format:"%0.2f"}>
+                            <{else}>
+                            <{$value.lastPrice|string_format:"%0.2f"}> <{/if}>
+                        </td>
                         <td class="export"></td>
                         <td><{$value.suppliername}></td>
                         <td class="export"></td>
                         <!--td><{$value.depotName}></td-->
-                        <td><{$value.goodsCnt}></td>
-                        <td><{$value.status}></td>
-                        <td><{$value.createTime}></td>
+                        <td class="printnone"><{$value.goodsCnt}></td>
+                        <td class="printnone"><{$value.status}></td>
+                        <td class="printnone"><{$value.createTime}></td>
                         <td class="export"></td>
                         <td class="export"></td>
 
                     </tr>
                     <{/foreach}>
+                <tr class="export">
+                    <td>申请人：</td>  <td></td>
+                    <td>审核人：</td> <td  colspan="2"></td>
+                    <td>审批人：</td> <td></td>
+                    <td>审批日期：</td> <td></td>
+                </tr>
                 </tbody>
             </table>
         </form>
@@ -86,13 +105,35 @@
 
 <script>
 function beforeExport(e) {
+    var table = $('#data_list').html();
+    $('input:checkbox:not(:checked)').each(function(i){
+      $(this).parent().parent().parent().remove();
+    });
+    $('.printnone').remove();
     method5('data_list')
+    $('#data_list').html(table);
+
+
+}
+function beforeprint() {
+    $('input:checkbox:not(:checked)').each(function(i){
+        $(this).parent().parent().parent().css('display','none');
+    });
+    printorder();
+    $('input:checkbox:not(:checked)').each(function(i){
+        $(this).parent().parent().parent().css('display','');
+    });
+     $('.export').css('display','none')
 }
 function printorder() {
     'use strict';
+    $('.header').hide();
+    $('.navbar').hide();
     $('.form_search').hide();
+    $('.block-heading').hide();
     $('.breadcrumb').hide();
     $('.pagination').hide();
+    $('.printnone').hide();
     $('.pageHead').show();
     $('.export').show();
     $(".form_div").print({
@@ -118,9 +159,14 @@ function printorder() {
             $('.pageHead').hide();
         })
     });
+
+    $('.header').show();
     $('.form_search').show();
+    $('.block-heading').show();
     $('.breadcrumb').show();
     $('.pagination').show();
+    $('.navbar').show();
+    $('.printnone').show();
 }
  
 
