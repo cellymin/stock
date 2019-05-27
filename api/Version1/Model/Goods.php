@@ -97,6 +97,7 @@ class Model_Goods extends PhalApi_Model_NotORM
             $newlist[$kk['goodsId']]['suppliername'] = $supplierName[0]['supplierName'];
             $newlist[$kk['goodsId']]['usecostpri'] = $supplierName[0]['usecostpri'];
             $newlist[$kk['goodsId']]['goodsPrice'] = $supplierName[0]['goodsPrice'];
+            $newlist[$kk['goodsId']]['taxrate'] = $supplierName[0]['taxrate'];
             if(floatval($supplierName[0]['usecostpri'])>0 && floatval($supplierName[0]['taxrate'])>0){
                 $newlist[$kk['goodsId']]['lastratepri'] = $supplierName[0]['usecostpri'] * (1+floatval($supplierName[0]['taxrate']));
             }

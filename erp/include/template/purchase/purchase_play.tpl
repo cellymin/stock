@@ -36,58 +36,62 @@
             <table class="table table-striped" id="data_list">
                 <thead>
                 <tr  class="export" >
-                    <td colspan="10" style="text-align: center">采购申请单</td>
+                    <td colspan="10" style="text-align: center;height: 25px;">采购申请单</td>
                 </tr>
                 <tr  class="export" >
-                    <td colspan="10" style="text-align: right">申请日期：<{$nowdate}></td>
+                    <td colspan="10" style="text-align: left;height: 25px;">申请部门：</td>
                 </tr>
                 <tr>
-                    <th class="printnone">#</th>
-                    <th>商品编码</th>
-                    <th>商品名称</th>
+                    <th class="printnone" style="height: 25px;">#</th>
+                    <th style="height: 25px;">商品编码</th>
+                    <th style="height: 25px;">商品名称</th>
                     <!--th>仓库</th-->
-                    <th class="export" >数量</th>
-                    <th>含税单价</th>
-                    <th class="export">金额</th>
-                    <th>供应商</th>
-                    <th class="export">调整供应商</th>
-                    <th >库存数量</th>
-                    <th class="printnone">状态</th>
-                    <th class="printnone">创建时间</th>
-                    <th class="export">申请部门</th>
-                    <th class="export">备注</th>
+                    <th class="export" style="height: 25px;">数量</th>
+                    <th style="height: 25px;">含税单价</th>
+                    <th class="export" style="height: 25px;">金额</th>
+                    <th style="height: 25px;">供应商</th>
+                    <th class="export" style="height: 25px;">调整供应商</th>
+                    <th style="height: 25px;width: 100px;">库存数量</th>
+                    <th class="printnone" style="height: 25px;">状态</th>
+                    <th class="printnone" style="height: 25px;">创建时间</th>
+                    <th class="export" style="height: 25px;">申请部门</th>
+                    <th class="export" style="height: 25px;width: 100px;">备注</th>
                 </tr>
                 </thead>
                 <tbody>
                 <{foreach from=$list key=index item=value}>
                     <tr>
-                        <td class="printnone"><label><input type="checkbox" name="checkbox" value="<{$value.goodsSn}>"></label></td>
-                        <td><{$value.goodsSn}></td>
-                        <td><{$value.goodsName}></td>
-                        <td class="export"></td>
-                        <td>
+                        <td class="printnone" style="height: 25px;"><label><input type="checkbox" name="checkbox" value="<{$value.goodsSn}>"></label></td>
+                        <td style="height: 25px;"><{$value.goodsSn}></td>
+                        <td style="height: 25px;"><{$value.goodsName}></td>
+                        <td class="export" style="height: 25px;"></td>
+                        <td style="height: 25px;">
                             <{if $value.lastratepri >0 }>
                             <{$value.lastratepri|string_format:"%0.2f"}>
                             <{else}>
                             <{$value.lastPrice|string_format:"%0.2f"}> <{/if}>
                         </td>
-                        <td class="export"></td>
-                        <td><{$value.suppliername}></td>
-                        <td class="export"></td>
+                        <td class="export" style="height: 25px;"></td>
+                        <td style="height: 25px;"><{$value.suppliername}></td>
+                        <td class="export" style="height: 25px;"></td>
                         <!--td><{$value.depotName}></td-->
-                        <td><{$value.goodsCnt}></td>
-                        <td class="printnone"><{$value.status}></td>
-                        <td class="printnone"><{$value.createTime}></td>
-                        <td class="export"></td>
-                        <td class="export"></td>
+                        <td style="height: 25px;width: 100px;"><{$value.goodsCnt}></td>
+                        <td class="printnone" style="height: 25px;"><{$value.status}></td>
+                        <td class="printnone" style="height: 25px;"><{$value.createTime}></td>
+                        <td class="export" style="height: 25px;"></td>
+                        <td class="export" style="height: 25px;width: 100px;">税率<{$value.taxrate}></td>
 
                     </tr>
                     <{/foreach}>
                 <tr class="export">
-                    <td>申请人：</td>  <td></td>
-                    <td>审核人：</td> <td  colspan="2"></td>
-                    <td>审批人：</td> <td></td>
-                    <td>审批日期：</td> <td colspan="2"></td>
+                    <td style="height: 25px;">申请人：</td>  <td></td>
+                    <td style="height: 25px;">审核人：</td> <td></td>
+                    <td style="height: 25px;">审批人：</td> <td></td>
+                    <td style="height: 25px;">审批日期：</td> <td></td>
+                    <td style="height: 25px;">打印日期：</td> <td></td>
+                </tr  class="export">
+                <tr>
+                    <td colspan="10" style="text-align: left;height: 25px;">系统单价导出的是含税价</td>
                 </tr>
                 </tbody>
             </table>
