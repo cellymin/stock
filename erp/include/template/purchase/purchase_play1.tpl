@@ -6,7 +6,7 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 <style>
-    .export {display:none;}
+.export {display:none;}
 </style>
 <form class="form_search" action="" method="GET" style="margin-bottom:0px">
     <div style="float:left;margin-right:5px">
@@ -36,10 +36,10 @@
             <table class="table table-striped" id="data_list">
                 <thead>
                 <tr  class="export" >
-                    <td colspan="10" style="text-align: center">采购申请单</td>
+                    <td colspan="9" style="text-align: center">采购申请单</td>
                 </tr>
                 <tr  class="export" >
-                    <td colspan="10" style="text-align: right">申请日期：<{$nowdate}></td>
+                    <td colspan="9" style="text-align: right">申请日期：<{$nowdate}></td>
                 </tr>
                 <tr>
                     <th class="printnone">#</th>
@@ -51,7 +51,7 @@
                     <th class="export">金额</th>
                     <th>供应商</th>
                     <th class="export">调整供应商</th>
-                    <th >库存数量</th>
+                    <th class="printnone">库存数量</th>
                     <th class="printnone">状态</th>
                     <th class="printnone">创建时间</th>
                     <th class="export">申请部门</th>
@@ -75,7 +75,7 @@
                         <td><{$value.suppliername}></td>
                         <td class="export"></td>
                         <!--td><{$value.depotName}></td-->
-                        <td><{$value.goodsCnt}></td>
+                        <td class="printnone"><{$value.goodsCnt}></td>
                         <td class="printnone"><{$value.status}></td>
                         <td class="printnone"><{$value.createTime}></td>
                         <td class="export"></td>
@@ -87,7 +87,7 @@
                     <td>申请人：</td>  <td></td>
                     <td>审核人：</td> <td  colspan="2"></td>
                     <td>审批人：</td> <td></td>
-                    <td>审批日期：</td> <td colspan="2"></td>
+                    <td>审批日期：</td> <td></td>
                 </tr>
                 </tbody>
             </table>
@@ -104,72 +104,70 @@
 
 
 <script>
-    function beforeExport(e) {
-        $('.export').css('display','')
-        var table = $('#data_list').html();
-        $('input:checkbox:not(:checked)').each(function(i){
-            $(this).parent().parent().parent().remove();
-        });
-        $('.printnone').remove();
-        method5('data_list')
-        $('#data_list').html(table);
-        $('.export').css('display','none')
+function beforeExport(e) {
+    var table = $('#data_list').html();
+    $('input:checkbox:not(:checked)').each(function(i){
+      $(this).parent().parent().parent().remove();
+    });
+    $('.printnone').remove();
+    method5('data_list')
+    $('#data_list').html(table);
 
 
-    }
-    function beforeprint() {
-        $('input:checkbox:not(:checked)').each(function(i){
-            $(this).parent().parent().parent().css('display','none');
-        });
-        printorder();
-        $('input:checkbox:not(:checked)').each(function(i){
-            $(this).parent().parent().parent().css('display','');
-        });
-        $('.export').css('display','none')
-    }
-    function printorder() {
-        'use strict';
-        $('.header').hide();
-        $('.navbar').hide();
-        $('.form_search').hide();
-        $('.block-heading').hide();
-        $('.breadcrumb').hide();
-        $('.pagination').hide();
-        $('.printnone').hide();
-        $('.pageHead').show();
-        $('.export').show();
-        $(".form_div").print({
+}
+function beforeprint() {
+    $('input:checkbox:not(:checked)').each(function(i){
+        $(this).parent().parent().parent().css('display','none');
+    });
+    printorder();
+    $('input:checkbox:not(:checked)').each(function(i){
+        $(this).parent().parent().parent().css('display','');
+    });
+     $('.export').css('display','none')
+}
+function printorder() {
+    'use strict';
+    $('.header').hide();
+    $('.navbar').hide();
+    $('.form_search').hide();
+    $('.block-heading').hide();
+    $('.breadcrumb').hide();
+    $('.pagination').hide();
+    $('.printnone').hide();
+    $('.pageHead').show();
+    $('.export').show();
+    $(".form_div").print({
 
-            //是否包含父文档的样式，默认为true
-            globalStyles: true,
-            //是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
-            mediaPrint: false,
-            //外部样式
-            stylesheet: '<{$smarty.const.ADMIN_URL}>/assets/css/print.css',
-            //Print in a hidden iframe
-            iframe: false,
-            //不想打印的元素的jQuery选择器
-            noPrintSelector: ".avoid-this",
+        //是否包含父文档的样式，默认为true
+        globalStyles: true,
+        //是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
+        mediaPrint: false,
+        //外部样式
+        stylesheet: '<{$smarty.const.ADMIN_URL}>/assets/css/print.css',
+        //Print in a hidden iframe
+        iframe: false,
+        //不想打印的元素的jQuery选择器
+        noPrintSelector: ".avoid-this",
 
-            //Add this at top
-            prepend: 'Hello World',
-            //将内容添加到打印内容的后面
-            append: '11111',
-            //回调方法
-            deferred: $.Deferred().done(function () {
-                console.log('Printing done', arguments);
-                $('.pageHead').hide();
-            })
-        });
+        //Add this at top
+        prepend: 'Hello World',
+        //将内容添加到打印内容的后面
+        append: '11111',
+        //回调方法
+        deferred: $.Deferred().done(function () {
+            console.log('Printing done', arguments);
+            $('.pageHead').hide();
+        })
+    });
 
-        $('.header').show();
-        $('.form_search').show();
-        $('.block-heading').show();
-        $('.breadcrumb').show();
-        $('.pagination').show();
-        $('.navbar').show();
-        $('.printnone').show();
-    }
+    $('.header').show();
+    $('.form_search').show();
+    $('.block-heading').show();
+    $('.breadcrumb').show();
+    $('.pagination').show();
+    $('.navbar').show();
+    $('.printnone').show();
+}
 
 
 </script>
