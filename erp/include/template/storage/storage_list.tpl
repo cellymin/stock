@@ -134,7 +134,7 @@
                    success: function (data) {
                        if(data.code==1){
                            $(e).parent().parent().children().eq(8).text('审核通过');
-                           $(e).parent().parent().children().eq(10).text('');
+                           $(e).parent().parent().children().eq(9).text('');
                            Alert('审核通过');
                        }else{
                            Alert(data.msg);
