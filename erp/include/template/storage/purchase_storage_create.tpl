@@ -661,6 +661,7 @@
                     taxrate = parseFloat(rateself);
                 } else {
                     Alert($(this).children().eq(0).text().trim().replace(/\s/g, "") + '税率不对')
+                    $(e).removeAttr('disabled');
                     return false;
                 }
                 // goodslist[i]['goodsName'] = $(this).children().eq(0).text();
@@ -690,6 +691,7 @@
                 }else{
                     goodslist = new Array();
                     Alert(gproarr['goodsName']+'数量为空,请补全');
+                    $(e).removeAttr('disabled');
                     return false;
                 }
             }
