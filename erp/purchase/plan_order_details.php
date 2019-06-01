@@ -14,6 +14,7 @@ $rs = $client->request('Order_Get.Go', array(
     'page_no'   => $page_no,
     'page_size' => 0
 ));
+//echo '<pre/>';var_dump($rs);die();
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $page_no   = $rs['content']['goods']['page_no'];
     $page_size = $rs['content']['goods']['page_size'];
@@ -31,8 +32,8 @@ if ($formError) {
     $errType = $formError == 1 ? 'success' : 'error';
     Common::tipWithMessage($errMsg, $errType);
 }
-
-
+$nowdate = date('Y-m-d',time());
+Template::assign('nowdate', $nowdate);
 Template::assign('order', $order);
 Template::assign('page_html', $page_html);
 Template::assign('url', 'plan_order_add');

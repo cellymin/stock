@@ -89,7 +89,7 @@
                     <td style="height: 25px;">审批人：</td> <td></td>
                     <td style="height: 25px;">审批日期：</td> <td></td>
                     <td style="height: 25px;">打印日期：</td> <td></td>
-                </tr  class="export">
+                </tr>
                 <tr>
                     <td colspan="10" style="text-align: left;height: 25px;">系统单价导出的是含税价</td>
                 </tr>

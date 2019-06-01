@@ -1,11 +1,14 @@
 <{include file ="header.tpl"}>
-
+<style>
+    .export{display:none;}
+    .export_header {display:none;}
+</style>
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 <{$js_confirm}>
 <div class="form_div">
     <div style="overflow: hidden" class="avoid-this">
         <button id="orderPrint" class="btn btn-primary" style="float: left;margin-bottom: 20px;" > 打印</button>
-        <a type="button" class="btn btn-primary" onclick="method5('oorder')" style="margin-left: 10px;">导出</a>
+        <a type="button" class="btn btn-primary" onclick="beforeExport(this)" style="margin-left: 10px;">导出</a>
         <{if ($order.flag==0 || $order.flag==-3)}>
         <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="提交审核"
                 layerUrl="<{$toReview}>" layerW="360px" layerH="200px" layerT="2"
@@ -40,6 +43,11 @@
             <input type="hidden" name="orderId" value="<{$order.orderId}>">
             <input type="hidden" name="url" value="plan_order_add">
             <table class="table">
+                <{if $type=='PLAN'}>
+                <tr class="export_header" style="text-align: center;">
+                    <td colspan="10">采购计划单</td>
+                </tr>
+                <{/if}>
                 <tr>
                     <td>订单编号</td>
                     <td><{$order.orderNo}></td>
@@ -92,6 +100,9 @@
                     <{else}>
                     <th class="td120">名称</th>
                     <{/if}>
+
+                    <th class="td90">编码</th>
+
                     <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                     <{if $type=='PURCHASE_IN'}>
                     <th class="td50">规格</th>
@@ -151,6 +162,9 @@
                                         <{else}>
                                         <td class="td120"><{$v.goodsName}></td>
                                         <{/if}>
+                                        <{if $type=='PLAN'}>
+                                        <td class="td90"><{$v.goodsSn}></td>
+                                        <{/if}>
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                                         <{if $type=='PURCHASE_IN'}>
                                         <td class="td50"><{$v.goodsSpec}></td>
@@ -192,6 +206,15 @@
                                             <input type="hidden" value="<{$v.remark}>" name="remark">
                                         </td>
                                     </tr>
+                                    <{if $type=='PLAN'}>
+                                    <tr class="export" >
+                                        <td></td>
+                                        <td>申请人：</td>  <td></td>
+                                        <td>审批人：</td>  <td ></td>
+                                        <td>审核人：</td>  <td></td>
+                                        <td >打印日期：</td>  <td colspan="2"><{$nowdate}></td>
+                                    </tr>
+                                    <{/if}>
                                     </tbody>
                                 </table>
                                 <{if (($index+1)%23)==0}>
@@ -205,6 +228,7 @@
                                         <{else}>
                                         <th class="td120">名称</th>
                                         <{/if}>
+
 
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
                                         <{if $type=='PURCHASE_IN'}>
@@ -265,6 +289,7 @@
 <script>
     jQuery(function($) { 'use strict';
         $("#orderPrint").on('click', function() {
+            $('.export').show();
             $('.pageHead').show();
             $(".form_div").print({
                 //是否包含父文档的样式，默认为true
@@ -285,10 +310,20 @@
                 deferred: $.Deferred().done(function() {
                     console.log('Printing done', arguments);
                     $('.pageHead').hide();
+                    $('.export').hide();
                 })
             });
         });
         // Fork https://github.com/sathvikp/jQuery.print for the full list of options
     });
+    function beforeExport(e) {
+
+        $('.export_header').css('display','');
+        $('.export').css('display','');
+        method5('oorder');
+        $('.export').css('display','none');
+        $('.export_header').css('display','none');
+
+    }
 </script>
 
