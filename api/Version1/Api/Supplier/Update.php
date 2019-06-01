@@ -31,6 +31,8 @@ class Api_Supplier_Update extends PhalApi_Api
                 'remark' => array('name' => 'remark', 'type' => 'string', 'require' => false),
                 'taxrate' => array('name' => 'taxrate', 'type' => 'float', 'require' => true),
                 'flag' => array('name' => 'flag', 'type' => 'int', 'require' => false),
+                'quanpin'      => array('name' => 'quanpin', 'type' => 'string', 'require' => false),
+                'jianxie'         => array('name' => 'jianxie', 'type' => 'string', 'require' => false),
             )
         );
     }
@@ -65,6 +67,8 @@ class Api_Supplier_Update extends PhalApi_Api
             'reviewTime'=>date('Y-m-d H:i:s'),
             'remark' => $this->remark,
             'flag' =>  $this->flag,
+            'quanpin'      => $this->quanpin,
+            'jianxie'         => $this->jianxie,
         );
         if($this->taxrate>1){
             $rs['msg'] = '税率不能大于1';

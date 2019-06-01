@@ -5,6 +5,7 @@ $productionDate = $invalidDate = $searchKey = $remark = $nonceStr = $method = $p
 extract($_POST, EXTR_IF_EXISTS);
 
 $client = new PhalApiClient();
+$pinyin = new PinYin();
 //分类
 $cateList = array();
 //计量单位
@@ -29,6 +30,8 @@ if (Common::isPost()) {
 	$input_data['remark'] = $remark;
 	$input_data['flag'] = 1;
 	$input_data['createTime'] = date('Y-m-d H:i:s');
+    $input_data['quanpin'] = strtoupper($pinyin->getpy($goodsName));
+    $input_data['jianxie'] = strtoupper($pinyin->getpy($goodsName,false));
 	
 	
 	
