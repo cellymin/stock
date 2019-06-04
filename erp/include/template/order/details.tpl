@@ -94,15 +94,16 @@
             <table>
                 <thead>
                 <tr>
-                    <th class="td40 avoid-this">#</th>
+                    <th class="td40 ">#</th>
+                    <{if in_array($type,array('PLAN'))}>
+                    <th class="td90">商品编码</th>
+                    <{/if}>
                     <{if in_array($type,array('PURCHASE_IN'))}>
                     <th class="td90">名称</th>
                     <{else}>
                     <th class="td120">名称</th>
                     <{/if}>
-                    <{if in_array($type,array('PLAN'))}>
-                    <th class="td90">编码</th>
-                    <{/if}>
+
                     <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                     <{if $type=='PURCHASE_IN'}>
                     <th class="td50">规格</th>
@@ -156,15 +157,16 @@
                                 <table cellspacing="0" cellpadding="0" class="table" style="margin:0;border-top:none;border-left:none;border-right:none;">
                                     <tbody>
                                     <tr data-id="<{$v.id}>" datatype="1">
-                                        <td class="td40 avoid-this"><input type="checkbox" name="id[]" data-name="id" value="<{$v.id}>"></td>
+                                        <td class="td40 "><input type="checkbox" name="id[]" data-name="id" value="<{$v.id}>"></td>
+                                        <{if $type=='PLAN'}>
+                                        <td class="td90"><{$v.goodsSn}></td>
+                                        <{/if}>
                                         <{if $type=='PURCHASE_IN'}>
                                         <td class="td90"><{$v.goodsName}></td>
                                         <{else}>
                                         <td class="td120"><{$v.goodsName}></td>
                                         <{/if}>
-                                        <{if $type=='PLAN'}>
-                                        <td class="td90"><{$v.goodsSn}></td>
-                                        <{/if}>
+
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                                         <{if $type=='PURCHASE_IN'}>
                                         <td class="td50"><{$v.goodsSpec}></td>
