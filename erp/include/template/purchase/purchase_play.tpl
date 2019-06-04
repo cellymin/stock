@@ -39,7 +39,7 @@
                 <tr  class="export_head" style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none;frame:above">
                     <td colspan="10" style="text-align: center;height: 25px;">采购申请单</td>
                 </tr>
-                <tr  class="export_head" style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none" >
+                <tr  class="export" style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none" >
                     <td colspan="10" style="text-align: left;height: 25px;">申请部门：</td>
                 </tr>
             </table>
@@ -99,7 +99,7 @@
                     <td style="height: 25px;">审批日期：</td> <td> ________________</td>
                     <td style="height: 25px;">打印日期：</td> <td><{$nowdate}></td>
                 </tr>
-                <tr class="export_head"  style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none">
+                <tr class="export"  style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none">
                     <td colspan="10" style="text-align: left;height: 25px;">系统单价导出的是含税价</td>
                 </tr>
             </table>
