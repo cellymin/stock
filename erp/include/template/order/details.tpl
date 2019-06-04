@@ -100,9 +100,9 @@
                     <{else}>
                     <th class="td120">名称</th>
                     <{/if}>
-
+                    <{if in_array($type,array('PLAN'))}>
                     <th class="td90">编码</th>
-
+                    <{/if}>
                     <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                     <{if $type=='PURCHASE_IN'}>
                     <th class="td50">规格</th>
@@ -148,7 +148,7 @@
                 <form method="post" action="<{$delete_url}>.php">
                     <input type="hidden" name="orderId" value="<{$order.orderId}>">
                     <input type="hidden" name="type" value="<{$type}>">
-                    <table class="" id="data_list">
+                    <table class="" id="data_list" >
                         <tbody>
                         <tr>
                             <td style="padding: 0;margin: 0">
