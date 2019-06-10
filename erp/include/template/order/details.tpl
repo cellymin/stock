@@ -83,8 +83,8 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>备注</td>
-                    <td>
+                    <td class="export_header_new">备注</td>
+                    <td class="export_header_new">
                         <{$order.remark}>
                     </td>
                 </tr>
@@ -94,12 +94,12 @@
             <table>
                 <thead>
                 <tr>
-                    <th class="td40 ">#</th>
+                    <th class="td40  export_header_new" >#</th>
                     <{if in_array($type,array('PLAN'))}>
                     <th class="td90">商品编码</th>
                     <{/if}>
                     <{if in_array($type,array('PURCHASE_IN'))}>
-                    <th class="td90">名称</th>
+                    <th class="td90" >名称</th>
                     <{else}>
                     <th class="td120">名称</th>
                     <{/if}>
@@ -157,14 +157,14 @@
                                 <table cellspacing="0" cellpadding="0" class="table" style="margin:0;border-top:none;border-left:none;border-right:none;">
                                     <tbody>
                                     <tr data-id="<{$v.id}>" datatype="1">
-                                        <td class="td40 "><input type="checkbox" name="id[]" data-name="id" value="<{$v.id}>"></td>
+                                        <td class="td40 export_header_new"><input type="checkbox" name="id[]" data-name="id" value="<{$v.id}>"></td>
                                         <{if $type=='PLAN'}>
                                         <td class="td90"><{$v.goodsSn}></td>
                                         <{/if}>
                                         <{if $type=='PURCHASE_IN'}>
-                                        <td class="td90"><{$v.goodsName}></td>
+                                        <td class="td90" style="text-align: center;" ><{$v.goodsName}></td>
                                         <{else}>
-                                        <td class="td120"><{$v.goodsName}></td>
+                                        <td class="td120" style="text-align: center;" ><{$v.goodsName}></td>
                                         <{/if}>
 
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
@@ -173,9 +173,9 @@
                                         <{else}>
                                         <td class="td80"><{$v.goodsSpec}></td>
                                         <{/if}>
-                                        <td class="td80"><{$v.unitName}></td>
+                                        <td class="td80" style="text-align: center;"><{$v.unitName}></td>
                                         <{else}>
-                                        <td class="td150"><{$v.orderSubNo}></td>
+                                        <td class="td150" style="text-align: center;"><{$v.orderSubNo}></td>
                                         <{/if}>
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                                         <td class="td120"><{$v.supplierName}></td>
@@ -208,15 +208,16 @@
                                             <input type="hidden" value="<{$v.remark}>" name="remark">
                                         </td>
                                     </tr>
-                                    <{if $type=='PLAN'}>
-                                    <tr class="export" >
-                                        <td></td>
-                                        <td>申请人：</td>  <td></td>
-                                        <td>审批人：</td>  <td ></td>
-                                        <td>审核人：</td>  <td></td>
-                                        <td >打印日期：</td>  <td colspan="2"><{$nowdate}></td>
-                                    </tr>
-                                    <{/if}>
+                                    <{if $type=='PLAN' && $index+1==$order.goods.row_count}>
+                                        <tr class="export" >
+                                            <td class="export_header_new"></td>
+                                            <td>申请人：</td>  <td></td>
+                                            <td>审批人：</td>  <td ></td>
+                                            <td>审核人：</td>  <td></td>
+                                            <td >打印日期：</td>  <td colspan="2"><{$nowdate}></td>
+                                        </tr>
+                                        <{/if}>
+
                                     </tbody>
                                 </table>
                                 <{if (($index+1)%23)==0}>
@@ -226,7 +227,7 @@
                                     <tr>
                                         <th class="td40 avoid-this">#</th>
                                         <{if $type=='PURCHASE_IN'}>
-                                        <th class="td90">名称</th>
+                                        <th class="td90" >名称</th>
                                         <{else}>
                                         <th class="td120">名称</th>
                                         <{/if}>
@@ -276,8 +277,10 @@
                                 </table>
                                 <{/if}>
                                 <{/foreach}>
+
                             </td>
                         </tr>
+
                         </tbody>
                     </table>
                 </form>
@@ -319,12 +322,15 @@
         // Fork https://github.com/sathvikp/jQuery.print for the full list of options
     });
     function beforeExport(e) {
-
+        var table = $('#oorder').html();
         $('.export_header').css('display','');
+        $('.export_header_new').remove();
         $('.export').css('display','');
         method5('oorder');
-        $('.export').css('display','none');
-        $('.export_header').css('display','none');
+        $('#oorder').html(table);
+        // $('.export').css('display','none');
+        // $('.export_header').css('display','none');
+        // $('.export_header_new').show();
 
     }
 </script>
