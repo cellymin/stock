@@ -13,12 +13,13 @@
 
 
     <div style="float:left;margin-right:5px">
-        <label>选择公司</label>
-        <{html_options name=companyId id="companyId" class="input-xlarge" options=$company_options selected=$_GET.companyId}>
-    </div>
-    <div style="float:left;margin-right:5px">
         <label>选择部门</label>
         <{html_options name=departmentId id="departmentId" class="input-xlarge" options=$subinfo selected=$_GET.departmentId}>
+    </div>
+
+    <div style="float:left;margin-right:5px">
+        <label>选择库位</label>
+        <{html_options name=depotsubId id="depotsubId" class="input-xlarge" options=$depotsub_option selected=$_GET.depotsubId}>
     </div>
     <div style="float:left;margin-right:5px">
         <label>关键词</label>
@@ -67,7 +68,7 @@
                     <td class="goodscnt"><{$ee.goodsCnt}></td>
                     <td><{$ee.unitName}></td>
                     <td><{$ee.createTime}></td>
-                    <td class="total"><{number_format($ee.goodsPrice * $ee.goodsCnt,2)}></td>
+                    <td class="total"><{$ee.goodsPrice * $ee.goodsCnt}></td>
                 </tr>
                 <{/foreach}>
             <tr><td>合计</td>
@@ -109,7 +110,9 @@
             tt = parseFloat($(this).text());
             $(this).text(tt.toFixed(2));
             goodstotal = goodstotal + tt;
+            console.log(goodstotal);
         });
+        console.log(goodstotal);
         $('.totalall').text(goodstotal.toFixed(2));
     });
 

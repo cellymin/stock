@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$companyId = $startTime = $endTime =$departmentId= $keyword = "" ;
+$companyId = $startTime = $endTime =$departmentId= $keyword = $depotsubId= "" ;
 extract($_GET,EXTR_IF_EXISTS);
 
 $user_group = $_SESSION[UserSession::SESSION_NAME]['user_group'];
@@ -10,8 +10,9 @@ if($user_group!=1 && $selectAll!=1){
     $companyId = $_SESSION[UserSession::SESSION_NAME]['companyId'];
 }
 $page_no   = $_GET['page_no']?$_GET['page_no']:1;
-$result = Report::usingReport($companyId,$keyword,$startTime,$endTime,$departmentId,$page_no);
+$result = Report::usingReport($depotsubId,$companyId,$keyword,$startTime,$endTime,$departmentId,$page_no);
 $departments = $company_options = array();
+//echo '<pre/>';var_dump($result);die();
 $total = 0;
 if($result){
     $goods = $result['goods'];
@@ -35,12 +36,20 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 $subinfo[0]='全部';
 ksort($subinfo);
 if($row_count>0){
-    $page_html = Pagination::showPager("purchase.php?purchase.php?companyId=$companyId&departmentId=$departmentId&startTime=$startTime&endTime=$endTime", $page_no, $page_size,
+    $page_html = Pagination::showPager("purchase.php?purchase.php?companyId=$companyId&departmentId=$departmentId&depotsubId=$depotsubId&startTime=$startTime&endTime=$endTime", $page_no, $page_size,
         $row_count);
     Template::assign('page_html', $page_html);
 }
+
+$rs = $client->request('DepotSub_GetListInfo.Go',array());
+if ($client->getRet() == PhalApiClient::RET_OK) {
+$suboption = $rs['content'];
+$suboption[0]='全部';
+ksort($suboption);
+}
 Template::assign('subinfo',$subinfo);
 Template::assign('company_options',$company_options);
+Template::assign('depotsub_option',$suboption);
 Template::assign('goods',$goods);
 Template::assign('total',$total);
 Template::assign('_GET',$_GET);

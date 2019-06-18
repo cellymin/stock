@@ -54,4 +54,16 @@ class Domain_DepotSub_CURD
 
         return $list;
     }
+    public function getListAll()
+    {
+        $model = new Model_DepotSub();
+
+        $list = $model->getListAll();
+        if($list){
+            foreach ($list as $row){
+                $options[$row['depotSubId']] = $row['depotSubName'];
+            }
+        }
+        return $options;
+    }
 }

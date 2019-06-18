@@ -10,7 +10,7 @@ if (!defined('ACCESS')) {
 class Report extends Base
 {
     //各部门领用明细表
-    public static function usingReport($companyId,$keyword, $startTime, $endTime,$departmentId,$page_no)
+    public static function usingReport($depotsubId,$companyId,$keyword, $startTime, $endTime,$departmentId,$page_no)
     {
         $db = self::__instance();
 
@@ -29,6 +29,10 @@ class Report extends Base
         if(!$startTime){
             $time=date('Y-01-01');
             $sql .=" and oy.createTime>='$time'";
+        }
+        if($depotsubId){
+            $sql .= ' and oy.depotSubId='.$depotsubId;
+            $bindParam['depotSubId'] = $depotsubId;
         }
         if ($companyId) {
             $sql .= ' and oy.createCompany='.$companyId;
