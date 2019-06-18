@@ -7,6 +7,7 @@
 <{$osadmin_quick_note}>
 <style>
     .export {display:none;}
+    .export_head {display:none;}
 </style>
 <form class="form_search" action="" method="GET" style="margin-bottom:0px">
     <div style="float:left;margin-right:5px">
@@ -30,17 +31,21 @@
 
 <div class="block">
     <a href="#page-stats" class="block-heading" data-toggle="collapse"><{$content_header.menu_name}>列表</a>
-    <div id="page-stats" class="block-body collapse in">
+    <div id="page-stats" class="block-body collapse in"  >
+        <div id="data_list">
         <form action="<{$delete_url}>.php" method="post">
             <input id="type" type="hidden" name="type" value="<{$type}>">
-            <table class="table table-striped" id="data_list">
-                <thead>
-                <tr  class="export" >
+            <table style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none;frame:above">
+                <tr  class="export_head" style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none;frame:above">
                     <td colspan="10" style="text-align: center;height: 25px;">采购申请单</td>
                 </tr>
-                <tr  class="export" >
+                <tr  class="export" style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none" >
                     <td colspan="10" style="text-align: left;height: 25px;">申请部门：</td>
                 </tr>
+            </table>
+            <table class="table table-striped" style="border-collapse:collapse;" border="1px">
+                <thead>
+
                 <tr>
                     <th class="printnone" style="height: 25px;">#</th>
                     <th style="height: 25px;">商品编码</th>
@@ -83,19 +88,23 @@
 
                     </tr>
                     <{/foreach}>
-                <tr class="export">
-                    <td style="height: 25px;">申请人：</td>  <td></td>
-                    <td style="height: 25px;">审核人：</td> <td></td>
-                    <td style="height: 25px;">审批人：</td> <td></td>
-                    <td style="height: 25px;">审批日期：</td> <td></td>
-                    <td style="height: 25px;">打印日期：</td> <td></td>
-                </tr  class="export">
-                <tr>
-                    <td colspan="10" style="text-align: left;height: 25px;">系统单价导出的是含税价</td>
-                </tr>
+
                 </tbody>
             </table>
+            <table style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none;">
+                <tr class="export" >
+                    <td style="height: 25px;">申请人：</td>  <td>__________ </td>
+                    <td style="height: 25px;">审核人：</td>  <td>__________  </td>
+                    <td style="height: 25px;">审批人：</td> <td>__________  </td>
+                    <td style="height: 25px;">审批日期：</td> <td> ________________</td>
+                    <td style="height: 25px;">打印日期：</td> <td><{$nowdate}></td>
+                </tr>
+                <tr class="export"  style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none">
+                    <td colspan="10" style="text-align: left;height: 25px;">系统单价导出的是含税价</td>
+                </tr>
+            </table>
         </form>
+        </div>
         <{$page_html}>
     </div>
 </div>
@@ -105,10 +114,23 @@
 
 <!-- TPLEND 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
 <{include file="footer.tpl" }>
-
-
 <script>
+
+        // function beforeExport() {
+        //     var table = $('#data_list').html();
+        //     $('.export').show();
+        //     $('.printnone').remove();
+        //     $("#data_list").table2excel({
+        //         filename : "采购申请单-" + new Date().getTime() + ".xls" ,//文件名称
+        //         exclude_img: true,
+        //         exclude_links: true,
+        //         exclude_inputs: true
+        //     });
+        //     $('#data_list').html(table);
+        // }
+
     function beforeExport(e) {
+        $('.export_head').css('display','')
         $('.export').css('display','')
         var table = $('#data_list').html();
         $('input:checkbox:not(:checked)').each(function(i){
@@ -118,6 +140,7 @@
         method5('data_list')
         $('#data_list').html(table);
         $('.export').css('display','none')
+        $('.export_head').css('display','none')
 
 
     }
@@ -133,6 +156,7 @@
     }
     function printorder() {
         'use strict';
+        $('.export_head').hide();
         $('.header').hide();
         $('.navbar').hide();
         $('.form_search').hide();
