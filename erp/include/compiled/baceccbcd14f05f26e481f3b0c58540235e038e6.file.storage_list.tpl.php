@@ -1,10 +1,50 @@
-<{include file ="header.tpl"}>
-<{include file ="navibar.tpl"}>
-<{include file ="sidebar.tpl"}>
+<?php /* Smarty version Smarty-3.1.15, created on 2019-06-24 17:04:21
+         compiled from "D:\WWW\stock\erp\include\template\storage\storage_list.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:92575d1091afcd3818-88771404%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'baceccbcd14f05f26e481f3b0c58540235e038e6' => 
+    array (
+      0 => 'D:\\WWW\\stock\\erp\\include\\template\\storage\\storage_list.tpl',
+      1 => 1561367053,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '92575d1091afcd3818-88771404',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5d1091afd66808_43884594',
+  'variables' => 
+  array (
+    'osadmin_action_alert' => 0,
+    'osadmin_quick_note' => 0,
+    'type' => 0,
+    'create_url' => 0,
+    '_GET' => 0,
+    'content_header' => 0,
+    'delete_url' => 0,
+    'list' => 0,
+    'value' => 0,
+    'page_html' => 0,
+    'osadmin_action_confirm' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5d1091afd66808_43884594')) {function content_5d1091afd66808_43884594($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+<?php echo $_smarty_tpl->getSubTemplate ("navibar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+<?php echo $_smarty_tpl->getSubTemplate ("sidebar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <!-- TPLSTART 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 
-<{$osadmin_action_alert}>
-<{$osadmin_quick_note}>
+<?php echo $_smarty_tpl->tpl_vars['osadmin_action_alert']->value;?>
+
+<?php echo $_smarty_tpl->tpl_vars['osadmin_quick_note']->value;?>
+
 <style>
     .imgDel{
         width: 25px;
@@ -14,36 +54,38 @@
 </style>
 <form class="form_search" action="" method="GET" style="margin-bottom:0px">
     <div class="btn-toolbar" style="float:right;padding-top:15px;">
-        <{if ($type=='SALE_OUT' ||$type=='ARRIVAL' || $type=='PURCHASE_IN' || $type=='USE_OUT')}>
+        <?php if (($_smarty_tpl->tpl_vars['type']->value=='SALE_OUT'||$_smarty_tpl->tpl_vars['type']->value=='ARRIVAL'||$_smarty_tpl->tpl_vars['type']->value=='PURCHASE_IN'||$_smarty_tpl->tpl_vars['type']->value=='USE_OUT')) {?>
         <a class="btn btn-primary layerModel" action="5" title="生成退货单"></i> 生成退货单</a>
-        <{/if}>
-        <{if ($type!='OTHER_IN' && $type!='OTHER_OUT' && $type!='PURCHASE_RETURN' && $type!='USE_RETURN')}>
-        <a class="btn btn-primary " action="1" title="新增订单"  href="<{$create_url}>"><i class="icon-plus"></i> 新增</a>
-        <{/if}>
-        <{if ($type!='OTHER_IN' && $type!='OTHER_OUT')}>
+        <?php }?>
+        <?php if (($_smarty_tpl->tpl_vars['type']->value!='OTHER_IN'&&$_smarty_tpl->tpl_vars['type']->value!='OTHER_OUT'&&$_smarty_tpl->tpl_vars['type']->value!='PURCHASE_RETURN'&&$_smarty_tpl->tpl_vars['type']->value!='USE_RETURN')) {?>
+        <a class="btn btn-primary " action="1" title="新增订单"  href="<?php echo $_smarty_tpl->tpl_vars['create_url']->value;?>
+"><i class="icon-plus"></i> 新增</a>
+        <?php }?>
+        <?php if (($_smarty_tpl->tpl_vars['type']->value!='OTHER_IN'&&$_smarty_tpl->tpl_vars['type']->value!='OTHER_OUT')) {?>
         <a class="btn btn-primary layerModel" action="3" title="订单删除"><i class="icon-trash"></i> 删除</a>
-        <{/if}>
+        <?php }?>
     </div>
 
     <div style="float:left;margin-right:5px">
         <label>选择状态</label>
         <select name="status" id="">
             <option value="0"
-            <{if $_GET.status eq 0}>selected<{/if}>>全部</option>
-            <{if ($type!='OTHER_IN' && $type!='OTHER_OUT')}>
-        <option value="1"<{if $_GET.status eq 1}>selected<{/if}>>未提交</option>
-            <{/if}>
+            <?php if ($_smarty_tpl->tpl_vars['_GET']->value['status']==0) {?>selected<?php }?>>全部</option>
+            <?php if (($_smarty_tpl->tpl_vars['type']->value!='OTHER_IN'&&$_smarty_tpl->tpl_vars['type']->value!='OTHER_OUT')) {?>
+        <option value="1"<?php if ($_smarty_tpl->tpl_vars['_GET']->value['status']==1) {?>selected<?php }?>>未提交</option>
+            <?php }?>
             <option value="2"
-            <{if $_GET.status eq 2}>selected<{/if}>>待审核</option>
+            <?php if ($_smarty_tpl->tpl_vars['_GET']->value['status']==2) {?>selected<?php }?>>待审核</option>
             <option value="3"
-            <{if $_GET.status eq 3}>selected<{/if}>>审核未通过</option>
+            <?php if ($_smarty_tpl->tpl_vars['_GET']->value['status']==3) {?>selected<?php }?>>审核未通过</option>
             <option value="4"
-            <{if $_GET.status eq 4}>selected<{/if}>>审核通过</option>
+            <?php if ($_smarty_tpl->tpl_vars['_GET']->value['status']==4) {?>selected<?php }?>>审核通过</option>
         </select>
     </div>
     <div style="float:left;margin-right:5px">
         <label>查询所有请留空</label>
-        <input type="text" name="keyword" value="<{$_GET.keyword}>" placeholder="输入单号">
+        <input type="text" name="keyword" value="<?php echo $_smarty_tpl->tpl_vars['_GET']->value['keyword'];?>
+" placeholder="输入单号">
     </div>
     <div class="btn-toolbar" style="padding-top:25px;padding-bottom:0px;margin-bottom:0px">
         <button type="submit" class="btn btn-primary">检索</button>
@@ -53,70 +95,95 @@
 </form>
 
 <div class="block">
-    <a href="#page-stats" class="block-heading" data-toggle="collapse"><{$content_header.menu_name}>列表</a>
+    <a href="#page-stats" class="block-heading" data-toggle="collapse"><?php echo $_smarty_tpl->tpl_vars['content_header']->value['menu_name'];?>
+列表</a>
     <div id="page-stats" class="block-body collapse in">
-        <form action="<{$delete_url}>.php" method="post">
-            <input id="type" type="hidden" name="type" value="<{$type}>">
+        <form action="<?php echo $_smarty_tpl->tpl_vars['delete_url']->value;?>
+.php" method="post">
+            <input id="type" type="hidden" name="type" value="<?php echo $_smarty_tpl->tpl_vars['type']->value;?>
+">
             <table class="table table-striped" id="data_list">
                 <thead>
                 <tr>
                     <th><input type="checkbox" id="chkAll"></th>
                     <th>单号</th>
-                    <{if in_array($type,array('PLAN','ARRIVAL','RETURN','PURCHASE_IN'))}>
+                    <?php if (in_array($_smarty_tpl->tpl_vars['type']->value,array('PLAN','ARRIVAL','RETURN','PURCHASE_IN'))) {?>
                     <th>供应商</th>
-                    <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
+                    <?php } elseif (in_array($_smarty_tpl->tpl_vars['type']->value,array('ALLOT_IN','ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))) {?>
                     <th>仓库</th>
-                    <{else}>
+                    <?php } else { ?>
                     <th>客户</th>
-                    <{/if}>
+                    <?php }?>
                     <th>操作人员</th>
                     <th>创建时间</th>
                     <th>备注</th>
                     <th>总额</th>
                     <th>产品总数</th>
-                    <{if in_array($type,array('RETURN','SALE_RETURN','USE_RETURN'))}>
+                    <?php if (in_array($_smarty_tpl->tpl_vars['type']->value,array('RETURN','SALE_RETURN','USE_RETURN'))) {?>
                     <th>原始订单</th>
-                    <{/if}>
+                    <?php }?>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <{foreach name=module from=$list key=index item=value}>
+                <?php  $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['value']->_loop = false;
+ $_smarty_tpl->tpl_vars['index'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['list']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['value']->key => $_smarty_tpl->tpl_vars['value']->value) {
+$_smarty_tpl->tpl_vars['value']->_loop = true;
+ $_smarty_tpl->tpl_vars['index']->value = $_smarty_tpl->tpl_vars['value']->key;
+?>
                     <tr>
-                        <td><input data-name="orderId" name="orderId[]" value="<{$value.orderId}>" type="checkbox"></td>
-                        <td><a href="purchase_storage_createnew.php?orderId=<{$value.orderId}>"><{$value.orderNo}></a></td>
-                        <{if in_array($type,array('PLAN','ARRIVAL','RETURN','PURCHASE_IN'))}>
-                        <td><{$value.supplierName}></td>
-                        <{elseif in_array($type,array('ALLOT_IN', 'ALLOT_OUT', 'USE_OUT', 'INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
-                        <td><{$value.depotName}></td>
-                        <{else}>
-                        <td><{$value.customerName}></td>
-                        <{/if}>
-                        <td><{$value.user_name}></td>
-                        <td><{$value.createTime}></td>
-                        <td><{$value.remark}></td>
-                        <td><{$value.totalMoney}></td>
-                        <td><{$value.totalCnt}></td>
-                        <{if in_array($type,array('RETURN','SALE_RETURN','USE_RETURN'))}>
-                        <td><{$value.contactNo}></td>
-                        <{/if}>
-                        <td><{$value.status}></td>
-                        <td><{if $value.status!='审核通过'}><img title="审核通过" class="imgDel" onclick="pass(this)" class="imgDel1" src="../assets/images/pass.png"><{/if}></td>
+                        <td><input data-name="orderId" name="orderId[]" value="<?php echo $_smarty_tpl->tpl_vars['value']->value['orderId'];?>
+" type="checkbox"></td>
+                        <td><a href="purchase_storage_createnew.php?orderId=<?php echo $_smarty_tpl->tpl_vars['value']->value['orderId'];?>
+"><?php echo $_smarty_tpl->tpl_vars['value']->value['orderNo'];?>
+</a></td>
+                        <?php if (in_array($_smarty_tpl->tpl_vars['type']->value,array('PLAN','ARRIVAL','RETURN','PURCHASE_IN'))) {?>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['supplierName'];?>
+</td>
+                        <?php } elseif (in_array($_smarty_tpl->tpl_vars['type']->value,array('ALLOT_IN','ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))) {?>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['depotName'];?>
+</td>
+                        <?php } else { ?>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['customerName'];?>
+</td>
+                        <?php }?>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['user_name'];?>
+</td>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['createTime'];?>
+</td>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['remark'];?>
+</td>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['totalMoney'];?>
+</td>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['totalCnt'];?>
+</td>
+                        <?php if (in_array($_smarty_tpl->tpl_vars['type']->value,array('RETURN','SALE_RETURN','USE_RETURN'))) {?>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['contactNo'];?>
+</td>
+                        <?php }?>
+                        <td><?php echo $_smarty_tpl->tpl_vars['value']->value['status'];?>
+</td>
+                        <td><?php if ($_smarty_tpl->tpl_vars['value']->value['status']!='审核通过') {?><img title="审核通过" class="imgDel" onclick="pass(this)" class="imgDel1" src="../assets/images/pass.png"><?php }?></td>
                     </tr>
-                    <{/foreach}>
+                    <?php } ?>
                 </tbody>
             </table>
         </form>
-        <{$page_html}>
+        <?php echo $_smarty_tpl->tpl_vars['page_html']->value;?>
+
     </div>
 </div>
 
 <!---操作的确认层，相当于javascript:confirm函数--->
-<{$osadmin_action_confirm}>
+<?php echo $_smarty_tpl->tpl_vars['osadmin_action_confirm']->value;?>
+
 
 <!-- TPLEND 以下内容不需更改，请保证该TPL页内的标签匹配即可 -->
-<{include file="footer.tpl" }>
+<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 
 
 <script>
@@ -315,4 +382,4 @@
         document.body.removeChild(document.getElementById("alertmsgDiv"));
     }
 
-</script>
+</script><?php }} ?>
