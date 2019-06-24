@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="042a9778-798e-41d6-ba23-c269a0d1a9db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/erp/finance/pay_collect.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/finance/pay_collect.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl" afterDir="false" />
-    </list>
+    <list default="true" id="042a9778-798e-41d6-ba23-c269a0d1a9db" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +116,7 @@
         <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="640">
-              <caret line="48" column="39" lean-forward="true" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
+              <caret line="48" column="39" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -127,8 +124,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="147" column="9" lean-forward="true" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
+            <state relative-caret-position="544">
+              <caret line="144" column="17" lean-forward="true" selection-start-line="144" selection-start-column="17" selection-end-line="144" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -155,7 +152,7 @@
         <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="294">
-              <caret line="218" column="30" lean-forward="true" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
+              <caret line="218" column="30" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -559,12 +556,12 @@
       <workItem from="1560835116171" duration="3198000" />
       <workItem from="1560991243033" duration="10980000" />
       <workItem from="1561174245131" duration="4858000" />
-      <workItem from="1561363436407" duration="4132000" />
+      <workItem from="1561363436407" duration="5033000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1209401000" />
+    <option name="totallyTimeSpent" value="1210302000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="13" y="22" width="1890" height="974" extended-state="0" />
@@ -899,7 +896,7 @@
     <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
-          <caret line="218" column="30" lean-forward="true" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
+          <caret line="218" column="30" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -920,14 +917,14 @@
     <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
-          <caret line="48" column="39" lean-forward="true" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
+          <caret line="48" column="39" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="147" column="9" lean-forward="true" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
+        <state relative-caret-position="544">
+          <caret line="144" column="17" lean-forward="true" selection-start-line="144" selection-start-column="17" selection-end-line="144" selection-end-column="17" />
         </state>
       </provider>
     </entry>
