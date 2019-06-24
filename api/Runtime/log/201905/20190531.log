@@ -1,0 +1,726 @@
+2019-05-31 08:21:48|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:14:45|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:14:45|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:50:00|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:53:18|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:53:39|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:55:51|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:56:59|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:57:09|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:59:13|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:59:24|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 09:59:32|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 22)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 22)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:01:22|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:05:18|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:07:13|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:07:37|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:07:41|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 22)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 22)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:07:42|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 22)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 22)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:16:03|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:17:05|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:19:05|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, 'B08', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, 'B08', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:19:31|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:19:45|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:19:49|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:19:51|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:20:42|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:20:45|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:20:47|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:21:07|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:21:21|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:21:23|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:22:25|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, 'B05', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, 'B05', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:22:36|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:22:41|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:23:02|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, 'B05', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, 'B05', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:23:21|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, 'B05', 50)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, 'B05', 50)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:24:04|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:24:14|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, 'B05', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, 'B05', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:24:20|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:24:23|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:24:24|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:24:25|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:24:45|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 50)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 50)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:25:16|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:25:23|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:30:34|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:30:38|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:39:37|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:39:49|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(65): Model_Goods->getList(0, 0, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 999, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:39:53|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:39:58|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 46)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 46)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:40:01|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 12, '', 46)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 12, '', 46)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:40:18|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:52:47|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:52:48|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:52:49|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:52:54|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '1', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '1', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:52:57|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '1', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '1', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:53:03|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 46)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 46)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:53:50|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 46)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 46)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:53:51|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 46)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 46)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:53:52|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 46)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 46)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:54:24|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 10:54:32|ERROR|Goods_GetList.Go|exception 'PDOException' with message 'Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'jxc.vich_depot_goods.depotId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select g.goodsI...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select g.goodsI...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Goods.php(185): NotORM_Result->queryAll('select g.goodsI...', Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(67): Model_Goods->getList(0, 15, '', 0)
+#4 D:\wamp\www\jxc\api\Version1\Api\Goods\GetList.php(22): Domain_Goods_CURD->getList(1, 15, '', 0)
+#5 [internal function]: Api_Goods_GetList->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 13:12:48|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-05-31 16:23:30|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(159): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}

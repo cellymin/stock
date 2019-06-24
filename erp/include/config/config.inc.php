@@ -14,7 +14,7 @@ define ( 'TEMPLATE_SYSPLUGINS', ADMIN_BASE_LIB . 'Smarty/sysplugins/' );
 define ( 'TEMPLATE_CONFIGS', ADMIN_BASE . '/config/' );
 define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
-define ( 'VERSION' ,'1.3.1');
+define ( 'VERSION' ,'1.4.0');
 define ( 'REVIEW' ,'1');
 
 

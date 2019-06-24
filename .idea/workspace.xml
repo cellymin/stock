@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="042a9778-798e-41d6-ba23-c269a0d1a9db" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Public/upload/20181205/0ea2b6351566a3e9ae7bc7a08412ad79.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Public/upload/20181205/48280be3bcf3b30cef3301262a150a49.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Runtime/log/201712/20171219.log" beforeDir="false" afterPath="$PROJECT_DIR$/api/Runtime/log/201712/20171219.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/DepotSub/CURD.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/DepotSub/CURD.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/Reviewer/Options.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/Reviewer/Options.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Version1/Model/DepotSub.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Model/DepotSub.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/Version1/Model/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Model/Goods.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/charts/purchase.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/charts/purchase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/finance/pay_collect.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/finance/pay_collect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/class/User.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/class/User.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/class/erp/Report.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/class/erp/Report.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/config/config.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/config/config.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/chart3.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/chart3.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/chart5.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/chart5.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/purchase.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/purchase.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/return.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/return.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/footer.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/footer.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/header.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/header.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/index.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/index.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/order/details.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/order/details.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/order/list.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/order/list.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/purchase/purchase_play1.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/storage/purchase_storage_create.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/storage/purchase_storage_create.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/panel/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/panel/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/purchase/export_invoice.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/storage/goods_choose.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/storage/ip_to_review.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/storage/ip_to_review.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/storage/oy_to_review.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/storage/oy_to_review.php" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1943447150">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="79" />
+          <entry key="project.open.time.0" value="23" />
+          <entry key="project.open.time.1" value="10" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.14" value="3" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.16" value="3" />
+          <entry key="project.open.time.2" value="3" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.3" value="3" />
+          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="6" />
+          <entry key="project.open.time.7" value="23" />
+          <entry key="project.open.time.8" value="10" />
+          <entry key="project.open.time.9" value="7" />
+          <entry key="project.opened" value="102" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="1" />
+          <entry key="js" value="30" />
+          <entry key="log" value="1" />
+          <entry key="php" value="847" />
+          <entry key="rnc" value="1" />
+          <entry key="tpl" value="203" />
+          <entry key="ts" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="1" />
+          <entry key="JavaScript" value="30" />
+          <entry key="PHP" value="847" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="RNG Compact" value="1" />
+          <entry key="Smarty" value="203" />
+          <entry key="TypeScript" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="2" />
+          <entry key="js" value="836" />
+          <entry key="php" value="26874" />
+          <entry key="tpl" value="22283" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="1" />
+          <entry key="JavaScript" value="836" />
+          <entry key="PHP" value="26862" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="SQL" value="11" />
+          <entry key="Smarty" value="22283" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erp/include/config/config.inc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erp/finance/pay_order.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="739">
+              <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erp/finance/pay_invoice.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="66" column="40" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_order.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-450" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_collect.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="81" column="71" selection-start-line="81" selection-start-column="65" selection-end-line="81" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="40" selection-start-line="40" selection-start-column="2" selection-end-line="41" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Get.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="394">
+              <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="569">
+              <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="218" column="30" lean-forward="true" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_invoice.tpl">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>disabled</find>
+      <find>plan</find>
+      <find>Order_Get</find>
+      <find>名称</find>
+      <find>jquery.table2excel.js</find>
+      <find>jquery.min.js</find>
+      <find>export</find>
+      <find>PHPExcel</find>
+      <find>oorder</find>
+      <find>jquery-3.2.1.min.js</find>
+      <find>PLAN</find>
+      <find>avoid</find>
+      <find>printnone</find>
+      <find>export_head</find>
+      <find>foreach</find>
+      <find>export_header_new</find>
+      <find>totalall</find>
+      <find>5</find>
+      <find>Company_Options</find>
+      <find>toggle</find>
+      <find>breadcrumb</find>
+      <find>加入快捷菜单</find>
+      <find>page-title</find>
+      <find>loadData</find>
+      <find>Supplier_Options</find>
+      <find>version</find>
+      <find>Invoice_Collect</find>
+      <find>Invoice_Get</find>
+      <find>lionid</find>
+      <find>lion</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>selectDivG</replace>
+      <replace>selectssssG</replace>
+      <replace>selectSpanG</replace>
+      <replace>gNames</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>D:\WWW\stock\erp\include\lib</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/api/Version1/Domain/Order/List.php" />
+        <option value="$PROJECT_DIR$/erp/storage/purchase_storage_new.php" />
+        <option value="$PROJECT_DIR$/erp/storage/using_deliver_createnew.php" />
+        <option value="$PROJECT_DIR$/erp/storage/purchase_return.php" />
+        <option value="$PROJECT_DIR$/erp/assets/js/extend.js" />
+        <option value="$PROJECT_DIR$/erp/sys/goods_add.php" />
+        <option value="$PROJECT_DIR$/erp/sys/goods_modify.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Goods/Update.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Supplier/Insert.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Supplier/Update.php" />
+        <option value="$PROJECT_DIR$/erp/sys/suppliers_add.php" />
+        <option value="$PROJECT_DIR$/erp/sys/suppliers_modify.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Order/Save.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Model/MSettingDepot.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Domain/Message/Msg.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Domain/Order/Save.php" />
+        <option value="$PROJECT_DIR$/erp/storage/oy_to_review.php" />
+        <option value="$PROJECT_DIR$/erp/purchase/purchase_play.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Depot/InputDe.php" />
+        <option value="$PROJECT_DIR$/erp/storage/purchase_storage_createnew.php" />
+        <option value="$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl" />
+        <option value="$PROJECT_DIR$/api/Version1/Domain/Goods/CURD.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Goods/GetList.php" />
+        <option value="$PROJECT_DIR$/erp/sys/goods.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Model/Goods.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Model/OrderGoods.php" />
+        <option value="$PROJECT_DIR$/erp/assets/js/other.js" />
+        <option value="$PROJECT_DIR$/erp/include/template/storage/purchase_storage_create.tpl" />
+        <option value="$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl" />
+        <option value="$PROJECT_DIR$/erp/purchase/plan_order.php" />
+        <option value="$PROJECT_DIR$/erp/purchase/plan_order_details.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/DepotSub/GetListInfo.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Model/DepotSub.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Domain/DepotSub/CURD.php" />
+        <option value="$PROJECT_DIR$/erp/include/class/erp/Report.class.php" />
+        <option value="$PROJECT_DIR$/erp/charts/purchase.php" />
+        <option value="$PROJECT_DIR$/erp/include/template/navibar.tpl" />
+        <option value="$PROJECT_DIR$/erp/include/template/header.tpl" />
+        <option value="$PROJECT_DIR$/erp/include/template/charts/purchase.tpl" />
+        <option value="$PROJECT_DIR$/erp/charts/return.php" />
+        <option value="$PROJECT_DIR$/erp/include/template/charts/return.tpl" />
+        <option value="$PROJECT_DIR$/erp/include/template/order/details.tpl" />
+        <option value="$PROJECT_DIR$/erp/include/template/order/list.tpl" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Supplier/Options.php" />
+        <option value="$PROJECT_DIR$/erp/finance/pay_order.php" />
+        <option value="$PROJECT_DIR$/erp/include/config/config.inc.php" />
+        <option value="$PROJECT_DIR$/api/Config/dbs.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Api/Invoice/Get.php" />
+        <option value="$PROJECT_DIR$/erp/finance/pay_collect.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="13" />
+    <option name="y" value="22" />
+    <option name="width" value="1890" />
+    <option name="height" value="974" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="Config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="Version1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="Version1" type="462c0819:PsiDirectoryNode" />
+              <item name="Api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="Version1" type="462c0819:PsiDirectoryNode" />
+              <item name="Api" type="462c0819:PsiDirectoryNode" />
+              <item name="Invoice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="erp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="erp" type="462c0819:PsiDirectoryNode" />
+              <item name="finance" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="erp" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="erp" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="erp" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="finance" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/WWW/stock/erp/assets/js/searchSelectNew.js" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WWW\stock\api\Version1\Api\DepotSub" />
+      <recent name="D:\WWW\stock\erp\include\template\purchase" />
+      <recent name="D:\WWW\stock\api\Version1\Api\Depot" />
+      <recent name="D:\WWW\stock\erp\include\template\storage" />
+      <recent name="D:\WWW\stock\erp\storage" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="042a9778-798e-41d6-ba23-c269a0d1a9db" name="Default Changelist" comment="" />
+      <created>1540517567996</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1540517567996</updated>
+      <workItem from="1540517569408" duration="23570000" />
+      <workItem from="1540601681541" duration="2513000" />
+      <workItem from="1540773555661" duration="29014000" />
+      <workItem from="1540860338638" duration="25155000" />
+      <workItem from="1540950604281" duration="11556000" />
+      <workItem from="1541039238793" duration="5235000" />
+      <workItem from="1541119188960" duration="969000" />
+      <workItem from="1541154514412" duration="280000" />
+      <workItem from="1541637722714" duration="993000" />
+      <workItem from="1541638734379" duration="14000" />
+      <workItem from="1542077142696" duration="1778000" />
+      <workItem from="1542099937058" duration="284000" />
+      <workItem from="1542108373420" duration="2144000" />
+      <workItem from="1542156166722" duration="976000" />
+      <workItem from="1542176793454" duration="6022000" />
+      <workItem from="1542589355894" duration="14665000" />
+      <workItem from="1542617724804" duration="4203000" />
+      <workItem from="1542673829745" duration="9713000" />
+      <workItem from="1542699486905" duration="74463000" />
+      <workItem from="1542933496841" duration="25035000" />
+      <workItem from="1543192602132" duration="28479000" />
+      <workItem from="1543278687135" duration="28074000" />
+      <workItem from="1543364981957" duration="20804000" />
+      <workItem from="1543451885286" duration="27913000" />
+      <workItem from="1543539660902" duration="22038000" />
+      <workItem from="1543798404406" duration="97490000" />
+      <workItem from="1544142866742" duration="8793000" />
+      <workItem from="1544402699187" duration="92261000" />
+      <workItem from="1544766140436" duration="37282000" />
+      <workItem from="1544867525250" duration="683000" />
+      <workItem from="1545010374608" duration="74128000" />
+      <workItem from="1545357386883" duration="22103000" />
+      <workItem from="1545612625902" duration="24406000" />
+      <workItem from="1545697906140" duration="26532000" />
+      <workItem from="1545784759489" duration="25453000" />
+      <workItem from="1545870702558" duration="23674000" />
+      <workItem from="1545957247555" duration="24282000" />
+      <workItem from="1546043818250" duration="17203000" />
+      <workItem from="1546389295994" duration="26386000" />
+      <workItem from="1546429024447" duration="1532000" />
+      <workItem from="1546475921531" duration="31033000" />
+      <workItem from="1546562172303" duration="7065000" />
+      <workItem from="1546583361851" duration="10793000" />
+      <workItem from="1546823660954" duration="25721000" />
+      <workItem from="1546908001357" duration="26078000" />
+      <workItem from="1546995646363" duration="6696000" />
+      <workItem from="1547080652458" duration="9170000" />
+      <workItem from="1547167579617" duration="2580000" />
+      <workItem from="1547176207640" duration="7845000" />
+      <workItem from="1547686713644" duration="8589000" />
+      <workItem from="1547713213857" duration="9542000" />
+      <workItem from="1547771324984" duration="15618000" />
+      <workItem from="1548030707929" duration="20980000" />
+      <workItem from="1548061287922" duration="29000" />
+      <workItem from="1548120040996" duration="21829000" />
+      <workItem from="1548204929792" duration="16899000" />
+      <workItem from="1548228031336" duration="11160000" />
+      <workItem from="1548290322236" duration="22373000" />
+      <workItem from="1548751463542" duration="154000" />
+      <workItem from="1548814607797" duration="1565000" />
+      <workItem from="1550105484238" duration="15819000" />
+      <workItem from="1550192207708" duration="1852000" />
+      <workItem from="1550277636444" duration="22275000" />
+      <workItem from="1550363750446" duration="41148000" />
+      <workItem from="1550537055538" duration="19584000" />
+      <workItem from="1550623443738" duration="24804000" />
+      <workItem from="1550709319042" duration="12522000" />
+      <workItem from="1550797341381" duration="13623000" />
+      <workItem from="1550969588695" duration="19834000" />
+      <workItem from="1551055633581" duration="25011000" />
+      <workItem from="1551141545828" duration="24245000" />
+      <workItem from="1551228093461" duration="25267000" />
+      <workItem from="1551314575272" duration="20165000" />
+      <workItem from="1551400999245" duration="21198000" />
+      <workItem from="1551488773448" duration="22674000" />
+      <workItem from="1551659511317" duration="10359000" />
+      <workItem from="1551832718712" duration="19427000" />
+      <workItem from="1552005194976" duration="22831000" />
+      <workItem from="1552092178000" duration="825000" />
+      <workItem from="1552177880422" duration="580000" />
+      <workItem from="1552264493980" duration="18266000" />
+      <workItem from="1552357308128" duration="18240000" />
+      <workItem from="1552393177175" duration="603000" />
+      <workItem from="1552436961559" duration="21955000" />
+      <workItem from="1552523846760" duration="5991000" />
+      <workItem from="1552610394922" duration="7785000" />
+      <workItem from="1552869771646" duration="32034000" />
+      <workItem from="1552955381575" duration="25698000" />
+      <workItem from="1553042745759" duration="28769000" />
+      <workItem from="1553129219205" duration="29350000" />
+      <workItem from="1553169220407" duration="1016000" />
+      <workItem from="1553215186580" duration="14745000" />
+      <workItem from="1553561475943" duration="6212000" />
+      <workItem from="1553648912021" duration="18410000" />
+      <workItem from="1554338287904" duration="13012000" />
+      <workItem from="1554683547602" duration="726000" />
+      <workItem from="1554684579712" duration="32000" />
+      <workItem from="1554684623041" duration="1835000" />
+      <workItem from="1554717247315" duration="812000" />
+      <workItem from="1554775862879" duration="16024000" />
+      <workItem from="1554856744808" duration="7999000" />
+      <workItem from="1554942941322" duration="24947000" />
+      <workItem from="1555028942236" duration="20219000" />
+      <workItem from="1555116895726" duration="11035000" />
+      <workItem from="1555289475055" duration="6347000" />
+      <workItem from="1555310684743" duration="7783000" />
+      <workItem from="1555377387362" duration="16173000" />
+      <workItem from="1555462939374" duration="18464000" />
+      <workItem from="1555547405546" duration="22892000" />
+      <workItem from="1555634905157" duration="14873000" />
+      <workItem from="1555744715823" duration="623000" />
+      <workItem from="1555979535467" duration="32036000" />
+      <workItem from="1556074637075" duration="19737000" />
+      <workItem from="1556152234385" duration="24451000" />
+      <workItem from="1556238839541" duration="28817000" />
+      <workItem from="1556413127419" duration="25029000" />
+      <workItem from="1556498284241" duration="23990000" />
+      <workItem from="1556584314332" duration="14874000" />
+      <workItem from="1557016933264" duration="1217000" />
+      <workItem from="1557021390566" duration="698000" />
+      <workItem from="1557039532140" duration="6960000" />
+      <workItem from="1557050609688" duration="109000" />
+      <workItem from="1557105040027" duration="24241000" />
+      <workItem from="1557189420148" duration="20521000" />
+      <workItem from="1557275713159" duration="12805000" />
+      <workItem from="1557383830716" duration="607000" />
+      <workItem from="1557456104829" duration="11343000" />
+      <workItem from="1557534133066" duration="1872000" />
+      <workItem from="1557724263537" duration="12692000" />
+      <workItem from="1557794682700" duration="24676000" />
+      <workItem from="1557880482571" duration="6587000" />
+      <workItem from="1557967364508" duration="14002000" />
+      <workItem from="1558069789738" duration="5630000" />
+      <workItem from="1558318996168" duration="2740000" />
+      <workItem from="1558922028724" duration="4372000" />
+      <workItem from="1558940810750" duration="7722000" />
+      <workItem from="1559005038564" duration="1795000" />
+      <workItem from="1559007927916" duration="1568000" />
+      <workItem from="1559023651519" duration="30000" />
+      <workItem from="1559025911569" duration="128000" />
+      <workItem from="1559027795624" duration="1211000" />
+      <workItem from="1559030650468" duration="116000" />
+      <workItem from="1559030866126" duration="2168000" />
+      <workItem from="1559093349578" duration="639000" />
+      <workItem from="1559263630546" duration="7086000" />
+      <workItem from="1559280485812" duration="36000" />
+      <workItem from="1559351741611" duration="7874000" />
+      <workItem from="1559544635869" duration="168000" />
+      <workItem from="1559609885044" duration="11052000" />
+      <workItem from="1559640042791" duration="1964000" />
+      <workItem from="1559698105146" duration="323000" />
+      <workItem from="1560126518683" duration="6754000" />
+      <workItem from="1560563055592" duration="2420000" />
+      <workItem from="1560826409542" duration="811000" />
+      <workItem from="1560835116171" duration="3198000" />
+      <workItem from="1560991243033" duration="10980000" />
+      <workItem from="1561174245131" duration="4858000" />
+      <workItem from="1561363436407" duration="1798000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1207067000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="13" y="22" width="1890" height="974" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49721295" visible="true" weight="0.20983607" />
+      <window_info id="Structure" order="1" sideWeight="0.5022272" side_tool="true" weight="0.17697228" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32998884" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32889965" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32638037" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="12" weight="0.32887402" />
+      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Order/Get.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Order/Get.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="925">
+          <caret line="37" column="46" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/purchase/plan_order_details.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Model/OrderGoods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="39" column="49" selection-start-line="39" selection-start-column="49" selection-end-line="39" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/purchase/plan_order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/purchase/purchase_play.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="30" column="8" selection-start-line="30" selection-end-line="30" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/storage/purchase_storage_create.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3325">
+          <caret line="133" selection-start-line="133" selection-end-line="133" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/PhalApi/PhalApi/Helper/api_desc_tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Model/Goods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7025">
+          <caret line="281" column="23" selection-start-line="281" selection-start-column="23" selection-end-line="281" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/assets/js/other.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="100" column="16" selection-start-line="100" selection-start-column="15" selection-end-line="100" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/assets/js/extend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1175">
+          <caret line="47" column="64" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/DepotSub/GetList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/DepotSub/Options.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/DepotSub/Update.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/DepotSub/Insert.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/DepotSub/Get.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Company/Options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/charts/purchase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Company/Options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Model/Company.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1975">
+          <caret line="79" column="20" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/DepotSub/Delete.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/class/erp/Report.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/navibar.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="39" column="34" lean-forward="true" selection-end-line="60" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/header.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/panel/compiled/c7e463def704def8098233e2bcf1794656df4e88.file.sidebar.tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="105" column="64" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="101" column="122" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/charts/purchase.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2700">
+          <caret line="108" column="5" selection-start-line="101" selection-start-column="2" selection-end-line="108" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/charts/return.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/order/details.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="51" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/charts/return.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/sidebar.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1225">
+          <caret line="49" column="82" selection-start-line="49" selection-start-column="53" selection-end-line="49" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/DepotSub/GetListInfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Domain/DepotSub/CURD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1650">
+          <caret line="66" column="23" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/order/list.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="28" column="81" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Supplier/Options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Supplier/Options.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Model/DepotGoods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2400">
+          <caret line="96" column="20" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Model/DepotSub.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2175">
+          <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="91" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Config/dbs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="27" column="31" lean-forward="true" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/sys/goods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/config/config.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/finance/pay_order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="739">
+          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/finance/pay_invoice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="66" column="40" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_invoice.tpl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_order.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-450" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_collect.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="81" column="71" selection-start-line="81" selection-start-column="65" selection-end-line="81" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="218" column="30" lean-forward="true" selection-start-line="218" selection-start-column="30" selection-end-line="218" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Get.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="40" selection-start-line="40" selection-start-column="2" selection-end-line="41" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

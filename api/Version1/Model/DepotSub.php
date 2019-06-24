@@ -81,6 +81,21 @@ class Model_DepotSub extends PhalApi_Model_NotORM
             ->fetchAll();
     }
 
+
+    public function getListAll()
+    {
+        $where = 'flag=1 ';
+//        $user = DI()->get('userInfo');
+//        if ($user['userGroup'] != 1 && $user['selectAll'] != 1) {
+//            $where .= ' and companyId=? ';
+//            $param[] = $user['companyId'];
+//        }
+        return DI()->notorm->depot_subs
+            ->select($this->getFields())
+            ->where($where)
+            ->fetchAll();
+    }
+
     public function getByIdAndDepotId($depotId, $depotSubId)
     {
         return DI()->notorm->depot_subs

@@ -1,0 +1,407 @@
+2019-01-23 13:04:29|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 15:04:27|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 15:42:25|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:17|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:17|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:18|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:18|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:20|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:20|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:23|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:23|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:25|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:25|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:28|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:28|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:30|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:30|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:33|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:33|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:35|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:35|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:38|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:38|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:40|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:40|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:43|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:43|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:46|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:46|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:48|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:48|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:51|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:51|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:53|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:53|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:56|ERROR|Invoice_Get.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT id,ids,a...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(905): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(128): NotORM_Result->fetchRows()
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\Get.php(41): Domain_Invoice_CURD->getListInfo(Array)
+#5 [internal function]: Api_Invoice_Get->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-23 16:32:56|ERROR|Invoice_GetInfo.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and og.flag=1' at line 2' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(931): NotORM_Result->query('select v.invoic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(918): NotORM_Result->queryRows('select v.invoic...', Array)
+#2 D:\wamp\www\jxc\api\Version1\Model\Invoice.php(144): NotORM_Result->queryAll('select v.invoic...')
+#3 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(273): Model_Invoice->getIndoById(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Invoice\GetInfo.php(35): Domain_Invoice_CURD->getIndoById(Array)
+#5 [internal function]: Api_Invoice_GetInfo->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}

@@ -1,0 +1,176 @@
+2019-01-24 09:43:22|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:03:54|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(134): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo('1219', '16')
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget('1219', '16')
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:04:02|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(134): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo('1047', '16')
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget('1047', '16')
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:04:16|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(134): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo('1031', '16')
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget('1031', '16')
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:15:33|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1043, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1043, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:16:26|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1243, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1243, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:16:41|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1243, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1243, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:18:32|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1043, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1043, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:19:33|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1044, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1044, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:20:32|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1063, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1063, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:22:55|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1031, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1031, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:26:47|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(209, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(209, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:27:27|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1157, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1157, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:29:58|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1327, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1327, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:35:00|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1184, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1184, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2019-01-24 10:36:21|ERROR|app_outdepot.getinfo|exception 'PDOException' with message 'In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'jxc.vich_depot_goods.goodsPrice'; this is incompatible with sql_mode=only_full_group_by' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT goodsPri...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(896): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\DepotGoods.php(135): NotORM_Result->fetchAll()
+#3 D:\wamp\www\jxc\api\Version1\Domain\DepotGoods\CURD.php(74): Model_DepotGoods->getInfo(1518, 16)
+#4 D:\wamp\www\jxc\api\Version1\Api\app\OutDepot.php(72): Domain_DepotGoods_CURD->appget(1518, 16)
+#5 [internal function]: Api_App_OutDepot->getInfo()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}

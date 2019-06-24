@@ -93,10 +93,10 @@
             </table>
             <table style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none;">
                 <tr class="export" >
-                    <td style="height: 25px;">申请人：</td>  <td>__________ </td>
-                    <td style="height: 25px;">审核人：</td>  <td>__________  </td>
-                    <td style="height: 25px;">审批人：</td> <td>__________  </td>
-                    <td style="height: 25px;">审批日期：</td> <td> ________________</td>
+                    <td style="height: 25px;">申请人：</td>  <td class="line_pri">__________ </td>
+                    <td style="height: 25px;">审核人：</td>  <td  class="line_pri">__________  </td>
+                    <td style="height: 25px;">审批人：</td> <td  class="line_pri">__________  </td>
+                    <td style="height: 25px;">审批日期：</td> <td  class="line_pri"> ________________</td>
                     <td style="height: 25px;">打印日期：</td> <td><{$nowdate}></td>
                 </tr>
                 <tr class="export"  style="border-top:0 none;border-left:0 none;border-right: 0 none;border-bottom:0 none">
@@ -132,6 +132,7 @@
     function beforeExport(e) {
         $('.export_head').css('display','')
         $('.export').css('display','')
+        $('.line_pri').html('');
         var table = $('#data_list').html();
         $('input:checkbox:not(:checked)').each(function(i){
             $(this).parent().parent().parent().remove();
