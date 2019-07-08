@@ -22,6 +22,7 @@
     		<option value="vich_orders_ip">采购</option>
     		<option value="vich_orders_id">调库</option>
     		<option value="vich_orders_iq">其他</option>
+            <option value="vich_orders_ipth">采购退货</option>
     	</select>
     </div>
     <div style="float:left;margin-right:5px">

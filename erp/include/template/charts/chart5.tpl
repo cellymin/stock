@@ -21,9 +21,11 @@
     	<label>类型</label>
     	<select name="table" id="table" style="width:80px;">
     		<option value="vich_orders_oy">领用</option>
-    		<option value="vich_orders_so">销售</option>vich_orders_oq
+    		<option value="vich_orders_so">销售</option>
     		<option value="vich_orders_od">调库</option>
     		<option value="vich_orders_oq">其他</option>
+			<option value="vich_orders_soth">销售退货</option>
+			<option value="vich_orders_oyth">领用退货</option>
     	</select>
     </div>
     <div style="float:left;margin-right:5px">
