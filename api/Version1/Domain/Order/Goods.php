@@ -22,7 +22,7 @@ class Domain_Order_Goods
 
     public function chk($action = 'add')
     {
-        if ($action == 'add' && $this->type != 'INVENTORY' && $this->goodsCnt < 1) {
+        if ($action == 'add' && $this->type != 'INVENTORY' && $this->goodsCnt <=0) {
             throw new PhalApi_Exception_BadRequest('数量不能为0', 1);
         }
         if (isset($this->arrivalTime)) {
