@@ -121,7 +121,7 @@ class Domain_Invoice_CURD
      * 获取含税价总价
      *
      */
-    public function getPriceHan($invoiceId){
+    public function getPriceHan($invoiceId,$taxrate){
         if(!empty($invoiceId)){
             if(is_array($invoiceId)){
                $idsstr = implode(',',$invoiceId);
@@ -134,14 +134,25 @@ class Domain_Invoice_CURD
                    return false;
                }
                $totalpri = 0;
+               $nopri = 0 ;
                foreach ($res as $k){
                    if($k['usecostpri']>0){
-                       $totalpri += $k['goodsCnt'] * $k['usecostpri'];
+                       if($k['taxrateself']>0 && $k['taxrateself']!=$taxrate){
+                           $totalpri += ($k['goodsCnt'] * $k['usecostpri']) * (1+floatval($k['taxrateself']));
+                       }else{
+                           $totalpri += ($k['goodsCnt'] * $k['usecostpri']) * (1+floatval($taxrate));
+                       }
+                       $nopri += $k['goodsCnt'] * $k['usecostpri'];
                    }else{
-                       $totalpri += $k['goodsCnt'] * $k['goodsPrice'];
+                       if($k['taxrateself']>0 && $k['taxrateself']!=$taxrate){
+                           $totalpri += ($k['goodsCnt'] * $k['goodsPrice']) * (1+floatval($k['taxrateself']));
+                       }else{
+                           $totalpri += ($k['goodsCnt'] * $k['goodsPrice']) * (1+floatval($taxrate));
+                       }
+                       $nopri += $k['goodsCnt'] * $k['goodsPrice'];
                    }
                }
-               return $totalpri;
+               return array('totalpri'=>$totalpri,'nopri'=>$nopri);
             }
         }
 
@@ -156,7 +167,7 @@ class Domain_Invoice_CURD
         $invoice = array();
         $invoiceids = array();
         foreach ($invoiceId as $k => $v) {
-            $res = DI()->notorm->invoices_adjust->select('id,ids,adjustpri,trueInvoiceNo')->where("FIND_IN_SET($v,ids)")->fetchRows();
+            $res = DI()->notorm->invoices_adjust->select('id,ids,adjustpri,trueInvoiceNo,label')->where("FIND_IN_SET($v,ids)")->fetchRows();
             if (!empty($res)) {
                 if( !empty($invoice[0])){
                     if(!in_array($res[0]['id'],$invoice[0]) ){
@@ -169,13 +180,15 @@ class Domain_Invoice_CURD
                 $invoiceids[] = $res[0]['ids'];
                 $invoicepri[] = $res[0]['adjustpri'];
                 $trueInvoiceNo[] = $res[0]['trueInvoiceNo'];
+                $label[] = intval($res[0]['label']);
             }
             unset($res);
         }
         if (empty($invoice)) {
             return $invoice;
         }
-        $invoice = array_unique($invoice);
+        $label =array_unique($label);
+        $invoice = array_unique($invoice[0]);
         $invoiceids = array_unique($invoiceids);
         $invoicepri = array_unique($invoicepri);
         $trueInvoiceNo = array_unique($trueInvoiceNo);
@@ -197,6 +210,11 @@ class Domain_Invoice_CURD
             $invoice[3] = $trueInvoiceNo[0]; //调整金额
         }else if(!empty($trueInvoiceNo) && !$type){
             $invoice['trueInvoiceNo'] = $trueInvoiceNo;
+        }
+        if (!empty($label) && $type) {
+            $invoice[4] = $label; //调整金额
+        }else if(!empty($label) && !$type){
+            $invoice['$label'] = $label;
         }
         return $invoice;
     }
@@ -234,6 +252,7 @@ class Domain_Invoice_CURD
         $adj = floatval(substr(trim($data['adjustamount']), 1)); //操作的金额
         $trueadj = $data['adjustamount'];
         $trueInvoiceNo = $data['trueInvoiceNo'];
+        $label = $data['label'];
         // $data['adjustamount'] = '';
         // $data['trueInvoiceNo'] = '';
 
@@ -259,6 +278,7 @@ class Domain_Invoice_CURD
                 'ids' => implode(',', $invoiceIds),
                 'adjustpri' => trim($trueadj),
                 'trueInvoiceNo' => trim($trueInvoiceNo),
+                'label' => intval($label),
                 'flag' => 1
             );
             $model = new Model_Invoice();

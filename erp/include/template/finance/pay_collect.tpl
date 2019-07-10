@@ -21,12 +21,24 @@
                 <td colspan="3"> <b><input type="text" name="trueInvoiceNo" style="font-size: 14px;" value="<{if $lionidinfo[3]!=''}><{$lionidinfo[3]}><{else}><{$list.trueInvoiceNo}><{/if}>" /></b></td>
             </tr>
             <tr>
+                <td colspan="1">不含税金额</td>
+                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b class="nototalpri"><{sprintf('%.2f',$list.nopritotal)}></b></a></td>
+            </tr>
+            <tr>
                 <td colspan="1">含税金额</td>
-                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b><{sprintf('%.2f',$list.pritotal)}></b></a></td>
+                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b class="totalpri"><{sprintf('%.2f',$list.pritotal)}></b></a></td>
             </tr>
             <tr>
                 <td colspan="1">调整金额</td>
-                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" value="<{if $lionidinfo[2]!=''}><{$lionidinfo[2]}><{else}>+<{sprintf('%.2f',$list.adjustamount)}><{/if}>" /></b></td>
+                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" onkeyup="changetiao()" value="<{if $lionidinfo[2]!=''}><{$lionidinfo[2]}><{else}>+<{sprintf('%.2f',$list.adjustamount)}><{/if}>" /></b></td>
+            </tr>
+            <tr>
+                <td colspan="1">调整依据<{$lionidinfo[4][0]}></td>
+                <td colspan="3"><select name="label" class="tiaolabel" onchange="changetiao()" ><option <{if $lionidinfo[4][0]==1}> selected <{/if}> value="1">含税价</option><option <{if $lionidinfo[4][0]==2 || !isset($lionidinfo[4][0])}> selected <{/if}> value="2">不含税价</option></select></td>
+            </tr>
+            <tr>
+                <td colspan="1">发票金额</td>
+                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <input class="tzpri" type="text" value="" onkeyup="changetz(this)" /></a></td>
             </tr>
             <tr>
                 <td>财务类型</td>
@@ -88,6 +100,9 @@
     </form>
 </div>
 <script>
+    $(function(){
+        changetiao();
+    })
     $("#upload").change(function () {
         var file = this.files[0];
         if (file.size > 5 * 1024 * 1024) {
@@ -122,7 +137,6 @@
                 layer.msg(data.msg, {time:1500,icon: icon});
             },
             complete: function (e) {
-
             },
             error: function (xhr, type) {
                 layer.msg('上传超时啦，再试试', {time:1500,icon: 5});
@@ -136,6 +150,61 @@
             ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
         });
     });
+    function changetiao() {
+        //调整标识
+        var label = parseInt($('.tiaolabel').val());
+        //调整
+        var tpri = $(" input[ name='adjustamount' ] ").val()
+        var nopri = parseFloat($('.nototalpri').text());
+        var topri = parseFloat($('.totalpri').text());
+        if(label==1){
+            //含税价
+            if(tpri.indexOf("+")>-1){
+                $('.tzpri').val((topri + parseFloat(tpri)).toFixed(2));
+            } else if (tpri.indexOf("-") > -1) {
+                $('.tzpri').val((topri - parseFloat(tpri)).toFixed(2));
+            }
+        }else if(label==2){
+            //不含税价
+            if(tpri.indexOf("+")>-1){
+                //含有加号标识
+                $('.tzpri').val((nopri + parseFloat(tpri)).toFixed(2));
+            } else if (tpri.indexOf("-") > -1) {
+                //含有减号标识
+                $('.tzpri').val((nopri - parseFloat(tpri)).toFixed(2));
+            }
+        }
+    }
+    function changetz(e) {
+        var tzpri = parseFloat($(e).val());
+        //调整依据
+        var label = parseInt($('.tiaolabel').val());
+        //调整金额
+        var tpri = $(" input[ name='adjustamount' ] ").val()
+        //不含税价
+        var nopri = parseFloat($('.nototalpri').text());
+        //含税价
+        var topri = parseFloat($('.totalpri').text());
+        if(label==1){
+            //含税价
+            var tp = parseFloat(tzpri-topri).toFixed(2);
+            if(tp.indexOf("-")==-1){
+                tp = '+'+tp;
+                $(" input[ name='adjustamount' ] ").val(tp)
+            }else{
+                $(" input[ name='adjustamount' ] ").val(tp)
+            }
+        }else if(label==2){
+            //不含税价
+            var tp = parseFloat(tzpri-nopri).toFixed(2);
+            if(tp.indexOf("-")==-1){
+                tp = '+'+tp;
+                $(" input[ name='adjustamount' ] ").val(tp)
+            }else{
+                $(" input[ name='adjustamount' ] ").val(tp)
+            }
+        }
 
+    }
 </script>
 

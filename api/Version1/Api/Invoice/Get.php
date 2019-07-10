@@ -78,11 +78,9 @@ class Api_Invoice_Get extends PhalApi_Api
 
             if ($this->action == 2) {
                 $list = $domain->get($this->invoiceId, 1);
-                $pritotal = $domain->getPriceHan($this->invoiceId);
-                if($list['taxrate'] && $pritotal){
-                    $pritotal = $pritotal * (1+floatval($list['taxrate']));
-                    $list['pritotal'] = $pritotal;
-                }
+                $pritotal = $domain->getPriceHan($this->invoiceId,$list['taxrate']);
+                $list['nopritotal'] = $pritotal['nopri'];
+                $list['pritotal'] = $pritotal['totalpri'];
             } else {
                 $list = $domain->get($this->invoiceId);
             }

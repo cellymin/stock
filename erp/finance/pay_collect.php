@@ -1,6 +1,6 @@
 <?php
 include '../include/init.inc.php';
-$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr = $adjustamount = $trueInvoiceNo = $lionid = "";
+$invoiceId = $invoiceImgs = $invoiceStatus = $endTime = $noticeTime = $remark = $nonceStr = $adjustamount = $trueInvoiceNo = $lionid = $label = "";
 extract($_REQUEST, EXTR_IF_EXISTS);
 $list = array();
 if (!empty($invoiceId)) {
@@ -15,12 +15,11 @@ if (!empty($invoiceId)) {
                 'endTime' => $endTime,
                 'noticeTime' => $noticeTime,
                 'remark' => $remark,
+                'label' => $label,
                 'adjustamount' => $adjustamount,
                 'trueInvoiceNo' => $trueInvoiceNo,
                 'lionid' => $lionid ? $lionid : 0,
             ));
-//            var_dump($rs);
-//            die();
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');
@@ -33,15 +32,18 @@ if (!empty($invoiceId)) {
             Common::closeWithMessage('表单已失效', 'error');
         }
     }
-
     $rs = $client->request('Invoice_Get.Go', array(
         'invoiceId' => trim($invoiceId, ','),
         'action' => 2,
     ));
+//    echo '<pre/>';var_dump($rs);die();
+//    echo var_dump($rs['lionid'][4]);die();
+//    echo $rs['lionid'][4][0];die();
     if ($rs['lionid']) {
-        $lionid = $rs['lionid'][0];
+        $lionid = $rs['lionid'][0][0];
         Template::assign('lionid', $lionid);
         Template::assign('lionidinfo', $rs['lionid']);
+        Template::assign('label', $rs['lionid'][4][0]);
     }
     if ($client->getRet() == PhalApiClient::RET_OK) {
         $list = $rs['content'];
