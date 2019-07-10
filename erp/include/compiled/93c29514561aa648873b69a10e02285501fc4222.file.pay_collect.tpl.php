@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2019-06-24 16:17:54
+<?php /* Smarty version Smarty-3.1.15, created on 2019-07-10 13:18:50
          compiled from "D:\WWW\stock\erp\include\template\finance\pay_collect.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:52455d108732f2db14-74995438%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:237805d25753a6439f9-14782261%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '93c29514561aa648873b69a10e02285501fc4222' => 
     array (
       0 => 'D:\\WWW\\stock\\erp\\include\\template\\finance\\pay_collect.tpl',
-      1 => 1548230457,
+      1 => 1562726380,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '52455d108732f2db14-74995438',
+  'nocache_hash' => '237805d25753a6439f9-14782261',
   'function' => 
   array (
   ),
@@ -26,9 +26,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5d1087330572d2_60155890',
+  'unifunc' => 'content_5d25753a728e66_45062311',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5d1087330572d2_60155890')) {function content_5d1087330572d2_60155890($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5d25753a728e66_45062311')) {function content_5d25753a728e66_45062311($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
@@ -60,15 +60,29 @@ $_smarty_tpl->tpl_vars['i']->_loop = true;
 <?php }?>" /></b></td>
             </tr>
             <tr>
-                <td colspan="1">合计金额</td>
-                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b><?php echo sprintf('%.2f',$_smarty_tpl->tpl_vars['list']->value['totalMoney']);?>
+                <td colspan="1">不含税金额</td>
+                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b class="nototalpri"><?php echo sprintf('%.2f',$_smarty_tpl->tpl_vars['list']->value['nopritotal']);?>
+</b></a></td>
+            </tr>
+            <tr>
+                <td colspan="1">含税金额</td>
+                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <b class="totalpri"><?php echo sprintf('%.2f',$_smarty_tpl->tpl_vars['list']->value['pritotal']);?>
 </b></a></td>
             </tr>
             <tr>
                 <td colspan="1">调整金额</td>
-                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" value="<?php if ($_smarty_tpl->tpl_vars['lionidinfo']->value[2]!='') {?><?php echo $_smarty_tpl->tpl_vars['lionidinfo']->value[2];?>
+                <td colspan="3"> <b><input type="text" name="adjustamount" style="font-size: 14px;" onkeyup="changetiao()" value="<?php if ($_smarty_tpl->tpl_vars['lionidinfo']->value[2]!='') {?><?php echo $_smarty_tpl->tpl_vars['lionidinfo']->value[2];?>
 <?php } else { ?>+<?php echo sprintf('%.2f',$_smarty_tpl->tpl_vars['list']->value['adjustamount']);?>
 <?php }?>" /></b></td>
+            </tr>
+            <tr>
+                <td colspan="1">调整依据<?php echo $_smarty_tpl->tpl_vars['lionidinfo']->value[4][0];?>
+</td>
+                <td colspan="3"><select name="label" class="tiaolabel" onchange="changetiao()" ><option <?php if ($_smarty_tpl->tpl_vars['lionidinfo']->value[4][0]==1) {?> selected <?php }?> value="1">含税价</option><option <?php if ($_smarty_tpl->tpl_vars['lionidinfo']->value[4][0]==2||!isset($_smarty_tpl->tpl_vars['lionidinfo']->value[4][0])) {?> selected <?php }?> value="2">不含税价</option></select></td>
+            </tr>
+            <tr>
+                <td colspan="1">发票金额</td>
+                <td colspan="3"><a style="color: red;font-size: 14px;">&yen; <input class="tzpri" type="text" value="" onkeyup="changetz(this)" /></a></td>
             </tr>
             <tr>
                 <td>财务类型</td>
@@ -139,6 +153,9 @@ $_smarty_tpl->tpl_vars['i']->_loop = true;
     </form>
 </div>
 <script>
+    $(function(){
+        changetiao();
+    })
     $("#upload").change(function () {
         var file = this.files[0];
         if (file.size > 5 * 1024 * 1024) {
@@ -175,7 +192,6 @@ $_smarty_tpl->tpl_vars['i']->_loop = true;
                 layer.msg(data.msg, {time:1500,icon: icon});
             },
             complete: function (e) {
-
             },
             error: function (xhr, type) {
                 layer.msg('上传超时啦，再试试', {time:1500,icon: 5});
@@ -189,7 +205,62 @@ $_smarty_tpl->tpl_vars['i']->_loop = true;
             ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
         });
     });
+    function changetiao() {
+        //调整标识
+        var label = parseInt($('.tiaolabel').val());
+        //调整
+        var tpri = $(" input[ name='adjustamount' ] ").val()
+        var nopri = parseFloat($('.nototalpri').text());
+        var topri = parseFloat($('.totalpri').text());
+        if(label==1){
+            //含税价
+            if(tpri.indexOf("+")>-1){
+                $('.tzpri').val((topri + parseFloat(tpri)).toFixed(2));
+            } else if (tpri.indexOf("-") > -1) {
+                $('.tzpri').val((topri - parseFloat(tpri)).toFixed(2));
+            }
+        }else if(label==2){
+            //不含税价
+            if(tpri.indexOf("+")>-1){
+                //含有加号标识
+                $('.tzpri').val((nopri + parseFloat(tpri)).toFixed(2));
+            } else if (tpri.indexOf("-") > -1) {
+                //含有减号标识
+                $('.tzpri').val((nopri - parseFloat(tpri)).toFixed(2));
+            }
+        }
+    }
+    function changetz(e) {
+        var tzpri = parseFloat($(e).val());
+        //调整依据
+        var label = parseInt($('.tiaolabel').val());
+        //调整金额
+        var tpri = $(" input[ name='adjustamount' ] ").val()
+        //不含税价
+        var nopri = parseFloat($('.nototalpri').text());
+        //含税价
+        var topri = parseFloat($('.totalpri').text());
+        if(label==1){
+            //含税价
+            var tp = parseFloat(tzpri-topri).toFixed(2);
+            if(tp.indexOf("-")==-1){
+                tp = '+'+tp;
+                $(" input[ name='adjustamount' ] ").val(tp)
+            }else{
+                $(" input[ name='adjustamount' ] ").val(tp)
+            }
+        }else if(label==2){
+            //不含税价
+            var tp = parseFloat(tzpri-nopri).toFixed(2);
+            if(tp.indexOf("-")==-1){
+                tp = '+'+tp;
+                $(" input[ name='adjustamount' ] ").val(tp)
+            }else{
+                $(" input[ name='adjustamount' ] ").val(tp)
+            }
+        }
 
+    }
 </script>
 
 <?php }} ?>

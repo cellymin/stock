@@ -24,6 +24,7 @@
     		<option value="vich_orders_so">销售</option>vich_orders_oq
     		<option value="vich_orders_od">调库</option>
     		<option value="vich_orders_oq">其他</option>
+			<option value="vich_orders_ipth">采购退货</option>
     	</select>
     </div>
     <div style="float:left;margin-right:5px">

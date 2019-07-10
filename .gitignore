@@ -3,3 +3,4 @@ Config/dbs.php
 .idea/
 compiled
 log
+erp/include/compiled/

@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2019-06-24 16:17:21
+<?php /* Smarty version Smarty-3.1.15, created on 2019-07-10 13:18:40
          compiled from "D:\WWW\stock\erp\include\template\footer.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:55875d10871147bc50-54413273%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:247105d257530034271-00140311%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,15 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '55875d10871147bc50-54413273',
+  'nocache_hash' => '247105d257530034271-00140311',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5d10871147f383_83783475',
+  'unifunc' => 'content_5d25753003d3c5_56036964',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5d10871147f383_83783475')) {function content_5d10871147f383_83783475($_smarty_tpl) {?>                    
+<?php if ($_valid && !is_callable('content_5d25753003d3c5_56036964')) {function content_5d25753003d3c5_56036964($_smarty_tpl) {?>                    
 	
 					<footer>
                         <hr>

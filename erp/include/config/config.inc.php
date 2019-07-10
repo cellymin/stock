@@ -30,7 +30,7 @@ $DATABASE_LIST[OSA_DB_ID] = array ( "server"=>'localhost',
     "port"=>'3306',
     "username"=> 'root',
     "password"=>'root',
-    "db_name"=>'jxc0702'
+    "db_name"=>'jxc1'
 
 );
 

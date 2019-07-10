@@ -2,360 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="042a9778-798e-41d6-ba23-c269a0d1a9db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/stock.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201712/20171220.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201712/20171223.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201712/20171227.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201712/20171228.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201712/20171230.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180102.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180103.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180105.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180116.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180117.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180119.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180127.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180130.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201801/20180131.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180201.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180202.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180203.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180205.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180206.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180207.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180208.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180226.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201802/20180227.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201803/20180302.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201803/20180310.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201803/20180313.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201803/20180315.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201803/20180319.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201803/20180320.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201803/20180326.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201803/20180330.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201804/20180428.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180512.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180516.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180518.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180522.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180523.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180524.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180525.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180529.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201805/20180530.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180604.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180605.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180606.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180607.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180608.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180609.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180610.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180615.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180623.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180625.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180626.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201806/20180628.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201807/20180717.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201807/20180720.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201807/20180721.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201807/20180723.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201807/20180726.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201807/20180727.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201807/20180730.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201807/20180731.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180801.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180803.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180815.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180820.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180821.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180823.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180825.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180827.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201808/20180831.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180901.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180904.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180905.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180906.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180907.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180908.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180910.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180911.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180912.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180913.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180914.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180915.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180917.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180918.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180920.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180921.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180922.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180925.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180926.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180927.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201809/20180930.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181008.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181009.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181010.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181011.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181012.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181013.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181015.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181016.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181017.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181018.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181019.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181020.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181022.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181024.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181025.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181029.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181030.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201810/20181031.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181101.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181102.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181103.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181105.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181106.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181107.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181108.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181109.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181110.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181112.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181113.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181114.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181115.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181116.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181119.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181120.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181121.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181122.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181123.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181124.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181126.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181127.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181128.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181129.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201811/20181130.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181201.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181203.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181204.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181205.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181206.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181207.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181208.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181210.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181211.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181212.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181213.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181214.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181215.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181217.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181218.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181219.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181220.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181221.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181222.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181224.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181225.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181226.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181227.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181228.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181229.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201812/20181230.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190102.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190103.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190104.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190105.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190106.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190108.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190109.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190110.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190111.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190112.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190114.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190115.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190116.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190117.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190118.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190119.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190121.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190123.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190124.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190126.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190128.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190129.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190130.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201901/20190131.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190213.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190214.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190215.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190216.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190218.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190219.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190220.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190221.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190222.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190223.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190225.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190226.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190227.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201902/20190228.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190301.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190304.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190305.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190306.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190307.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190308.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190311.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190312.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190313.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190314.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190315.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190316.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190318.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190319.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190320.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190321.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190323.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190326.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190327.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190328.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190329.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201903/20190330.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190401.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190402.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190403.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190404.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190408.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190409.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190410.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190411.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190412.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190413.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190415.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190416.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190417.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190419.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190422.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190424.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190426.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190427.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201904/20190429.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190505.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190506.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190507.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190508.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190509.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190510.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190514.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190515.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190516.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190517.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190520.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190521.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190523.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190524.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190525.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190527.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190528.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190529.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190530.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201905/20190531.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190601.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190603.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190604.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190605.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190606.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190610.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190611.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190612.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190613.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190614.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190615.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190617.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190618.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190619.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190620.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190621.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190622.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Runtime/log/201906/20190624.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Version1/Api/Depot/InputDe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Version1/Api/Depot/UpdateDe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Version1/Api/DepotSub/GetListInfo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/Version1/Api/Goods/UpdateName.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/assets/images/OK.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/assets/images/exit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/assets/images/pass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/assets/images/trash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/assets/js/searchSelectNew.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/04db6d999a48a16ed0aa8d7b87a1324df8eae383.file.return.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/0a982120f791531bb54272ad922ce88aa8cad2fe.file.footer.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/1b8746c294d2833909d92d71edb2e1211fcd39fa.file.login.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/5804fa13a232b45ac8155066467618be26cc032d.file.index.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/82d2ba19bf080c13efab8f07f7c8cdd21fad5e92.file.sidebar.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/93c29514561aa648873b69a10e02285501fc4222.file.pay_collect.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/993b1d16f53178d22b5013783bf7f55930aad8f1.file.purchase.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/9be0d0629d0a9f92b4f12fe605ef8d67d2c4f256.file.pay_order.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/9f48a47ebbc889e01d52c17aca1a0b1102c191a4.file.pay_invoice.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/ad9084f47505bd859d15deb3834c395e33f1c03f.file.header.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/baceccbcd14f05f26e481f3b0c58540235e038e6.file.storage_list.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/d57d09763db29a2fed0df4bc194679735deed96f.file.simple_header.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/compiled/dfbb0f7254f1e1e1c1c5a10883ab7eb9118b6d18.file.navibar.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/template/storage/goods_choose.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/template/storage/purchase_storage_create.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/template/storage/purchase_storage_detail.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/storage/purchase_storage_add.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/storage/purchase_storage_createnew.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/erp/storage/purchase_storage_new.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/Config/dbs.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Config/dbs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Public/upload/20181205/0ea2b6351566a3e9ae7bc7a08412ad79.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Public/upload/20181205/48280be3bcf3b30cef3301262a150a49.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Api/Goods/Update.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Api/Goods/Update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Api/Supplier/Insert.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Api/Supplier/Insert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Api/Supplier/Options.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Api/Supplier/Options.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Api/Supplier/Update.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Api/Supplier/Update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/DepotSub/CURD.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/DepotSub/CURD.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/Goods/CURD.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/Goods/CURD.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/Message/Msg.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/Message/Msg.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/Order/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/Order/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/Order/List.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/Order/List.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/Order/Save.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/Order/Save.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/Reviewer/Options.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/Reviewer/Options.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Domain/Supplier/Options.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Domain/Supplier/Options.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Model/DepotSub.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Model/DepotSub.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Model/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Model/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Model/OrderGoods.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Model/OrderGoods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/Version1/Model/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Version1/Model/Supplier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/assets/js/other.js" beforeDir="false" afterPath="$PROJECT_DIR$/erp/assets/js/other.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/charts/purchase.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/charts/purchase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/finance/pay_collect.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/finance/pay_collect.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/class/erp/Report.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/class/erp/Report.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/04db6d999a48a16ed0aa8d7b87a1324df8eae383.file.return.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/0a982120f791531bb54272ad922ce88aa8cad2fe.file.footer.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/0a982120f791531bb54272ad922ce88aa8cad2fe.file.footer.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/1b8746c294d2833909d92d71edb2e1211fcd39fa.file.login.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/5804fa13a232b45ac8155066467618be26cc032d.file.index.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/82d2ba19bf080c13efab8f07f7c8cdd21fad5e92.file.sidebar.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/82d2ba19bf080c13efab8f07f7c8cdd21fad5e92.file.sidebar.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/93c29514561aa648873b69a10e02285501fc4222.file.pay_collect.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/93c29514561aa648873b69a10e02285501fc4222.file.pay_collect.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/993b1d16f53178d22b5013783bf7f55930aad8f1.file.purchase.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/9be0d0629d0a9f92b4f12fe605ef8d67d2c4f256.file.pay_order.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/9be0d0629d0a9f92b4f12fe605ef8d67d2c4f256.file.pay_order.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/9f48a47ebbc889e01d52c17aca1a0b1102c191a4.file.pay_invoice.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/ad9084f47505bd859d15deb3834c395e33f1c03f.file.header.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/ad9084f47505bd859d15deb3834c395e33f1c03f.file.header.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/baceccbcd14f05f26e481f3b0c58540235e038e6.file.storage_list.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/d57d09763db29a2fed0df4bc194679735deed96f.file.simple_header.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/compiled/dfbb0f7254f1e1e1c1c5a10883ab7eb9118b6d18.file.navibar.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/dfbb0f7254f1e1e1c1c5a10883ab7eb9118b6d18.file.navibar.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/erp/include/config/config.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/config/config.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/purchase.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/purchase.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/return.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/return.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/order/details.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/order/details.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/order/list.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/order/list.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/purchase/price.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/purchase/price.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/sidebar.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/sidebar.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/purchase/export_invoice.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/purchase/plan_order_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/purchase/plan_order_details.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/purchase/price.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/purchase/price.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/purchase/purchase_play.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/purchase/purchase_play.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/storage/ip_to_review.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/storage/ip_to_review.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/storage/oy_to_review.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/storage/oy_to_review.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/storage/purchase_return.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/storage/purchase_return.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/sys/goods_add.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/sys/goods_add.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/sys/goods_modify.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/sys/goods_modify.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/sys/suppliers_add.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/sys/suppliers_add.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/sys/suppliers_modify.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/sys/suppliers_modify.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/chart4.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/chart4.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/chart5.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/chart5.tpl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -394,9 +57,9 @@
           <entry key="css" value="1" />
           <entry key="js" value="30" />
           <entry key="log" value="1" />
-          <entry key="php" value="855" />
+          <entry key="php" value="857" />
           <entry key="rnc" value="1" />
-          <entry key="tpl" value="207" />
+          <entry key="tpl" value="209" />
           <entry key="ts" value="1" />
         </counts>
       </usages-collector>
@@ -404,10 +67,10 @@
         <counts>
           <entry key="CSS" value="1" />
           <entry key="JavaScript" value="30" />
-          <entry key="PHP" value="855" />
+          <entry key="PHP" value="857" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="1" />
-          <entry key="Smarty" value="207" />
+          <entry key="Smarty" value="209" />
           <entry key="TypeScript" value="1" />
         </counts>
       </usages-collector>
@@ -415,18 +78,18 @@
         <counts>
           <entry key="dummy" value="2" />
           <entry key="js" value="836" />
-          <entry key="php" value="26900" />
-          <entry key="tpl" value="22290" />
+          <entry key="php" value="26903" />
+          <entry key="tpl" value="22333" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="836" />
-          <entry key="PHP" value="26888" />
+          <entry key="PHP" value="26891" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="SQL" value="11" />
-          <entry key="Smarty" value="22290" />
+          <entry key="Smarty" value="22333" />
         </counts>
       </usages-collector>
     </session>
@@ -434,19 +97,46 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/erp/finance/pay_order.php">
+        <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="575">
+              <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erp/include/template/charts/chart4.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
+        <entry file="file://$PROJECT_DIR$/erp/include/template/charts/chart5.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+            <state relative-caret-position="650">
+              <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erp/include/config/config.inc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="397">
+              <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/Config/dbs.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -454,17 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
+            <state relative-caret-position="398">
               <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/erp/finance/pay_invoice.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -481,7 +162,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
+            <state relative-caret-position="4725">
               <caret line="189" column="38" lean-forward="true" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
             </state>
           </provider>
@@ -501,15 +182,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="224">
               <caret line="182" column="50" selection-start-line="182" selection-start-column="50" selection-end-line="182" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/PhalApi/PhalApi/Model/NotORM.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -565,8 +237,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/erp/storage/purchase_storage_new.php" />
-        <option value="$PROJECT_DIR$/erp/storage/using_deliver_createnew.php" />
         <option value="$PROJECT_DIR$/erp/storage/purchase_return.php" />
         <option value="$PROJECT_DIR$/erp/assets/js/extend.js" />
         <option value="$PROJECT_DIR$/erp/sys/goods_add.php" />
@@ -611,11 +281,13 @@
         <option value="$PROJECT_DIR$/api/Version1/Api/Invoice/Get.php" />
         <option value="$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl" />
         <option value="$PROJECT_DIR$/erp/include/template/order/list.tpl" />
-        <option value="$PROJECT_DIR$/api/Config/dbs.php" />
-        <option value="$PROJECT_DIR$/erp/include/config/config.inc.php" />
         <option value="$PROJECT_DIR$/api/Version1/Domain/Order/Goods.php" />
         <option value="$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl" />
         <option value="$PROJECT_DIR$/erp/finance/pay_collect.php" />
+        <option value="$PROJECT_DIR$/erp/include/config/config.inc.php" />
+        <option value="$PROJECT_DIR$/api/Config/dbs.php" />
+        <option value="$PROJECT_DIR$/erp/include/template/charts/chart4.tpl" />
+        <option value="$PROJECT_DIR$/erp/include/template/charts/chart5.tpl" />
       </list>
     </option>
   </component>
@@ -626,8 +298,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="264" />
-    <option name="y" value="41" />
+    <option name="x" value="17" />
+    <option name="y" value="42" />
     <option name="width" value="1890" />
     <option name="height" value="957" />
   </component>
@@ -649,6 +321,18 @@
               <item name="stock" type="b2602c69:ProjectViewProjectNode" />
               <item name="stock" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="Config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="Version1" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="stock" type="b2602c69:ProjectViewProjectNode" />
@@ -680,6 +364,22 @@
               <item name="erp" type="462c0819:PsiDirectoryNode" />
               <item name="include" type="462c0819:PsiDirectoryNode" />
               <item name="template" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="erp" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="charts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stock" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stock" type="462c0819:PsiDirectoryNode" />
+              <item name="erp" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="stock" type="b2602c69:ProjectViewProjectNode" />
@@ -905,10 +605,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1222102000" />
+    <option name="totallyTimeSpent" value="1225025000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="264" y="41" width="1890" height="957" extended-state="0" />
+    <frame x="17" y="42" width="1890" height="957" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49721295" visible="true" weight="0.16448088" />
@@ -941,27 +641,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/PhalApi/PhalApi/Helper/api_desc_tpl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/Version1/Model/Goods.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7025">
-          <caret line="281" column="23" selection-start-line="281" selection-start-column="23" selection-end-line="281" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/assets/js/other.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="100" column="16" selection-start-line="100" selection-start-column="15" selection-end-line="100" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erp/assets/js/extend.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1175">
@@ -1163,13 +842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/Config/dbs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erp/storage/purchase_in_return.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1198,13 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -1219,13 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="13" column="39" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/include/config/config.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
@@ -1250,17 +908,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
+        <state relative-caret-position="4725">
           <caret line="189" column="38" lean-forward="true" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/PhalApi/PhalApi/Model/NotORM.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Config/dbs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/config/config.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+        <state relative-caret-position="575">
+          <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/charts/chart4.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/charts/chart5.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
         </state>
       </provider>
     </entry>
