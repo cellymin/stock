@@ -29,6 +29,8 @@ class Api_Supplier_Insert extends PhalApi_Api
                 'remark' => array('name' => 'remark', 'type' => 'string', 'require' => false),
                 'taxrate' => array('name' => 'taxrate', 'type' => 'float', 'require' => true),
                 'flag' => array('name' => 'flag', 'type' => 'int', 'require' => false),
+                'quanpin'      => array('name' => 'quanpin', 'type' => 'string', 'require' => false),
+                'jianxie'         => array('name' => 'jianxie', 'type' => 'string', 'require' => false),
             )
         );
     }
@@ -59,6 +61,8 @@ class Api_Supplier_Insert extends PhalApi_Api
             'createCompany' => DI()->userInfo['companyId'],
             'createUser' => DI()->userInfo['userId'],
             'createTime' => date('Y-m-d H:i:s'),
+            'quanpin'      => $this->quanpin,
+            'jianxie'         => $this->jianxie,
         );
         $domain = new Domain_Supplier_CURD();
         if($this->taxrate>1){

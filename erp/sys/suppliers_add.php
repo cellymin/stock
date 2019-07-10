@@ -10,10 +10,12 @@ extract($_POST, EXTR_IF_EXISTS);
 $reviewer_options = array();
 //请求接口
 $client = new PhalApiClient();
-
+$pinyin = new PinYin();
 
 if (Common::isPost()) {
     if ($nonceStr == $_SESSION[UserSession::SESSION_NAME]['form_nonceStr']) {
+        $_POST['quanpin'] = strtoupper($pinyin->getpy($_POST['supplierName']));
+        $_POST['jianxie'] = strtoupper($pinyin->getpy($_POST['supplierName'],false));
         $_POST['flag']=intval(REVIEW);
         $rs = $client->request('Supplier_Insert.Go', $_POST);
         if ($client->getRet() == PhalApiClient::RET_OK) {

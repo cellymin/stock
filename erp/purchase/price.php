@@ -33,7 +33,8 @@ if ($client->getRet() == PhalApiClient::RET_OK){
     $page_html=Pagination::showPager("price.php?keyword=$keyword&goodsCateId=$goodsCateId",$page_no,$page_size,$row_count);
 }
 
-
+$nowdate = date('Y-m-d',time());
+Template::assign('nowdate', $nowdate);
 Template::assign('cateList', $cateList);
 Template::assign('list',$list);
 Template::assign('page_html',$page_html);

@@ -16,7 +16,11 @@ class Domain_Order_Save
         }
         $model = new Model_Order();
         $order = $model->get($orderId);
+
         if (!$order || !in_array($order['flag'], array(0, -3))) {
+            if($order['flag']==3){
+                throw new PhalApi_Exception_BadRequest('订单已审核', 0);
+            }
             throw new PhalApi_Exception_BadRequest('订单不存在', 0);
         }
         if (DI()->userInfo['userId'] != $order['createUser']) {
@@ -25,7 +29,6 @@ class Domain_Order_Save
         if ($order['totalCnt'] == 0) {
             throw new PhalApi_Exception_BadRequest('空订单不能提交！', 0);
         }
-
         //验证审核人
         $domain = new Domain_Reviewer_Options();
         $role = $domain->getRole($this->type);

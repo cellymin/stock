@@ -1,11 +1,14 @@
 <{include file ="header.tpl"}>
-
+<style>
+    .export{display:none;}
+    .export_header {display:none;}
+</style>
 <!-- START 以上内容不需更改，保证该TPL页内的标签匹配即可 -->
 <{$js_confirm}>
 <div class="form_div">
     <div style="overflow: hidden" class="avoid-this">
         <button id="orderPrint" class="btn btn-primary" style="float: left;margin-bottom: 20px;" > 打印</button>
-        <a type="button" class="btn btn-primary" onclick="method5('oorder')" style="margin-left: 10px;">导出</a>
+        <a type="button" class="btn btn-primary" onclick="beforeExport(this)" style="margin-left: 10px;">导出</a>
         <{if ($order.flag==0 || $order.flag==-3)}>
         <button type="submit" class="btn btn-primary layerModel" style="float: right;margin-bottom: 20px;" action="1" title="提交审核"
                 layerUrl="<{$toReview}>" layerW="360px" layerH="200px" layerT="2"
@@ -40,6 +43,11 @@
             <input type="hidden" name="orderId" value="<{$order.orderId}>">
             <input type="hidden" name="url" value="plan_order_add">
             <table class="table">
+                <{if $type=='PLAN'}>
+                <tr class="export_header" style="text-align: center;">
+                    <td colspan="10">采购计划单</td>
+                </tr>
+                <{/if}>
                 <tr>
                     <td>订单编号</td>
                     <td><{$order.orderNo}></td>
@@ -75,8 +83,8 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>备注</td>
-                    <td>
+                    <td class="export_header_new">备注</td>
+                    <td class="export_header_new">
                         <{$order.remark}>
                     </td>
                 </tr>
@@ -86,12 +94,17 @@
             <table>
                 <thead>
                 <tr>
-                    <th class="td40 avoid-this">#</th>
+                    <th class="td40  export_header_new" >#</th>
+                    <{if in_array($type,array('PLAN'))}>
+                    <th class="td90">商品编码</th>
+                    <{/if}>
                     <{if in_array($type,array('PURCHASE_IN'))}>
-                    <th class="td90">名称</th>
+                    <th class="td80" >名称</th>
+                    <th class="td80">商品编码</th>
                     <{else}>
                     <th class="td120">名称</th>
                     <{/if}>
+
                     <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                     <{if $type=='PURCHASE_IN'}>
                     <th class="td50">规格</th>
@@ -99,7 +112,7 @@
                     <th class="td80">规格</th>
                     <{/if}>
 
-                    <th class="td80">单位</th>
+                    <th class="td40">单位</th>
                     <{else}>
                     <th class="td150">批次号</th>
                     <{/if}>
@@ -137,7 +150,7 @@
                 <form method="post" action="<{$delete_url}>.php">
                     <input type="hidden" name="orderId" value="<{$order.orderId}>">
                     <input type="hidden" name="type" value="<{$type}>">
-                    <table class="" id="data_list">
+                    <table class="" id="data_list" >
                         <tbody>
                         <tr>
                             <td style="padding: 0;margin: 0">
@@ -145,21 +158,26 @@
                                 <table cellspacing="0" cellpadding="0" class="table" style="margin:0;border-top:none;border-left:none;border-right:none;">
                                     <tbody>
                                     <tr data-id="<{$v.id}>" datatype="1">
-                                        <td class="td40 avoid-this"><input type="checkbox" name="id[]" data-name="id" value="<{$v.id}>"></td>
-                                        <{if $type=='PURCHASE_IN'}>
-                                        <td class="td90"><{$v.goodsName}></td>
-                                        <{else}>
-                                        <td class="td120"><{$v.goodsName}></td>
+                                        <td class="td40 export_header_new"><input type="checkbox" name="id[]" data-name="id" value="<{$v.id}>"></td>
+                                        <{if $type=='PLAN'}>
+                                        <td class="td90"><{$v.goodsSn}></td>
                                         <{/if}>
+                                        <{if $type=='PURCHASE_IN'}>
+                                        <td class="td80" style="text-align: center;" ><{$v.goodsName}></td>
+                                        <td class="td80"><{$v.goodsSn}></td>
+                                        <{else}>
+                                        <td class="td120" style="text-align: center;" ><{$v.goodsName}></td>
+                                        <{/if}>
+
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                                         <{if $type=='PURCHASE_IN'}>
                                         <td class="td50"><{$v.goodsSpec}></td>
                                         <{else}>
                                         <td class="td80"><{$v.goodsSpec}></td>
                                         <{/if}>
-                                        <td class="td80"><{$v.unitName}></td>
+                                        <td class="td40" style="text-align: center;"><{$v.unitName}></td>
                                         <{else}>
-                                        <td class="td150"><{$v.orderSubNo}></td>
+                                        <td class="td150" style="text-align: center;"><{$v.orderSubNo}></td>
                                         <{/if}>
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','SALE_OUT','SALE_RETURN','USE_RETURN'))}>
                                         <td class="td120"><{$v.supplierName}></td>
@@ -192,6 +210,16 @@
                                             <input type="hidden" value="<{$v.remark}>" name="remark">
                                         </td>
                                     </tr>
+                                    <{if $type=='PLAN' && $index+1==$order.goods.row_count}>
+                                        <tr class="export" >
+                                            <td class="export_header_new"></td>
+                                            <td>申请人：</td>  <td></td>
+                                            <td>审批人：</td>  <td ></td>
+                                            <td>审核人：</td>  <td></td>
+                                            <td >打印日期：</td>  <td colspan="2"><{$nowdate}></td>
+                                        </tr>
+                                        <{/if}>
+
                                     </tbody>
                                 </table>
                                 <{if (($index+1)%23)==0}>
@@ -201,10 +229,11 @@
                                     <tr>
                                         <th class="td40 avoid-this">#</th>
                                         <{if $type=='PURCHASE_IN'}>
-                                        <th class="td90">名称</th>
+                                        <th class="td90" >名称</th>
                                         <{else}>
                                         <th class="td120">名称</th>
                                         <{/if}>
+
 
                                         <{if !in_array($type,array('ALLOT_OUT','USE_OUT','INVENTORY','OTHER_IN','OTHER_OUT','USE_RETURN'))}>
                                         <{if $type=='PURCHASE_IN'}>
@@ -250,8 +279,10 @@
                                 </table>
                                 <{/if}>
                                 <{/foreach}>
+
                             </td>
                         </tr>
+
                         </tbody>
                     </table>
                 </form>
@@ -265,6 +296,7 @@
 <script>
     jQuery(function($) { 'use strict';
         $("#orderPrint").on('click', function() {
+            $('.export').show();
             $('.pageHead').show();
             $(".form_div").print({
                 //是否包含父文档的样式，默认为true
@@ -285,10 +317,23 @@
                 deferred: $.Deferred().done(function() {
                     console.log('Printing done', arguments);
                     $('.pageHead').hide();
+                    $('.export').hide();
                 })
             });
         });
         // Fork https://github.com/sathvikp/jQuery.print for the full list of options
     });
+    function beforeExport(e) {
+        var table = $('#oorder').html();
+        $('.export_header').css('display','');
+        $('.export_header_new').remove();
+        $('.export').css('display','');
+        method5('oorder');
+        $('#oorder').html(table);
+        // $('.export').css('display','none');
+        // $('.export_header').css('display','none');
+        // $('.export_header_new').show();
+
+    }
 </script>
 

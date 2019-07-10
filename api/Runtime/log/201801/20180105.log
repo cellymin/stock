@@ -1,0 +1,165 @@
+2018-01-05 08:15:07|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('1')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 08:34:28|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('1')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 09:33:45|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('1')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 09:35:39|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('1')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 14:57:15|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('1')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 15:04:40|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('1')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 15:14:32|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('1')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 15:18:17|ERROR|Supplier_Insert.Go|exception 'PDOException' with message 'Incorrect decimal value: '' for column 'cardMoney' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Supplier\CURD.php(9): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Supplier\Insert.php(56): Domain_Supplier_CURD->insert(Array)
+#5 [internal function]: Api_Supplier_Insert->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 15:18:55|ERROR|Supplier_Insert.Go|exception 'PDOException' with message 'Incorrect decimal value: '' for column 'cardMoney' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Supplier\CURD.php(9): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Supplier\Insert.php(56): Domain_Supplier_CURD->insert(Array)
+#5 [internal function]: Api_Supplier_Insert->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 15:19:05|ERROR|Supplier_Insert.Go|exception 'PDOException' with message 'Incorrect decimal value: '' for column 'cardMoney' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Supplier\CURD.php(9): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Supplier\Insert.php(56): Domain_Supplier_CURD->insert(Array)
+#5 [internal function]: Api_Supplier_Insert->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 16:14:41|ERROR|Supplier_Insert.Go|exception 'PDOException' with message 'Incorrect decimal value: '测试数据' for column 'cardMoney' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Supplier\CURD.php(9): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Supplier\Insert.php(56): Domain_Supplier_CURD->insert(Array)
+#5 [internal function]: Api_Supplier_Insert->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 16:14:48|ERROR|Supplier_Insert.Go|exception 'PDOException' with message 'Incorrect decimal value: '测试数据' for column 'cardMoney' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Supplier\CURD.php(9): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Supplier\Insert.php(56): Domain_Supplier_CURD->insert(Array)
+#5 [internal function]: Api_Supplier_Insert->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 16:16:08|ERROR|Supplier_Insert.Go|exception 'PDOException' with message 'Out of range value for column 'cardMoney' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Supplier\CURD.php(9): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Supplier\Insert.php(56): Domain_Supplier_CURD->insert(Array)
+#5 [internal function]: Api_Supplier_Insert->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 16:17:05|ERROR|Supplier_Insert.Go|exception 'PDOException' with message 'Out of range value for column 'cardMoney' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Supplier\CURD.php(9): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Supplier\Insert.php(56): Domain_Supplier_CURD->insert(Array)
+#5 [internal function]: Api_Supplier_Insert->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-01-05 16:17:26|ERROR|Supplier_Insert.Go|exception 'PDOException' with message 'Out of range value for column 'cardMoney' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Supplier\CURD.php(9): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Supplier\Insert.php(56): Domain_Supplier_CURD->insert(Array)
+#5 [internal function]: Api_Supplier_Insert->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}

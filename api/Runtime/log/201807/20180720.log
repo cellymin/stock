@@ -1,0 +1,10 @@
+2018-07-20 14:19:14|ERROR|Goods_Update.Go|exception 'PDOException' with message 'Incorrect date value: '' for column 'productionDate' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(410): NotORM_Result->query('UPDATE vich_goo...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(48): NotORM_Result->update(Array)
+#2 D:\wamp\www\jxc\api\Version1\Domain\Goods\CURD.php(15): PhalApi_Model_NotORM->update(256, Array)
+#3 D:\wamp\www\jxc\api\Version1\Api\Goods\Update.php(68): Domain_Goods_CURD->update(256, Array)
+#4 [internal function]: Api_Goods_Update->go()
+#5 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#6 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#7 {main}

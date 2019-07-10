@@ -39,6 +39,7 @@ if (!empty($invoiceId)) {
 //    echo '<pre/>';var_dump($rs);die();
 //    echo var_dump($rs['lionid'][4]);die();
 //    echo $rs['lionid'][4][0];die();
+
     if ($rs['lionid']) {
         $lionid = $rs['lionid'][0][0];
         Template::assign('lionid', $lionid);

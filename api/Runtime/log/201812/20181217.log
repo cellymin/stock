@@ -1,0 +1,40 @@
+2018-12-17 08:16:02|ERROR|Warning_Message.Go|exception 'PDOException' with message 'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where to_days(createTime)=to_days(now()))' at line 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(811): NotORM_Result->query('SELECT * FROM v...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(857): NotORM_Result->execute()
+#2 D:\wamp\www\jxc\api\Version1\Model\Message.php(19): NotORM_Result->fetch()
+#3 D:\wamp\www\jxc\api\Version1\Domain\Message\Msg.php(87): Model_Message->invoiceMsgExists('41')
+#4 D:\wamp\www\jxc\api\Version1\Api\Warning\Message.php(10): Domain_Message_Msg::InvoiceWaning('32')
+#5 [internal function]: Api_Warning_Message->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-12-17 09:12:44|ERROR|Order_Save.Go|exception 'PDOException' with message 'There is no active transaction' in D:\wamp\www\jxc\api\PhalApi\PhalApi\DB\NotORM.php:328
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\PhalApi\DB\NotORM.php(328): PDO->rollBack()
+#1 D:\wamp\www\jxc\api\Version1\Domain\Order\Save.php(116): PhalApi_DB_NotORM->rollback('db_demo')
+#2 D:\wamp\www\jxc\api\Version1\Api\Order\Save.php(24): Domain_Order_Save->save(108, 1, NULL)
+#3 [internal function]: Api_Order_Save->go()
+#4 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#5 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#6 {main}
+2018-12-17 14:55:27|ERROR|Order_Save.Go|exception 'PDOException' with message 'Incorrect integer value: 'USE_OUT' for column 'logType' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(339): NotORM_Result->query('INSERT INTO vic...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(356): NotORM_Result->insert_multi(Array)
+#2 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(37): NotORM_Result->insert(Array)
+#3 D:\wamp\www\jxc\api\Version1\Domain\Order\Save.php(77): PhalApi_Model_NotORM->insert(Array)
+#4 D:\wamp\www\jxc\api\Version1\Api\Order\Save.php(24): Domain_Order_Save->save(109, 1, NULL)
+#5 [internal function]: Api_Order_Save->go()
+#6 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#7 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#8 {main}
+2018-12-17 15:33:03|ERROR|Order_Save.Go|exception 'PDOException' with message 'There is no active transaction' in D:\wamp\www\jxc\api\PhalApi\PhalApi\DB\NotORM.php:328
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\PhalApi\DB\NotORM.php(328): PDO->rollBack()
+#1 D:\wamp\www\jxc\api\Version1\Domain\Order\Save.php(116): PhalApi_DB_NotORM->rollback('db_demo')
+#2 D:\wamp\www\jxc\api\Version1\Api\Order\Save.php(24): Domain_Order_Save->save(110, 1, NULL)
+#3 [internal function]: Api_Order_Save->go()
+#4 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#5 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#6 {main}

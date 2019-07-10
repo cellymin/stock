@@ -14,7 +14,7 @@
         <a class="btn btn-primary layerModel" action="1" title="新增订单" layerUrl="<{$create_url}>" layerW="500px"
            layerH="400px" layerT="2"><i class="icon-plus"></i> 新增</a>
         <{/if}>
-        <a class="btn btn-primary layerModel" action="2" title="订单详情" layerUrl="<{$details_url}>" layerW="1000px"
+        <a class="btn btn-primary layerModel" action="2" title="订单详情" layerUrl="<{$details_url}>" layerW="1100px"
            layerH="660px" layerT="2"><i class="icon-pencil"></i> 修改</a>
         <{if ($type!='OTHER_IN' && $type!='OTHER_OUT')}>
         <a class="btn btn-primary layerModel" action="3" title="订单删除"><i class="icon-trash"></i> 删除</a>
@@ -66,7 +66,7 @@
                     <th>备注</th>
                     <th>总额</th>
                     <th>产品总数</th>
-                    <{if in_array($type,array('RETURN','SALE_RETURN','USE_RETURN'))}>
+                    <{if in_array($type,array('RETURN','SALE_RETURN','USE_RETURN','PURCHASE_RETURN'))}>
                     <th>原始订单</th>
                     <{/if}>
                     <th>状态</th>
@@ -90,7 +90,7 @@
                         <td><{$value.remark}></td>
                         <td><{$value.totalMoney}></td>
                         <td><{$value.totalCnt}></td>
-                        <{if in_array($type,array('RETURN','SALE_RETURN','USE_RETURN'))}>
+                        <{if in_array($type,array('RETURN','SALE_RETURN','USE_RETURN','PURCHASE_RETURN'))}>
                         <td><{$value.contactNo}></td>
                         <{/if}>
                         <td><{$value.status}></td>

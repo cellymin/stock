@@ -14,7 +14,7 @@ define ( 'TEMPLATE_SYSPLUGINS', ADMIN_BASE_LIB . 'Smarty/sysplugins/' );
 define ( 'TEMPLATE_CONFIGS', ADMIN_BASE . '/config/' );
 define ( 'TEMPLATE_CACHE', ADMIN_BASE . '/cache/' );
 
-define ( 'VERSION' ,'1.3.1');
+define ( 'VERSION' ,'1.4.0');
 define ( 'REVIEW' ,'1');
 
 
@@ -30,7 +30,7 @@ $DATABASE_LIST[OSA_DB_ID] = array ( "server"=>'localhost',
     "port"=>'3306',
     "username"=> 'root',
     "password"=>'root',
-    "db_name"=>'jxc1'
+    "db_name"=>'jxc0702'
 
 );
 
@@ -45,7 +45,7 @@ $DATABASE_LIST[SAMPLE_DB_ID] = array (
 
 
 //COOKIE加密密钥，建议修改
-define( 'OSA_ENCRYPT_KEY','vich_%erp%');
+define( ' ','vich_%erp%');
 
 //接口
 define('API_SECRECT','API%v1_ERP');

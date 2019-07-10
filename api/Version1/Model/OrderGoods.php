@@ -37,7 +37,7 @@ class Model_OrderGoods extends PhalApi_Model_NotORM
         // 销售单  customerName
         $type = DI()->request->get('type');
 
-        $columns = 'og.*,g.goodsName,g.goodsSpec,';
+        $columns = 'og.*,g.goodsName,g.goodsSpec,g.goodsSn,';
         $left_join = 'left join vich_goods g on g.goodsId=og.goodsId ';
 
         if($type=='SALE_OUT'||$type=='SALE_RETURN'){
@@ -67,6 +67,9 @@ class Model_OrderGoods extends PhalApi_Model_NotORM
         if ($type == 'PURCHASE_IN' || $type=='SALE_OUT'||$type=='SALE_RETURN') {
             $columns .= 'dd.depotName,';
             $left_join .= 'left join vich_depots dd on dd.depotId=og.depotId ';
+        }
+        if ($type == 'PURCHASE_IN') {
+            $columns .= 'og.usecostpri,';
         }
 
         if (in_array($type, array('ALLOT_OUT', 'USE_OUT','USE_RETURN'))) {

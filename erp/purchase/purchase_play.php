@@ -16,7 +16,6 @@ $rs = $client->request('Goods_GetRequestInfo.Go', array(
     'keyword'   => $keyword,
     'status'    => $status
 ));
-
 if ($client->getRet() == PhalApiClient::RET_OK) {
     $page_no   = $rs['content']['page_no'];
     $page_size = $rs['content']['page_size'];
@@ -29,7 +28,8 @@ if ($client->getRet() == PhalApiClient::RET_OK) {
 } else {
     Common::tipWithMessage($client->getMsg(), 'error');
 }
-
+$nowdate = date('Y-m-d',time());
+Template::assign('nowdate', $nowdate);
 Template::assign('_GET', $_GET);
 Template::assign('list', $list);
 Template::assign('page_html', $page_html);

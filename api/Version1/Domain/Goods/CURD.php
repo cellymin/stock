@@ -25,11 +25,11 @@ class Domain_Goods_CURD
     {
         $model = new Model_Goods();
 
-        return $model->get($goodsId, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark');
+        return $model->get($goodsId, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark,quanpin,jianxie');
     }
     public function getInfo($goodsBarCode){
         $model = new Model_Goods();
-        return $model->getInfo($goodsBarCode, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark');
+        return $model->getInfo($goodsBarCode, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark,quanpin,jianxie');
     }
     public function getForOrder($goodsId){
         $model = new Model_Goods();
@@ -43,6 +43,14 @@ class Domain_Goods_CURD
         return $model->getForUD($goodsId, 'goodsId,goodsSn,goodsBarCode,goodsName,goodsSpec,goodsCateId1,goodsCateId2,goodsCateId,goodsUnitId,lastPrice,minPrice,maxPrice,avgPrice,productionDate,invalidDate,searchKey,remark');
     }
 
+    public function getForName($goodsName)
+    {
+        $model = new Model_Goods();
+
+        return $model->getForName($goodsName, 'goodsId');
+    }
+
+
     public function getList($page_no, $page_size, $keyword, $goodsCateId)
     {
         $model = new Model_Goods();
@@ -53,8 +61,11 @@ class Domain_Goods_CURD
         $total_page = $total_page < 1 ? 1 : $total_page;
         $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
         $start = ($page_no - 1) * $page_size;
-
-        $list = $model->getList($start, $page_size, $keyword, $goodsCateId);
+        if($page_size==999){
+            $list = $model->getList($start,0, $keyword, $goodsCateId);
+        } else {
+            $list = $model->getList($start, $page_size, $keyword, $goodsCateId);
+        }
 
         $rs = array(
             'row_count' => $row_count,

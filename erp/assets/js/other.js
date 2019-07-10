@@ -119,8 +119,8 @@ function method5(tableid) {
         for (i = 0; i < Lenr; i++){
             var Lenc = curTbl.rows(i).cells.length;
             for (j = 0; j < Lenc; j++){
+                oSheet.Cells(i + 1, j + 1).Borders.LineStyle=1;
                 oSheet.Cells(i + 1, j + 1).value = curTbl.rows(i).cells(j).innerText;
-
             }
         }
         oXL.Visible = true;

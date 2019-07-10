@@ -17,7 +17,7 @@ if (Common::isPost()) {
                 'orderId'  => $orderId,
                 'reviewer' => $reviewer,
             ));
-//            var_dump($rs);die();
+
             if ($client->getRet() == PhalApiClient::RET_OK) {
                 Common::unsetNonceStr();
                 Common::closeWithMessage('操作成功', 'success');

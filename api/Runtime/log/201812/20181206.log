@@ -1,0 +1,20 @@
+2018-12-06 14:23:00|ERROR|Invoice_Collect.Go|exception 'PDOException' with message 'Incorrect datetime value: '' for column 'endTime' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(410): NotORM_Result->query('UPDATE vich_inv...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(48): NotORM_Result->update(Array)
+#2 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(124): PhalApi_Model_NotORM->update(65, Array)
+#3 D:\wamp\www\jxc\api\Version1\Api\Invoice\Collect.php(50): Domain_Invoice_CURD->collect(Array)
+#4 [internal function]: Api_Invoice_Collect->go()
+#5 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#6 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#7 {main}
+2018-12-06 14:23:14|ERROR|Invoice_Collect.Go|exception 'PDOException' with message 'Incorrect datetime value: '' for column 'endTime' at row 1' in D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php:258
+Stack trace:
+#0 D:\wamp\www\jxc\api\PhalApi\NotORM\NotORM\Result.php(410): NotORM_Result->query('UPDATE vich_inv...', Array)
+#1 D:\wamp\www\jxc\api\PhalApi\PhalApi\Model\NotORM.php(48): NotORM_Result->update(Array)
+#2 D:\wamp\www\jxc\api\Version1\Domain\Invoice\CURD.php(124): PhalApi_Model_NotORM->update(65, Array)
+#3 D:\wamp\www\jxc\api\Version1\Api\Invoice\Collect.php(50): Domain_Invoice_CURD->collect(Array)
+#4 [internal function]: Api_Invoice_Collect->go()
+#5 D:\wamp\www\jxc\api\PhalApi\PhalApi.php(55): call_user_func(Array)
+#6 D:\wamp\www\jxc\api\Public\v1\index.php(14): PhalApi->response()
+#7 {main}

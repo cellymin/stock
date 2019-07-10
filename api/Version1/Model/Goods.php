@@ -88,13 +88,19 @@ class Model_Goods extends PhalApi_Model_NotORM
         $requestList = DI()->notorm->goods->queryAll($sql, $param);
         $newlist = array();
         foreach ($requestList as $kk){
-            $sqlids = 'SELECT sp.supplierName FROM vich_orders_ip ip
+            $sqlids = 'SELECT sp.supplierName,sp.taxrate,ig.usecostpri,ig.goodsPrice FROM vich_orders_ip ip
                        LEFT JOIN vich_orders_ip_goods ig ON ip.orderId = ig.orderId
                        LEFT JOIN vich_suppliers sp ON ip.supplierId = sp.supplierId
                        WHERE ig.goodsId = '.$kk['goodsId'].' ORDER BY ip.createTime DESC LIMIT 1';
             $supplierName =  DI()->notorm->goods->queryAll($sqlids);
             $newlist[$kk['goodsId']]=$kk;
             $newlist[$kk['goodsId']]['suppliername'] = $supplierName[0]['supplierName'];
+            $newlist[$kk['goodsId']]['usecostpri'] = $supplierName[0]['usecostpri'];
+            $newlist[$kk['goodsId']]['goodsPrice'] = $supplierName[0]['goodsPrice'];
+            $newlist[$kk['goodsId']]['taxrate'] = $supplierName[0]['taxrate'];
+            if(floatval($supplierName[0]['usecostpri'])>0 && floatval($supplierName[0]['taxrate'])>0){
+                $newlist[$kk['goodsId']]['lastratepri'] = $supplierName[0]['usecostpri'] * (1+floatval($supplierName[0]['taxrate']));
+            }
             unset($supplierName);
         }
     return $newlist;
@@ -141,6 +147,16 @@ class Model_Goods extends PhalApi_Model_NotORM
             ->fetch();
     }
 
+    public function getForName($goodsName, $fields = '*')
+    {
+        $where = 'flag=1 and goodsName=?';
+        $param[] = $goodsName;
+
+        return DI()->notorm->goods
+            ->select($fields)
+            ->where($where, $param)
+            ->fetch();
+    }
 
     public function getList($start, $page_size, $keyword, $goodsCateId)
     {
@@ -149,21 +165,21 @@ class Model_Goods extends PhalApi_Model_NotORM
             $limit = " limit $start,$page_size";
         }
 
-        $sql = 'select g.goodsId,g.goodsSn,g.goodsBarCode,g.goodsName,g.goodsSpec,g.goodsCateId,c.cateName,g.goodsUnitId,u.unitName,'
+        $sql = 'select g.goodsId,g.goodsSn,g.goodsBarCode,g.goodsName,g.goodsSpec,g.goodsCateId,c.cateName,g.goodsUnitId,u.unitName,g.usecostpri,g.quanpin,g.jianxie,'
             . 'g.lastPrice,g.minPrice,g.maxPrice,g.avgPrice,g.productionDate,g.invalidDate,g.searchKey,g.remark '
             . 'from vich_goods g '
             . 'left join vich_goods_cates c on c.cateId=g.goodsCateId '
-            . 'left join vich_goods_units u on u.unitId=g.goodsUnitId '
-            . 'where g.flag=1 and (g.goodsBarCode like :keyword or g.searchKey like :keyword or g.goodsName like :keyword or g.goodsSn like :keyword) ';
+            . 'left join vich_goods_units u on u.unitId=g.goodsUnitId ';
+            //.' LEFT JOIN (SELECT MAX(createTime),depotId,depotSubId,goodsId FROM vich_depot_goods WHERE flag = 1 GROUP BY goodsId) AS b ON b.goodsId = g.goodsId '
+          $sql  .= 'where g.flag=1 and (g.goodsBarCode like :keyword or g.searchKey like :keyword or g.goodsName like :keyword or g.goodsSn like :keyword) ';
         $param = array(':keyword' => '%' . $keyword . '%');
 
         if ($goodsCateId) {
-            $sql .= ' and g.goodsCateId=:goodsCateId ';
+            $sql .= ' and (goodsCateId=:goodsCateId or goodsCateId1=:goodsCateId or goodsCateId2=:goodsCateId) ';
             $param[':goodsCateId'] = $goodsCateId;
         }
 
         $sql .= ' order by g.goodsSn asc,g.createTime desc';
-
         $sql .= $limit;
 
         return DI()->notorm->goods->queryAll($sql, $param);
@@ -264,6 +280,9 @@ class Model_Goods extends PhalApi_Model_NotORM
             $result=DI()->notorm->goods->queryAll($sql,$param);
         }
         return $result;
+    }
+    public function updateName($goodsId){
+        $param[':goodsCateId'] = $goodsCateId;
     }
 
 }
