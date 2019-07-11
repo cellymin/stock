@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="042a9778-798e-41d6-ba23-c269a0d1a9db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/api/Config/dbs.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/Config/dbs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/04db6d999a48a16ed0aa8d7b87a1324df8eae383.file.return.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/0a982120f791531bb54272ad922ce88aa8cad2fe.file.footer.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/0a982120f791531bb54272ad922ce88aa8cad2fe.file.footer.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/1b8746c294d2833909d92d71edb2e1211fcd39fa.file.login.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/5804fa13a232b45ac8155066467618be26cc032d.file.index.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/82d2ba19bf080c13efab8f07f7c8cdd21fad5e92.file.sidebar.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/82d2ba19bf080c13efab8f07f7c8cdd21fad5e92.file.sidebar.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/93c29514561aa648873b69a10e02285501fc4222.file.pay_collect.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/93c29514561aa648873b69a10e02285501fc4222.file.pay_collect.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/993b1d16f53178d22b5013783bf7f55930aad8f1.file.purchase.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/9be0d0629d0a9f92b4f12fe605ef8d67d2c4f256.file.pay_order.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/9be0d0629d0a9f92b4f12fe605ef8d67d2c4f256.file.pay_order.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/9f48a47ebbc889e01d52c17aca1a0b1102c191a4.file.pay_invoice.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/ad9084f47505bd859d15deb3834c395e33f1c03f.file.header.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/ad9084f47505bd859d15deb3834c395e33f1c03f.file.header.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/baceccbcd14f05f26e481f3b0c58540235e038e6.file.storage_list.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/d57d09763db29a2fed0df4bc194679735deed96f.file.simple_header.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/compiled/dfbb0f7254f1e1e1c1c5a10883ab7eb9118b6d18.file.navibar.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/compiled/dfbb0f7254f1e1e1c1c5a10883ab7eb9118b6d18.file.navibar.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/config/config.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/config/config.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/chart4.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/chart4.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erp/include/template/charts/chart5.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/erp/include/template/charts/chart5.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,11 +29,11 @@
           <entry key="project.open.time.3" value="3" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="6" />
-          <entry key="project.open.time.7" value="23" />
+          <entry key="project.open.time.6" value="7" />
+          <entry key="project.open.time.7" value="24" />
           <entry key="project.open.time.8" value="11" />
           <entry key="project.open.time.9" value="7" />
-          <entry key="project.opened" value="108" />
+          <entry key="project.opened" value="110" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -78,7 +62,7 @@
         <counts>
           <entry key="dummy" value="2" />
           <entry key="js" value="836" />
-          <entry key="php" value="26903" />
+          <entry key="php" value="26907" />
           <entry key="tpl" value="22333" />
         </counts>
       </usages-collector>
@@ -86,7 +70,7 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="836" />
-          <entry key="PHP" value="26891" />
+          <entry key="PHP" value="26895" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="SQL" value="11" />
           <entry key="Smarty" value="22333" />
@@ -99,26 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/erp/include/template/charts/chart4.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/erp/include/template/charts/chart5.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="650">
-              <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+            <state relative-caret-position="1150">
+              <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -126,17 +92,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/erp/include/config/config.inc.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
+            <state relative-caret-position="800">
               <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/Config/dbs.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+            <state relative-caret-position="600">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -144,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+            <state relative-caret-position="623">
+              <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -153,7 +119,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_collect.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="634">
+            <state relative-caret-position="5250">
               <caret line="210" selection-start-line="210" selection-end-line="210" />
             </state>
           </provider>
@@ -163,7 +129,7 @@
         <entry file="file://$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4725">
-              <caret line="189" column="38" lean-forward="true" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
+              <caret line="189" column="38" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -171,8 +137,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Get.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+            <state relative-caret-position="698">
+              <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -180,8 +146,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="182" column="50" selection-start-line="182" selection-start-column="50" selection-end-line="182" selection-end-column="50" />
+            <state relative-caret-position="-1677">
+              <caret line="247" column="20" selection-start-line="247" selection-start-column="20" selection-end-line="247" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -277,17 +243,17 @@
         <option value="$PROJECT_DIR$/api/Version1/Api/Supplier/Options.php" />
         <option value="$PROJECT_DIR$/erp/finance/pay_order.php" />
         <option value="$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php" />
-        <option value="$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php" />
         <option value="$PROJECT_DIR$/api/Version1/Api/Invoice/Get.php" />
         <option value="$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl" />
         <option value="$PROJECT_DIR$/erp/include/template/order/list.tpl" />
         <option value="$PROJECT_DIR$/api/Version1/Domain/Order/Goods.php" />
         <option value="$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl" />
-        <option value="$PROJECT_DIR$/erp/finance/pay_collect.php" />
         <option value="$PROJECT_DIR$/erp/include/config/config.inc.php" />
         <option value="$PROJECT_DIR$/api/Config/dbs.php" />
         <option value="$PROJECT_DIR$/erp/include/template/charts/chart4.tpl" />
         <option value="$PROJECT_DIR$/erp/include/template/charts/chart5.tpl" />
+        <option value="$PROJECT_DIR$/erp/finance/pay_collect.php" />
+        <option value="$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php" />
       </list>
     </option>
   </component>
@@ -297,7 +263,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="17" />
     <option name="y" value="42" />
     <option name="width" value="1890" />
@@ -601,17 +567,19 @@
       <workItem from="1561625857482" duration="813000" />
       <workItem from="1562031389313" duration="4593000" />
       <workItem from="1562373409562" duration="1338000" />
+      <workItem from="1562751361204" duration="404000" />
+      <workItem from="1562807705076" duration="17981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1225025000" />
+    <option name="totallyTimeSpent" value="1252757000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="17" y="42" width="1890" height="957" extended-state="0" />
+    <frame x="17" y="42" width="1890" height="957" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49721295" visible="true" weight="0.16448088" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49721295" visible="true" weight="0.16775957" />
       <window_info id="Structure" order="1" sideWeight="0.5022272" side_tool="true" weight="0.17697228" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -821,20 +789,6 @@
     <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_order.tpl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_collect.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="210" selection-start-line="210" selection-end-line="210" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Get.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erp/include/template/storage/storage_list.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3675">
@@ -870,13 +824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="182" column="50" selection-start-line="182" selection-start-column="50" selection-end-line="182" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_invoice.tpl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -908,20 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4725">
-          <caret line="189" column="38" lean-forward="true" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/PhalApi/PhalApi/Model/NotORM.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -929,24 +862,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/Config/dbs.php">
+    <entry file="file://$PROJECT_DIR$/erp/include/template/charts/chart5.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="28" column="32" lean-forward="true" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/include/config/config.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        <state relative-caret-position="475">
+          <caret line="37" column="91" lean-forward="true" selection-start-line="37" selection-start-column="91" selection-end-line="37" selection-end-column="91" />
         </state>
       </provider>
     </entry>
@@ -957,10 +876,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/erp/include/template/charts/chart5.tpl">
+    <entry file="file://$PROJECT_DIR$/erp/finance/pay_collect.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+        <state relative-caret-position="1150">
+          <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/config/config.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/finance/pay_collect.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5250">
+          <caret line="210" selection-start-line="210" selection-end-line="210" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erp/include/template/purchase/purchase_play.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4725">
+          <caret line="189" column="38" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Collect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Domain/Invoice/CURD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1677">
+          <caret line="247" column="20" selection-start-line="247" selection-start-column="20" selection-end-line="247" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Version1/Api/Invoice/Get.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="698">
+          <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Config/dbs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
         </state>
       </provider>
     </entry>
